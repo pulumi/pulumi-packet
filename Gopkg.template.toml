@@ -15,8 +15,8 @@
 # `source` to the fork address. Then set the `branch` to `pulumi-master` in the
 # fork, and ensure `version` is not set.
 [[constraint]]
-  version = "v1.0.0"
-  name = "github.com/terraform-providers/terraform-provider-x"
+  version = "v1.2.5"
+  name = "github.com/terraform-providers/terraform-provider-packet"
 
   [constraint.metadata]
     govendor-override = true

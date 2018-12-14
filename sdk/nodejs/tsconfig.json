@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "outDir": "bin",
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true
+    },
+    "files": [
+        "config/index.ts",
+        "config/vars.ts",
+        "device.ts",
+        "getOperatingSystem.ts",
+        "getPrecreatedIpBlock.ts",
+        "getSpotMarketPrice.ts",
+        "index.ts",
+        "ipAttachment.ts",
+        "organization.ts",
+        "project.ts",
+        "provider.ts",
+        "reservedIpBlock.ts",
+        "sSHKey.ts",
+        "spotMarketRequest.ts",
+        "utilities.ts",
+        "volume.ts",
+        "volumeAttachment.ts"
+    ]
+}
+

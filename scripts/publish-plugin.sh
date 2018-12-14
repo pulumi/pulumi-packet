@@ -4,7 +4,7 @@
 set -o nounset -o errexit -o pipefail
 
 # Update this with the name of the provider
-PROVIDER_NAME="x"
+PROVIDER_NAME="packet"
 
 ROOT=$(dirname $0)/..
 WORK_PATH=$(mktemp -d)
