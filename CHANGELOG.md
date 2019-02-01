@@ -1,5 +1,5 @@
-## 0.x.x (unreleased)
+## 0.1.1 (Unreleased)
 
-### Major Changes
+## 0.1.0 (Released February 1st, 2019)
 
-### Improvements
+Initial release!
