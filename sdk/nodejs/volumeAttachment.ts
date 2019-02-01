@@ -10,6 +10,40 @@ import * as utilities from "./utilities";
  * Device and volume must be in the same location (facility).
  * 
  * Once attached by Terraform, they must then be mounted using the `packet_block_attach` and `packet_block_detach` scripts.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * const packet_project_test_project = new packet.Project("test_project", {
+ *     name: "test-project",
+ * });
+ * const packet_device_test_device_va = new packet.Device("test_device_va", {
+ *     billingCycle: "hourly",
+ *     facility: "ewr1",
+ *     hostname: "terraform-test-device-va",
+ *     operatingSystem: "ubuntu_16_04",
+ *     plan: "baremetal_0",
+ *     projectId: packet_project_test_project.id,
+ * });
+ * const packet_volume_test_volume_va = new packet.Volume("test_volume_va", {
+ *     billingCycle: "hourly",
+ *     facility: "ewr1",
+ *     plan: "storage_1",
+ *     projectId: packet_project_test_project.id,
+ *     size: 100,
+ *     snapshotPolicies: [{
+ *         snapshotCount: 7,
+ *         snapshotFrequency: "1day",
+ *     }],
+ * });
+ * const packet_volume_attachment_test_volume_attachment = new packet.VolumeAttachment("test_volume_attachment", {
+ *     deviceId: packet_device_test_device_va.id,
+ *     volumeId: packet_volume_test_volume_va.id,
+ * });
+ * ```
  */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**

@@ -9,6 +9,19 @@ import * as utilities from "./utilities";
  * keys on your account. All SSH keys on your account are loaded on
  * all new devices, they do not have to be explicitly declared on
  * device creation.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * const packet_ssh_key_key1 = new packet.SSHKey("key1", {
+ *     name: "terraform-1",
+ *     publicKey: fs.readFileSync("/home/terraform/.ssh/id_rsa.pub", "utf-8"),
+ * });
+ * ```
  */
 export class SSHKey extends pulumi.CustomResource {
     /**

@@ -18,3 +18,4 @@ from .volume_attachment import *
 from .get_operating_system import *
 from .get_precreated_ip_block import *
 from .get_spot_market_price import *
+from .provider import *
