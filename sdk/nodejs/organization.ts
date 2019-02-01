@@ -6,6 +6,18 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a resource to manage organization resource in Packet.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * const packet_organization_tf_organization_1 = new packet.Organization("tf_organization_1", {
+ *     description: "quux",
+ *     name: "foobar",
+ * });
+ * ```
  */
 export class Organization extends pulumi.CustomResource {
     /**

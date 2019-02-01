@@ -7,6 +7,17 @@ import * as utilities from "./utilities";
 /**
  * Provides a Packet Project resource to allow you manage devices
  * in your projects.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * const packet_project_tf_project_1 = new packet.Project("tf_project_1", {
+ *     name: "Terraform Fun",
+ * });
+ * ```
  */
 export class Project extends pulumi.CustomResource {
     /**
