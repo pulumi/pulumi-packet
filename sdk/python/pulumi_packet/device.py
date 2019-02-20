@@ -3,7 +3,6 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
-import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
@@ -38,13 +37,9 @@ class Device(pulumi.CustomResource):
     """
     Description string for the device
     """
-    facilities: pulumi.Output[list]
-    """
-    List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-    """
     facility: pulumi.Output[str]
     """
-    The facility in which to create the device.
+    The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
     """
     hardware_reservation_id: pulumi.Output[str]
     """
@@ -67,12 +62,7 @@ class Device(pulumi.CustomResource):
     """
     networks: pulumi.Output[list]
     """
-    The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
-    * Public IPv4 at `packet_device.name.network.0`
-    * IPv6 at `packet_device.name.network.1`
-    * Private IPv4 at `packet_device.name.network.2`
-    Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-    The fields of the network attributes are:
+    The device's private and public IP (v4 and v6) network details
     """
     operating_system: pulumi.Output[str]
     """
@@ -86,10 +76,6 @@ class Device(pulumi.CustomResource):
     """
     The id of the project in which to create the device
     """
-    project_ssh_key_ids: pulumi.Output[list]
-    """
-    Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
-    """
     public_ipv4_subnet_size: pulumi.Output[int]
     """
     Size of allocated subnet, more
@@ -99,10 +85,6 @@ class Device(pulumi.CustomResource):
     root_password: pulumi.Output[str]
     """
     Root password to the server (disabled after 24 hours)
-    """
-    ssh_key_ids: pulumi.Output[list]
-    """
-    List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
     """
     state: pulumi.Output[str]
     """
@@ -124,7 +106,7 @@ class Device(pulumi.CustomResource):
     """
     A string of the desired User Data for the device.
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, facility=None, hardware_reservation_id=None, hostname=None, ipxe_script_url=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, __name__=None, __opts__=None):
+    def __init__(__self__, __name__, __opts__=None, always_pxe=None, billing_cycle=None, description=None, facility=None, hardware_reservation_id=None, hostname=None, ipxe_script_url=None, operating_system=None, plan=None, project_id=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -133,14 +115,15 @@ class Device(pulumi.CustomResource):
          the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
         
-        :param str resource_name: The name of the resource.
-        :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        
+        :param str __name__: The name of the resource.
+        :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] always_pxe: If true, a device with OS `custom_ipxe` will
                continue to boot via iPXE on reboots.
         :param pulumi.Input[str] billing_cycle: monthly or hourly
         :param pulumi.Input[str] description: Description string for the device
-        :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] facility: The facility in which to create the device.
+        :param pulumi.Input[str] facility: The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] hardware_reservation_id: The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
         :param pulumi.Input[str] hostname: The device name
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
@@ -150,7 +133,6 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.net/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.net/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] project_id: The id of the project in which to create the device
-        :param pulumi.Input[list] project_ssh_key_ids: Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
         :param pulumi.Input[int] public_ipv4_subnet_size: Size of allocated subnet, more
                information is in the
                [Custom Subnet Size](https://help.packet.net/article/55-custom-subnet-size) doc.
@@ -158,54 +140,46 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[list] tags: Tags attached to the device
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
-        if not resource_name:
+        if not __name__:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
+        if not isinstance(__name__, str):
             raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
+        if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
         __props__['always_pxe'] = always_pxe
 
-        if billing_cycle is None:
+        if not billing_cycle:
             raise TypeError('Missing required property billing_cycle')
         __props__['billing_cycle'] = billing_cycle
 
         __props__['description'] = description
 
-        __props__['facilities'] = facilities
-
+        if not facility:
+            raise TypeError('Missing required property facility')
         __props__['facility'] = facility
 
         __props__['hardware_reservation_id'] = hardware_reservation_id
 
-        if hostname is None:
+        if not hostname:
             raise TypeError('Missing required property hostname')
         __props__['hostname'] = hostname
 
         __props__['ipxe_script_url'] = ipxe_script_url
 
-        if operating_system is None:
+        if not operating_system:
             raise TypeError('Missing required property operating_system')
         __props__['operating_system'] = operating_system
 
-        if plan is None:
+        if not plan:
             raise TypeError('Missing required property plan')
         __props__['plan'] = plan
 
-        if project_id is None:
+        if not project_id:
             raise TypeError('Missing required property project_id')
         __props__['project_id'] = project_id
-
-        __props__['project_ssh_key_ids'] = project_ssh_key_ids
 
         __props__['public_ipv4_subnet_size'] = public_ipv4_subnet_size
 
@@ -222,15 +196,14 @@ class Device(pulumi.CustomResource):
         __props__['locked'] = None
         __props__['networks'] = None
         __props__['root_password'] = None
-        __props__['ssh_key_ids'] = None
         __props__['state'] = None
         __props__['updated'] = None
 
         super(Device, __self__).__init__(
             'packet:index/device:Device',
-            resource_name,
+            __name__,
             __props__,
-            opts)
+            __opts__)
 
 
     def translate_output_property(self, prop):

@@ -6,28 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get Packet Operating System image.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const example = pulumi.output(packet.getOperatingSystem({
- *     distro: "coreos",
- *     name: "Container Linux",
- *     provisionableOn: "c1.small.x86",
- *     version: "alpha",
- * }));
- * const server = new packet.Device("server", {
- *     billingCycle: "hourly",
- *     facility: "ewr1",
- *     hostname: "tf.coreos2",
- *     operatingSystem: example.apply(example => example.id),
- *     plan: "c1.small.x86",
- *     projectId: packet_project_cool_project.id,
- * });
- * ```
  */
 export function getOperatingSystem(args?: GetOperatingSystemArgs, opts?: pulumi.InvokeOptions): Promise<GetOperatingSystemResult> {
     args = args || {};
@@ -65,9 +43,6 @@ export interface GetOperatingSystemArgs {
  * A collection of values returned by getOperatingSystem.
  */
 export interface GetOperatingSystemResult {
-    /**
-     * Operating system slug (same as `id`)
-     */
     readonly slug: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

@@ -15,25 +15,6 @@ import * as utilities from "./utilities";
  * with mask prefix length 32. More about the elastic IP subnets is [here](https://help.packet.net/article/54-elastic-ips).
  * 
  * Device and reserved block must be in the same facility.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Reserve /30 block of max 2 public IPv4 addresses in Parsippany, NJ (ewr1) for myproject
- * const myblock = new packet.ReservedIpBlock("myblock", {
- *     facility: "ewr1",
- *     projectId: packet_project_myproject.id,
- *     quantity: 2,
- * });
- * // Assign /32 subnet (single address) from reserved block to a device
- * const firstAddressAssingment = new packet.IpAttachment("first_address_assingment", {
- *     cidrNotation: myblock.cidrNotation.apply(cidrNotation => `${(() => { throw "NYI: call to cidrhost"; })()}/32`),
- *     deviceId: packet_device_mydevice.id,
- * });
- * ```
  */
 export class IpAttachment extends pulumi.CustomResource {
     /**
@@ -70,7 +51,6 @@ export class IpAttachment extends pulumi.CustomResource {
      * IP address of gateway for the subnet
      */
     public /*out*/ readonly gateway: pulumi.Output<string>;
-    public /*out*/ readonly global: pulumi.Output<boolean>;
     public /*out*/ readonly manageable: pulumi.Output<boolean>;
     public /*out*/ readonly management: pulumi.Output<boolean>;
     /**
@@ -104,7 +84,6 @@ export class IpAttachment extends pulumi.CustomResource {
             inputs["cidrNotation"] = state ? state.cidrNotation : undefined;
             inputs["deviceId"] = state ? state.deviceId : undefined;
             inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["global"] = state ? state.global : undefined;
             inputs["manageable"] = state ? state.manageable : undefined;
             inputs["management"] = state ? state.management : undefined;
             inputs["netmask"] = state ? state.netmask : undefined;
@@ -124,7 +103,6 @@ export class IpAttachment extends pulumi.CustomResource {
             inputs["addressFamily"] = undefined /*out*/;
             inputs["cidr"] = undefined /*out*/;
             inputs["gateway"] = undefined /*out*/;
-            inputs["global"] = undefined /*out*/;
             inputs["manageable"] = undefined /*out*/;
             inputs["management"] = undefined /*out*/;
             inputs["netmask"] = undefined /*out*/;
@@ -161,7 +139,6 @@ export interface IpAttachmentState {
      * IP address of gateway for the subnet
      */
     readonly gateway?: pulumi.Input<string>;
-    readonly global?: pulumi.Input<boolean>;
     readonly manageable?: pulumi.Input<boolean>;
     readonly management?: pulumi.Input<boolean>;
     /**

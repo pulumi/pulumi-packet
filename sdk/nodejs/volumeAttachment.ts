@@ -17,29 +17,31 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * const testProject = new packet.Project("test_project", {});
- * const testDeviceVa = new packet.Device("test_device_va", {
+ * const packet_project_test_project = new packet.Project("test_project", {
+ *     name: "test-project",
+ * });
+ * const packet_device_test_device_va = new packet.Device("test_device_va", {
  *     billingCycle: "hourly",
  *     facility: "ewr1",
  *     hostname: "terraform-test-device-va",
  *     operatingSystem: "ubuntu_16_04",
- *     plan: "t1.small.x86",
- *     projectId: testProject.id,
+ *     plan: "baremetal_0",
+ *     projectId: packet_project_test_project.id,
  * });
- * const testVolumeVa = new packet.Volume("test_volume_va", {
+ * const packet_volume_test_volume_va = new packet.Volume("test_volume_va", {
  *     billingCycle: "hourly",
  *     facility: "ewr1",
  *     plan: "storage_1",
- *     projectId: testProject.id,
+ *     projectId: packet_project_test_project.id,
  *     size: 100,
  *     snapshotPolicies: [{
  *         snapshotCount: 7,
  *         snapshotFrequency: "1day",
  *     }],
  * });
- * const testVolumeAttachment = new packet.VolumeAttachment("test_volume_attachment", {
- *     deviceId: testDeviceVa.id,
- *     volumeId: testVolumeVa.id,
+ * const packet_volume_attachment_test_volume_attachment = new packet.VolumeAttachment("test_volume_attachment", {
+ *     deviceId: packet_device_test_device_va.id,
+ *     volumeId: packet_volume_test_volume_va.id,
  * });
  * ```
  */

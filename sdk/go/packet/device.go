@@ -14,6 +14,7 @@ import (
 // > **Note:** All arguments including the root_password and user_data will be stored in
 //  the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+// 
 type Device struct {
 	s *pulumi.ResourceState
 }
@@ -23,6 +24,9 @@ func NewDevice(ctx *pulumi.Context,
 	name string, args *DeviceArgs, opts ...pulumi.ResourceOpt) (*Device, error) {
 	if args == nil || args.BillingCycle == nil {
 		return nil, errors.New("missing required argument 'BillingCycle'")
+	}
+	if args == nil || args.Facility == nil {
+		return nil, errors.New("missing required argument 'Facility'")
 	}
 	if args == nil || args.Hostname == nil {
 		return nil, errors.New("missing required argument 'Hostname'")
@@ -41,7 +45,6 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["alwaysPxe"] = nil
 		inputs["billingCycle"] = nil
 		inputs["description"] = nil
-		inputs["facilities"] = nil
 		inputs["facility"] = nil
 		inputs["hardwareReservationId"] = nil
 		inputs["hostname"] = nil
@@ -49,7 +52,6 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["operatingSystem"] = nil
 		inputs["plan"] = nil
 		inputs["projectId"] = nil
-		inputs["projectSshKeyIds"] = nil
 		inputs["publicIpv4SubnetSize"] = nil
 		inputs["storage"] = nil
 		inputs["tags"] = nil
@@ -58,7 +60,6 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["alwaysPxe"] = args.AlwaysPxe
 		inputs["billingCycle"] = args.BillingCycle
 		inputs["description"] = args.Description
-		inputs["facilities"] = args.Facilities
 		inputs["facility"] = args.Facility
 		inputs["hardwareReservationId"] = args.HardwareReservationId
 		inputs["hostname"] = args.Hostname
@@ -66,7 +67,6 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["operatingSystem"] = args.OperatingSystem
 		inputs["plan"] = args.Plan
 		inputs["projectId"] = args.ProjectId
-		inputs["projectSshKeyIds"] = args.ProjectSshKeyIds
 		inputs["publicIpv4SubnetSize"] = args.PublicIpv4SubnetSize
 		inputs["storage"] = args.Storage
 		inputs["tags"] = args.Tags
@@ -79,7 +79,6 @@ func NewDevice(ctx *pulumi.Context,
 	inputs["locked"] = nil
 	inputs["networks"] = nil
 	inputs["rootPassword"] = nil
-	inputs["sshKeyIds"] = nil
 	inputs["state"] = nil
 	inputs["updated"] = nil
 	s, err := ctx.RegisterResource("packet:index/device:Device", name, true, inputs, opts...)
@@ -102,7 +101,6 @@ func GetDevice(ctx *pulumi.Context,
 		inputs["billingCycle"] = state.BillingCycle
 		inputs["created"] = state.Created
 		inputs["description"] = state.Description
-		inputs["facilities"] = state.Facilities
 		inputs["facility"] = state.Facility
 		inputs["hardwareReservationId"] = state.HardwareReservationId
 		inputs["hostname"] = state.Hostname
@@ -112,10 +110,8 @@ func GetDevice(ctx *pulumi.Context,
 		inputs["operatingSystem"] = state.OperatingSystem
 		inputs["plan"] = state.Plan
 		inputs["projectId"] = state.ProjectId
-		inputs["projectSshKeyIds"] = state.ProjectSshKeyIds
 		inputs["publicIpv4SubnetSize"] = state.PublicIpv4SubnetSize
 		inputs["rootPassword"] = state.RootPassword
-		inputs["sshKeyIds"] = state.SshKeyIds
 		inputs["state"] = state.State
 		inputs["storage"] = state.Storage
 		inputs["tags"] = state.Tags
@@ -175,12 +171,7 @@ func (r *Device) Description() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["description"])
 }
 
-// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-func (r *Device) Facilities() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["facilities"])
-}
-
-// The facility in which to create the device.
+// The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 func (r *Device) Facility() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["facility"])
 }
@@ -208,12 +199,7 @@ func (r *Device) Locked() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["locked"])
 }
 
-// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
-// * Public IPv4 at `packet_device.name.network.0`
-// * IPv6 at `packet_device.name.network.1`
-// * Private IPv4 at `packet_device.name.network.2`
-// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-// The fields of the network attributes are:
+// The device's private and public IP (v4 and v6) network details
 func (r *Device) Networks() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["networks"])
 }
@@ -233,11 +219,6 @@ func (r *Device) ProjectId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["projectId"])
 }
 
-// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
-func (r *Device) ProjectSshKeyIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["projectSshKeyIds"])
-}
-
 // Size of allocated subnet, more
 // information is in the
 // [Custom Subnet Size](https://help.packet.net/article/55-custom-subnet-size) doc.
@@ -248,11 +229,6 @@ func (r *Device) PublicIpv4SubnetSize() *pulumi.IntOutput {
 // Root password to the server (disabled after 24 hours)
 func (r *Device) RootPassword() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["rootPassword"])
-}
-
-// List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
-func (r *Device) SshKeyIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["sshKeyIds"])
 }
 
 // The status of the device
@@ -297,9 +273,7 @@ type DeviceState struct {
 	Created interface{}
 	// Description string for the device
 	Description interface{}
-	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-	Facilities interface{}
-	// The facility in which to create the device.
+	// The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facility interface{}
 	// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 	HardwareReservationId interface{}
@@ -312,12 +286,7 @@ type DeviceState struct {
 	IpxeScriptUrl interface{}
 	// Whether the device is locked
 	Locked interface{}
-	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
-	// * Public IPv4 at `packet_device.name.network.0`
-	// * IPv6 at `packet_device.name.network.1`
-	// * Private IPv4 at `packet_device.name.network.2`
-	// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-	// The fields of the network attributes are:
+	// The device's private and public IP (v4 and v6) network details
 	Networks interface{}
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.net/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem interface{}
@@ -325,16 +294,12 @@ type DeviceState struct {
 	Plan interface{}
 	// The id of the project in which to create the device
 	ProjectId interface{}
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
-	ProjectSshKeyIds interface{}
 	// Size of allocated subnet, more
 	// information is in the
 	// [Custom Subnet Size](https://help.packet.net/article/55-custom-subnet-size) doc.
 	PublicIpv4SubnetSize interface{}
 	// Root password to the server (disabled after 24 hours)
 	RootPassword interface{}
-	// List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
-	SshKeyIds interface{}
 	// The status of the device
 	State interface{}
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://help.packet.net/article/61-custom-partitioning-raid) doc.
@@ -356,9 +321,7 @@ type DeviceArgs struct {
 	BillingCycle interface{}
 	// Description string for the device
 	Description interface{}
-	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-	Facilities interface{}
-	// The facility in which to create the device.
+	// The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facility interface{}
 	// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 	HardwareReservationId interface{}
@@ -375,8 +338,6 @@ type DeviceArgs struct {
 	Plan interface{}
 	// The id of the project in which to create the device
 	ProjectId interface{}
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
-	ProjectSshKeyIds interface{}
 	// Size of allocated subnet, more
 	// information is in the
 	// [Custom Subnet Size](https://help.packet.net/article/55-custom-subnet-size) doc.

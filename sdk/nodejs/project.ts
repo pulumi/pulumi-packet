@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Packet project resource to allow you manage devices
+ * Provides a Packet Project resource to allow you manage devices
  * in your projects.
  * 
  * ## Example Usage
@@ -14,23 +14,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * // Create a new project
- * const tfProject1 = new packet.Project("tf_project_1", {});
- * ```
- * 
- * Example with BGP config
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Create a new Project
- * const tfProject1 = new packet.Project("tf_project_1", {
- *     bgpConfig: {
- *         asn: 65000,
- *         deploymentType: "local",
- *         md5: "C179c28c41a85b",
- *     },
+ * const packet_project_tf_project_1 = new packet.Project("tf_project_1", {
+ *     name: "Terraform Fun",
  * });
  * ```
  */
@@ -48,27 +33,23 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
-     */
-    public readonly bgpConfig: pulumi.Output<{ asn: number, deploymentType: string, maxPrefix: number, md5?: string, status: string } | undefined>;
-    /**
-     * The timestamp for when the project was created
+     * The timestamp for when the Project was created
      */
     public /*out*/ readonly created: pulumi.Output<string>;
     /**
-     * The name of the project on Packet.net
+     * The name of the Project on Packet.net
      */
     public readonly name: pulumi.Output<string>;
     /**
-     * The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
+     * The UUID of Organization under which you want to create the project. If you leave it out, the project will be create under your the default Organization of your account.
      */
     public readonly organizationId: pulumi.Output<string>;
     /**
-     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+     * The UUID of payment method for this project. If you keep it empty, Packet API will pick your default Payment Method.
      */
     public readonly paymentMethodId: pulumi.Output<string>;
     /**
-     * The timestamp for the last time the project was updated
+     * The timestamp for the last time the Project was updated
      */
     public /*out*/ readonly updated: pulumi.Output<string>;
 
@@ -84,7 +65,6 @@ export class Project extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state: ProjectState = argsOrState as ProjectState | undefined;
-            inputs["bgpConfig"] = state ? state.bgpConfig : undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["organizationId"] = state ? state.organizationId : undefined;
@@ -95,7 +75,6 @@ export class Project extends pulumi.CustomResource {
             if (!args || args.name === undefined) {
                 throw new Error("Missing required property 'name'");
             }
-            inputs["bgpConfig"] = args ? args.bgpConfig : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["organizationId"] = args ? args.organizationId : undefined;
             inputs["paymentMethodId"] = args ? args.paymentMethodId : undefined;
@@ -111,27 +90,23 @@ export class Project extends pulumi.CustomResource {
  */
 export interface ProjectState {
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
-     */
-    readonly bgpConfig?: pulumi.Input<{ asn: pulumi.Input<number>, deploymentType: pulumi.Input<string>, maxPrefix?: pulumi.Input<number>, md5?: pulumi.Input<string>, status?: pulumi.Input<string> }>;
-    /**
-     * The timestamp for when the project was created
+     * The timestamp for when the Project was created
      */
     readonly created?: pulumi.Input<string>;
     /**
-     * The name of the project on Packet.net
+     * The name of the Project on Packet.net
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
+     * The UUID of Organization under which you want to create the project. If you leave it out, the project will be create under your the default Organization of your account.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+     * The UUID of payment method for this project. If you keep it empty, Packet API will pick your default Payment Method.
      */
     readonly paymentMethodId?: pulumi.Input<string>;
     /**
-     * The timestamp for the last time the project was updated
+     * The timestamp for the last time the Project was updated
      */
     readonly updated?: pulumi.Input<string>;
 }
@@ -141,19 +116,15 @@ export interface ProjectState {
  */
 export interface ProjectArgs {
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
-     */
-    readonly bgpConfig?: pulumi.Input<{ asn: pulumi.Input<number>, deploymentType: pulumi.Input<string>, maxPrefix?: pulumi.Input<number>, md5?: pulumi.Input<string>, status?: pulumi.Input<string> }>;
-    /**
-     * The name of the project on Packet.net
+     * The name of the Project on Packet.net
      */
     readonly name: pulumi.Input<string>;
     /**
-     * The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
+     * The UUID of Organization under which you want to create the project. If you leave it out, the project will be create under your the default Organization of your account.
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+     * The UUID of payment method for this project. If you keep it empty, Packet API will pick your default Payment Method.
      */
     readonly paymentMethodId?: pulumi.Input<string>;
 }
