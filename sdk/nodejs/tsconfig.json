@@ -18,11 +18,13 @@
         "ipAttachment.ts",
         "organization.ts",
         "project.ts",
+        "projectSSHKey.ts",
         "provider.ts",
         "reservedIpBlock.ts",
         "sSHKey.ts",
         "spotMarketRequest.ts",
         "utilities.ts",
+        "vLAN.ts",
         "volume.ts",
         "volumeAttachment.ts"
     ]
