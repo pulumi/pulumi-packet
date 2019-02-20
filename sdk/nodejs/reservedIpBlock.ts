@@ -7,13 +7,14 @@ import * as utilities from "./utilities";
 /**
  * Provides a resource to create and manage blocks of reserved IP addresses in a project.
  * 
- * When user provision first device in a facility, Packet automatically allocates IPv6/56 and private IPv4/25 blocks.
+ * When a user provisions first device in a facility, Packet API automatically allocates IPv6/56 and private IPv4/25 blocks.
  * The new device then gets IPv6 and private IPv4 addresses from those block. It also gets a public IPv4/31 address.
- * Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from pre-allocated i
- * blocks.
- * The IPv6 and private IPv4 blocks can't be created, only imported.
+ * Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from these pre-allocated blocks.
+ * The IPv6 and private IPv4 blocks can't be created, only imported. With this resource, it's possible to create either public IPv4 blocks or global IPv4 blocks.
  * 
- * It is only possible to create public IPv4 blocks, with masks from /24 (256 addresses) to /32 (1 address).
+ * Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
+ * 
+ * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
  * 
  * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet_ip_attachment` resource.
  */
@@ -44,10 +45,14 @@ export class ReservedIpBlock extends pulumi.CustomResource {
      */
     public /*out*/ readonly cidrNotation: pulumi.Output<string>;
     /**
-     * The facility where to allocate the address block
+     * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
-    public readonly facility: pulumi.Output<string>;
+    public readonly facility: pulumi.Output<string | undefined>;
     public /*out*/ readonly gateway: pulumi.Output<string>;
+    /**
+     * boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
+     */
+    public /*out*/ readonly global: pulumi.Output<boolean>;
     public /*out*/ readonly manageable: pulumi.Output<boolean>;
     public /*out*/ readonly management: pulumi.Output<boolean>;
     /**
@@ -70,6 +75,10 @@ export class ReservedIpBlock extends pulumi.CustomResource {
      * The number of allocated /32 addresses, a power of 2
      */
     public readonly quantity: pulumi.Output<number>;
+    /**
+     * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+     */
+    public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a ReservedIpBlock resource with the given unique name, arguments, and options.
@@ -89,6 +98,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             inputs["cidrNotation"] = state ? state.cidrNotation : undefined;
             inputs["facility"] = state ? state.facility : undefined;
             inputs["gateway"] = state ? state.gateway : undefined;
+            inputs["global"] = state ? state.global : undefined;
             inputs["manageable"] = state ? state.manageable : undefined;
             inputs["management"] = state ? state.management : undefined;
             inputs["netmask"] = state ? state.netmask : undefined;
@@ -96,11 +106,9 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["public"] = state ? state.public : undefined;
             inputs["quantity"] = state ? state.quantity : undefined;
+            inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ReservedIpBlockArgs | undefined;
-            if (!args || args.facility === undefined) {
-                throw new Error("Missing required property 'facility'");
-            }
             if (!args || args.projectId === undefined) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -110,11 +118,13 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             inputs["facility"] = args ? args.facility : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["quantity"] = args ? args.quantity : undefined;
+            inputs["type"] = args ? args.type : undefined;
             inputs["address"] = undefined /*out*/;
             inputs["addressFamily"] = undefined /*out*/;
             inputs["cidr"] = undefined /*out*/;
             inputs["cidrNotation"] = undefined /*out*/;
             inputs["gateway"] = undefined /*out*/;
+            inputs["global"] = undefined /*out*/;
             inputs["manageable"] = undefined /*out*/;
             inputs["management"] = undefined /*out*/;
             inputs["netmask"] = undefined /*out*/;
@@ -143,10 +153,14 @@ export interface ReservedIpBlockState {
      */
     readonly cidrNotation?: pulumi.Input<string>;
     /**
-     * The facility where to allocate the address block
+     * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
     readonly facility?: pulumi.Input<string>;
     readonly gateway?: pulumi.Input<string>;
+    /**
+     * boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
+     */
+    readonly global?: pulumi.Input<boolean>;
     readonly manageable?: pulumi.Input<boolean>;
     readonly management?: pulumi.Input<boolean>;
     /**
@@ -169,6 +183,10 @@ export interface ReservedIpBlockState {
      * The number of allocated /32 addresses, a power of 2
      */
     readonly quantity?: pulumi.Input<number>;
+    /**
+     * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+     */
+    readonly type?: pulumi.Input<string>;
 }
 
 /**
@@ -176,9 +194,9 @@ export interface ReservedIpBlockState {
  */
 export interface ReservedIpBlockArgs {
     /**
-     * The facility where to allocate the address block
+     * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
-    readonly facility: pulumi.Input<string>;
+    readonly facility?: pulumi.Input<string>;
     /**
      * The packet project ID where to allocate the address block
      */
@@ -187,4 +205,8 @@ export interface ReservedIpBlockArgs {
      * The number of allocated /32 addresses, a power of 2
      */
     readonly quantity: pulumi.Input<number>;
+    /**
+     * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+     */
+    readonly type?: pulumi.Input<string>;
 }

@@ -43,6 +43,7 @@ func NewIpAttachment(ctx *pulumi.Context,
 	inputs["addressFamily"] = nil
 	inputs["cidr"] = nil
 	inputs["gateway"] = nil
+	inputs["global"] = nil
 	inputs["manageable"] = nil
 	inputs["management"] = nil
 	inputs["netmask"] = nil
@@ -67,6 +68,7 @@ func GetIpAttachment(ctx *pulumi.Context,
 		inputs["cidrNotation"] = state.CidrNotation
 		inputs["deviceId"] = state.DeviceId
 		inputs["gateway"] = state.Gateway
+		inputs["global"] = state.Global
 		inputs["manageable"] = state.Manageable
 		inputs["management"] = state.Management
 		inputs["netmask"] = state.Netmask
@@ -120,6 +122,10 @@ func (r *IpAttachment) Gateway() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["gateway"])
 }
 
+func (r *IpAttachment) Global() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["global"])
+}
+
 func (r *IpAttachment) Manageable() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["manageable"])
 }
@@ -157,6 +163,7 @@ type IpAttachmentState struct {
 	DeviceId interface{}
 	// IP address of gateway for the subnet
 	Gateway interface{}
+	Global interface{}
 	Manageable interface{}
 	Management interface{}
 	// Subnet mask in decimal notation, e.g. "255.255.255.0"

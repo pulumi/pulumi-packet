@@ -10,6 +10,33 @@ import * as utilities from "./utilities";
  * Once created by Terraform, they must then be attached and mounted
  * using the api and `packet_block_attach` and `packet_block_detach`
  * scripts.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Create a new block volume
+ * const volume1 = new packet.Volume("volume1", {
+ *     billingCycle: "hourly",
+ *     description: "terraform-volume-1",
+ *     facility: "ewr1",
+ *     plan: "storage_1",
+ *     projectId: packet_project_cool_project.id,
+ *     size: 100,
+ *     snapshotPolicies: [
+ *         {
+ *             snapshotCount: 7,
+ *             snapshotFrequency: "1day",
+ *         },
+ *         {
+ *             snapshotCount: 6,
+ *             snapshotFrequency: "1month",
+ *         },
+ *     ],
+ * });
+ * ```
  */
 export class Volume extends pulumi.CustomResource {
     /**

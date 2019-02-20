@@ -13,9 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * const packet_spot_market_price_example = pulumi.output(packet.getSpotMarketPrice({
+ * const example = pulumi.output(packet.getSpotMarketPrice({
  *     facility: "ewr1",
- *     plan: "baremetal_1",
+ *     plan: "c1.small.x86",
  * }));
  * ```
  */

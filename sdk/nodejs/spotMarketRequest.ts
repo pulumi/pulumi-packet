@@ -7,6 +7,28 @@ import * as utilities from "./utilities";
 /**
  * Provides a Packet Spot Market Request resource to allow you to
  * manage spot market requests on your account. https://help.packet.net/en-us/article/20-spot-market 
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Create a spot market request
+ * const req = new packet.SpotMarketRequest("req", {
+ *     devicesMax: 1,
+ *     devicesMin: 1,
+ *     facilities: ["ewr1"],
+ *     instanceParameters: {
+ *         billingCycle: "hourly",
+ *         hostname: "testspot",
+ *         operatingSystem: "coreos_stable",
+ *         plan: "t1.small.x86",
+ *     },
+ *     maxBidPrice: 0.03,
+ *     projectId: packet_project_cool_project.id,
+ * });
+ * ```
  */
 export class SpotMarketRequest extends pulumi.CustomResource {
     /**
