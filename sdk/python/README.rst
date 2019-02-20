@@ -22,13 +22,13 @@ To use from JavaScript or TypeScript in Node.js, install using either
 
 ::
 
-    $ npm install @pulumi/packet
+   $ npm install @pulumi/packet
 
 or ``yarn``:
 
 ::
 
-    $ yarn add @pulumi/packet
+   $ yarn add @pulumi/packet
 
 Python
 ~~~~~~
@@ -37,7 +37,7 @@ To use from Python, install using ``pip``:
 
 ::
 
-    $ pip install pulumi_packet
+   $ pip install pulumi_packet
 
 Go
 ~~
@@ -46,7 +46,7 @@ To use from Go, use ``go get`` to grab the latest version of the library
 
 ::
 
-    $ go get github.com/pulumi/pulumi-packet/sdk/go/...
+   $ go get github.com/pulumi/pulumi-packet/sdk/go/...
 
 Reference
 ---------

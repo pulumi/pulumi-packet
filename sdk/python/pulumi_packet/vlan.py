@@ -8,40 +8,32 @@ import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class Organization(pulumi.CustomResource):
-    created: pulumi.Output[str]
+class VLAN(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
-    Description string.
+    Description string
     """
-    logo: pulumi.Output[str]
+    facility: pulumi.Output[str]
     """
-    Logo URL.
+    Facility where to create the VLAN
     """
-    name: pulumi.Output[str]
+    project_id: pulumi.Output[str]
     """
-    The name of the Organization.
+    ID of parent project
     """
-    twitter: pulumi.Output[str]
+    vxlan: pulumi.Output[int]
     """
-    Twitter handle.
+    VXLAN segment ID
     """
-    updated: pulumi.Output[str]
-    website: pulumi.Output[str]
-    """
-    Website link.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, logo=None, name=None, twitter=None, website=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, __name__=None, __opts__=None):
         """
-        Provides a resource to manage organization resource in Packet.
+        Provides a resource to allow users to manage Virtual Networks in their projects. VLANs are used in [Layer 2 networking setup](https://packet.kayako.com/article/57-layer-2-overview).
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description string.
-        :param pulumi.Input[str] logo: Logo URL.
-        :param pulumi.Input[str] name: The name of the Organization.
-        :param pulumi.Input[str] twitter: Twitter handle.
-        :param pulumi.Input[str] website: Website link.
+        :param pulumi.Input[str] description: Description string
+        :param pulumi.Input[str] facility: Facility where to create the VLAN
+        :param pulumi.Input[str] project_id: ID of parent project
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -60,21 +52,18 @@ class Organization(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        __props__['logo'] = logo
+        if facility is None:
+            raise TypeError('Missing required property facility')
+        __props__['facility'] = facility
 
-        if name is None:
-            raise TypeError('Missing required property name')
-        __props__['name'] = name
+        if project_id is None:
+            raise TypeError('Missing required property project_id')
+        __props__['project_id'] = project_id
 
-        __props__['twitter'] = twitter
+        __props__['vxlan'] = None
 
-        __props__['website'] = website
-
-        __props__['created'] = None
-        __props__['updated'] = None
-
-        super(Organization, __self__).__init__(
-            'packet:index/organization:Organization',
+        super(VLAN, __self__).__init__(
+            'packet:index/vLAN:VLAN',
             resource_name,
             __props__,
             opts)

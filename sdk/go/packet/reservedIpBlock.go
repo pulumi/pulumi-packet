@@ -10,13 +10,14 @@ import (
 
 // Provides a resource to create and manage blocks of reserved IP addresses in a project.
 // 
-// When user provision first device in a facility, Packet automatically allocates IPv6/56 and private IPv4/25 blocks.
+// When a user provisions first device in a facility, Packet API automatically allocates IPv6/56 and private IPv4/25 blocks.
 // The new device then gets IPv6 and private IPv4 addresses from those block. It also gets a public IPv4/31 address.
-// Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from pre-allocated i
-// blocks.
-// The IPv6 and private IPv4 blocks can't be created, only imported.
+// Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from these pre-allocated blocks.
+// The IPv6 and private IPv4 blocks can't be created, only imported. With this resource, it's possible to create either public IPv4 blocks or global IPv4 blocks.
 // 
-// It is only possible to create public IPv4 blocks, with masks from /24 (256 addresses) to /32 (1 address).
+// Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
+// 
+// Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
 // 
 // Once IP block is allocated or imported, an address from it can be assigned to device with the `packet_ip_attachment` resource.
 type ReservedIpBlock struct {
@@ -26,9 +27,6 @@ type ReservedIpBlock struct {
 // NewReservedIpBlock registers a new resource with the given unique name, arguments, and options.
 func NewReservedIpBlock(ctx *pulumi.Context,
 	name string, args *ReservedIpBlockArgs, opts ...pulumi.ResourceOpt) (*ReservedIpBlock, error) {
-	if args == nil || args.Facility == nil {
-		return nil, errors.New("missing required argument 'Facility'")
-	}
 	if args == nil || args.ProjectId == nil {
 		return nil, errors.New("missing required argument 'ProjectId'")
 	}
@@ -40,16 +38,19 @@ func NewReservedIpBlock(ctx *pulumi.Context,
 		inputs["facility"] = nil
 		inputs["projectId"] = nil
 		inputs["quantity"] = nil
+		inputs["type"] = nil
 	} else {
 		inputs["facility"] = args.Facility
 		inputs["projectId"] = args.ProjectId
 		inputs["quantity"] = args.Quantity
+		inputs["type"] = args.Type
 	}
 	inputs["address"] = nil
 	inputs["addressFamily"] = nil
 	inputs["cidr"] = nil
 	inputs["cidrNotation"] = nil
 	inputs["gateway"] = nil
+	inputs["global"] = nil
 	inputs["manageable"] = nil
 	inputs["management"] = nil
 	inputs["netmask"] = nil
@@ -74,6 +75,7 @@ func GetReservedIpBlock(ctx *pulumi.Context,
 		inputs["cidrNotation"] = state.CidrNotation
 		inputs["facility"] = state.Facility
 		inputs["gateway"] = state.Gateway
+		inputs["global"] = state.Global
 		inputs["manageable"] = state.Manageable
 		inputs["management"] = state.Management
 		inputs["netmask"] = state.Netmask
@@ -81,6 +83,7 @@ func GetReservedIpBlock(ctx *pulumi.Context,
 		inputs["projectId"] = state.ProjectId
 		inputs["public"] = state.Public
 		inputs["quantity"] = state.Quantity
+		inputs["type"] = state.Type
 	}
 	s, err := ctx.ReadResource("packet:index/reservedIpBlock:ReservedIpBlock", name, id, inputs, opts...)
 	if err != nil {
@@ -118,13 +121,18 @@ func (r *ReservedIpBlock) CidrNotation() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["cidrNotation"])
 }
 
-// The facility where to allocate the address block
+// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 func (r *ReservedIpBlock) Facility() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["facility"])
 }
 
 func (r *ReservedIpBlock) Gateway() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["gateway"])
+}
+
+// boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
+func (r *ReservedIpBlock) Global() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["global"])
 }
 
 func (r *ReservedIpBlock) Manageable() *pulumi.BoolOutput {
@@ -160,6 +168,11 @@ func (r *ReservedIpBlock) Quantity() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["quantity"])
 }
 
+// Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+func (r *ReservedIpBlock) Type() *pulumi.StringOutput {
+	return (*pulumi.StringOutput)(r.s.State["type"])
+}
+
 // Input properties used for looking up and filtering ReservedIpBlock resources.
 type ReservedIpBlockState struct {
 	Address interface{}
@@ -169,9 +182,11 @@ type ReservedIpBlockState struct {
 	Cidr interface{}
 	// Address and mask in CIDR notation, e.g. "147.229.15.30/31"
 	CidrNotation interface{}
-	// The facility where to allocate the address block
+	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility interface{}
 	Gateway interface{}
+	// boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
+	Global interface{}
 	Manageable interface{}
 	Management interface{}
 	// Mask in decimal notation, e.g. "255.255.255.0"
@@ -184,14 +199,18 @@ type ReservedIpBlockState struct {
 	Public interface{}
 	// The number of allocated /32 addresses, a power of 2
 	Quantity interface{}
+	// Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+	Type interface{}
 }
 
 // The set of arguments for constructing a ReservedIpBlock resource.
 type ReservedIpBlockArgs struct {
-	// The facility where to allocate the address block
+	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility interface{}
 	// The packet project ID where to allocate the address block
 	ProjectId interface{}
 	// The number of allocated /32 addresses, a power of 2
 	Quantity interface{}
+	// Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+	Type interface{}
 }

@@ -7,11 +7,46 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
  * You can then use the cidrsubnet TF builtin function to derive subnets.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // we have to make the datasource depend on the device. Here I do it implicitly
+ * // with the project_id param, because an explicity "depends_on" attribute in
+ * // a datasource taints the state:
+ * // https://github.com/hashicorp/terraform/issues/11806
+ * const testPrecreatedIpBlock = pulumi.output(packet.getPrecreatedIpBlock({
+ *     addressFamily: 6,
+ *     facility: "ewr1",
+ *     projectId: packet_device_test.projectId,
+ *     public: true,
+ * }));
+ * const testProject = new packet.Project("test", {});
+ * const web1 = new packet.Device("web1", {
+ *     billingCycle: "hourly",
+ *     facility: "ewr1",
+ *     hostname: "tftest",
+ *     operatingSystem: "ubuntu_16_04",
+ *     plan: "t1.small.x86",
+ *     projectId: testProject.id,
+ * });
+ * const fromIpv6Block = new packet.IpAttachment("from_ipv6_block", {
+ *     cidrNotation: testPrecreatedIpBlock.apply(testPrecreatedIpBlock => (() => {
+ *         throw "tf2pulumi error: NYI: call to cidrsubnet";
+ *         return (() => { throw "NYI: call to cidrsubnet"; })();
+ *     })()),
+ *     deviceId: web1.id,
+ * });
+ * ```
  */
 export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulumi.InvokeOptions): Promise<GetPrecreatedIpBlockResult> {
     return pulumi.runtime.invoke("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", {
         "addressFamily": args.addressFamily,
         "facility": args.facility,
+        "global": args.global,
         "projectId": args.projectId,
         "public": args.public,
     }, opts);
@@ -26,9 +61,13 @@ export interface GetPrecreatedIpBlockArgs {
      */
     readonly addressFamily: number;
     /**
-     * Facility of the searched block.
+     * Facility of the searched block. (Optional) Only allowed for non-global blocks.
      */
-    readonly facility: string;
+    readonly facility?: string;
+    /**
+     * Whether to look for global block. Default is false for backward compatibility.
+     */
+    readonly global?: boolean;
     /**
      * ID of the project where the searched block should be.
      */

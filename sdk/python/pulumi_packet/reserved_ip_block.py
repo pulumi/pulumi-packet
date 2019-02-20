@@ -3,6 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
+import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
@@ -23,9 +24,13 @@ class ReservedIpBlock(pulumi.CustomResource):
     """
     facility: pulumi.Output[str]
     """
-    The facility where to allocate the address block
+    Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
     """
     gateway: pulumi.Output[str]
+    global_: pulumi.Output[bool]
+    """
+    boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
+    """
     manageable: pulumi.Output[bool]
     management: pulumi.Output[bool]
     netmask: pulumi.Output[str]
@@ -48,53 +53,65 @@ class ReservedIpBlock(pulumi.CustomResource):
     """
     The number of allocated /32 addresses, a power of 2
     """
-    def __init__(__self__, __name__, __opts__=None, facility=None, project_id=None, quantity=None):
+    type: pulumi.Output[str]
+    """
+    Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+    """
+    def __init__(__self__, resource_name, opts=None, facility=None, project_id=None, quantity=None, type=None, __name__=None, __opts__=None):
         """
         Provides a resource to create and manage blocks of reserved IP addresses in a project.
         
-        When user provision first device in a facility, Packet automatically allocates IPv6/56 and private IPv4/25 blocks.
+        When a user provisions first device in a facility, Packet API automatically allocates IPv6/56 and private IPv4/25 blocks.
         The new device then gets IPv6 and private IPv4 addresses from those block. It also gets a public IPv4/31 address.
-        Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from pre-allocated i
-        blocks.
-        The IPv6 and private IPv4 blocks can't be created, only imported.
+        Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from these pre-allocated blocks.
+        The IPv6 and private IPv4 blocks can't be created, only imported. With this resource, it's possible to create either public IPv4 blocks or global IPv4 blocks.
         
-        It is only possible to create public IPv4 blocks, with masks from /24 (256 addresses) to /32 (1 address).
+        Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
+        
+        Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
         
         Once IP block is allocated or imported, an address from it can be assigned to device with the `packet_ip_attachment` resource.
         
-        
-        :param str __name__: The name of the resource.
-        :param pulumi.ResourceOptions __opts__: Options for the resource.
-        :param pulumi.Input[str] facility: The facility where to allocate the address block
+        :param str resource_name: The name of the resource.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] facility: Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
         :param pulumi.Input[int] quantity: The number of allocated /32 addresses, a power of 2
+        :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
         """
-        if not __name__:
+        if __name__ is not None:
+            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
+            resource_name = __name__
+        if __opts__ is not None:
+            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
+            opts = __opts__
+        if not resource_name:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(__name__, str):
+        if not isinstance(resource_name, str):
             raise TypeError('Expected resource name to be a string')
-        if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
+        if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
-        if not facility:
-            raise TypeError('Missing required property facility')
         __props__['facility'] = facility
 
-        if not project_id:
+        if project_id is None:
             raise TypeError('Missing required property project_id')
         __props__['project_id'] = project_id
 
-        if not quantity:
+        if quantity is None:
             raise TypeError('Missing required property quantity')
         __props__['quantity'] = quantity
+
+        __props__['type'] = type
 
         __props__['address'] = None
         __props__['address_family'] = None
         __props__['cidr'] = None
         __props__['cidr_notation'] = None
         __props__['gateway'] = None
+        __props__['global_'] = None
         __props__['manageable'] = None
         __props__['management'] = None
         __props__['netmask'] = None
@@ -103,9 +120,9 @@ class ReservedIpBlock(pulumi.CustomResource):
 
         super(ReservedIpBlock, __self__).__init__(
             'packet:index/reservedIpBlock:ReservedIpBlock',
-            __name__,
+            resource_name,
             __props__,
-            __opts__)
+            opts)
 
 
     def translate_output_property(self, prop):

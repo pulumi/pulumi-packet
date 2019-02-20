@@ -8,7 +8,7 @@ import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class SSHKey(pulumi.CustomResource):
+class ProjectSSHKey(pulumi.CustomResource):
     created: pulumi.Output[str]
     """
     The timestamp for when the SSH key was created
@@ -21,26 +21,31 @@ class SSHKey(pulumi.CustomResource):
     """
     The name of the SSH key for identification
     """
+    project_id: pulumi.Output[str]
+    """
+    The ID of parent project
+    """
     public_key: pulumi.Output[str]
     """
-    The public key. If this is a file, it
-    can be read using the file interpolation function
+    The public key. If this is a file, it can be read using the file interpolation function
+    * `project_id - (Required) The ID of parent project
     """
     updated: pulumi.Output[str]
     """
     The timestamp for the last time the SSH key was updated
     """
-    def __init__(__self__, resource_name, opts=None, name=None, public_key=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, name=None, project_id=None, public_key=None, __name__=None, __opts__=None):
         """
-        Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
+        Provides a Packet project SSH key resource to manage project-specific SSH keys. On contrary to user SSH keys, project SSH keys are used to exclusively populate `authorized_keys` in new devices.
         
-        The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
+        If you supply a list of project SSH keys when creating a new device, only the listed keys are used; user SSH keys are ignored.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the SSH key for identification
-        :param pulumi.Input[str] public_key: The public key. If this is a file, it
-               can be read using the file interpolation function
+        :param pulumi.Input[str] project_id: The ID of parent project
+        :param pulumi.Input[str] public_key: The public key. If this is a file, it can be read using the file interpolation function
+               * `project_id - (Required) The ID of parent project
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -61,6 +66,10 @@ class SSHKey(pulumi.CustomResource):
             raise TypeError('Missing required property name')
         __props__['name'] = name
 
+        if project_id is None:
+            raise TypeError('Missing required property project_id')
+        __props__['project_id'] = project_id
+
         if public_key is None:
             raise TypeError('Missing required property public_key')
         __props__['public_key'] = public_key
@@ -69,8 +78,8 @@ class SSHKey(pulumi.CustomResource):
         __props__['fingerprint'] = None
         __props__['updated'] = None
 
-        super(SSHKey, __self__).__init__(
-            'packet:index/sSHKey:SSHKey',
+        super(ProjectSSHKey, __self__).__init__(
+            'packet:index/projectSSHKey:ProjectSSHKey',
             resource_name,
             __props__,
             opts)
