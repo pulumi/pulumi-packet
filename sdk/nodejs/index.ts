@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 // Export members:
+export * from "./bgpSession";
 export * from "./device";
 export * from "./getOperatingSystem";
 export * from "./getPrecreatedIpBlock";
@@ -9,10 +10,12 @@ export * from "./getSpotMarketPrice";
 export * from "./ipAttachment";
 export * from "./organization";
 export * from "./project";
+export * from "./projectSshKey";
 export * from "./provider";
 export * from "./reservedIpBlock";
 export * from "./spotMarketRequest";
 export * from "./sshKey";
+export * from "./vlan";
 export * from "./volume";
 export * from "./volumeAttachment";
 

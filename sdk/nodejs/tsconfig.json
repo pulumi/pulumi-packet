@@ -8,6 +8,7 @@
         "sourceMap": true
     },
     "files": [
+        "bgpSession.ts",
         "config/index.ts",
         "config/vars.ts",
         "device.ts",
@@ -18,11 +19,13 @@
         "ipAttachment.ts",
         "organization.ts",
         "project.ts",
+        "projectSshKey.ts",
         "provider.ts",
         "reservedIpBlock.ts",
         "spotMarketRequest.ts",
         "sshKey.ts",
         "utilities.ts",
+        "vlan.ts",
         "volume.ts",
         "volumeAttachment.ts"
     ]
