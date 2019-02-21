@@ -12,6 +12,111 @@ import * as utilities from "./utilities";
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Create a device and add it to cool_project
+ * const web1 = new packet.Device("web1", {
+ *     billingCycle: "hourly",
+ *     facility: "ewr1",
+ *     hostname: "tf.coreos2",
+ *     operatingSystem: "coreos_stable",
+ *     plan: "t1.small.x86",
+ *     projectId: packet_project_cool_project.id,
+ * });
+ * ```
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Same as above, but boot via iPXE initially, using the Ignition Provider for provisioning
+ * const pxe1 = new packet.Device("pxe1", {
+ *     alwaysPxe: false,
+ *     billingCycle: "hourly",
+ *     facility: "ewr1",
+ *     hostname: "tf.coreos2-pxe",
+ *     ipxeScriptUrl: "https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe",
+ *     operatingSystem: "custom_ipxe",
+ *     plan: "t1.small.x86",
+ *     projectId: packet_project_cool_project.id,
+ *     userData: ignition_config_example.rendered.apply(rendered => rendered),
+ * });
+ * ```
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Deploy device on next-available reserved hardware and do custom partitioning.
+ * const web1 = new packet.Device("web1", {
+ *     billingCycle: "hourly",
+ *     facility: "sjc1",
+ *     hardwareReservationId: "next-available",
+ *     hostname: "tftest",
+ *     operatingSystem: "ubuntu_16_04",
+ *     plan: "t1.small.x86",
+ *     projectId: packet_project_cool_project.id,
+ *     storage: `{
+ *   "disks": [
+ *     {
+ *       "device": "/dev/sda",
+ *       "wipeTable": true,
+ *       "partitions": [
+ *         {
+ *           "label": "BIOS",
+ *           "number": 1,
+ *           "size": 4096
+ *         },
+ *         {
+ *           "label": "SWAP",
+ *           "number": 2,
+ *           "size": "3993600"
+ *         },
+ *         {
+ *           "label": "ROOT",
+ *           "number": 3,
+ *           "size": 0
+ *         }
+ *       ]
+ *     }
+ *   ],
+ *   "filesystems": [
+ *     {
+ *       "mount": {
+ *         "device": "/dev/sda3",
+ *         "format": "ext4",
+ *         "point": "/",
+ *         "create": {
+ *           "options": [
+ *             "-L",
+ *             "ROOT"
+ *           ]
+ *         }
+ *       }
+ *     },
+ *     {
+ *       "mount": {
+ *         "device": "/dev/sda2",
+ *         "format": "swap",
+ *         "point": "none",
+ *         "create": {
+ *           "options": [
+ *             "-L",
+ *             "SWAP"
+ *           ]
+ *         }
+ *       }
+ *     }
+ *   ]
+ * }
+ *   `,
+ * });
+ * ```
  */
 export class Device extends pulumi.CustomResource {
     /**
@@ -56,9 +161,13 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly description: pulumi.Output<string | undefined>;
     /**
-     * The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+     * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
      */
-    public readonly facility: pulumi.Output<string>;
+    public readonly facilities: pulumi.Output<string[] | undefined>;
+    /**
+     * The facility in which to create the device.
+     */
+    public readonly facility: pulumi.Output<string | undefined>;
     /**
      * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
@@ -79,7 +188,12 @@ export class Device extends pulumi.CustomResource {
      */
     public /*out*/ readonly locked: pulumi.Output<boolean>;
     /**
-     * The device's private and public IP (v4 and v6) network details
+     * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+     * * Public IPv4 at `packet_device.name.network.0`
+     * * IPv6 at `packet_device.name.network.1`
+     * * Private IPv4 at `packet_device.name.network.2`
+     * Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+     * The fields of the network attributes are:
      */
     public /*out*/ readonly networks: pulumi.Output<{ address: string, cidr: number, family: number, gateway: string, public: boolean }[]>;
     /**
@@ -95,6 +209,10 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly projectId: pulumi.Output<string>;
     /**
+     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+     */
+    public readonly projectSshKeyIds: pulumi.Output<string[] | undefined>;
+    /**
      * Size of allocated subnet, more
      * information is in the
      * [Custom Subnet Size](https://help.packet.net/article/55-custom-subnet-size) doc.
@@ -104,6 +222,10 @@ export class Device extends pulumi.CustomResource {
      * Root password to the server (disabled after 24 hours)
      */
     public /*out*/ readonly rootPassword: pulumi.Output<string>;
+    /**
+     * List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
+     */
+    public /*out*/ readonly sshKeyIds: pulumi.Output<string[]>;
     /**
      * The status of the device
      */
@@ -144,6 +266,7 @@ export class Device extends pulumi.CustomResource {
             inputs["billingCycle"] = state ? state.billingCycle : undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["facilities"] = state ? state.facilities : undefined;
             inputs["facility"] = state ? state.facility : undefined;
             inputs["hardwareReservationId"] = state ? state.hardwareReservationId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
@@ -153,8 +276,10 @@ export class Device extends pulumi.CustomResource {
             inputs["operatingSystem"] = state ? state.operatingSystem : undefined;
             inputs["plan"] = state ? state.plan : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["projectSshKeyIds"] = state ? state.projectSshKeyIds : undefined;
             inputs["publicIpv4SubnetSize"] = state ? state.publicIpv4SubnetSize : undefined;
             inputs["rootPassword"] = state ? state.rootPassword : undefined;
+            inputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
             inputs["state"] = state ? state.state : undefined;
             inputs["storage"] = state ? state.storage : undefined;
             inputs["tags"] = state ? state.tags : undefined;
@@ -164,9 +289,6 @@ export class Device extends pulumi.CustomResource {
             const args = argsOrState as DeviceArgs | undefined;
             if (!args || args.billingCycle === undefined) {
                 throw new Error("Missing required property 'billingCycle'");
-            }
-            if (!args || args.facility === undefined) {
-                throw new Error("Missing required property 'facility'");
             }
             if (!args || args.hostname === undefined) {
                 throw new Error("Missing required property 'hostname'");
@@ -183,6 +305,7 @@ export class Device extends pulumi.CustomResource {
             inputs["alwaysPxe"] = args ? args.alwaysPxe : undefined;
             inputs["billingCycle"] = args ? args.billingCycle : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["facilities"] = args ? args.facilities : undefined;
             inputs["facility"] = args ? args.facility : undefined;
             inputs["hardwareReservationId"] = args ? args.hardwareReservationId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
@@ -190,6 +313,7 @@ export class Device extends pulumi.CustomResource {
             inputs["operatingSystem"] = args ? args.operatingSystem : undefined;
             inputs["plan"] = args ? args.plan : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["projectSshKeyIds"] = args ? args.projectSshKeyIds : undefined;
             inputs["publicIpv4SubnetSize"] = args ? args.publicIpv4SubnetSize : undefined;
             inputs["storage"] = args ? args.storage : undefined;
             inputs["tags"] = args ? args.tags : undefined;
@@ -201,6 +325,7 @@ export class Device extends pulumi.CustomResource {
             inputs["locked"] = undefined /*out*/;
             inputs["networks"] = undefined /*out*/;
             inputs["rootPassword"] = undefined /*out*/;
+            inputs["sshKeyIds"] = undefined /*out*/;
             inputs["state"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
@@ -242,7 +367,11 @@ export interface DeviceState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+     * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+     */
+    readonly facilities?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The facility in which to create the device.
      */
     readonly facility?: pulumi.Input<string>;
     /**
@@ -265,7 +394,12 @@ export interface DeviceState {
      */
     readonly locked?: pulumi.Input<boolean>;
     /**
-     * The device's private and public IP (v4 and v6) network details
+     * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+     * * Public IPv4 at `packet_device.name.network.0`
+     * * IPv6 at `packet_device.name.network.1`
+     * * Private IPv4 at `packet_device.name.network.2`
+     * Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+     * The fields of the network attributes are:
      */
     readonly networks?: pulumi.Input<pulumi.Input<{ address?: pulumi.Input<string>, cidr?: pulumi.Input<number>, family?: pulumi.Input<number>, gateway?: pulumi.Input<string>, public?: pulumi.Input<boolean> }>[]>;
     /**
@@ -281,6 +415,10 @@ export interface DeviceState {
      */
     readonly projectId?: pulumi.Input<string>;
     /**
+     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+     */
+    readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Size of allocated subnet, more
      * information is in the
      * [Custom Subnet Size](https://help.packet.net/article/55-custom-subnet-size) doc.
@@ -290,6 +428,10 @@ export interface DeviceState {
      * Root password to the server (disabled after 24 hours)
      */
     readonly rootPassword?: pulumi.Input<string>;
+    /**
+     * List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
+     */
+    readonly sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The status of the device
      */
@@ -330,9 +472,13 @@ export interface DeviceArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The facility in which to create the device. To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+     * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.net/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
      */
-    readonly facility: pulumi.Input<string>;
+    readonly facilities?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The facility in which to create the device.
+     */
+    readonly facility?: pulumi.Input<string>;
     /**
      * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
@@ -360,6 +506,10 @@ export interface DeviceArgs {
      * The id of the project in which to create the device
      */
     readonly projectId: pulumi.Input<string>;
+    /**
+     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+     */
+    readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Size of allocated subnet, more
      * information is in the

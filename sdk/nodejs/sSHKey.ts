@@ -5,10 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Packet SSH key resource to allow you manage SSH
- * keys on your account. All SSH keys on your account are loaded on
- * all new devices, they do not have to be explicitly declared on
- * device creation.
+ * Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
+ * 
+ * The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
  * 
  * ## Example Usage
  * 
@@ -17,10 +16,20 @@ import * as utilities from "./utilities";
  * import * as fs from "fs";
  * import * as packet from "@pulumi/packet";
  * 
- * const packet_ssh_key_key1 = new packet.SSHKey("key1", {
- *     name: "terraform-1",
+ * // Create a new SSH key
+ * const key1 = new packet.SSHKey("key1", {
  *     publicKey: fs.readFileSync("/home/terraform/.ssh/id_rsa.pub", "utf-8"),
  * });
+ * // Create new device with "key1" included. The device resource "depends_on" the
+ * // key, in order to make sure the key is created before the device.
+ * const test = new packet.Device("test", {
+ *     billingCycle: "hourly",
+ *     facility: "sjc1",
+ *     hostname: "test-device",
+ *     operatingSystem: "ubuntu_16_04",
+ *     plan: "t1.small.x86",
+ *     projectId: packet_project_test.id,
+ * }, {dependsOn: [key1]});
  * ```
  */
 export class SSHKey extends pulumi.CustomResource {

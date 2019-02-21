@@ -3,53 +3,66 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
+import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
 class Project(pulumi.CustomResource):
+    bgp_config: pulumi.Output[dict]
+    """
+    Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+    """
     created: pulumi.Output[str]
     """
-    The timestamp for when the Project was created
+    The timestamp for when the project was created
     """
     name: pulumi.Output[str]
     """
-    The name of the Project on Packet.net
+    The name of the project on Packet.net
     """
     organization_id: pulumi.Output[str]
     """
-    The UUID of Organization under which you want to create the project. If you leave it out, the project will be create under your the default Organization of your account.
+    The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
     """
     payment_method_id: pulumi.Output[str]
     """
-    The UUID of payment method for this project. If you keep it empty, Packet API will pick your default Payment Method.
+    The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
     """
     updated: pulumi.Output[str]
     """
-    The timestamp for the last time the Project was updated
+    The timestamp for the last time the project was updated
     """
-    def __init__(__self__, __name__, __opts__=None, name=None, organization_id=None, payment_method_id=None):
+    def __init__(__self__, resource_name, opts=None, bgp_config=None, name=None, organization_id=None, payment_method_id=None, __name__=None, __opts__=None):
         """
-        Provides a Packet Project resource to allow you manage devices
+        Provides a Packet project resource to allow you manage devices
         in your projects.
         
-        
-        :param str __name__: The name of the resource.
-        :param pulumi.ResourceOptions __opts__: Options for the resource.
-        :param pulumi.Input[str] name: The name of the Project on Packet.net
-        :param pulumi.Input[str] organization_id: The UUID of Organization under which you want to create the project. If you leave it out, the project will be create under your the default Organization of your account.
-        :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. If you keep it empty, Packet API will pick your default Payment Method.
+        :param str resource_name: The name of the resource.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        :param pulumi.Input[str] name: The name of the project on Packet.net
+        :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
+        :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
         """
-        if not __name__:
+        if __name__ is not None:
+            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
+            resource_name = __name__
+        if __opts__ is not None:
+            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
+            opts = __opts__
+        if not resource_name:
             raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(__name__, str):
+        if not isinstance(resource_name, str):
             raise TypeError('Expected resource name to be a string')
-        if __opts__ and not isinstance(__opts__, pulumi.ResourceOptions):
+        if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
-        if not name:
+        __props__['bgp_config'] = bgp_config
+
+        if name is None:
             raise TypeError('Missing required property name')
         __props__['name'] = name
 
@@ -62,9 +75,9 @@ class Project(pulumi.CustomResource):
 
         super(Project, __self__).__init__(
             'packet:index/project:Project',
-            __name__,
+            resource_name,
             __props__,
-            __opts__)
+            opts)
 
 
     def translate_output_property(self, prop):
