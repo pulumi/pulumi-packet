@@ -20,8 +20,8 @@
         "project.ts",
         "provider.ts",
         "reservedIpBlock.ts",
-        "sSHKey.ts",
         "spotMarketRequest.ts",
+        "sshKey.ts",
         "utilities.ts",
         "volume.ts",
         "volumeAttachment.ts"

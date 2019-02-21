@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as packet from "@pulumi/packet";
  * 
  * // Create a new SSH key
- * const key1 = new packet.SSHKey("key1", {
+ * const key1 = new packet.SshKey("key1", {
  *     publicKey: fs.readFileSync("/home/terraform/.ssh/id_rsa.pub", "utf-8"),
  * });
  * // Create new device with "key1" included. The device resource "depends_on" the
@@ -32,17 +32,17 @@ import * as utilities from "./utilities";
  * }, {dependsOn: [key1]});
  * ```
  */
-export class SSHKey extends pulumi.CustomResource {
+export class SshKey extends pulumi.CustomResource {
     /**
-     * Get an existing SSHKey resource's state with the given name, ID, and optional extra
+     * Get an existing SshKey resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SSHKeyState, opts?: pulumi.CustomResourceOptions): SSHKey {
-        return new SSHKey(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SshKeyState, opts?: pulumi.CustomResourceOptions): SshKey {
+        return new SshKey(name, <any>state, { ...opts, id: id });
     }
 
     /**
@@ -68,24 +68,24 @@ export class SSHKey extends pulumi.CustomResource {
     public /*out*/ readonly updated: pulumi.Output<string>;
 
     /**
-     * Create a SSHKey resource with the given unique name, arguments, and options.
+     * Create a SshKey resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: SSHKeyArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: SSHKeyArgs | SSHKeyState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: SshKeyArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: SshKeyArgs | SshKeyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: SSHKeyState = argsOrState as SSHKeyState | undefined;
+            const state: SshKeyState = argsOrState as SshKeyState | undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["fingerprint"] = state ? state.fingerprint : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["publicKey"] = state ? state.publicKey : undefined;
             inputs["updated"] = state ? state.updated : undefined;
         } else {
-            const args = argsOrState as SSHKeyArgs | undefined;
+            const args = argsOrState as SshKeyArgs | undefined;
             if (!args || args.name === undefined) {
                 throw new Error("Missing required property 'name'");
             }
@@ -98,14 +98,14 @@ export class SSHKey extends pulumi.CustomResource {
             inputs["fingerprint"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        super("packet:index/sSHKey:SSHKey", name, inputs, opts);
+        super("packet:index/sshKey:SshKey", name, inputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering SSHKey resources.
+ * Input properties used for looking up and filtering SshKey resources.
  */
-export interface SSHKeyState {
+export interface SshKeyState {
     /**
      * The timestamp for when the SSH key was created
      */
@@ -130,9 +130,9 @@ export interface SSHKeyState {
 }
 
 /**
- * The set of arguments for constructing a SSHKey resource.
+ * The set of arguments for constructing a SshKey resource.
  */
-export interface SSHKeyArgs {
+export interface SshKeyArgs {
     /**
      * The name of the SSH key for identification
      */

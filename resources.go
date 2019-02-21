@@ -98,7 +98,7 @@ func Provider() tfbridge.ProviderInfo {
 			"packet_project":             {Tok: makeResource(mainMod, "Project")},
 			"packet_reserved_ip_block":   {Tok: makeResource(mainMod, "ReservedIpBlock")},
 			"packet_spot_market_request": {Tok: makeResource(mainMod, "SpotMarketRequest")},
-			"packet_ssh_key":             {Tok: makeResource(mainMod, "SSHKey")},
+			"packet_ssh_key":             {Tok: makeResource(mainMod, "SshKey")},
 			"packet_volume":              {Tok: makeResource(mainMod, "Volume")},
 			"packet_volume_attachment":   {Tok: makeResource(mainMod, "VolumeAttachment")},
 		},

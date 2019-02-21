@@ -11,8 +11,8 @@ export * from "./organization";
 export * from "./project";
 export * from "./provider";
 export * from "./reservedIpBlock";
-export * from "./sSHKey";
 export * from "./spotMarketRequest";
+export * from "./sshKey";
 export * from "./volume";
 export * from "./volumeAttachment";
 

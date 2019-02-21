@@ -8,7 +8,7 @@ import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class SSHKey(pulumi.CustomResource):
+class SshKey(pulumi.CustomResource):
     created: pulumi.Output[str]
     """
     The timestamp for when the SSH key was created
@@ -69,8 +69,8 @@ class SSHKey(pulumi.CustomResource):
         __props__['fingerprint'] = None
         __props__['updated'] = None
 
-        super(SSHKey, __self__).__init__(
-            'packet:index/sSHKey:SSHKey',
+        super(SshKey, __self__).__init__(
+            'packet:index/sshKey:SshKey',
             resource_name,
             __props__,
             opts)
