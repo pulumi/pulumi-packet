@@ -3,11 +3,12 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
+import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class GetOperatingSystemResult(object):
+class GetOperatingSystemResult:
     """
     A collection of values returned by getOperatingSystem.
     """
@@ -15,6 +16,9 @@ class GetOperatingSystemResult(object):
         if slug and not isinstance(slug, str):
             raise TypeError('Expected argument slug to be a str')
         __self__.slug = slug
+        """
+        Operating system slug (same as `id`)
+        """
         if id and not isinstance(id, str):
             raise TypeError('Expected argument id to be a str')
         __self__.id = id
@@ -22,7 +26,7 @@ class GetOperatingSystemResult(object):
         id is the provider-assigned unique ID for this managed resource.
         """
 
-async def get_operating_system(distro=None, name=None, provisionable_on=None, version=None):
+async def get_operating_system(distro=None,name=None,provisionable_on=None,version=None,opts=None):
     """
     Use this data source to get Packet Operating System image.
     """
@@ -32,7 +36,7 @@ async def get_operating_system(distro=None, name=None, provisionable_on=None, ve
     __args__['name'] = name
     __args__['provisionableOn'] = provisionable_on
     __args__['version'] = version
-    __ret__ = await pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__)
+    __ret__ = await pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts)
 
     return GetOperatingSystemResult(
         slug=__ret__.get('slug'),

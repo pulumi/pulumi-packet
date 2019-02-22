@@ -8,40 +8,28 @@ import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class Organization(pulumi.CustomResource):
-    created: pulumi.Output[str]
-    description: pulumi.Output[str]
+class BgpSession(pulumi.CustomResource):
+    address_family: pulumi.Output[str]
     """
-    Description string.
+    `ipv4` or `ipv6`
     """
-    logo: pulumi.Output[str]
+    device_id: pulumi.Output[str]
     """
-    Logo URL.
+    ID of device 
     """
-    name: pulumi.Output[str]
-    """
-    The name of the Organization.
-    """
-    twitter: pulumi.Output[str]
-    """
-    Twitter handle.
-    """
-    updated: pulumi.Output[str]
-    website: pulumi.Output[str]
-    """
-    Website link.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, logo=None, name=None, twitter=None, website=None, __name__=None, __opts__=None):
+    status: pulumi.Output[str]
+    def __init__(__self__, resource_name, opts=None, address_family=None, device_id=None, __name__=None, __opts__=None):
         """
-        Provides a resource to manage organization resource in Packet.
+        Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://support.packet.com/kb/articles/bgp) for more details.
+        
+        You need to have BGP config enabled in your project.
+        
+        BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description string.
-        :param pulumi.Input[str] logo: Logo URL.
-        :param pulumi.Input[str] name: The name of the Organization.
-        :param pulumi.Input[str] twitter: Twitter handle.
-        :param pulumi.Input[str] website: Website link.
+        :param pulumi.Input[str] address_family: `ipv4` or `ipv6`
+        :param pulumi.Input[str] device_id: ID of device 
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -58,23 +46,18 @@ class Organization(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__['description'] = description
+        if address_family is None:
+            raise TypeError('Missing required property address_family')
+        __props__['address_family'] = address_family
 
-        __props__['logo'] = logo
+        if device_id is None:
+            raise TypeError('Missing required property device_id')
+        __props__['device_id'] = device_id
 
-        if name is None:
-            raise TypeError('Missing required property name')
-        __props__['name'] = name
+        __props__['status'] = None
 
-        __props__['twitter'] = twitter
-
-        __props__['website'] = website
-
-        __props__['created'] = None
-        __props__['updated'] = None
-
-        super(Organization, __self__).__init__(
-            'packet:index/organization:Organization',
+        super(BgpSession, __self__).__init__(
+            'packet:index/bgpSession:BgpSession',
             resource_name,
             __props__,
             opts)

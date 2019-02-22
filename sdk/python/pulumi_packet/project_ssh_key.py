@@ -8,40 +8,42 @@ import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class Organization(pulumi.CustomResource):
+class ProjectSshKey(pulumi.CustomResource):
     created: pulumi.Output[str]
-    description: pulumi.Output[str]
     """
-    Description string.
+    The timestamp for when the SSH key was created
     """
-    logo: pulumi.Output[str]
+    fingerprint: pulumi.Output[str]
     """
-    Logo URL.
+    The fingerprint of the SSH key
     """
     name: pulumi.Output[str]
     """
-    The name of the Organization.
+    The name of the SSH key for identification
     """
-    twitter: pulumi.Output[str]
+    project_id: pulumi.Output[str]
     """
-    Twitter handle.
+    The ID of parent project
+    """
+    public_key: pulumi.Output[str]
+    """
+    The public key. If this is a file, it can be read using the file interpolation function
     """
     updated: pulumi.Output[str]
-    website: pulumi.Output[str]
     """
-    Website link.
+    The timestamp for the last time the SSH key was updated
     """
-    def __init__(__self__, resource_name, opts=None, description=None, logo=None, name=None, twitter=None, website=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, name=None, project_id=None, public_key=None, __name__=None, __opts__=None):
         """
-        Provides a resource to manage organization resource in Packet.
+        Provides a Packet project SSH key resource to manage project-specific SSH keys. On contrary to user SSH keys, project SSH keys are used to exclusively populate `authorized_keys` in new devices.
+        
+        If you supply a list of project SSH keys when creating a new device, only the listed keys are used; user SSH keys are ignored.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description string.
-        :param pulumi.Input[str] logo: Logo URL.
-        :param pulumi.Input[str] name: The name of the Organization.
-        :param pulumi.Input[str] twitter: Twitter handle.
-        :param pulumi.Input[str] website: Website link.
+        :param pulumi.Input[str] name: The name of the SSH key for identification
+        :param pulumi.Input[str] project_id: The ID of parent project
+        :param pulumi.Input[str] public_key: The public key. If this is a file, it can be read using the file interpolation function
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -58,23 +60,24 @@ class Organization(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__['description'] = description
-
-        __props__['logo'] = logo
-
         if name is None:
             raise TypeError('Missing required property name')
         __props__['name'] = name
 
-        __props__['twitter'] = twitter
+        if project_id is None:
+            raise TypeError('Missing required property project_id')
+        __props__['project_id'] = project_id
 
-        __props__['website'] = website
+        if public_key is None:
+            raise TypeError('Missing required property public_key')
+        __props__['public_key'] = public_key
 
         __props__['created'] = None
+        __props__['fingerprint'] = None
         __props__['updated'] = None
 
-        super(Organization, __self__).__init__(
-            'packet:index/organization:Organization',
+        super(ProjectSshKey, __self__).__init__(
+            'packet:index/projectSshKey:ProjectSshKey',
             resource_name,
             __props__,
             opts)

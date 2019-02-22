@@ -5,10 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Packet SSH key resource to allow you manage SSH
- * keys on your account. All SSH keys on your account are loaded on
- * all new devices, they do not have to be explicitly declared on
- * device creation.
+ * Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
+ * 
+ * The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
  * 
  * ## Example Usage
  * 
@@ -17,23 +16,33 @@ import * as utilities from "./utilities";
  * import * as fs from "fs";
  * import * as packet from "@pulumi/packet";
  * 
- * const packet_ssh_key_key1 = new packet.SSHKey("key1", {
- *     name: "terraform-1",
+ * // Create a new SSH key
+ * const key1 = new packet.SshKey("key1", {
  *     publicKey: fs.readFileSync("/home/terraform/.ssh/id_rsa.pub", "utf-8"),
  * });
+ * // Create new device with "key1" included. The device resource "depends_on" the
+ * // key, in order to make sure the key is created before the device.
+ * const test = new packet.Device("test", {
+ *     billingCycle: "hourly",
+ *     facility: "sjc1",
+ *     hostname: "test-device",
+ *     operatingSystem: "ubuntu_16_04",
+ *     plan: "t1.small.x86",
+ *     projectId: packet_project_test.id,
+ * }, {dependsOn: [key1]});
  * ```
  */
-export class SSHKey extends pulumi.CustomResource {
+export class SshKey extends pulumi.CustomResource {
     /**
-     * Get an existing SSHKey resource's state with the given name, ID, and optional extra
+     * Get an existing SshKey resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SSHKeyState, opts?: pulumi.CustomResourceOptions): SSHKey {
-        return new SSHKey(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SshKeyState, opts?: pulumi.CustomResourceOptions): SshKey {
+        return new SshKey(name, <any>state, { ...opts, id: id });
     }
 
     /**
@@ -59,24 +68,24 @@ export class SSHKey extends pulumi.CustomResource {
     public /*out*/ readonly updated: pulumi.Output<string>;
 
     /**
-     * Create a SSHKey resource with the given unique name, arguments, and options.
+     * Create a SshKey resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: SSHKeyArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: SSHKeyArgs | SSHKeyState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: SshKeyArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: SshKeyArgs | SshKeyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: SSHKeyState = argsOrState as SSHKeyState | undefined;
+            const state: SshKeyState = argsOrState as SshKeyState | undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["fingerprint"] = state ? state.fingerprint : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["publicKey"] = state ? state.publicKey : undefined;
             inputs["updated"] = state ? state.updated : undefined;
         } else {
-            const args = argsOrState as SSHKeyArgs | undefined;
+            const args = argsOrState as SshKeyArgs | undefined;
             if (!args || args.name === undefined) {
                 throw new Error("Missing required property 'name'");
             }
@@ -89,14 +98,14 @@ export class SSHKey extends pulumi.CustomResource {
             inputs["fingerprint"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        super("packet:index/sSHKey:SSHKey", name, inputs, opts);
+        super("packet:index/sshKey:SshKey", name, inputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering SSHKey resources.
+ * Input properties used for looking up and filtering SshKey resources.
  */
-export interface SSHKeyState {
+export interface SshKeyState {
     /**
      * The timestamp for when the SSH key was created
      */
@@ -121,9 +130,9 @@ export interface SSHKeyState {
 }
 
 /**
- * The set of arguments for constructing a SSHKey resource.
+ * The set of arguments for constructing a SshKey resource.
  */
-export interface SSHKeyArgs {
+export interface SshKeyArgs {
     /**
      * The name of the SSH key for identification
      */

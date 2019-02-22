@@ -3,11 +3,12 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import json
+import warnings
 import pulumi
 import pulumi.runtime
 from . import utilities, tables
 
-class GetSpotMarketPriceResult(object):
+class GetSpotMarketPriceResult:
     """
     A collection of values returned by getSpotMarketPrice.
     """
@@ -25,7 +26,7 @@ class GetSpotMarketPriceResult(object):
         id is the provider-assigned unique ID for this managed resource.
         """
 
-async def get_spot_market_price(facility=None, plan=None):
+async def get_spot_market_price(facility=None,plan=None,opts=None):
     """
     Use this data source to get Packet Spot Market Price.
     """
@@ -33,7 +34,7 @@ async def get_spot_market_price(facility=None, plan=None):
 
     __args__['facility'] = facility
     __args__['plan'] = plan
-    __ret__ = await pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__)
+    __ret__ = await pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__, opts=opts)
 
     return GetSpotMarketPriceResult(
         price=__ret__.get('price'),

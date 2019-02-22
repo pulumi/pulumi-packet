@@ -92,13 +92,16 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. An example
 			// is below.
+			"packet_bgp_session":         {Tok: makeResource(mainMod, "BgpSession")},
 			"packet_device":              {Tok: makeResource(mainMod, "Device")},
 			"packet_ip_attachment":       {Tok: makeResource(mainMod, "IpAttachment")},
 			"packet_organization":        {Tok: makeResource(mainMod, "Organization")},
 			"packet_project":             {Tok: makeResource(mainMod, "Project")},
+			"packet_project_ssh_key":     {Tok: makeResource(mainMod, "ProjectSshKey")},
 			"packet_reserved_ip_block":   {Tok: makeResource(mainMod, "ReservedIpBlock")},
 			"packet_spot_market_request": {Tok: makeResource(mainMod, "SpotMarketRequest")},
-			"packet_ssh_key":             {Tok: makeResource(mainMod, "SSHKey")},
+			"packet_ssh_key":             {Tok: makeResource(mainMod, "SshKey")},
+			"packet_vlan":                {Tok: makeResource(mainMod, "Vlan")},
 			"packet_volume":              {Tok: makeResource(mainMod, "Volume")},
 			"packet_volume_attachment":   {Tok: makeResource(mainMod, "VolumeAttachment")},
 		},

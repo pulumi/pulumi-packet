@@ -6,13 +6,16 @@
 __all__ = ['config']
 
 # Export this package's modules as members:
+from .bgp_session import *
 from .device import *
 from .ip_attachment import *
 from .organization import *
 from .project import *
+from .project_ssh_key import *
 from .reserved_ip_block import *
 from .spot_market_request import *
 from .ssh_key import *
+from .vlan import *
 from .volume import *
 from .volume_attachment import *
 from .get_operating_system import *

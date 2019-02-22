@@ -8,17 +8,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// Provides a Packet SSH key resource to allow you manage SSH
-// keys on your account. All SSH keys on your account are loaded on
-// all new devices, they do not have to be explicitly declared on
-// device creation.
-type SSHKey struct {
+// Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
+// 
+// The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
+type SshKey struct {
 	s *pulumi.ResourceState
 }
 
-// NewSSHKey registers a new resource with the given unique name, arguments, and options.
-func NewSSHKey(ctx *pulumi.Context,
-	name string, args *SSHKeyArgs, opts ...pulumi.ResourceOpt) (*SSHKey, error) {
+// NewSshKey registers a new resource with the given unique name, arguments, and options.
+func NewSshKey(ctx *pulumi.Context,
+	name string, args *SshKeyArgs, opts ...pulumi.ResourceOpt) (*SshKey, error) {
 	if args == nil || args.Name == nil {
 		return nil, errors.New("missing required argument 'Name'")
 	}
@@ -36,17 +35,17 @@ func NewSSHKey(ctx *pulumi.Context,
 	inputs["created"] = nil
 	inputs["fingerprint"] = nil
 	inputs["updated"] = nil
-	s, err := ctx.RegisterResource("packet:index/sSHKey:SSHKey", name, true, inputs, opts...)
+	s, err := ctx.RegisterResource("packet:index/sshKey:SshKey", name, true, inputs, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &SSHKey{s: s}, nil
+	return &SshKey{s: s}, nil
 }
 
-// GetSSHKey gets an existing SSHKey resource's state with the given name, ID, and optional
+// GetSshKey gets an existing SshKey resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetSSHKey(ctx *pulumi.Context,
-	name string, id pulumi.ID, state *SSHKeyState, opts ...pulumi.ResourceOpt) (*SSHKey, error) {
+func GetSshKey(ctx *pulumi.Context,
+	name string, id pulumi.ID, state *SshKeyState, opts ...pulumi.ResourceOpt) (*SshKey, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
 		inputs["created"] = state.Created
@@ -55,51 +54,51 @@ func GetSSHKey(ctx *pulumi.Context,
 		inputs["publicKey"] = state.PublicKey
 		inputs["updated"] = state.Updated
 	}
-	s, err := ctx.ReadResource("packet:index/sSHKey:SSHKey", name, id, inputs, opts...)
+	s, err := ctx.ReadResource("packet:index/sshKey:SshKey", name, id, inputs, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return &SSHKey{s: s}, nil
+	return &SshKey{s: s}, nil
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SSHKey) URN() *pulumi.URNOutput {
+func (r *SshKey) URN() *pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SSHKey) ID() *pulumi.IDOutput {
+func (r *SshKey) ID() *pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The timestamp for when the SSH key was created
-func (r *SSHKey) Created() *pulumi.StringOutput {
+func (r *SshKey) Created() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["created"])
 }
 
 // The fingerprint of the SSH key
-func (r *SSHKey) Fingerprint() *pulumi.StringOutput {
+func (r *SshKey) Fingerprint() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["fingerprint"])
 }
 
 // The name of the SSH key for identification
-func (r *SSHKey) Name() *pulumi.StringOutput {
+func (r *SshKey) Name() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The public key. If this is a file, it
 // can be read using the file interpolation function
-func (r *SSHKey) PublicKey() *pulumi.StringOutput {
+func (r *SshKey) PublicKey() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["publicKey"])
 }
 
 // The timestamp for the last time the SSH key was updated
-func (r *SSHKey) Updated() *pulumi.StringOutput {
+func (r *SshKey) Updated() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["updated"])
 }
 
-// Input properties used for looking up and filtering SSHKey resources.
-type SSHKeyState struct {
+// Input properties used for looking up and filtering SshKey resources.
+type SshKeyState struct {
 	// The timestamp for when the SSH key was created
 	Created interface{}
 	// The fingerprint of the SSH key
@@ -113,8 +112,8 @@ type SSHKeyState struct {
 	Updated interface{}
 }
 
-// The set of arguments for constructing a SSHKey resource.
-type SSHKeyArgs struct {
+// The set of arguments for constructing a SshKey resource.
+type SshKeyArgs struct {
 	// The name of the SSH key for identification
 	Name interface{}
 	// The public key. If this is a file, it

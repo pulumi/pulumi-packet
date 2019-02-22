@@ -14,6 +14,7 @@ func LookupPrecreatedIpBlock(ctx *pulumi.Context, args *GetPrecreatedIpBlockArgs
 	if args != nil {
 		inputs["addressFamily"] = args.AddressFamily
 		inputs["facility"] = args.Facility
+		inputs["global"] = args.Global
 		inputs["projectId"] = args.ProjectId
 		inputs["public"] = args.Public
 	}
@@ -39,8 +40,10 @@ func LookupPrecreatedIpBlock(ctx *pulumi.Context, args *GetPrecreatedIpBlockArgs
 type GetPrecreatedIpBlockArgs struct {
 	// 4 or 6, depending on which block you are looking for.
 	AddressFamily interface{}
-	// Facility of the searched block.
+	// Facility of the searched block. (Optional) Only allowed for non-global blocks.
 	Facility interface{}
+	// Whether to look for global block. Default is false for backward compatibility.
+	Global interface{}
 	// ID of the project where the searched block should be.
 	ProjectId interface{}
 	// Whether to look for public or private block. 
