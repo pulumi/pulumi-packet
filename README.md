@@ -24,7 +24,7 @@ or `yarn`:
 
 To use from Python, install using `pip`:
 
-    $ pip install pulumi_packet
+    $ pip install pulumi-packet
 
 ### Go
 
