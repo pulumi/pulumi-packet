@@ -1,4 +1,12 @@
-## 0.3.0 (Unreleased)
+## 0.3.1 (Unreleased)
+
+### Improvements
+
+## 0.3.0 (Released March 6th, 2019)
+
+### Improvements
+
+- Depend on the latest version of `@pulumi/pulumi`.
 
 ## 0.2.0 (Released February 22nd, 2019)
 

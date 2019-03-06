@@ -18,10 +18,10 @@ import * as utilities from "./utilities";
  * // with the project_id param, because an explicity "depends_on" attribute in
  * // a datasource taints the state:
  * // https://github.com/hashicorp/terraform/issues/11806
- * const testPrecreatedIpBlock = pulumi.output(packet.getPrecreatedIpBlock({
+ * const testPrecreatedIpBlock = packet_device_test.projectId.apply(projectId => packet.getPrecreatedIpBlock({
  *     addressFamily: 6,
  *     facility: "ewr1",
- *     projectId: packet_device_test.projectId,
+ *     projectId: projectId,
  *     public: true,
  * }));
  * const testProject = new packet.Project("test", {});
