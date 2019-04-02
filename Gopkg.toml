@@ -15,7 +15,7 @@
 # `source` to the fork address. Then set the `branch` to `pulumi-master` in the
 # fork, and ensure `version` is not set.
 [[constraint]]
-  version = "v1.4.1"
+  version = "v1.6.0"
   name = "github.com/terraform-providers/terraform-provider-packet"
 
   [constraint.metadata]
@@ -35,25 +35,31 @@
 
 [[override]]
   name = "github.com/apparentlymart/go-cidr"
-  revision = "7e4b007599d4e2076d9a81be723b3912852dda2c"
+  version = "=v1.0.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/apparentlymart/go-dump"
+  revision = "23540a00eaa318ee47d517dd7653fc81156a3e7e"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/apparentlymart/go-textseg"
-  revision = "b836f5c4d331d1945a2fead7188db25432d73b69"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/armon/go-radix"
-  revision = "1fca145dffbcaa8fe914309b1ec0cfc67500fe61"
+  revision = "7fddfc383310abc091d79a27f116d30cf0424032"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/aws/aws-sdk-go"
-  version = "=v1.8.34"
+  version = "=v1.15.78"
   [override.metadata]
     gomod-overridden=true
 
@@ -76,110 +82,176 @@
     gomod-overridden=true
 
 [[override]]
-  name = "github.com/go-ini/ini"
-  version = "=v1.23.1"
+  name = "github.com/bsm/go-vlq"
+  revision = "ec6e8d4f5f4ec0f6e808ffc7f4dcc7516d4d7d49"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
-  name = "github.com/gopherjs/gopherjs"
-  revision = "d547d1d9531ed93dbdebcbff7f83e7c876a1e0ee"
+  name = "github.com/cheggaaa/pb"
+  version = "=v1.0.27"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/davecgh/go-spew"
+  version = "=v1.1.1"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/fatih/color"
+  version = "=v1.7.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/fsnotify/fsnotify"
+  version = "=v1.4.7"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/go-test/deep"
+  version = "=v1.0.1"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/golang/glog"
+  revision = "23def4e6c14b4da8ac2ed8007337bc5eb5007998"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/google/go-cmp"
+  version = "=v0.2.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/errwrap"
-  revision = "7554cd9344cec97297fa6649b055a8c98c2a1e55"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-cleanhttp"
-  revision = "3573b8b52aa7b37b9358d966a898feb387f62437"
+  version = "=v0.5.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-getter"
-  revision = "a686900cb3753aa644dc4812be91ceaf9fdd3b98"
+  version = "=v1.1.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-hclog"
-  revision = "8105cc0a3736cc153a2025f5d0d91b80045fc9ff"
+  version = "=v0.7.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-multierror"
-  revision = "d30f09973e19c1dfcd120b2d9c4f168e68d6b5d5"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-plugin"
-  revision = "a5174f84d7f8ff00fb07ab4ef1f380d32eee0e63"
+  revision = "3f118e8ee104b6f22aeb12453fab56aed1356186"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/hashicorp/go-safetemp"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-uuid"
-  revision = "36289988d83ca270bc07c234c36f364b0dd9c9a7"
+  version = "=v1.0.1"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/go-version"
-  revision = "e96d3840402619007766590ecea8dd7af1292276"
+  version = "=v1.1.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/hcl"
-  revision = "a4b07c25de5ff55ad3b8936cea69a79a3d95a855"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/hcl2"
-  revision = "44bad6dbf5490f5da17ec991e664df3d017b706f"
+  revision = "7e26f2f3461267613602a534185654331d113c60"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/hil"
-  revision = "fac2259da677551de1fb92b844c4d020a38d8468"
+  revision = "97b3a9cdfa9349086cfad7ea2fe3165bfe3cbf63"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/logutils"
-  revision = "0dc08b1671f34c4250ce212759ebd880f743d883"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/terraform"
-  version = "=v0.11.3"
+  version = "=v0.11.11"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/hashicorp/yamux"
-  revision = "d1caa6c97c9fc1cc9e83bbe34d0603f9ff0ce8bd"
+  revision = "3520598351bb3500a49ae9563f5539666ae0a27c"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/hpcloud/tail"
+  version = "=v1.0.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/jessevdk/go-flags"
+  version = "=v1.4.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/jmespath/go-jmespath"
-  revision = "bd40a432e4c76585ef6b72d3fd96fb9b6dc7b68d"
+  revision = "0b12d6b521d83fc7f755e7cfc1b1fbdd35a01a74"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
-  name = "github.com/jtolds/gls"
-  version = "=v4.2.1"
+  name = "github.com/kr/pretty"
+  version = "=v0.1.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/kr/pty"
+  version = "=v1.1.1"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/kr/text"
+  version = "=v0.1.0"
   [override.metadata]
     gomod-overridden=true
 
@@ -190,32 +262,44 @@
     gomod-overridden=true
 
 [[override]]
+  name = "github.com/mattn/go-colorable"
+  version = "=v0.0.9"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
   name = "github.com/mattn/go-isatty"
-  version = "=v0.0.2"
+  version = "=v0.0.4"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/mattn/go-runewidth"
+  version = "=v0.0.4"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/mitchellh/cli"
-  revision = "0ce7cd515f64496ee660ab19f6bbf373945d3af0"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/mitchellh/copystructure"
-  revision = "5af94aef99f597e6a9e1f6ac6be6ce0f3c96b49d"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/mitchellh/go-homedir"
-  revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
+  version = "=v1.1.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/mitchellh/go-testing-interface"
-  revision = "a61a99592b77c9ba629d254a693acffaeb4b7e28"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
@@ -227,67 +311,109 @@
 
 [[override]]
   name = "github.com/mitchellh/hashstructure"
-  revision = "6b17d669fac5e2f71c16658d781ec3fdd3802b69"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/mitchellh/mapstructure"
-  revision = "53818660ed4955e899c0bcafa97299a388bd7c8e"
+  version = "=v1.1.2"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/mitchellh/reflectwalk"
-  revision = "92573fe8d000a145bfebc03a16bc22b34945867f"
+  version = "=v1.0.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/oklog/run"
+  version = "=v1.0.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/onsi/ginkgo"
+  version = "=v1.7.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/onsi/gomega"
+  version = "=v1.4.3"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/packethost/packngo"
-  revision = "caf7bb8cb1044343747215c54e45a01dbb41c8a2"
+  revision = "c53c0868b5e0f9652ebcf7d679132f74695d3ffb"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/pmezard/go-difflib"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/posener/complete"
-  revision = "9f41f7636a724791a3b8b1d35e84caa1124f0d3c"
+  version = "=v1.1.1"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
-  name = "github.com/satori/go.uuid"
-  revision = "b061729afc07e77a8aa4fad0a2fd840958f1942a"
+  name = "github.com/sergi/go-diff"
+  version = "=v1.0.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
-  name = "github.com/smartystreets/assertions"
-  revision = "b6c0e53d73045618965505ac26ff7864fe3ab2b2"
+  name = "github.com/spf13/pflag"
+  version = "=v1.0.2"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
-  name = "github.com/smartystreets/goconvey"
-  revision = "044398e4856c3a83fb98f9de0a8ed1c6495e2843"
+  name = "github.com/stretchr/objx"
+  version = "=v0.1.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/stretchr/testify"
+  version = "=v1.3.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/ulikunitz/xz"
-  version = "=v0.5.4"
+  version = "=v0.5.5"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "github.com/vmihailenco/msgpack"
+  version = "=v3.3.3"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "github.com/zclconf/go-cty"
-  revision = "49fa5e03c418f95f78684c91e155af06aa901a32"
+  revision = "19dda139b164a5503de2051225fa6b94f5d39e05"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "golang.org/x/crypto"
+  revision = "31a38585487a4b1fd6ff4f8f3db26f1fb296ac82"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "golang.org/x/net"
-  revision = "d25186b37f34ebdbbea8f488ef055638dfab272d"
+  revision = "c95aed5357e77a4bf7d3955c46740000a17adee1"
   [override.metadata]
     gomod-overridden=true
 
@@ -298,19 +424,67 @@
     gomod-overridden=true
 
 [[override]]
+  name = "golang.org/x/sys"
+  revision = "d0b11bdaac8adb652bff00e49bcacf992835621a"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
   name = "golang.org/x/text"
-  revision = "b7ef84aaf62aa3e70962625c80a571ae7c17cb40"
+  version = "=v0.3.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "google.golang.org/appengine"
+  version = "=v1.1.0"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "google.golang.org/genproto"
-  revision = "595979c8a7bf586b2d293fb42246bf91a0b893d9"
+  revision = "c66870c02cf823ceb633bcd05be3c7cda29976f4"
   [override.metadata]
     gomod-overridden=true
 
 [[override]]
   name = "google.golang.org/grpc"
-  revision = "91999f444f2aa89f2f873c8429a424701309bec4"
+  version = "=v1.14.0"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "gopkg.in/check.v1"
+  revision = "788fd78401277ebd861206a03c884797c6ec5541"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "gopkg.in/cheggaaa/pb.v1"
+  version = "=v1.0.27"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "gopkg.in/fsnotify.v1"
+  version = "=v1.4.7"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "gopkg.in/tomb.v1"
+  revision = "dd632973f1e7218eb1089048e0798ec9ae7dceb8"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "gopkg.in/yaml.v2"
+  version = "=v2.2.2"
+  [override.metadata]
+    gomod-overridden=true
+
+[[override]]
+  name = "howett.net/plist"
+  revision = "591f970eefbbeb04d7b37f334a0c4c3256e32876"
   [override.metadata]
     gomod-overridden=true
