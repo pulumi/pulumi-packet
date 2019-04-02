@@ -9,6 +9,10 @@ import pulumi.runtime
 from . import utilities, tables
 
 class Project(pulumi.CustomResource):
+    backend_transfer: pulumi.Output[bool]
+    """
+    Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+    """
     bgp_config: pulumi.Output[dict]
     """
     Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
@@ -19,7 +23,7 @@ class Project(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    The name of the project on Packet.net
+    The name of the project
     """
     organization_id: pulumi.Output[str]
     """
@@ -33,15 +37,16 @@ class Project(pulumi.CustomResource):
     """
     The timestamp for the last time the project was updated
     """
-    def __init__(__self__, resource_name, opts=None, bgp_config=None, name=None, organization_id=None, payment_method_id=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, backend_transfer=None, bgp_config=None, name=None, organization_id=None, payment_method_id=None, __name__=None, __opts__=None):
         """
         Provides a Packet project resource to allow you manage devices
         in your projects.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
         :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
-        :param pulumi.Input[str] name: The name of the project on Packet.net
+        :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
         """
@@ -59,6 +64,8 @@ class Project(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
+
+        __props__['backend_transfer'] = backend_transfer
 
         __props__['bgp_config'] = bgp_config
 

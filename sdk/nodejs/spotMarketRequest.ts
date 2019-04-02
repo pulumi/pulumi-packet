@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Packet Spot Market Request resource to allow you to
- * manage spot market requests on your account. https://help.packet.net/en-us/article/20-spot-market 
+ * manage spot market requests on your account. https://support.packet.com/kb/articles/spot-market 
  * 
  * ## Example Usage
  * 
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *         plan: "t1.small.x86",
  *     },
  *     maxBidPrice: 0.03,
- *     projectId: packet_project_cool_project.id,
+ *     projectId: local_project_id,
  * });
  * ```
  */

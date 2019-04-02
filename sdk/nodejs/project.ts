@@ -48,6 +48,10 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
+     * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+     */
+    public readonly backendTransfer: pulumi.Output<boolean | undefined>;
+    /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
     public readonly bgpConfig: pulumi.Output<{ asn: number, deploymentType: string, maxPrefix: number, md5?: string, status: string } | undefined>;
@@ -56,7 +60,7 @@ export class Project extends pulumi.CustomResource {
      */
     public /*out*/ readonly created: pulumi.Output<string>;
     /**
-     * The name of the project on Packet.net
+     * The name of the project
      */
     public readonly name: pulumi.Output<string>;
     /**
@@ -84,6 +88,7 @@ export class Project extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state: ProjectState = argsOrState as ProjectState | undefined;
+            inputs["backendTransfer"] = state ? state.backendTransfer : undefined;
             inputs["bgpConfig"] = state ? state.bgpConfig : undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -95,6 +100,7 @@ export class Project extends pulumi.CustomResource {
             if (!args || args.name === undefined) {
                 throw new Error("Missing required property 'name'");
             }
+            inputs["backendTransfer"] = args ? args.backendTransfer : undefined;
             inputs["bgpConfig"] = args ? args.bgpConfig : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["organizationId"] = args ? args.organizationId : undefined;
@@ -111,6 +117,10 @@ export class Project extends pulumi.CustomResource {
  */
 export interface ProjectState {
     /**
+     * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+     */
+    readonly backendTransfer?: pulumi.Input<boolean>;
+    /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
     readonly bgpConfig?: pulumi.Input<{ asn: pulumi.Input<number>, deploymentType: pulumi.Input<string>, maxPrefix?: pulumi.Input<number>, md5?: pulumi.Input<string>, status?: pulumi.Input<string> }>;
@@ -119,7 +129,7 @@ export interface ProjectState {
      */
     readonly created?: pulumi.Input<string>;
     /**
-     * The name of the project on Packet.net
+     * The name of the project
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -141,11 +151,15 @@ export interface ProjectState {
  */
 export interface ProjectArgs {
     /**
+     * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+     */
+    readonly backendTransfer?: pulumi.Input<boolean>;
+    /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
     readonly bgpConfig?: pulumi.Input<{ asn: pulumi.Input<number>, deploymentType: pulumi.Input<string>, maxPrefix?: pulumi.Input<number>, md5?: pulumi.Input<string>, status?: pulumi.Input<string> }>;
     /**
-     * The name of the project on Packet.net
+     * The name of the project
      */
     readonly name: pulumi.Input<string>;
     /**

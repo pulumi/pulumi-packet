@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  *     hostname: "tf.coreos2",
  *     operatingSystem: example.apply(example => example.id),
  *     plan: "c1.small.x86",
- *     projectId: packet_project_cool_project.id,
+ *     projectId: local_project_id,
  * });
  * ```
  */

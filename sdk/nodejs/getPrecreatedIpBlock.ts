@@ -14,27 +14,23 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * // we have to make the datasource depend on the device. Here I do it implicitly
- * // with the project_id param, because an explicity "depends_on" attribute in
- * // a datasource taints the state:
- * // https://github.com/hashicorp/terraform/issues/11806
- * const testPrecreatedIpBlock = packet_device_test.projectId.apply(projectId => packet.getPrecreatedIpBlock({
+ * const projectId = "<UUID_of_your_project>";
+ * const test = pulumi.output(packet.getPrecreatedIpBlock({
  *     addressFamily: 6,
  *     facility: "ewr1",
  *     projectId: projectId,
  *     public: true,
  * }));
- * const testProject = new packet.Project("test", {});
  * const web1 = new packet.Device("web1", {
  *     billingCycle: "hourly",
  *     facility: "ewr1",
- *     hostname: "tftest",
+ *     hostname: "web1",
  *     operatingSystem: "ubuntu_16_04",
  *     plan: "t1.small.x86",
- *     projectId: testProject.id,
+ *     projectId: projectId,
  * });
  * const fromIpv6Block = new packet.IpAttachment("from_ipv6_block", {
- *     cidrNotation: testPrecreatedIpBlock.apply(testPrecreatedIpBlock => (() => {
+ *     cidrNotation: test.apply(test => (() => {
  *         throw "tf2pulumi error: NYI: call to cidrsubnet";
  *         return (() => { throw "NYI: call to cidrsubnet"; })();
  *     })()),

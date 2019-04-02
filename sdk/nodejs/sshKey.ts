@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *     hostname: "test-device",
  *     operatingSystem: "ubuntu_16_04",
  *     plan: "t1.small.x86",
- *     projectId: packet_project_test.id,
+ *     projectId: local_project_id,
  * }, {dependsOn: [key1]});
  * ```
  */
