@@ -55,7 +55,7 @@ class IpAttachment(pulumi.CustomResource):
         
         For example, you have reserved IPv4 address block 147.229.10.152/30, you can choose to assign either the whole
         block as one subnet to a device; or 2 subnets with CIDRs 147.229.10.152/31' and 147.229.10.154/31; or 4 subnets
-        with mask prefix length 32. More about the elastic IP subnets is [here](https://help.packet.net/article/54-elastic-ips).
+        with mask prefix length 32. More about the elastic IP subnets is [here](https://support.packet.com/kb/articles/elastic-ips).
         
         Device and reserved block must be in the same facility.
         

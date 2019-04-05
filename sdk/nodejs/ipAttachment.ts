@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * 
  * For example, you have reserved IPv4 address block 147.229.10.152/30, you can choose to assign either the whole
  * block as one subnet to a device; or 2 subnets with CIDRs 147.229.10.152/31' and 147.229.10.154/31; or 4 subnets
- * with mask prefix length 32. More about the elastic IP subnets is [here](https://help.packet.net/article/54-elastic-ips).
+ * with mask prefix length 32. More about the elastic IP subnets is [here](https://support.packet.com/kb/articles/elastic-ips).
  * 
  * Device and reserved block must be in the same facility.
  * 
@@ -25,11 +25,11 @@ import * as utilities from "./utilities";
  * // Reserve /30 block of max 2 public IPv4 addresses in Parsippany, NJ (ewr1) for myproject
  * const myblock = new packet.ReservedIpBlock("myblock", {
  *     facility: "ewr1",
- *     projectId: packet_project_myproject.id,
+ *     projectId: local_project_id,
  *     quantity: 2,
  * });
  * // Assign /32 subnet (single address) from reserved block to a device
- * const firstAddressAssingment = new packet.IpAttachment("first_address_assingment", {
+ * const firstAddressAssignment = new packet.IpAttachment("first_address_assignment", {
  *     cidrNotation: myblock.cidrNotation.apply(cidrNotation => `${(() => { throw "NYI: call to cidrhost"; })()}/32`),
  *     deviceId: packet_device_mydevice.id,
  * });

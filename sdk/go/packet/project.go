@@ -22,11 +22,13 @@ func NewProject(ctx *pulumi.Context,
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
+		inputs["backendTransfer"] = nil
 		inputs["bgpConfig"] = nil
 		inputs["name"] = nil
 		inputs["organizationId"] = nil
 		inputs["paymentMethodId"] = nil
 	} else {
+		inputs["backendTransfer"] = args.BackendTransfer
 		inputs["bgpConfig"] = args.BgpConfig
 		inputs["name"] = args.Name
 		inputs["organizationId"] = args.OrganizationId
@@ -47,6 +49,7 @@ func GetProject(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *ProjectState, opts ...pulumi.ResourceOpt) (*Project, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
+		inputs["backendTransfer"] = state.BackendTransfer
 		inputs["bgpConfig"] = state.BgpConfig
 		inputs["created"] = state.Created
 		inputs["name"] = state.Name
@@ -71,6 +74,11 @@ func (r *Project) ID() *pulumi.IDOutput {
 	return r.s.ID()
 }
 
+// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+func (r *Project) BackendTransfer() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["backendTransfer"])
+}
+
 // Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
 func (r *Project) BgpConfig() *pulumi.Output {
 	return r.s.State["bgpConfig"]
@@ -81,7 +89,7 @@ func (r *Project) Created() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["created"])
 }
 
-// The name of the project on Packet.net
+// The name of the project
 func (r *Project) Name() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["name"])
 }
@@ -103,11 +111,13 @@ func (r *Project) Updated() *pulumi.StringOutput {
 
 // Input properties used for looking up and filtering Project resources.
 type ProjectState struct {
+	// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+	BackendTransfer interface{}
 	// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
 	BgpConfig interface{}
 	// The timestamp for when the project was created
 	Created interface{}
-	// The name of the project on Packet.net
+	// The name of the project
 	Name interface{}
 	// The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
 	OrganizationId interface{}
@@ -119,9 +129,11 @@ type ProjectState struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
+	// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+	BackendTransfer interface{}
 	// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
 	BgpConfig interface{}
-	// The name of the project on Packet.net
+	// The name of the project
 	Name interface{}
 	// The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
 	OrganizationId interface{}

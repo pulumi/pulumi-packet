@@ -3,12 +3,14 @@
 
 // Export members:
 export * from "./bgpSession";
+export * from "./connect";
 export * from "./device";
 export * from "./getOperatingSystem";
 export * from "./getPrecreatedIpBlock";
 export * from "./getSpotMarketPrice";
 export * from "./ipAttachment";
 export * from "./organization";
+export * from "./portVlanAttachment";
 export * from "./project";
 export * from "./projectSshKey";
 export * from "./provider";

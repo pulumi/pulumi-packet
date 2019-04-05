@@ -27,7 +27,11 @@ class Vlan(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, __name__=None, __opts__=None):
         """
-        Provides a resource to allow users to manage Virtual Networks in their projects. VLANs are used in [Layer 2 networking setup](https://packet.kayako.com/article/57-layer-2-overview).
+        Provides a resource to allow users to manage Virtual Networks in their projects.
+        
+        To learn more about Layer 2 networking in Packet, refer to
+        * https://support.packet.com/kb/articles/layer-2-configurations
+        * https://support.packet.com/kb/articles/layer-2-overview
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

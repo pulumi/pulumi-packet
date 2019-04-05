@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     description: "terraform-volume-1",
  *     facility: "ewr1",
  *     plan: "storage_1",
- *     projectId: packet_project_cool_project.id,
+ *     projectId: local_project_id,
  *     size: 100,
  *     snapshotPolicies: [
  *         {

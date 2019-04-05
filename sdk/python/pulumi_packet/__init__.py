@@ -7,9 +7,11 @@ __all__ = ['config']
 
 # Export this package's modules as members:
 from .bgp_session import *
+from .connect import *
 from .device import *
 from .ip_attachment import *
 from .organization import *
+from .port_vlan_attachment import *
 from .project import *
 from .project_ssh_key import *
 from .reserved_ip_block import *

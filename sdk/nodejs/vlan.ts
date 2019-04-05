@@ -5,7 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a resource to allow users to manage Virtual Networks in their projects. VLANs are used in [Layer 2 networking setup](https://packet.kayako.com/article/57-layer-2-overview).
+ * Provides a resource to allow users to manage Virtual Networks in their projects.
+ * 
+ * To learn more about Layer 2 networking in Packet, refer to
+ * * https://support.packet.com/kb/articles/layer-2-configurations
+ * * https://support.packet.com/kb/articles/layer-2-overview
  * 
  * ## Example Usage
  * 
@@ -13,11 +17,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * const dev = new packet.Project("dev", {});
  * const vlan1 = new packet.Vlan("vlan1", {
  *     description: "VLAN in New Jersey",
  *     facility: "ewr1",
- *     projectId: dev.id,
+ *     projectId: local_project_id,
  * });
  * ```
  */

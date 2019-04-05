@@ -15,7 +15,7 @@
 # `source` to the fork address. Then set the `branch` to `pulumi-master` in the
 # fork, and ensure `version` is not set.
 [[constraint]]
-  version = "v1.4.1"
+  version = "v1.6.0"
   name = "github.com/terraform-providers/terraform-provider-packet"
 
   [constraint.metadata]
