@@ -44,6 +44,8 @@ export interface GetSpotMarketPriceArgs {
  * A collection of values returned by getSpotMarketPrice.
  */
 export interface GetSpotMarketPriceResult {
+    readonly facility: string;
+    readonly plan: string;
     /**
      * Current spot market price for given plan in given facility.
      */

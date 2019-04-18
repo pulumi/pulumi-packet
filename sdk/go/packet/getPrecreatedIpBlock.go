@@ -24,13 +24,18 @@ func LookupPrecreatedIpBlock(ctx *pulumi.Context, args *GetPrecreatedIpBlockArgs
 	}
 	return &GetPrecreatedIpBlockResult{
 		Address: outputs["address"],
+		AddressFamily: outputs["addressFamily"],
 		Cidr: outputs["cidr"],
 		CidrNotation: outputs["cidrNotation"],
+		Facility: outputs["facility"],
 		Gateway: outputs["gateway"],
+		Global: outputs["global"],
 		Manageable: outputs["manageable"],
 		Management: outputs["management"],
 		Netmask: outputs["netmask"],
 		Network: outputs["network"],
+		ProjectId: outputs["projectId"],
+		Public: outputs["public"],
 		Quantity: outputs["quantity"],
 		Id: outputs["id"],
 	}, nil
@@ -53,14 +58,19 @@ type GetPrecreatedIpBlockArgs struct {
 // A collection of values returned by getPrecreatedIpBlock.
 type GetPrecreatedIpBlockResult struct {
 	Address interface{}
+	AddressFamily interface{}
 	Cidr interface{}
 	// CIDR notation of the looked up block.
 	CidrNotation interface{}
+	Facility interface{}
 	Gateway interface{}
+	Global interface{}
 	Manageable interface{}
 	Management interface{}
 	Netmask interface{}
 	Network interface{}
+	ProjectId interface{}
+	Public interface{}
 	Quantity interface{}
 	// id is the provider-assigned unique ID for this managed resource.
 	Id interface{}

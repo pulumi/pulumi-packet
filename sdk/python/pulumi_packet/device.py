@@ -76,7 +76,7 @@ class Device(pulumi.CustomResource):
     """
     network_type: pulumi.Output[str]
     """
-    Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. Default is `layer3`. 
+    Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
     """
     operating_system: pulumi.Output[str]
     """
@@ -95,7 +95,7 @@ class Device(pulumi.CustomResource):
     """
     Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
     """
-    public_ipv4_subnet_size: pulumi.Output[int]
+    public_ipv4_subnet_size: pulumi.Output[float]
     """
     Size of allocated subnet, more
     information is in the
@@ -152,12 +152,12 @@ class Device(pulumi.CustomResource):
                information is in the
                [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
                doc.
-        :param pulumi.Input[str] network_type: Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. Default is `layer3`. 
+        :param pulumi.Input[str] network_type: Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] project_id: The id of the project in which to create the device
         :param pulumi.Input[list] project_ssh_key_ids: Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
-        :param pulumi.Input[int] public_ipv4_subnet_size: Size of allocated subnet, more
+        :param pulumi.Input[float] public_ipv4_subnet_size: Size of allocated subnet, more
                information is in the
                [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
@@ -182,7 +182,7 @@ class Device(pulumi.CustomResource):
         __props__['always_pxe'] = always_pxe
 
         if billing_cycle is None:
-            raise TypeError('Missing required property billing_cycle')
+            raise TypeError("Missing required property 'billing_cycle'")
         __props__['billing_cycle'] = billing_cycle
 
         __props__['description'] = description
@@ -194,7 +194,7 @@ class Device(pulumi.CustomResource):
         __props__['hardware_reservation_id'] = hardware_reservation_id
 
         if hostname is None:
-            raise TypeError('Missing required property hostname')
+            raise TypeError("Missing required property 'hostname'")
         __props__['hostname'] = hostname
 
         __props__['ipxe_script_url'] = ipxe_script_url
@@ -202,15 +202,15 @@ class Device(pulumi.CustomResource):
         __props__['network_type'] = network_type
 
         if operating_system is None:
-            raise TypeError('Missing required property operating_system')
+            raise TypeError("Missing required property 'operating_system'")
         __props__['operating_system'] = operating_system
 
         if plan is None:
-            raise TypeError('Missing required property plan')
+            raise TypeError("Missing required property 'plan'")
         __props__['plan'] = plan
 
         if project_id is None:
-            raise TypeError('Missing required property project_id')
+            raise TypeError("Missing required property 'project_id'")
         __props__['project_id'] = project_id
 
         __props__['project_ssh_key_ids'] = project_ssh_key_ids

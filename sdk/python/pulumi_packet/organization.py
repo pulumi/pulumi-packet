@@ -63,7 +63,7 @@ class Organization(pulumi.CustomResource):
         __props__['logo'] = logo
 
         if name is None:
-            raise TypeError('Missing required property name')
+            raise TypeError("Missing required property 'name'")
         __props__['name'] = name
 
         __props__['twitter'] = twitter

@@ -13,12 +13,16 @@ class BgpSession(pulumi.CustomResource):
     """
     `ipv4` or `ipv6`
     """
+    default_route: pulumi.Output[bool]
+    """
+    Boolean flag to set the default route policy. False by default.
+    """
     device_id: pulumi.Output[str]
     """
     ID of device 
     """
     status: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, address_family=None, device_id=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, address_family=None, default_route=None, device_id=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://support.packet.com/kb/articles/bgp) for more details.
         
@@ -29,6 +33,7 @@ class BgpSession(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_family: `ipv4` or `ipv6`
+        :param pulumi.Input[bool] default_route: Boolean flag to set the default route policy. False by default.
         :param pulumi.Input[str] device_id: ID of device 
         """
         if __name__ is not None:
@@ -47,11 +52,13 @@ class BgpSession(pulumi.CustomResource):
         __props__ = dict()
 
         if address_family is None:
-            raise TypeError('Missing required property address_family')
+            raise TypeError("Missing required property 'address_family'")
         __props__['address_family'] = address_family
 
+        __props__['default_route'] = default_route
+
         if device_id is None:
-            raise TypeError('Missing required property device_id')
+            raise TypeError("Missing required property 'device_id'")
         __props__['device_id'] = device_id
 
         __props__['status'] = None

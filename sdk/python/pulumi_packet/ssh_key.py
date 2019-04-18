@@ -58,11 +58,11 @@ class SshKey(pulumi.CustomResource):
         __props__ = dict()
 
         if name is None:
-            raise TypeError('Missing required property name')
+            raise TypeError("Missing required property 'name'")
         __props__['name'] = name
 
         if public_key is None:
-            raise TypeError('Missing required property public_key')
+            raise TypeError("Missing required property 'public_key'")
         __props__['public_key'] = public_key
 
         __props__['created'] = None

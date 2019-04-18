@@ -65,10 +65,14 @@ export interface GetOperatingSystemArgs {
  * A collection of values returned by getOperatingSystem.
  */
 export interface GetOperatingSystemResult {
+    readonly distro?: string;
+    readonly name?: string;
+    readonly provisionableOn?: string;
     /**
      * Operating system slug (same as `id`)
      */
     readonly slug: string;
+    readonly version?: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.
      */

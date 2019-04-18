@@ -21,7 +21,11 @@ func LookupOperatingSystem(ctx *pulumi.Context, args *GetOperatingSystemArgs) (*
 		return nil, err
 	}
 	return &GetOperatingSystemResult{
+		Distro: outputs["distro"],
+		Name: outputs["name"],
+		ProvisionableOn: outputs["provisionableOn"],
 		Slug: outputs["slug"],
+		Version: outputs["version"],
 		Id: outputs["id"],
 	}, nil
 }
@@ -40,8 +44,12 @@ type GetOperatingSystemArgs struct {
 
 // A collection of values returned by getOperatingSystem.
 type GetOperatingSystemResult struct {
+	Distro interface{}
+	Name interface{}
+	ProvisionableOn interface{}
 	// Operating system slug (same as `id`)
 	Slug interface{}
+	Version interface{}
 	// id is the provider-assigned unique ID for this managed resource.
 	Id interface{}
 }

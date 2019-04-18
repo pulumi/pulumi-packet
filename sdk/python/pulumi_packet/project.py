@@ -70,7 +70,7 @@ class Project(pulumi.CustomResource):
         __props__['bgp_config'] = bgp_config
 
         if name is None:
-            raise TypeError('Missing required property name')
+            raise TypeError("Missing required property 'name'")
         __props__['name'] = name
 
         __props__['organization_id'] = organization_id

@@ -9,11 +9,11 @@ import pulumi.runtime
 from . import utilities, tables
 
 class SpotMarketRequest(pulumi.CustomResource):
-    devices_max: pulumi.Output[int]
+    devices_max: pulumi.Output[float]
     """
     Maximum number devices to be created
     """
-    devices_min: pulumi.Output[int]
+    devices_min: pulumi.Output[float]
     """
     Miniumum number devices to be created
     """
@@ -44,8 +44,8 @@ class SpotMarketRequest(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] devices_max: Maximum number devices to be created
-        :param pulumi.Input[int] devices_min: Miniumum number devices to be created
+        :param pulumi.Input[float] devices_max: Maximum number devices to be created
+        :param pulumi.Input[float] devices_min: Miniumum number devices to be created
         :param pulumi.Input[list] facilities: Facility IDs where devices should be created
         :param pulumi.Input[dict] instance_parameters: Device parameters. See device resource for details
         :param pulumi.Input[float] max_bid_price: Maximum price user is willing to pay per hour per device
@@ -68,27 +68,27 @@ class SpotMarketRequest(pulumi.CustomResource):
         __props__ = dict()
 
         if devices_max is None:
-            raise TypeError('Missing required property devices_max')
+            raise TypeError("Missing required property 'devices_max'")
         __props__['devices_max'] = devices_max
 
         if devices_min is None:
-            raise TypeError('Missing required property devices_min')
+            raise TypeError("Missing required property 'devices_min'")
         __props__['devices_min'] = devices_min
 
         if facilities is None:
-            raise TypeError('Missing required property facilities')
+            raise TypeError("Missing required property 'facilities'")
         __props__['facilities'] = facilities
 
         if instance_parameters is None:
-            raise TypeError('Missing required property instance_parameters')
+            raise TypeError("Missing required property 'instance_parameters'")
         __props__['instance_parameters'] = instance_parameters
 
         if max_bid_price is None:
-            raise TypeError('Missing required property max_bid_price')
+            raise TypeError("Missing required property 'max_bid_price'")
         __props__['max_bid_price'] = max_bid_price
 
         if project_id is None:
-            raise TypeError('Missing required property project_id')
+            raise TypeError("Missing required property 'project_id'")
         __props__['project_id'] = project_id
 
         __props__['wait_for_devices'] = wait_for_devices

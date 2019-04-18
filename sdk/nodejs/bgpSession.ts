@@ -29,6 +29,10 @@ export class BgpSession extends pulumi.CustomResource {
      */
     public readonly addressFamily: pulumi.Output<string>;
     /**
+     * Boolean flag to set the default route policy. False by default.
+     */
+    public readonly defaultRoute: pulumi.Output<boolean | undefined>;
+    /**
      * ID of device 
      */
     public readonly deviceId: pulumi.Output<string>;
@@ -47,6 +51,7 @@ export class BgpSession extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state: BgpSessionState = argsOrState as BgpSessionState | undefined;
             inputs["addressFamily"] = state ? state.addressFamily : undefined;
+            inputs["defaultRoute"] = state ? state.defaultRoute : undefined;
             inputs["deviceId"] = state ? state.deviceId : undefined;
             inputs["status"] = state ? state.status : undefined;
         } else {
@@ -58,6 +63,7 @@ export class BgpSession extends pulumi.CustomResource {
                 throw new Error("Missing required property 'deviceId'");
             }
             inputs["addressFamily"] = args ? args.addressFamily : undefined;
+            inputs["defaultRoute"] = args ? args.defaultRoute : undefined;
             inputs["deviceId"] = args ? args.deviceId : undefined;
             inputs["status"] = undefined /*out*/;
         }
@@ -74,6 +80,10 @@ export interface BgpSessionState {
      */
     readonly addressFamily?: pulumi.Input<string>;
     /**
+     * Boolean flag to set the default route policy. False by default.
+     */
+    readonly defaultRoute?: pulumi.Input<boolean>;
+    /**
      * ID of device 
      */
     readonly deviceId?: pulumi.Input<string>;
@@ -88,6 +98,10 @@ export interface BgpSessionArgs {
      * `ipv4` or `ipv6`
      */
     readonly addressFamily: pulumi.Input<string>;
+    /**
+     * Boolean flag to set the default route policy. False by default.
+     */
+    readonly defaultRoute?: pulumi.Input<boolean>;
     /**
      * ID of device 
      */

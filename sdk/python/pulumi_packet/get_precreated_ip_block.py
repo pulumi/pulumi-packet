@@ -12,39 +12,54 @@ class GetPrecreatedIpBlockResult:
     """
     A collection of values returned by getPrecreatedIpBlock.
     """
-    def __init__(__self__, address=None, cidr=None, cidr_notation=None, gateway=None, manageable=None, management=None, netmask=None, network=None, quantity=None, id=None):
+    def __init__(__self__, address=None, address_family=None, cidr=None, cidr_notation=None, facility=None, gateway=None, global_=None, manageable=None, management=None, netmask=None, network=None, project_id=None, public=None, quantity=None, id=None):
         if address and not isinstance(address, str):
-            raise TypeError('Expected argument address to be a str')
+            raise TypeError("Expected argument 'address' to be a str")
         __self__.address = address
-        if cidr and not isinstance(cidr, int):
-            raise TypeError('Expected argument cidr to be a int')
+        if address_family and not isinstance(address_family, float):
+            raise TypeError("Expected argument 'address_family' to be a float")
+        __self__.address_family = address_family
+        if cidr and not isinstance(cidr, float):
+            raise TypeError("Expected argument 'cidr' to be a float")
         __self__.cidr = cidr
         if cidr_notation and not isinstance(cidr_notation, str):
-            raise TypeError('Expected argument cidr_notation to be a str')
+            raise TypeError("Expected argument 'cidr_notation' to be a str")
         __self__.cidr_notation = cidr_notation
         """
         CIDR notation of the looked up block.
         """
+        if facility and not isinstance(facility, str):
+            raise TypeError("Expected argument 'facility' to be a str")
+        __self__.facility = facility
         if gateway and not isinstance(gateway, str):
-            raise TypeError('Expected argument gateway to be a str')
+            raise TypeError("Expected argument 'gateway' to be a str")
         __self__.gateway = gateway
+        if global_ and not isinstance(global_, bool):
+            raise TypeError("Expected argument 'global_' to be a bool")
+        __self__.global_ = global_
         if manageable and not isinstance(manageable, bool):
-            raise TypeError('Expected argument manageable to be a bool')
+            raise TypeError("Expected argument 'manageable' to be a bool")
         __self__.manageable = manageable
         if management and not isinstance(management, bool):
-            raise TypeError('Expected argument management to be a bool')
+            raise TypeError("Expected argument 'management' to be a bool")
         __self__.management = management
         if netmask and not isinstance(netmask, str):
-            raise TypeError('Expected argument netmask to be a str')
+            raise TypeError("Expected argument 'netmask' to be a str")
         __self__.netmask = netmask
         if network and not isinstance(network, str):
-            raise TypeError('Expected argument network to be a str')
+            raise TypeError("Expected argument 'network' to be a str")
         __self__.network = network
-        if quantity and not isinstance(quantity, int):
-            raise TypeError('Expected argument quantity to be a int')
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        __self__.project_id = project_id
+        if public and not isinstance(public, bool):
+            raise TypeError("Expected argument 'public' to be a bool")
+        __self__.public = public
+        if quantity and not isinstance(quantity, float):
+            raise TypeError("Expected argument 'quantity' to be a float")
         __self__.quantity = quantity
         if id and not isinstance(id, str):
-            raise TypeError('Expected argument id to be a str')
+            raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
         id is the provider-assigned unique ID for this managed resource.
@@ -66,12 +81,17 @@ async def get_precreated_ip_block(address_family=None,facility=None,global_=None
 
     return GetPrecreatedIpBlockResult(
         address=__ret__.get('address'),
+        address_family=__ret__.get('addressFamily'),
         cidr=__ret__.get('cidr'),
         cidr_notation=__ret__.get('cidrNotation'),
+        facility=__ret__.get('facility'),
         gateway=__ret__.get('gateway'),
+        global_=__ret__.get('global'),
         manageable=__ret__.get('manageable'),
         management=__ret__.get('management'),
         netmask=__ret__.get('netmask'),
         network=__ret__.get('network'),
+        project_id=__ret__.get('projectId'),
+        public=__ret__.get('public'),
         quantity=__ret__.get('quantity'),
         id=__ret__.get('id'))

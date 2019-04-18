@@ -29,9 +29,11 @@ func NewBgpSession(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if args == nil {
 		inputs["addressFamily"] = nil
+		inputs["defaultRoute"] = nil
 		inputs["deviceId"] = nil
 	} else {
 		inputs["addressFamily"] = args.AddressFamily
+		inputs["defaultRoute"] = args.DefaultRoute
 		inputs["deviceId"] = args.DeviceId
 	}
 	inputs["status"] = nil
@@ -49,6 +51,7 @@ func GetBgpSession(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if state != nil {
 		inputs["addressFamily"] = state.AddressFamily
+		inputs["defaultRoute"] = state.DefaultRoute
 		inputs["deviceId"] = state.DeviceId
 		inputs["status"] = state.Status
 	}
@@ -74,6 +77,11 @@ func (r *BgpSession) AddressFamily() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["addressFamily"])
 }
 
+// Boolean flag to set the default route policy. False by default.
+func (r *BgpSession) DefaultRoute() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["defaultRoute"])
+}
+
 // ID of device 
 func (r *BgpSession) DeviceId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["deviceId"])
@@ -87,6 +95,8 @@ func (r *BgpSession) Status() *pulumi.StringOutput {
 type BgpSessionState struct {
 	// `ipv4` or `ipv6`
 	AddressFamily interface{}
+	// Boolean flag to set the default route policy. False by default.
+	DefaultRoute interface{}
 	// ID of device 
 	DeviceId interface{}
 	Status interface{}
@@ -96,6 +106,8 @@ type BgpSessionState struct {
 type BgpSessionArgs struct {
 	// `ipv4` or `ipv6`
 	AddressFamily interface{}
+	// Boolean flag to set the default route policy. False by default.
+	DefaultRoute interface{}
 	// ID of device 
 	DeviceId interface{}
 }

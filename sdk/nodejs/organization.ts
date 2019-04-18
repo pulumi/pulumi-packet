@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  * // Create a new Project
  * const tfOrganization1 = new packet.Organization("tf_organization_1", {
  *     description: "quux",
+ *     name: "foobar",
  * });
  * ```
  */
