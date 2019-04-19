@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * 
  * // Create a new SSH key
  * const key1 = new packet.SshKey("key1", {
+ *     name: "terraform-1",
  *     publicKey: fs.readFileSync("/home/terraform/.ssh/id_rsa.pub", "utf-8"),
  * });
  * // Create new device with "key1" included. The device resource "depends_on" the

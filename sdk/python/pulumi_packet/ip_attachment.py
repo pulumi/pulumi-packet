@@ -10,11 +10,11 @@ from . import utilities, tables
 
 class IpAttachment(pulumi.CustomResource):
     address: pulumi.Output[str]
-    address_family: pulumi.Output[int]
+    address_family: pulumi.Output[float]
     """
     Address family as integer (4 or 6)
     """
-    cidr: pulumi.Output[int]
+    cidr: pulumi.Output[float]
     """
     length of CIDR prefix of the subnet as integer
     """
@@ -81,11 +81,11 @@ class IpAttachment(pulumi.CustomResource):
         __props__ = dict()
 
         if cidr_notation is None:
-            raise TypeError('Missing required property cidr_notation')
+            raise TypeError("Missing required property 'cidr_notation'")
         __props__['cidr_notation'] = cidr_notation
 
         if device_id is None:
-            raise TypeError('Missing required property device_id')
+            raise TypeError("Missing required property 'device_id'")
         __props__['device_id'] = device_id
 
         __props__['address'] = None

@@ -197,7 +197,7 @@ export class Device extends pulumi.CustomResource {
      */
     public /*out*/ readonly networks: pulumi.Output<{ address: string, cidr: number, family: number, gateway: string, public: boolean }[]>;
     /**
-     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. Default is `layer3`. 
+     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
     public readonly networkType: pulumi.Output<string | undefined>;
     /**
@@ -412,7 +412,7 @@ export interface DeviceState {
      */
     readonly networks?: pulumi.Input<pulumi.Input<{ address?: pulumi.Input<string>, cidr?: pulumi.Input<number>, family?: pulumi.Input<number>, gateway?: pulumi.Input<string>, public?: pulumi.Input<boolean> }>[]>;
     /**
-     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. Default is `layer3`. 
+     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
     readonly networkType?: pulumi.Input<string>;
     /**
@@ -509,7 +509,7 @@ export interface DeviceArgs {
      */
     readonly ipxeScriptUrl?: pulumi.Input<string>;
     /**
-     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. Default is `layer3`. 
+     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
     readonly networkType?: pulumi.Input<string>;
     /**

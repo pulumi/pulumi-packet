@@ -79,16 +79,21 @@ export interface GetPrecreatedIpBlockArgs {
  */
 export interface GetPrecreatedIpBlockResult {
     readonly address: string;
+    readonly addressFamily: number;
     readonly cidr: number;
     /**
      * CIDR notation of the looked up block.
      */
     readonly cidrNotation: string;
+    readonly facility?: string;
     readonly gateway: string;
+    readonly global?: boolean;
     readonly manageable: boolean;
     readonly management: boolean;
     readonly netmask: string;
     readonly network: string;
+    readonly projectId: string;
+    readonly public: boolean;
     readonly quantity: number;
     /**
      * id is the provider-assigned unique ID for this managed resource.

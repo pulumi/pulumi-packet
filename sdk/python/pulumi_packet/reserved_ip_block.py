@@ -10,11 +10,11 @@ from . import utilities, tables
 
 class ReservedIpBlock(pulumi.CustomResource):
     address: pulumi.Output[str]
-    address_family: pulumi.Output[int]
+    address_family: pulumi.Output[float]
     """
     Address family as integer (4 or 6)
     """
-    cidr: pulumi.Output[int]
+    cidr: pulumi.Output[float]
     """
     length of CIDR prefix of the block as integer
     """
@@ -49,7 +49,7 @@ class ReservedIpBlock(pulumi.CustomResource):
     """
     boolean flag whether addresses from a block are public
     """
-    quantity: pulumi.Output[int]
+    quantity: pulumi.Output[float]
     """
     The number of allocated /32 addresses, a power of 2
     """
@@ -76,7 +76,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] facility: Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
-        :param pulumi.Input[int] quantity: The number of allocated /32 addresses, a power of 2
+        :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
         :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
         """
         if __name__ is not None:
@@ -97,11 +97,11 @@ class ReservedIpBlock(pulumi.CustomResource):
         __props__['facility'] = facility
 
         if project_id is None:
-            raise TypeError('Missing required property project_id')
+            raise TypeError("Missing required property 'project_id'")
         __props__['project_id'] = project_id
 
         if quantity is None:
-            raise TypeError('Missing required property quantity')
+            raise TypeError("Missing required property 'quantity'")
         __props__['quantity'] = quantity
 
         __props__['type'] = type

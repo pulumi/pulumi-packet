@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  * });
  * const myExpressroute = new packet.Connect("my_expressroute", {
  *     facility: "ewr1",
+ *     name: "test",
  *     portSpeed: 100,
  *     projectId: local_project_id,
  *     // provider ID for Azure ExpressRoute is ed5de8e0-77a9-4d3b-9de0-65281d3aa831

@@ -1,5 +1,9 @@
 ## 0.3.2 (Unreleased)
 
+### Improvements
+
+- Update to v1.7.2 of the Packet.net Terraform provider.
+
 ## 0.3.1 (Released April 5th 2019)
 
 ### Improvements

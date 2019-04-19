@@ -23,7 +23,7 @@ class PortVlanAttachment(pulumi.CustomResource):
     Name of network port to be assigned to the VLAN
     """
     vlan_id: pulumi.Output[str]
-    vlan_vnid: pulumi.Output[int]
+    vlan_vnid: pulumi.Output[float]
     """
     VXLAN Network Identifier, integer
     """
@@ -50,7 +50,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] device_id: ID of device to be assigned to the VLAN
         :param pulumi.Input[bool] force_bond: Add port back to the bond when this resource is removed. Default is false.
         :param pulumi.Input[str] port_name: Name of network port to be assigned to the VLAN
-        :param pulumi.Input[int] vlan_vnid: VXLAN Network Identifier, integer
+        :param pulumi.Input[float] vlan_vnid: VXLAN Network Identifier, integer
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -68,17 +68,17 @@ class PortVlanAttachment(pulumi.CustomResource):
         __props__ = dict()
 
         if device_id is None:
-            raise TypeError('Missing required property device_id')
+            raise TypeError("Missing required property 'device_id'")
         __props__['device_id'] = device_id
 
         __props__['force_bond'] = force_bond
 
         if port_name is None:
-            raise TypeError('Missing required property port_name')
+            raise TypeError("Missing required property 'port_name'")
         __props__['port_name'] = port_name
 
         if vlan_vnid is None:
-            raise TypeError('Missing required property vlan_vnid')
+            raise TypeError("Missing required property 'vlan_vnid'")
         __props__['vlan_vnid'] = vlan_vnid
 
         __props__['port_id'] = None

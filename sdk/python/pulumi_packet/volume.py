@@ -45,7 +45,7 @@ class Volume(pulumi.CustomResource):
     """
     The packet project ID to deploy the volume in
     """
-    size: pulumi.Output[int]
+    size: pulumi.Output[float]
     """
     The size in GB to make the volume
     """
@@ -77,7 +77,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[bool] locked: Lock or unlock the volume
         :param pulumi.Input[str] plan: The service plan slug of the volume
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
-        :param pulumi.Input[int] size: The size in GB to make the volume
+        :param pulumi.Input[float] size: The size in GB to make the volume
         :param pulumi.Input[list] snapshot_policies: Optional list of snapshot policies
         """
         if __name__ is not None:
@@ -100,21 +100,21 @@ class Volume(pulumi.CustomResource):
         __props__['description'] = description
 
         if facility is None:
-            raise TypeError('Missing required property facility')
+            raise TypeError("Missing required property 'facility'")
         __props__['facility'] = facility
 
         __props__['locked'] = locked
 
         if plan is None:
-            raise TypeError('Missing required property plan')
+            raise TypeError("Missing required property 'plan'")
         __props__['plan'] = plan
 
         if project_id is None:
-            raise TypeError('Missing required property project_id')
+            raise TypeError("Missing required property 'project_id'")
         __props__['project_id'] = project_id
 
         if size is None:
-            raise TypeError('Missing required property size')
+            raise TypeError("Missing required property 'size'")
         __props__['size'] = size
 
         __props__['snapshot_policies'] = snapshot_policies

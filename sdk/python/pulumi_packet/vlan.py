@@ -21,7 +21,7 @@ class Vlan(pulumi.CustomResource):
     """
     ID of parent project
     """
-    vxlan: pulumi.Output[int]
+    vxlan: pulumi.Output[float]
     """
     VXLAN segment ID
     """
@@ -57,11 +57,11 @@ class Vlan(pulumi.CustomResource):
         __props__['description'] = description
 
         if facility is None:
-            raise TypeError('Missing required property facility')
+            raise TypeError("Missing required property 'facility'")
         __props__['facility'] = facility
 
         if project_id is None:
-            raise TypeError('Missing required property project_id')
+            raise TypeError("Missing required property 'project_id'")
         __props__['project_id'] = project_id
 
         __props__['vxlan'] = None

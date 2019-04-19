@@ -12,15 +12,21 @@ class GetSpotMarketPriceResult:
     """
     A collection of values returned by getSpotMarketPrice.
     """
-    def __init__(__self__, price=None, id=None):
+    def __init__(__self__, facility=None, plan=None, price=None, id=None):
+        if facility and not isinstance(facility, str):
+            raise TypeError("Expected argument 'facility' to be a str")
+        __self__.facility = facility
+        if plan and not isinstance(plan, str):
+            raise TypeError("Expected argument 'plan' to be a str")
+        __self__.plan = plan
         if price and not isinstance(price, float):
-            raise TypeError('Expected argument price to be a float')
+            raise TypeError("Expected argument 'price' to be a float")
         __self__.price = price
         """
         Current spot market price for given plan in given facility.
         """
         if id and not isinstance(id, str):
-            raise TypeError('Expected argument id to be a str')
+            raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
         id is the provider-assigned unique ID for this managed resource.
@@ -37,5 +43,7 @@ async def get_spot_market_price(facility=None,plan=None,opts=None):
     __ret__ = await pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__, opts=opts)
 
     return GetSpotMarketPriceResult(
+        facility=__ret__.get('facility'),
+        plan=__ret__.get('plan'),
         price=__ret__.get('price'),
         id=__ret__.get('id'))

@@ -19,6 +19,8 @@ func LookupSpotMarketPrice(ctx *pulumi.Context, args *GetSpotMarketPriceArgs) (*
 		return nil, err
 	}
 	return &GetSpotMarketPriceResult{
+		Facility: outputs["facility"],
+		Plan: outputs["plan"],
 		Price: outputs["price"],
 		Id: outputs["id"],
 	}, nil
@@ -34,6 +36,8 @@ type GetSpotMarketPriceArgs struct {
 
 // A collection of values returned by getSpotMarketPrice.
 type GetSpotMarketPriceResult struct {
+	Facility interface{}
+	Plan interface{}
 	// Current spot market price for given plan in given facility.
 	Price interface{}
 	// id is the provider-assigned unique ID for this managed resource.

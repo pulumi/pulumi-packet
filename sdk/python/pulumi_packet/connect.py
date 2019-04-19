@@ -17,7 +17,7 @@ class Connect(pulumi.CustomResource):
     """
     Name for the Connect resource
     """
-    port_speed: pulumi.Output[int]
+    port_speed: pulumi.Output[float]
     """
     Port speed in Mbps
     """
@@ -38,7 +38,7 @@ class Connect(pulumi.CustomResource):
     """
     Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
     """
-    vxlan: pulumi.Output[int]
+    vxlan: pulumi.Output[float]
     """
     VXLAN Network identifier of the linked Packet VLAN
     """
@@ -50,12 +50,12 @@ class Connect(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] facility: Facility where to create the VLAN
         :param pulumi.Input[str] name: Name for the Connect resource
-        :param pulumi.Input[int] port_speed: Port speed in Mbps
+        :param pulumi.Input[float] port_speed: Port speed in Mbps
         :param pulumi.Input[str] project_id: ID of parent project
         :param pulumi.Input[str] provider_id: ID of Connect Provider. Provider IDs are
                * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
         :param pulumi.Input[str] provider_payload: Authorization key for the Connect provider
-        :param pulumi.Input[int] vxlan: VXLAN Network identifier of the linked Packet VLAN
+        :param pulumi.Input[float] vxlan: VXLAN Network identifier of the linked Packet VLAN
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -73,31 +73,31 @@ class Connect(pulumi.CustomResource):
         __props__ = dict()
 
         if facility is None:
-            raise TypeError('Missing required property facility')
+            raise TypeError("Missing required property 'facility'")
         __props__['facility'] = facility
 
         if name is None:
-            raise TypeError('Missing required property name')
+            raise TypeError("Missing required property 'name'")
         __props__['name'] = name
 
         if port_speed is None:
-            raise TypeError('Missing required property port_speed')
+            raise TypeError("Missing required property 'port_speed'")
         __props__['port_speed'] = port_speed
 
         if project_id is None:
-            raise TypeError('Missing required property project_id')
+            raise TypeError("Missing required property 'project_id'")
         __props__['project_id'] = project_id
 
         if provider_id is None:
-            raise TypeError('Missing required property provider_id')
+            raise TypeError("Missing required property 'provider_id'")
         __props__['provider_id'] = provider_id
 
         if provider_payload is None:
-            raise TypeError('Missing required property provider_payload')
+            raise TypeError("Missing required property 'provider_payload'")
         __props__['provider_payload'] = provider_payload
 
         if vxlan is None:
-            raise TypeError('Missing required property vxlan')
+            raise TypeError("Missing required property 'vxlan'")
         __props__['vxlan'] = vxlan
 
         __props__['status'] = None

@@ -12,15 +12,27 @@ class GetOperatingSystemResult:
     """
     A collection of values returned by getOperatingSystem.
     """
-    def __init__(__self__, slug=None, id=None):
+    def __init__(__self__, distro=None, name=None, provisionable_on=None, slug=None, version=None, id=None):
+        if distro and not isinstance(distro, str):
+            raise TypeError("Expected argument 'distro' to be a str")
+        __self__.distro = distro
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        __self__.name = name
+        if provisionable_on and not isinstance(provisionable_on, str):
+            raise TypeError("Expected argument 'provisionable_on' to be a str")
+        __self__.provisionable_on = provisionable_on
         if slug and not isinstance(slug, str):
-            raise TypeError('Expected argument slug to be a str')
+            raise TypeError("Expected argument 'slug' to be a str")
         __self__.slug = slug
         """
         Operating system slug (same as `id`)
         """
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        __self__.version = version
         if id and not isinstance(id, str):
-            raise TypeError('Expected argument id to be a str')
+            raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
         id is the provider-assigned unique ID for this managed resource.
@@ -39,5 +51,9 @@ async def get_operating_system(distro=None,name=None,provisionable_on=None,versi
     __ret__ = await pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts)
 
     return GetOperatingSystemResult(
+        distro=__ret__.get('distro'),
+        name=__ret__.get('name'),
+        provisionable_on=__ret__.get('provisionableOn'),
         slug=__ret__.get('slug'),
+        version=__ret__.get('version'),
         id=__ret__.get('id'))

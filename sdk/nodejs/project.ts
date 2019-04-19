@@ -15,7 +15,9 @@ import * as utilities from "./utilities";
  * import * as packet from "@pulumi/packet";
  * 
  * // Create a new project
- * const tfProject1 = new packet.Project("tf_project_1", {});
+ * const tfProject1 = new packet.Project("tf_project_1", {
+ *     name: "Terraform Fun",
+ * });
  * ```
  * 
  * Example with BGP config
@@ -31,6 +33,7 @@ import * as utilities from "./utilities";
  *         deploymentType: "local",
  *         md5: "C179c28c41a85b",
  *     },
+ *     name: "tftest",
  * });
  * ```
  */
