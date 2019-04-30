@@ -1,7 +1,11 @@
-## 0.4.0 (Unreleased)
+## 0.4.1 (Unreleased)
 
-- Update to v2.1.0 of the Packet.net Terraform provider. **Please Note** this deprecates the use of `facility`
-  in favour of using `facilities`
+## 0.4.0 (Released April 30th, 2019)
+
+### Breaking Changes
+
+- Update to v2.1.0 of the Packet.net Terraform provider.
+  **Please Note** this deprecates the use of `facility` in favour of using `facilities`
 
 ## 0.3.2 (Released April 22nd, 2019)
 
