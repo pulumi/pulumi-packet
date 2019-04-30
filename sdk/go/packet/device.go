@@ -24,6 +24,9 @@ func NewDevice(ctx *pulumi.Context,
 	if args == nil || args.BillingCycle == nil {
 		return nil, errors.New("missing required argument 'BillingCycle'")
 	}
+	if args == nil || args.Facilities == nil {
+		return nil, errors.New("missing required argument 'Facilities'")
+	}
 	if args == nil || args.Hostname == nil {
 		return nil, errors.New("missing required argument 'Hostname'")
 	}
@@ -42,7 +45,6 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["billingCycle"] = nil
 		inputs["description"] = nil
 		inputs["facilities"] = nil
-		inputs["facility"] = nil
 		inputs["hardwareReservationId"] = nil
 		inputs["hostname"] = nil
 		inputs["ipxeScriptUrl"] = nil
@@ -60,7 +62,6 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["billingCycle"] = args.BillingCycle
 		inputs["description"] = args.Description
 		inputs["facilities"] = args.Facilities
-		inputs["facility"] = args.Facility
 		inputs["hardwareReservationId"] = args.HardwareReservationId
 		inputs["hostname"] = args.Hostname
 		inputs["ipxeScriptUrl"] = args.IpxeScriptUrl
@@ -78,6 +79,7 @@ func NewDevice(ctx *pulumi.Context,
 	inputs["accessPublicIpv4"] = nil
 	inputs["accessPublicIpv6"] = nil
 	inputs["created"] = nil
+	inputs["deployedFacility"] = nil
 	inputs["locked"] = nil
 	inputs["networks"] = nil
 	inputs["ports"] = nil
@@ -104,9 +106,9 @@ func GetDevice(ctx *pulumi.Context,
 		inputs["alwaysPxe"] = state.AlwaysPxe
 		inputs["billingCycle"] = state.BillingCycle
 		inputs["created"] = state.Created
+		inputs["deployedFacility"] = state.DeployedFacility
 		inputs["description"] = state.Description
 		inputs["facilities"] = state.Facilities
-		inputs["facility"] = state.Facility
 		inputs["hardwareReservationId"] = state.HardwareReservationId
 		inputs["hostname"] = state.Hostname
 		inputs["ipxeScriptUrl"] = state.IpxeScriptUrl
@@ -175,6 +177,11 @@ func (r *Device) Created() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["created"])
 }
 
+// The facility where the device is deployed.
+func (r *Device) DeployedFacility() *pulumi.StringOutput {
+	return (*pulumi.StringOutput)(r.s.State["deployedFacility"])
+}
+
 // Description string for the device
 func (r *Device) Description() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["description"])
@@ -183,11 +190,6 @@ func (r *Device) Description() *pulumi.StringOutput {
 // List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 func (r *Device) Facilities() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["facilities"])
-}
-
-// The facility in which to create the device.
-func (r *Device) Facility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["facility"])
 }
 
 // The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
@@ -309,12 +311,12 @@ type DeviceState struct {
 	BillingCycle interface{}
 	// The timestamp for when the device was created
 	Created interface{}
+	// The facility where the device is deployed.
+	DeployedFacility interface{}
 	// Description string for the device
 	Description interface{}
 	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
-	// The facility in which to create the device.
-	Facility interface{}
 	// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 	HardwareReservationId interface{}
 	// The device name
@@ -375,8 +377,6 @@ type DeviceArgs struct {
 	Description interface{}
 	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
-	// The facility in which to create the device.
-	Facility interface{}
 	// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 	HardwareReservationId interface{}
 	// The device name

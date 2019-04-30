@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * }));
  * const web1 = new packet.Device("web1", {
  *     billingCycle: "hourly",
- *     facility: "ewr1",
+ *     facilities: ["ewr1"],
  *     hostname: "web1",
  *     operatingSystem: "ubuntu_16_04",
  *     plan: "t1.small.x86",

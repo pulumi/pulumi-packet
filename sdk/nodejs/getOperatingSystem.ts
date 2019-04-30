@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  * }));
  * const server = new packet.Device("server", {
  *     billingCycle: "hourly",
- *     facility: "ewr1",
+ *     facilities: ["ewr1"],
  *     hostname: "tf.coreos2",
  *     operatingSystem: example.apply(example => example.id),
  *     plan: "c1.small.x86",

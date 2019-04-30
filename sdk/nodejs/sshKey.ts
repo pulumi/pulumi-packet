@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * // key, in order to make sure the key is created before the device.
  * const test = new packet.Device("test", {
  *     billingCycle: "hourly",
- *     facility: "sjc1",
+ *     facilities: ["sjc1"],
  *     hostname: "test-device",
  *     operatingSystem: "ubuntu_16_04",
  *     plan: "t1.small.x86",

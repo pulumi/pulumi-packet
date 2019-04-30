@@ -34,6 +34,10 @@ class Device(pulumi.CustomResource):
     """
     The timestamp for when the device was created
     """
+    deployed_facility: pulumi.Output[str]
+    """
+    The facility where the device is deployed.
+    """
     description: pulumi.Output[str]
     """
     Description string for the device
@@ -41,10 +45,6 @@ class Device(pulumi.CustomResource):
     facilities: pulumi.Output[list]
     """
     List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-    """
-    facility: pulumi.Output[str]
-    """
-    The facility in which to create the device.
     """
     hardware_reservation_id: pulumi.Output[str]
     """
@@ -129,7 +129,7 @@ class Device(pulumi.CustomResource):
     """
     A string of the desired User Data for the device.
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, facility=None, hardware_reservation_id=None, hostname=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, hardware_reservation_id=None, hostname=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, __name__=None, __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -145,7 +145,6 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] billing_cycle: monthly or hourly
         :param pulumi.Input[str] description: Description string for the device
         :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] facility: The facility in which to create the device.
         :param pulumi.Input[str] hardware_reservation_id: The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
         :param pulumi.Input[str] hostname: The device name
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
@@ -187,9 +186,9 @@ class Device(pulumi.CustomResource):
 
         __props__['description'] = description
 
+        if facilities is None:
+            raise TypeError("Missing required property 'facilities'")
         __props__['facilities'] = facilities
-
-        __props__['facility'] = facility
 
         __props__['hardware_reservation_id'] = hardware_reservation_id
 
@@ -227,6 +226,7 @@ class Device(pulumi.CustomResource):
         __props__['access_public_ipv4'] = None
         __props__['access_public_ipv6'] = None
         __props__['created'] = None
+        __props__['deployed_facility'] = None
         __props__['locked'] = None
         __props__['networks'] = None
         __props__['ports'] = None
