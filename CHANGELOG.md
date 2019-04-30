@@ -1,6 +1,6 @@
-## 0.4.1 (Unreleased)
+## 0.4.2 (Unreleased)
 
-## 0.4.0 (Released April 30th, 2019)
+## 0.4.1 (Released April 30th, 2019)
 
 ### Breaking Changes
 
