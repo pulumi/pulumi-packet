@@ -43,11 +43,13 @@ func NewPortVlanAttachment(ctx *pulumi.Context,
 	if args == nil {
 		inputs["deviceId"] = nil
 		inputs["forceBond"] = nil
+		inputs["native"] = nil
 		inputs["portName"] = nil
 		inputs["vlanVnid"] = nil
 	} else {
 		inputs["deviceId"] = args.DeviceId
 		inputs["forceBond"] = args.ForceBond
+		inputs["native"] = args.Native
 		inputs["portName"] = args.PortName
 		inputs["vlanVnid"] = args.VlanVnid
 	}
@@ -68,6 +70,7 @@ func GetPortVlanAttachment(ctx *pulumi.Context,
 	if state != nil {
 		inputs["deviceId"] = state.DeviceId
 		inputs["forceBond"] = state.ForceBond
+		inputs["native"] = state.Native
 		inputs["portId"] = state.PortId
 		inputs["portName"] = state.PortName
 		inputs["vlanId"] = state.VlanId
@@ -100,6 +103,11 @@ func (r *PortVlanAttachment) ForceBond() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["forceBond"])
 }
 
+// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+func (r *PortVlanAttachment) Native() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["native"])
+}
+
 func (r *PortVlanAttachment) PortId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["portId"])
 }
@@ -124,6 +132,8 @@ type PortVlanAttachmentState struct {
 	DeviceId interface{}
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond interface{}
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	Native interface{}
 	PortId interface{}
 	// Name of network port to be assigned to the VLAN
 	PortName interface{}
@@ -138,6 +148,8 @@ type PortVlanAttachmentArgs struct {
 	DeviceId interface{}
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond interface{}
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	Native interface{}
 	// Name of network port to be assigned to the VLAN
 	PortName interface{}
 	// VXLAN Network Identifier, integer

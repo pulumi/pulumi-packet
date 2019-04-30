@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * 
  * const testDeviceVa = new packet.Device("test_device_va", {
  *     billingCycle: "hourly",
- *     facility: "ewr1",
+ *     facilities: ["ewr1"],
  *     hostname: "terraform-test-device-va",
  *     operatingSystem: "ubuntu_16_04",
  *     plan: "t1.small.x86",

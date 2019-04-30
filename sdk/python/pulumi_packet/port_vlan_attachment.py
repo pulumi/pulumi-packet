@@ -17,6 +17,10 @@ class PortVlanAttachment(pulumi.CustomResource):
     """
     Add port back to the bond when this resource is removed. Default is false.
     """
+    native: pulumi.Output[bool]
+    """
+    Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+    """
     port_id: pulumi.Output[str]
     port_name: pulumi.Output[str]
     """
@@ -27,7 +31,7 @@ class PortVlanAttachment(pulumi.CustomResource):
     """
     VXLAN Network Identifier, integer
     """
-    def __init__(__self__, resource_name, opts=None, device_id=None, force_bond=None, port_name=None, vlan_vnid=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, device_id=None, force_bond=None, native=None, port_name=None, vlan_vnid=None, __name__=None, __opts__=None):
         """
         Provides a resource to attach device ports to VLANs.
         
@@ -49,6 +53,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: ID of device to be assigned to the VLAN
         :param pulumi.Input[bool] force_bond: Add port back to the bond when this resource is removed. Default is false.
+        :param pulumi.Input[bool] native: Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
         :param pulumi.Input[str] port_name: Name of network port to be assigned to the VLAN
         :param pulumi.Input[float] vlan_vnid: VXLAN Network Identifier, integer
         """
@@ -72,6 +77,8 @@ class PortVlanAttachment(pulumi.CustomResource):
         __props__['device_id'] = device_id
 
         __props__['force_bond'] = force_bond
+
+        __props__['native'] = native
 
         if port_name is None:
             raise TypeError("Missing required property 'port_name'")

@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * 
  * const testDevice = new packet.Device("test", {
  *     billingCycle: "hourly",
- *     facility: "ewr1",
+ *     facilities: ["ewr1"],
  *     hostname: "test",
  *     networkType: "layer2-individual",
  *     operatingSystem: "ubuntu_16_04",
@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  * const test1Vlan = new packet.Vlan("test1", {
  *     description: "VLAN in New Jersey",
  *     facility: "ewr1",
- *     projectId: packet_project_test.id,
+ *     projectId: local_project_id,
  * });
  * const test2Vlan = new packet.Vlan("test2", {
  *     description: "VLAN in New Jersey",
@@ -57,9 +57,10 @@ import * as utilities from "./utilities";
  * });
  * const test2PortVlanAttachment = new packet.PortVlanAttachment("test2", {
  *     deviceId: testDevice.id,
+ *     native: true,
  *     portName: "eth1",
  *     vlanVnid: test2Vlan.vxlan,
- * });
+ * }, {dependsOn: [test1PortVlanAttachment]});
  * ```
  * 
  * ## Attribute Referece
@@ -89,6 +90,10 @@ export class PortVlanAttachment extends pulumi.CustomResource {
      * Add port back to the bond when this resource is removed. Default is false.
      */
     public readonly forceBond: pulumi.Output<boolean | undefined>;
+    /**
+     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+     */
+    public readonly native: pulumi.Output<boolean | undefined>;
     public /*out*/ readonly portId: pulumi.Output<string>;
     /**
      * Name of network port to be assigned to the VLAN
@@ -114,6 +119,7 @@ export class PortVlanAttachment extends pulumi.CustomResource {
             const state: PortVlanAttachmentState = argsOrState as PortVlanAttachmentState | undefined;
             inputs["deviceId"] = state ? state.deviceId : undefined;
             inputs["forceBond"] = state ? state.forceBond : undefined;
+            inputs["native"] = state ? state.native : undefined;
             inputs["portId"] = state ? state.portId : undefined;
             inputs["portName"] = state ? state.portName : undefined;
             inputs["vlanId"] = state ? state.vlanId : undefined;
@@ -131,6 +137,7 @@ export class PortVlanAttachment extends pulumi.CustomResource {
             }
             inputs["deviceId"] = args ? args.deviceId : undefined;
             inputs["forceBond"] = args ? args.forceBond : undefined;
+            inputs["native"] = args ? args.native : undefined;
             inputs["portName"] = args ? args.portName : undefined;
             inputs["vlanVnid"] = args ? args.vlanVnid : undefined;
             inputs["portId"] = undefined /*out*/;
@@ -152,6 +159,10 @@ export interface PortVlanAttachmentState {
      * Add port back to the bond when this resource is removed. Default is false.
      */
     readonly forceBond?: pulumi.Input<boolean>;
+    /**
+     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+     */
+    readonly native?: pulumi.Input<boolean>;
     readonly portId?: pulumi.Input<string>;
     /**
      * Name of network port to be assigned to the VLAN
@@ -176,6 +187,10 @@ export interface PortVlanAttachmentArgs {
      * Add port back to the bond when this resource is removed. Default is false.
      */
     readonly forceBond?: pulumi.Input<boolean>;
+    /**
+     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+     */
+    readonly native?: pulumi.Input<boolean>;
     /**
      * Name of network port to be assigned to the VLAN
      */
