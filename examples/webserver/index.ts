@@ -7,7 +7,7 @@ let project = new packet.Project("project", {
 });
 
 let vm = new packet.Device("vm", {
-    facility: "ewr1",
+    facilities: ["ewr1"],
     billingCycle: "hourly",
     hostname: "lukehoban",
     operatingSystem: "coreos_stable",
