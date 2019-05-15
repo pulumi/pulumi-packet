@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  *     operatingSystem: "custom_ipxe",
  *     plan: "t1.small.x86",
  *     projectId: local_project_id,
- *     userData: ignition_config_example.rendered.apply(rendered => rendered),
+ *     userData: ignition_config_example.rendered,
  * });
  * ```
  * 

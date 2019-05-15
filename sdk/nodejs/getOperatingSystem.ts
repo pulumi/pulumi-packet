@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
  *     hostname: "tf.coreos2",
- *     operatingSystem: example.apply(example => example.id),
+ *     operatingSystem: example.id,
  *     plan: "c1.small.x86",
  *     projectId: local_project_id,
  * });
