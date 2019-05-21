@@ -330,6 +330,8 @@ github.com/packethost/packngo v0.1.1-0.20190410075950-a02c426e4888 h1:ARzSqjQJcS
 github.com/packethost/packngo v0.1.1-0.20190410075950-a02c426e4888/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
 github.com/packethost/packngo v0.1.1-0.20190417121503-034c7f574eff h1:dIzhu2ybjrAqw54hTVUhBmfa7we0r73/WVNc8EZG2H4=
 github.com/packethost/packngo v0.1.1-0.20190417121503-034c7f574eff/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
+github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2 h1:072axQiUaVldPIo1azOPcjLloGbRaR7O9ERUrT5i10E=
+github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
 github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pelletier/go-buffruneio v0.2.0 h1:U4t4R6YkofJ5xHm3dJzuRpPZ0mr5MMCoAWooScCR7aA=
 github.com/pelletier/go-buffruneio v0.2.0/go.mod h1:JkE26KsDizTr40EUHkXVtNPvgGtbSNq5BcowyYOWdKo=
@@ -424,6 +426,8 @@ github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07/go.mod h1:kDXzergiv9cb
 github.com/terraform-providers/terraform-provider-openstack v1.15.0/go.mod h1:2aQ6n/BtChAl1y2S60vebhyJyZXBsuAI5G4+lHrT1Ew=
 github.com/terraform-providers/terraform-provider-packet v0.0.0-20190430112545-62f5732ddfb4 h1:JU4uaucID6iPVgNtTYyvblC6165F17KoC1ia0WTnz/s=
 github.com/terraform-providers/terraform-provider-packet v0.0.0-20190430112545-62f5732ddfb4/go.mod h1:mtSHxFQ66EE4S27kB66ZRKOqfMCUoA5EwUkhbmqCDz4=
+github.com/terraform-providers/terraform-provider-packet v0.0.0-20190513155019-9b88fe71092e h1:rbRRJskDt1moBTfcPYYoLzQS28YRFMKcaxiTjYnZnyE=
+github.com/terraform-providers/terraform-provider-packet v0.0.0-20190513155019-9b88fe71092e/go.mod h1:SEFR6rB+P05ICssmT85GMFTj3UmLGrwXC+J34D5mZ3Y=
 github.com/terraform-providers/terraform-provider-packet v1.7.2 h1:hYN7YsuR9dp4P/MPRRnh5m5J1/tw53BbXiLDlsDTWw4=
 github.com/terraform-providers/terraform-provider-packet v1.7.2/go.mod h1:/k5o0Y30me0844mFLk5hM0TnP7OM3v1FC1hu7ZTTrNM=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e h1:T5PdfK/M1xyrHwynxMIVMWLS7f/qHwfslZphxtGnw7s=

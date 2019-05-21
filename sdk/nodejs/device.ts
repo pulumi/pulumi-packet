@@ -177,6 +177,10 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly hostname: pulumi.Output<string>;
     /**
+     * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+     */
+    public readonly ipAddressTypes: pulumi.Output<string[] | undefined>;
+    /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
      * [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
@@ -275,6 +279,7 @@ export class Device extends pulumi.CustomResource {
             inputs["facilities"] = state ? state.facilities : undefined;
             inputs["hardwareReservationId"] = state ? state.hardwareReservationId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
+            inputs["ipAddressTypes"] = state ? state.ipAddressTypes : undefined;
             inputs["ipxeScriptUrl"] = state ? state.ipxeScriptUrl : undefined;
             inputs["locked"] = state ? state.locked : undefined;
             inputs["networks"] = state ? state.networks : undefined;
@@ -318,6 +323,7 @@ export class Device extends pulumi.CustomResource {
             inputs["facilities"] = args ? args.facilities : undefined;
             inputs["hardwareReservationId"] = args ? args.hardwareReservationId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
+            inputs["ipAddressTypes"] = args ? args.ipAddressTypes : undefined;
             inputs["ipxeScriptUrl"] = args ? args.ipxeScriptUrl : undefined;
             inputs["networkType"] = args ? args.networkType : undefined;
             inputs["operatingSystem"] = args ? args.operatingSystem : undefined;
@@ -394,6 +400,10 @@ export interface DeviceState {
      * The device name
      */
     readonly hostname?: pulumi.Input<string>;
+    /**
+     * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+     */
+    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
@@ -500,6 +510,10 @@ export interface DeviceArgs {
      * The device name
      */
     readonly hostname: pulumi.Input<string>;
+    /**
+     * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+     */
+    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * URL pointing to a hosted iPXE script. More
      * information is in the

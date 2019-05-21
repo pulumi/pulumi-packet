@@ -47,6 +47,7 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["facilities"] = nil
 		inputs["hardwareReservationId"] = nil
 		inputs["hostname"] = nil
+		inputs["ipAddressTypes"] = nil
 		inputs["ipxeScriptUrl"] = nil
 		inputs["networkType"] = nil
 		inputs["operatingSystem"] = nil
@@ -64,6 +65,7 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["facilities"] = args.Facilities
 		inputs["hardwareReservationId"] = args.HardwareReservationId
 		inputs["hostname"] = args.Hostname
+		inputs["ipAddressTypes"] = args.IpAddressTypes
 		inputs["ipxeScriptUrl"] = args.IpxeScriptUrl
 		inputs["networkType"] = args.NetworkType
 		inputs["operatingSystem"] = args.OperatingSystem
@@ -111,6 +113,7 @@ func GetDevice(ctx *pulumi.Context,
 		inputs["facilities"] = state.Facilities
 		inputs["hardwareReservationId"] = state.HardwareReservationId
 		inputs["hostname"] = state.Hostname
+		inputs["ipAddressTypes"] = state.IpAddressTypes
 		inputs["ipxeScriptUrl"] = state.IpxeScriptUrl
 		inputs["locked"] = state.Locked
 		inputs["networks"] = state.Networks
@@ -200,6 +203,11 @@ func (r *Device) HardwareReservationId() *pulumi.StringOutput {
 // The device name
 func (r *Device) Hostname() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["hostname"])
+}
+
+// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+func (r *Device) IpAddressTypes() *pulumi.ArrayOutput {
+	return (*pulumi.ArrayOutput)(r.s.State["ipAddressTypes"])
 }
 
 // URL pointing to a hosted iPXE script. More
@@ -321,6 +329,8 @@ type DeviceState struct {
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
+	// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+	IpAddressTypes interface{}
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
@@ -381,6 +391,8 @@ type DeviceArgs struct {
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
+	// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+	IpAddressTypes interface{}
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)

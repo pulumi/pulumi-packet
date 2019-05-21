@@ -8,7 +8,7 @@ require (
 	github.com/pulumi/pulumi v0.17.6-0.20190410045519-ef5e148a73c0
 	github.com/pulumi/pulumi-terraform v0.14.1-dev.0.20190415172837-c7a149bb88e1
 	github.com/stretchr/testify v1.3.0
-	github.com/terraform-providers/terraform-provider-packet v0.0.0-20190430112545-62f5732ddfb4
+	github.com/terraform-providers/terraform-provider-packet v0.0.0-20190513155019-9b88fe71092e
 )
 
 replace (
