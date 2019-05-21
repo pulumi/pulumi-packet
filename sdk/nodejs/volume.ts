@@ -54,55 +54,55 @@ export class Volume extends pulumi.CustomResource {
     /**
      * A list of attachments, each with it's own `href` attribute
      */
-    public /*out*/ readonly attachments: pulumi.Output<{ href: string }[]>;
+    public /*out*/ readonly attachments!: pulumi.Output<{ href: string }[]>;
     /**
      * The billing cycle, defaults to "hourly"
      */
-    public readonly billingCycle: pulumi.Output<string>;
+    public readonly billingCycle!: pulumi.Output<string>;
     /**
      * The timestamp for when the volume was created
      */
-    public /*out*/ readonly created: pulumi.Output<string>;
+    public /*out*/ readonly created!: pulumi.Output<string>;
     /**
      * Optional description for the volume
      */
-    public readonly description: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * The facility to create the volume in
      */
-    public readonly facility: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<string>;
     /**
      * Lock or unlock the volume
      */
-    public readonly locked: pulumi.Output<boolean | undefined>;
+    public readonly locked!: pulumi.Output<boolean | undefined>;
     /**
      * The name of the volume
      */
-    public /*out*/ readonly name: pulumi.Output<string>;
+    public /*out*/ readonly name!: pulumi.Output<string>;
     /**
      * The service plan slug of the volume
      */
-    public readonly plan: pulumi.Output<string>;
+    public readonly plan!: pulumi.Output<string>;
     /**
      * The packet project ID to deploy the volume in
      */
-    public readonly projectId: pulumi.Output<string>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The size in GB to make the volume
      */
-    public readonly size: pulumi.Output<number>;
+    public readonly size!: pulumi.Output<number>;
     /**
      * Optional list of snapshot policies
      */
-    public readonly snapshotPolicies: pulumi.Output<{ snapshotCount: number, snapshotFrequency: string }[] | undefined>;
+    public readonly snapshotPolicies!: pulumi.Output<{ snapshotCount: number, snapshotFrequency: string }[] | undefined>;
     /**
      * The state of the volume
      */
-    public /*out*/ readonly state: pulumi.Output<string>;
+    public /*out*/ readonly state!: pulumi.Output<string>;
     /**
      * The timestamp for the last time the volume was updated
      */
-    public /*out*/ readonly updated: pulumi.Output<string>;
+    public /*out*/ readonly updated!: pulumi.Output<string>;
 
     /**
      * Create a Volume resource with the given unique name, arguments, and options.
@@ -115,7 +115,7 @@ export class Volume extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: VolumeArgs | VolumeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: VolumeState = argsOrState as VolumeState | undefined;
+            const state = argsOrState as VolumeState | undefined;
             inputs["attachments"] = state ? state.attachments : undefined;
             inputs["billingCycle"] = state ? state.billingCycle : undefined;
             inputs["created"] = state ? state.created : undefined;
@@ -156,6 +156,13 @@ export class Volume extends pulumi.CustomResource {
             inputs["name"] = undefined /*out*/;
             inputs["state"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/volume:Volume", name, inputs, opts);
     }

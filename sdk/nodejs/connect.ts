@@ -48,36 +48,36 @@ export class Connect extends pulumi.CustomResource {
     /**
      * Facility where to create the VLAN
      */
-    public readonly facility: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<string>;
     /**
      * Name for the Connect resource
      */
-    public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * Port speed in Mbps
      */
-    public readonly portSpeed: pulumi.Output<number>;
+    public readonly portSpeed!: pulumi.Output<number>;
     /**
      * ID of parent project
      */
-    public readonly projectId: pulumi.Output<string>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * ID of Connect Provider. Provider IDs are
      * * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
      */
-    public readonly providerId: pulumi.Output<string>;
+    public readonly providerId!: pulumi.Output<string>;
     /**
      * Authorization key for the Connect provider
      */
-    public readonly providerPayload: pulumi.Output<string>;
+    public readonly providerPayload!: pulumi.Output<string>;
     /**
      * Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
      */
-    public /*out*/ readonly status: pulumi.Output<string>;
+    public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * VXLAN Network identifier of the linked Packet VLAN
      */
-    public readonly vxlan: pulumi.Output<number>;
+    public readonly vxlan!: pulumi.Output<number>;
 
     /**
      * Create a Connect resource with the given unique name, arguments, and options.
@@ -90,7 +90,7 @@ export class Connect extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: ConnectArgs | ConnectState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: ConnectState = argsOrState as ConnectState | undefined;
+            const state = argsOrState as ConnectState | undefined;
             inputs["facility"] = state ? state.facility : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["portSpeed"] = state ? state.portSpeed : undefined;
@@ -130,6 +130,13 @@ export class Connect extends pulumi.CustomResource {
             inputs["providerPayload"] = args ? args.providerPayload : undefined;
             inputs["vxlan"] = args ? args.vxlan : undefined;
             inputs["status"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/connect:Connect", name, inputs, opts);
     }

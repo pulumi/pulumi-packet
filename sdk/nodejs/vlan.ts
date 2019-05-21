@@ -40,19 +40,19 @@ export class Vlan extends pulumi.CustomResource {
     /**
      * Description string
      */
-    public readonly description: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Facility where to create the VLAN
      */
-    public readonly facility: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<string>;
     /**
      * ID of parent project
      */
-    public readonly projectId: pulumi.Output<string>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * VXLAN segment ID
      */
-    public /*out*/ readonly vxlan: pulumi.Output<number>;
+    public /*out*/ readonly vxlan!: pulumi.Output<number>;
 
     /**
      * Create a Vlan resource with the given unique name, arguments, and options.
@@ -65,7 +65,7 @@ export class Vlan extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: VlanArgs | VlanState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: VlanState = argsOrState as VlanState | undefined;
+            const state = argsOrState as VlanState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["facility"] = state ? state.facility : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
@@ -82,6 +82,13 @@ export class Vlan extends pulumi.CustomResource {
             inputs["facility"] = args ? args.facility : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["vxlan"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/vlan:Vlan", name, inputs, opts);
     }

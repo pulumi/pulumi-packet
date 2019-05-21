@@ -99,6 +99,10 @@ class IpAttachment(pulumi.CustomResource):
         __props__['network'] = None
         __props__['public'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(IpAttachment, __self__).__init__(
             'packet:index/ipAttachment:IpAttachment',
             resource_name,

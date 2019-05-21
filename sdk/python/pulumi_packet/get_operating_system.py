@@ -48,6 +48,10 @@ async def get_operating_system(distro=None,name=None,provisionable_on=None,versi
     __args__['name'] = name
     __args__['provisionableOn'] = provisionable_on
     __args__['version'] = version
+    if opts is None:
+        opts = pulumi.ResourceOptions()
+    if opts.version is None:
+        opts.version = utilities.get_version()
     __ret__ = await pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts)
 
     return GetOperatingSystemResult(

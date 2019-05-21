@@ -27,16 +27,16 @@ export class BgpSession extends pulumi.CustomResource {
     /**
      * `ipv4` or `ipv6`
      */
-    public readonly addressFamily: pulumi.Output<string>;
+    public readonly addressFamily!: pulumi.Output<string>;
     /**
      * Boolean flag to set the default route policy. False by default.
      */
-    public readonly defaultRoute: pulumi.Output<boolean | undefined>;
+    public readonly defaultRoute!: pulumi.Output<boolean | undefined>;
     /**
      * ID of device 
      */
-    public readonly deviceId: pulumi.Output<string>;
-    public /*out*/ readonly status: pulumi.Output<string>;
+    public readonly deviceId!: pulumi.Output<string>;
+    public /*out*/ readonly status!: pulumi.Output<string>;
 
     /**
      * Create a BgpSession resource with the given unique name, arguments, and options.
@@ -49,7 +49,7 @@ export class BgpSession extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: BgpSessionArgs | BgpSessionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: BgpSessionState = argsOrState as BgpSessionState | undefined;
+            const state = argsOrState as BgpSessionState | undefined;
             inputs["addressFamily"] = state ? state.addressFamily : undefined;
             inputs["defaultRoute"] = state ? state.defaultRoute : undefined;
             inputs["deviceId"] = state ? state.deviceId : undefined;
@@ -66,6 +66,13 @@ export class BgpSession extends pulumi.CustomResource {
             inputs["defaultRoute"] = args ? args.defaultRoute : undefined;
             inputs["deviceId"] = args ? args.deviceId : undefined;
             inputs["status"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/bgpSession:BgpSession", name, inputs, opts);
     }

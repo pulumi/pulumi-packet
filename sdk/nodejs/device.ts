@@ -134,63 +134,63 @@ export class Device extends pulumi.CustomResource {
     /**
      * The ipv4 private IP assigned to the device
      */
-    public /*out*/ readonly accessPrivateIpv4: pulumi.Output<string>;
+    public /*out*/ readonly accessPrivateIpv4!: pulumi.Output<string>;
     /**
      * The ipv4 maintenance IP assigned to the device
      */
-    public /*out*/ readonly accessPublicIpv4: pulumi.Output<string>;
+    public /*out*/ readonly accessPublicIpv4!: pulumi.Output<string>;
     /**
      * The ipv6 maintenance IP assigned to the device
      */
-    public /*out*/ readonly accessPublicIpv6: pulumi.Output<string>;
+    public /*out*/ readonly accessPublicIpv6!: pulumi.Output<string>;
     /**
      * If true, a device with OS `custom_ipxe` will
      * continue to boot via iPXE on reboots.
      */
-    public readonly alwaysPxe: pulumi.Output<boolean | undefined>;
+    public readonly alwaysPxe!: pulumi.Output<boolean | undefined>;
     /**
      * monthly or hourly
      */
-    public readonly billingCycle: pulumi.Output<string>;
+    public readonly billingCycle!: pulumi.Output<string>;
     /**
      * The timestamp for when the device was created
      */
-    public /*out*/ readonly created: pulumi.Output<string>;
+    public /*out*/ readonly created!: pulumi.Output<string>;
     /**
      * The facility where the device is deployed.
      */
-    public /*out*/ readonly deployedFacility: pulumi.Output<string>;
+    public /*out*/ readonly deployedFacility!: pulumi.Output<string>;
     /**
      * Description string for the device
      */
-    public readonly description: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
      */
-    public readonly facilities: pulumi.Output<string[]>;
+    public readonly facilities!: pulumi.Output<string[]>;
     /**
      * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
-    public readonly hardwareReservationId: pulumi.Output<string>;
+    public readonly hardwareReservationId!: pulumi.Output<string>;
     /**
      * The device name
      */
-    public readonly hostname: pulumi.Output<string>;
+    public readonly hostname!: pulumi.Output<string>;
     /**
      * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
      */
-    public readonly ipAddressTypes: pulumi.Output<string[] | undefined>;
+    public readonly ipAddressTypes!: pulumi.Output<string[] | undefined>;
     /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
      * [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
      * doc.
      */
-    public readonly ipxeScriptUrl: pulumi.Output<string | undefined>;
+    public readonly ipxeScriptUrl!: pulumi.Output<string | undefined>;
     /**
      * Whether the device is locked
      */
-    public /*out*/ readonly locked: pulumi.Output<boolean>;
+    public /*out*/ readonly locked!: pulumi.Output<boolean>;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
      * * Public IPv4 at `packet_device.name.network.0`
@@ -199,62 +199,62 @@ export class Device extends pulumi.CustomResource {
      * Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
      * The fields of the network attributes are:
      */
-    public /*out*/ readonly networks: pulumi.Output<{ address: string, cidr: number, family: number, gateway: string, public: boolean }[]>;
+    public /*out*/ readonly networks!: pulumi.Output<{ address: string, cidr: number, family: number, gateway: string, public: boolean }[]>;
     /**
      * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
-    public readonly networkType: pulumi.Output<string | undefined>;
+    public readonly networkType!: pulumi.Output<string | undefined>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
-    public readonly operatingSystem: pulumi.Output<string>;
+    public readonly operatingSystem!: pulumi.Output<string>;
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
-    public readonly plan: pulumi.Output<string>;
-    public /*out*/ readonly ports: pulumi.Output<{ bonded: boolean, id: string, mac: string, name: string, type: string }[]>;
+    public readonly plan!: pulumi.Output<string>;
+    public /*out*/ readonly ports!: pulumi.Output<{ bonded: boolean, id: string, mac: string, name: string, type: string }[]>;
     /**
      * The id of the project in which to create the device
      */
-    public readonly projectId: pulumi.Output<string>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
      */
-    public readonly projectSshKeyIds: pulumi.Output<string[] | undefined>;
+    public readonly projectSshKeyIds!: pulumi.Output<string[] | undefined>;
     /**
      * Size of allocated subnet, more
      * information is in the
      * [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
      */
-    public readonly publicIpv4SubnetSize: pulumi.Output<number>;
+    public readonly publicIpv4SubnetSize!: pulumi.Output<number>;
     /**
      * Root password to the server (disabled after 24 hours)
      */
-    public /*out*/ readonly rootPassword: pulumi.Output<string>;
+    public /*out*/ readonly rootPassword!: pulumi.Output<string>;
     /**
      * List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
      */
-    public /*out*/ readonly sshKeyIds: pulumi.Output<string[]>;
+    public /*out*/ readonly sshKeyIds!: pulumi.Output<string[]>;
     /**
      * The status of the device
      */
-    public /*out*/ readonly state: pulumi.Output<string>;
+    public /*out*/ readonly state!: pulumi.Output<string>;
     /**
      * JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
      */
-    public readonly storage: pulumi.Output<string | undefined>;
+    public readonly storage!: pulumi.Output<string | undefined>;
     /**
      * Tags attached to the device
      */
-    public readonly tags: pulumi.Output<string[] | undefined>;
+    public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
      * The timestamp for the last time the device was updated
      */
-    public /*out*/ readonly updated: pulumi.Output<string>;
+    public /*out*/ readonly updated!: pulumi.Output<string>;
     /**
      * A string of the desired User Data for the device.
      */
-    public readonly userData: pulumi.Output<string | undefined>;
+    public readonly userData!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Device resource with the given unique name, arguments, and options.
@@ -267,7 +267,7 @@ export class Device extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: DeviceArgs | DeviceState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: DeviceState = argsOrState as DeviceState | undefined;
+            const state = argsOrState as DeviceState | undefined;
             inputs["accessPrivateIpv4"] = state ? state.accessPrivateIpv4 : undefined;
             inputs["accessPublicIpv4"] = state ? state.accessPublicIpv4 : undefined;
             inputs["accessPublicIpv6"] = state ? state.accessPublicIpv6 : undefined;
@@ -346,6 +346,13 @@ export class Device extends pulumi.CustomResource {
             inputs["sshKeyIds"] = undefined /*out*/;
             inputs["state"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/device:Device", name, inputs, opts);
     }

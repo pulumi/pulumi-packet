@@ -102,6 +102,10 @@ class Connect(pulumi.CustomResource):
 
         __props__['status'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(Connect, __self__).__init__(
             'packet:index/connect:Connect',
             resource_name,

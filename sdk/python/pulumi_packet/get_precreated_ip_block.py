@@ -77,6 +77,10 @@ async def get_precreated_ip_block(address_family=None,facility=None,global_=None
     __args__['global'] = global_
     __args__['projectId'] = project_id
     __args__['public'] = public
+    if opts is None:
+        opts = pulumi.ResourceOptions()
+    if opts.version is None:
+        opts.version = utilities.get_version()
     __ret__ = await pulumi.runtime.invoke('packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock', __args__, opts=opts)
 
     return GetPrecreatedIpBlockResult(

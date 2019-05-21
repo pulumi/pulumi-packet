@@ -39,6 +39,13 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulumi.InvokeOptions): Promise<GetPrecreatedIpBlockResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", {
         "addressFamily": args.addressFamily,
         "facility": args.facility,

@@ -38,6 +38,10 @@ class Provider(pulumi.ProviderResource):
             auth_token = utilities.get_env('PACKET_AUTH_TOKEN')
         __props__['auth_token'] = auth_token
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(Provider, __self__).__init__(
             'packet',
             resource_name,

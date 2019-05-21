@@ -53,31 +53,31 @@ export class Project extends pulumi.CustomResource {
     /**
      * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
      */
-    public readonly backendTransfer: pulumi.Output<boolean | undefined>;
+    public readonly backendTransfer!: pulumi.Output<boolean | undefined>;
     /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
-    public readonly bgpConfig: pulumi.Output<{ asn: number, deploymentType: string, maxPrefix: number, md5?: string, status: string } | undefined>;
+    public readonly bgpConfig!: pulumi.Output<{ asn: number, deploymentType: string, maxPrefix: number, md5?: string, status: string } | undefined>;
     /**
      * The timestamp for when the project was created
      */
-    public /*out*/ readonly created: pulumi.Output<string>;
+    public /*out*/ readonly created!: pulumi.Output<string>;
     /**
      * The name of the project
      */
-    public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
      */
-    public readonly organizationId: pulumi.Output<string>;
+    public readonly organizationId!: pulumi.Output<string>;
     /**
      * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
      */
-    public readonly paymentMethodId: pulumi.Output<string>;
+    public readonly paymentMethodId!: pulumi.Output<string>;
     /**
      * The timestamp for the last time the project was updated
      */
-    public /*out*/ readonly updated: pulumi.Output<string>;
+    public /*out*/ readonly updated!: pulumi.Output<string>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -90,7 +90,7 @@ export class Project extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: ProjectArgs | ProjectState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: ProjectState = argsOrState as ProjectState | undefined;
+            const state = argsOrState as ProjectState | undefined;
             inputs["backendTransfer"] = state ? state.backendTransfer : undefined;
             inputs["bgpConfig"] = state ? state.bgpConfig : undefined;
             inputs["created"] = state ? state.created : undefined;
@@ -110,6 +110,13 @@ export class Project extends pulumi.CustomResource {
             inputs["paymentMethodId"] = args ? args.paymentMethodId : undefined;
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/project:Project", name, inputs, opts);
     }

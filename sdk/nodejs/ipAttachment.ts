@@ -48,43 +48,43 @@ export class IpAttachment extends pulumi.CustomResource {
         return new IpAttachment(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly address: pulumi.Output<string>;
+    public /*out*/ readonly address!: pulumi.Output<string>;
     /**
      * Address family as integer (4 or 6)
      */
-    public /*out*/ readonly addressFamily: pulumi.Output<number>;
+    public /*out*/ readonly addressFamily!: pulumi.Output<number>;
     /**
      * length of CIDR prefix of the subnet as integer
      */
-    public /*out*/ readonly cidr: pulumi.Output<number>;
+    public /*out*/ readonly cidr!: pulumi.Output<number>;
     /**
      * CIDR notation of subnet from block reserved in the same
      * project and facility as the device
      */
-    public readonly cidrNotation: pulumi.Output<string>;
+    public readonly cidrNotation!: pulumi.Output<string>;
     /**
      * ID of device to which to assign the subnet
      */
-    public readonly deviceId: pulumi.Output<string>;
+    public readonly deviceId!: pulumi.Output<string>;
     /**
      * IP address of gateway for the subnet
      */
-    public /*out*/ readonly gateway: pulumi.Output<string>;
-    public /*out*/ readonly global: pulumi.Output<boolean>;
-    public /*out*/ readonly manageable: pulumi.Output<boolean>;
-    public /*out*/ readonly management: pulumi.Output<boolean>;
+    public /*out*/ readonly gateway!: pulumi.Output<string>;
+    public /*out*/ readonly global!: pulumi.Output<boolean>;
+    public /*out*/ readonly manageable!: pulumi.Output<boolean>;
+    public /*out*/ readonly management!: pulumi.Output<boolean>;
     /**
      * Subnet mask in decimal notation, e.g. "255.255.255.0"
      */
-    public /*out*/ readonly netmask: pulumi.Output<string>;
+    public /*out*/ readonly netmask!: pulumi.Output<string>;
     /**
      * Subnet network address
      */
-    public /*out*/ readonly network: pulumi.Output<string>;
+    public /*out*/ readonly network!: pulumi.Output<string>;
     /**
      * boolean flag whether subnet is reachable from the Internet
      */
-    public /*out*/ readonly public: pulumi.Output<boolean>;
+    public /*out*/ readonly public!: pulumi.Output<boolean>;
 
     /**
      * Create a IpAttachment resource with the given unique name, arguments, and options.
@@ -97,7 +97,7 @@ export class IpAttachment extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: IpAttachmentArgs | IpAttachmentState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: IpAttachmentState = argsOrState as IpAttachmentState | undefined;
+            const state = argsOrState as IpAttachmentState | undefined;
             inputs["address"] = state ? state.address : undefined;
             inputs["addressFamily"] = state ? state.addressFamily : undefined;
             inputs["cidr"] = state ? state.cidr : undefined;
@@ -130,6 +130,13 @@ export class IpAttachment extends pulumi.CustomResource {
             inputs["netmask"] = undefined /*out*/;
             inputs["network"] = undefined /*out*/;
             inputs["public"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/ipAttachment:IpAttachment", name, inputs, opts);
     }

@@ -49,24 +49,24 @@ export class SshKey extends pulumi.CustomResource {
     /**
      * The timestamp for when the SSH key was created
      */
-    public /*out*/ readonly created: pulumi.Output<string>;
+    public /*out*/ readonly created!: pulumi.Output<string>;
     /**
      * The fingerprint of the SSH key
      */
-    public /*out*/ readonly fingerprint: pulumi.Output<string>;
+    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
      * The name of the SSH key for identification
      */
-    public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * The public key. If this is a file, it
      * can be read using the file interpolation function
      */
-    public readonly publicKey: pulumi.Output<string>;
+    public readonly publicKey!: pulumi.Output<string>;
     /**
      * The timestamp for the last time the SSH key was updated
      */
-    public /*out*/ readonly updated: pulumi.Output<string>;
+    public /*out*/ readonly updated!: pulumi.Output<string>;
 
     /**
      * Create a SshKey resource with the given unique name, arguments, and options.
@@ -79,7 +79,7 @@ export class SshKey extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: SshKeyArgs | SshKeyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: SshKeyState = argsOrState as SshKeyState | undefined;
+            const state = argsOrState as SshKeyState | undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["fingerprint"] = state ? state.fingerprint : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -98,6 +98,13 @@ export class SshKey extends pulumi.CustomResource {
             inputs["created"] = undefined /*out*/;
             inputs["fingerprint"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/sshKey:SshKey", name, inputs, opts);
     }

@@ -31,6 +31,13 @@ import * as utilities from "./utilities";
  */
 export function getOperatingSystem(args?: GetOperatingSystemArgs, opts?: pulumi.InvokeOptions): Promise<GetOperatingSystemResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("packet:index/getOperatingSystem:getOperatingSystem", {
         "distro": args.distro,
         "name": args.name,

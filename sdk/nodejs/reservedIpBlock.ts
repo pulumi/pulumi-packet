@@ -31,54 +31,54 @@ export class ReservedIpBlock extends pulumi.CustomResource {
         return new ReservedIpBlock(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly address: pulumi.Output<string>;
+    public /*out*/ readonly address!: pulumi.Output<string>;
     /**
      * Address family as integer (4 or 6)
      */
-    public /*out*/ readonly addressFamily: pulumi.Output<number>;
+    public /*out*/ readonly addressFamily!: pulumi.Output<number>;
     /**
      * length of CIDR prefix of the block as integer
      */
-    public /*out*/ readonly cidr: pulumi.Output<number>;
+    public /*out*/ readonly cidr!: pulumi.Output<number>;
     /**
      * Address and mask in CIDR notation, e.g. "147.229.15.30/31"
      */
-    public /*out*/ readonly cidrNotation: pulumi.Output<string>;
+    public /*out*/ readonly cidrNotation!: pulumi.Output<string>;
     /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
-    public readonly facility: pulumi.Output<string | undefined>;
-    public /*out*/ readonly gateway: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly gateway!: pulumi.Output<string>;
     /**
      * boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
      */
-    public /*out*/ readonly global: pulumi.Output<boolean>;
-    public /*out*/ readonly manageable: pulumi.Output<boolean>;
-    public /*out*/ readonly management: pulumi.Output<boolean>;
+    public /*out*/ readonly global!: pulumi.Output<boolean>;
+    public /*out*/ readonly manageable!: pulumi.Output<boolean>;
+    public /*out*/ readonly management!: pulumi.Output<boolean>;
     /**
      * Mask in decimal notation, e.g. "255.255.255.0"
      */
-    public /*out*/ readonly netmask: pulumi.Output<string>;
+    public /*out*/ readonly netmask!: pulumi.Output<string>;
     /**
      * Network IP address portion of the block specification
      */
-    public /*out*/ readonly network: pulumi.Output<string>;
+    public /*out*/ readonly network!: pulumi.Output<string>;
     /**
      * The packet project ID where to allocate the address block
      */
-    public readonly projectId: pulumi.Output<string>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * boolean flag whether addresses from a block are public
      */
-    public /*out*/ readonly public: pulumi.Output<boolean>;
+    public /*out*/ readonly public!: pulumi.Output<boolean>;
     /**
      * The number of allocated /32 addresses, a power of 2
      */
-    public readonly quantity: pulumi.Output<number>;
+    public readonly quantity!: pulumi.Output<number>;
     /**
      * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
      */
-    public readonly type: pulumi.Output<string | undefined>;
+    public readonly type!: pulumi.Output<string | undefined>;
 
     /**
      * Create a ReservedIpBlock resource with the given unique name, arguments, and options.
@@ -91,7 +91,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: ReservedIpBlockArgs | ReservedIpBlockState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: ReservedIpBlockState = argsOrState as ReservedIpBlockState | undefined;
+            const state = argsOrState as ReservedIpBlockState | undefined;
             inputs["address"] = state ? state.address : undefined;
             inputs["addressFamily"] = state ? state.addressFamily : undefined;
             inputs["cidr"] = state ? state.cidr : undefined;
@@ -130,6 +130,13 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             inputs["netmask"] = undefined /*out*/;
             inputs["network"] = undefined /*out*/;
             inputs["public"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("packet:index/reservedIpBlock:ReservedIpBlock", name, inputs, opts);
     }

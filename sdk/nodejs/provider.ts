@@ -24,6 +24,13 @@ export class Provider extends pulumi.ProviderResource {
         {
             inputs["authToken"] = (args ? args.authToken : undefined) || utilities.getEnv("PACKET_AUTH_TOKEN");
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super("packet", name, inputs, opts);
     }
 }
