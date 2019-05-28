@@ -1,4 +1,6 @@
-## 0.4.2 (Unreleased)
+## 0.4.3 (Unreleased)
+
+## 0.4.2 (Released May 28th, 2019)
 
 - Update to v2.2.0 of the Packet.net Terraform provider.
 
