@@ -85,25 +85,25 @@ export class PortVlanAttachment extends pulumi.CustomResource {
     /**
      * ID of device to be assigned to the VLAN
      */
-    public readonly deviceId: pulumi.Output<string>;
+    public readonly deviceId!: pulumi.Output<string>;
     /**
      * Add port back to the bond when this resource is removed. Default is false.
      */
-    public readonly forceBond: pulumi.Output<boolean | undefined>;
+    public readonly forceBond!: pulumi.Output<boolean | undefined>;
     /**
      * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
      */
-    public readonly native: pulumi.Output<boolean | undefined>;
-    public /*out*/ readonly portId: pulumi.Output<string>;
+    public readonly native!: pulumi.Output<boolean | undefined>;
+    public /*out*/ readonly portId!: pulumi.Output<string>;
     /**
      * Name of network port to be assigned to the VLAN
      */
-    public readonly portName: pulumi.Output<string>;
-    public /*out*/ readonly vlanId: pulumi.Output<string>;
+    public readonly portName!: pulumi.Output<string>;
+    public /*out*/ readonly vlanId!: pulumi.Output<string>;
     /**
      * VXLAN Network Identifier, integer
      */
-    public readonly vlanVnid: pulumi.Output<number>;
+    public readonly vlanVnid!: pulumi.Output<number>;
 
     /**
      * Create a PortVlanAttachment resource with the given unique name, arguments, and options.
@@ -116,7 +116,7 @@ export class PortVlanAttachment extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: PortVlanAttachmentArgs | PortVlanAttachmentState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: PortVlanAttachmentState = argsOrState as PortVlanAttachmentState | undefined;
+            const state = argsOrState as PortVlanAttachmentState | undefined;
             inputs["deviceId"] = state ? state.deviceId : undefined;
             inputs["forceBond"] = state ? state.forceBond : undefined;
             inputs["native"] = state ? state.native : undefined;

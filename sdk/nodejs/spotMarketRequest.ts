@@ -46,31 +46,31 @@ export class SpotMarketRequest extends pulumi.CustomResource {
     /**
      * Maximum number devices to be created
      */
-    public readonly devicesMax: pulumi.Output<number>;
+    public readonly devicesMax!: pulumi.Output<number>;
     /**
      * Miniumum number devices to be created
      */
-    public readonly devicesMin: pulumi.Output<number>;
+    public readonly devicesMin!: pulumi.Output<number>;
     /**
      * Facility IDs where devices should be created
      */
-    public readonly facilities: pulumi.Output<string[]>;
+    public readonly facilities!: pulumi.Output<string[]>;
     /**
      * Device parameters. See device resource for details
      */
-    public readonly instanceParameters: pulumi.Output<{ alwaysPxe?: string, billingCycle: string, description?: string, features?: string[], hostname: string, locked?: string, operatingSystem: string, plan: string, projectSshKeys?: string[], termintationTime: string, userSshKeys?: string[], userdata?: string }>;
+    public readonly instanceParameters!: pulumi.Output<{ alwaysPxe?: string, billingCycle: string, description?: string, features?: string[], hostname: string, locked?: string, operatingSystem: string, plan: string, projectSshKeys?: string[], termintationTime: string, userSshKeys?: string[], userdata?: string }>;
     /**
      * Maximum price user is willing to pay per hour per device
      */
-    public readonly maxBidPrice: pulumi.Output<number>;
+    public readonly maxBidPrice!: pulumi.Output<number>;
     /**
      * Project ID
      */
-    public readonly projectId: pulumi.Output<string>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed
      */
-    public readonly waitForDevices: pulumi.Output<boolean | undefined>;
+    public readonly waitForDevices!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SpotMarketRequest resource with the given unique name, arguments, and options.
@@ -83,7 +83,7 @@ export class SpotMarketRequest extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: SpotMarketRequestArgs | SpotMarketRequestState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: SpotMarketRequestState = argsOrState as SpotMarketRequestState | undefined;
+            const state = argsOrState as SpotMarketRequestState | undefined;
             inputs["devicesMax"] = state ? state.devicesMax : undefined;
             inputs["devicesMin"] = state ? state.devicesMin : undefined;
             inputs["facilities"] = state ? state.facilities : undefined;
