@@ -33,28 +33,28 @@ export class Organization extends pulumi.CustomResource {
         return new Organization(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly created: pulumi.Output<string>;
+    public /*out*/ readonly created!: pulumi.Output<string>;
     /**
      * Description string.
      */
-    public readonly description: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Logo URL.
      */
-    public readonly logo: pulumi.Output<string | undefined>;
+    public readonly logo!: pulumi.Output<string | undefined>;
     /**
      * The name of the Organization.
      */
-    public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * Twitter handle.
      */
-    public readonly twitter: pulumi.Output<string | undefined>;
-    public /*out*/ readonly updated: pulumi.Output<string>;
+    public readonly twitter!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly updated!: pulumi.Output<string>;
     /**
      * Website link.
      */
-    public readonly website: pulumi.Output<string | undefined>;
+    public readonly website!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Organization resource with the given unique name, arguments, and options.
@@ -67,7 +67,7 @@ export class Organization extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: OrganizationArgs | OrganizationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: OrganizationState = argsOrState as OrganizationState | undefined;
+            const state = argsOrState as OrganizationState | undefined;
             inputs["created"] = state ? state.created : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["logo"] = state ? state.logo : undefined;

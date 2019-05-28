@@ -17,6 +17,5 @@ func GetAuthToken(ctx *pulumi.Context) string {
 	if dv, ok := getEnvOrDefault("", nil, "PACKET_AUTH_TOKEN").(string); ok {
 		return dv
 	}
-	panic(err.Error())
 	return v
 }

@@ -10,7 +10,7 @@ from .. import utilities, tables
 
 __config__ = pulumi.Config('packet')
 
-auth_token = utilities.require_with_default(lambda: __config__.require('authToken'), utilities.get_env('PACKET_AUTH_TOKEN'))
+auth_token = __config__.get('authToken') or utilities.get_env('PACKET_AUTH_TOKEN')
 """
 The API auth key for API operations.
 """

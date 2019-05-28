@@ -58,11 +58,11 @@ export class VolumeAttachment extends pulumi.CustomResource {
     /**
      * The ID of the device to which the volume should be attached
      */
-    public readonly deviceId: pulumi.Output<string>;
+    public readonly deviceId!: pulumi.Output<string>;
     /**
      * The ID of the volume to attach
      */
-    public readonly volumeId: pulumi.Output<string>;
+    public readonly volumeId!: pulumi.Output<string>;
 
     /**
      * Create a VolumeAttachment resource with the given unique name, arguments, and options.
@@ -75,7 +75,7 @@ export class VolumeAttachment extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: VolumeAttachmentArgs | VolumeAttachmentState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: VolumeAttachmentState = argsOrState as VolumeAttachmentState | undefined;
+            const state = argsOrState as VolumeAttachmentState | undefined;
             inputs["deviceId"] = state ? state.deviceId : undefined;
             inputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
