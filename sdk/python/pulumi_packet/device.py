@@ -91,6 +91,9 @@ class Device(pulumi.CustomResource):
     The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
     """
     ports: pulumi.Output[list]
+    """
+    Ports assigned to the device
+    """
     project_id: pulumi.Output[str]
     """
     The id of the project in which to create the device
@@ -138,7 +141,7 @@ class Device(pulumi.CustomResource):
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
         
-        > **Note:** All arguments including the root_password and user_data will be stored in
+        > **Note:** All arguments including the `root_password` and `user_data` will be stored in
          the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
         
