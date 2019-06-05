@@ -45,6 +45,20 @@ export class Connect extends pulumi.CustomResource {
         return new Connect(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/connect:Connect';
+
+    /**
+     * Returns true if the given object is an instance of Connect.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is Connect {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === Connect.__pulumiType;
+    }
+
     /**
      * Facility where to create the VLAN
      */
@@ -131,7 +145,7 @@ export class Connect extends pulumi.CustomResource {
             inputs["vxlan"] = args ? args.vxlan : undefined;
             inputs["status"] = undefined /*out*/;
         }
-        super("packet:index/connect:Connect", name, inputs, opts);
+        super(Connect.__pulumiType, name, inputs, opts);
     }
 }
 

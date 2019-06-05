@@ -33,6 +33,20 @@ export class Organization extends pulumi.CustomResource {
         return new Organization(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/organization:Organization';
+
+    /**
+     * Returns true if the given object is an instance of Organization.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is Organization {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === Organization.__pulumiType;
+    }
+
     public /*out*/ readonly created!: pulumi.Output<string>;
     /**
      * Description string.
@@ -88,7 +102,7 @@ export class Organization extends pulumi.CustomResource {
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        super("packet:index/organization:Organization", name, inputs, opts);
+        super(Organization.__pulumiType, name, inputs, opts);
     }
 }
 

@@ -46,6 +46,20 @@ export class SshKey extends pulumi.CustomResource {
         return new SshKey(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/sshKey:SshKey';
+
+    /**
+     * Returns true if the given object is an instance of SshKey.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is SshKey {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === SshKey.__pulumiType;
+    }
+
     /**
      * The timestamp for when the SSH key was created
      */
@@ -99,7 +113,7 @@ export class SshKey extends pulumi.CustomResource {
             inputs["fingerprint"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        super("packet:index/sshKey:SshKey", name, inputs, opts);
+        super(SshKey.__pulumiType, name, inputs, opts);
     }
 }
 

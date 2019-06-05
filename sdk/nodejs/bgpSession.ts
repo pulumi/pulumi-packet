@@ -24,6 +24,20 @@ export class BgpSession extends pulumi.CustomResource {
         return new BgpSession(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/bgpSession:BgpSession';
+
+    /**
+     * Returns true if the given object is an instance of BgpSession.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is BgpSession {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === BgpSession.__pulumiType;
+    }
+
     /**
      * `ipv4` or `ipv6`
      */
@@ -67,7 +81,7 @@ export class BgpSession extends pulumi.CustomResource {
             inputs["deviceId"] = args ? args.deviceId : undefined;
             inputs["status"] = undefined /*out*/;
         }
-        super("packet:index/bgpSession:BgpSession", name, inputs, opts);
+        super(BgpSession.__pulumiType, name, inputs, opts);
     }
 }
 
