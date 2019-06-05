@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Provides a Packet device resource. This can be used to create,
  * modify, and delete devices.
  * 
- * > **Note:** All arguments including the root_password and user_data will be stored in
+ * > **Note:** All arguments including the `root_password` and `user_data` will be stored in
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
@@ -114,7 +114,7 @@ import * as utilities from "./utilities";
  *     }
  *   ]
  * }
- *   `,
+ * `,
  * });
  * ```
  */
@@ -212,6 +212,9 @@ export class Device extends pulumi.CustomResource {
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
     public readonly plan!: pulumi.Output<string>;
+    /**
+     * Ports assigned to the device
+     */
     public /*out*/ readonly ports!: pulumi.Output<{ bonded: boolean, id: string, mac: string, name: string, type: string }[]>;
     /**
      * The id of the project in which to create the device
@@ -436,6 +439,9 @@ export interface DeviceState {
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
     readonly plan?: pulumi.Input<string>;
+    /**
+     * Ports assigned to the device
+     */
     readonly ports?: pulumi.Input<pulumi.Input<{ bonded?: pulumi.Input<boolean>, id?: pulumi.Input<string>, mac?: pulumi.Input<string>, name?: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
     /**
      * The id of the project in which to create the device

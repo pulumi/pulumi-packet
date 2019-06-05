@@ -11,7 +11,7 @@ import (
 // Provides a Packet device resource. This can be used to create,
 // modify, and delete devices.
 // 
-// > **Note:** All arguments including the root_password and user_data will be stored in
+// > **Note:** All arguments including the `root_password` and `user_data` will be stored in
 //  the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 type Device struct {
@@ -248,6 +248,7 @@ func (r *Device) Plan() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["plan"])
 }
 
+// Ports assigned to the device
 func (r *Device) Ports() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["ports"])
 }
@@ -351,6 +352,7 @@ type DeviceState struct {
 	OperatingSystem interface{}
 	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
 	Plan interface{}
+	// Ports assigned to the device
 	Ports interface{}
 	// The id of the project in which to create the device
 	ProjectId interface{}
