@@ -82,6 +82,20 @@ export class PortVlanAttachment extends pulumi.CustomResource {
         return new PortVlanAttachment(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/portVlanAttachment:PortVlanAttachment';
+
+    /**
+     * Returns true if the given object is an instance of PortVlanAttachment.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is PortVlanAttachment {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === PortVlanAttachment.__pulumiType;
+    }
+
     /**
      * ID of device to be assigned to the VLAN
      */
@@ -143,7 +157,7 @@ export class PortVlanAttachment extends pulumi.CustomResource {
             inputs["portId"] = undefined /*out*/;
             inputs["vlanId"] = undefined /*out*/;
         }
-        super("packet:index/portVlanAttachment:PortVlanAttachment", name, inputs, opts);
+        super(PortVlanAttachment.__pulumiType, name, inputs, opts);
     }
 }
 

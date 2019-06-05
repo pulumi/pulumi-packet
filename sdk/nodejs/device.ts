@@ -131,6 +131,20 @@ export class Device extends pulumi.CustomResource {
         return new Device(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/device:Device';
+
+    /**
+     * Returns true if the given object is an instance of Device.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is Device {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === Device.__pulumiType;
+    }
+
     /**
      * The ipv4 private IP assigned to the device
      */
@@ -350,7 +364,7 @@ export class Device extends pulumi.CustomResource {
             inputs["state"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        super("packet:index/device:Device", name, inputs, opts);
+        super(Device.__pulumiType, name, inputs, opts);
     }
 }
 

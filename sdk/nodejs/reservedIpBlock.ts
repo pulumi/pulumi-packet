@@ -31,6 +31,20 @@ export class ReservedIpBlock extends pulumi.CustomResource {
         return new ReservedIpBlock(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/reservedIpBlock:ReservedIpBlock';
+
+    /**
+     * Returns true if the given object is an instance of ReservedIpBlock.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is ReservedIpBlock {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === ReservedIpBlock.__pulumiType;
+    }
+
     public /*out*/ readonly address!: pulumi.Output<string>;
     /**
      * Address family as integer (4 or 6)
@@ -131,7 +145,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             inputs["network"] = undefined /*out*/;
             inputs["public"] = undefined /*out*/;
         }
-        super("packet:index/reservedIpBlock:ReservedIpBlock", name, inputs, opts);
+        super(ReservedIpBlock.__pulumiType, name, inputs, opts);
     }
 }
 

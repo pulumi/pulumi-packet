@@ -48,6 +48,20 @@ export class IpAttachment extends pulumi.CustomResource {
         return new IpAttachment(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/ipAttachment:IpAttachment';
+
+    /**
+     * Returns true if the given object is an instance of IpAttachment.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is IpAttachment {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === IpAttachment.__pulumiType;
+    }
+
     public /*out*/ readonly address!: pulumi.Output<string>;
     /**
      * Address family as integer (4 or 6)
@@ -131,7 +145,7 @@ export class IpAttachment extends pulumi.CustomResource {
             inputs["network"] = undefined /*out*/;
             inputs["public"] = undefined /*out*/;
         }
-        super("packet:index/ipAttachment:IpAttachment", name, inputs, opts);
+        super(IpAttachment.__pulumiType, name, inputs, opts);
     }
 }
 

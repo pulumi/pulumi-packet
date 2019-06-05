@@ -50,6 +50,20 @@ export class Project extends pulumi.CustomResource {
         return new Project(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/project:Project';
+
+    /**
+     * Returns true if the given object is an instance of Project.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is Project {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === Project.__pulumiType;
+    }
+
     /**
      * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
      */
@@ -111,7 +125,7 @@ export class Project extends pulumi.CustomResource {
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        super("packet:index/project:Project", name, inputs, opts);
+        super(Project.__pulumiType, name, inputs, opts);
     }
 }
 

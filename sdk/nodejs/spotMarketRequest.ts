@@ -43,6 +43,20 @@ export class SpotMarketRequest extends pulumi.CustomResource {
         return new SpotMarketRequest(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/spotMarketRequest:SpotMarketRequest';
+
+    /**
+     * Returns true if the given object is an instance of SpotMarketRequest.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is SpotMarketRequest {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === SpotMarketRequest.__pulumiType;
+    }
+
     /**
      * Maximum number devices to be created
      */
@@ -119,7 +133,7 @@ export class SpotMarketRequest extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["waitForDevices"] = args ? args.waitForDevices : undefined;
         }
-        super("packet:index/spotMarketRequest:SpotMarketRequest", name, inputs, opts);
+        super(SpotMarketRequest.__pulumiType, name, inputs, opts);
     }
 }
 

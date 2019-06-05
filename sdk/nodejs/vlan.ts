@@ -37,6 +37,20 @@ export class Vlan extends pulumi.CustomResource {
         return new Vlan(name, <any>state, { ...opts, id: id });
     }
 
+    /** @internal */
+    public static readonly __pulumiType = 'packet:index/vlan:Vlan';
+
+    /**
+     * Returns true if the given object is an instance of Vlan.  This is designed to work even
+     * when multiple copies of the Pulumi SDK have been loaded into the same process.
+     */
+    public static isInstance(obj: any): obj is Vlan {
+        if (obj === undefined || obj === null) {
+            return false;
+        }
+        return obj['__pulumiType'] === Vlan.__pulumiType;
+    }
+
     /**
      * Description string
      */
@@ -83,7 +97,7 @@ export class Vlan extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["vxlan"] = undefined /*out*/;
         }
-        super("packet:index/vlan:Vlan", name, inputs, opts);
+        super(Vlan.__pulumiType, name, inputs, opts);
     }
 }
 
