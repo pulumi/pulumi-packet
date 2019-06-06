@@ -4,6 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+import {Facility} from "./index";
+
 /**
  * Provides a resource to create and manage blocks of reserved IP addresses in a project.
  * 
@@ -61,7 +63,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
     /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
-    public readonly facility!: pulumi.Output<string | undefined>;
+    public readonly facility!: pulumi.Output<Facility | undefined>;
     public /*out*/ readonly gateway!: pulumi.Output<string>;
     /**
      * boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
@@ -169,7 +171,7 @@ export interface ReservedIpBlockState {
     /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
-    readonly facility?: pulumi.Input<string>;
+    readonly facility?: pulumi.Input<Facility>;
     readonly gateway?: pulumi.Input<string>;
     /**
      * boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
@@ -210,7 +212,7 @@ export interface ReservedIpBlockArgs {
     /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
-    readonly facility?: pulumi.Input<string>;
+    readonly facility?: pulumi.Input<Facility>;
     /**
      * The packet project ID where to allocate the address block
      */

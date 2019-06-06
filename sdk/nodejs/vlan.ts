@@ -4,6 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+import {Facility} from "./index";
+
 /**
  * Provides a resource to allow users to manage Virtual Networks in their projects.
  * 
@@ -58,7 +60,7 @@ export class Vlan extends pulumi.CustomResource {
     /**
      * Facility where to create the VLAN
      */
-    public readonly facility!: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<Facility>;
     /**
      * ID of parent project
      */
@@ -112,7 +114,7 @@ export interface VlanState {
     /**
      * Facility where to create the VLAN
      */
-    readonly facility?: pulumi.Input<string>;
+    readonly facility?: pulumi.Input<Facility>;
     /**
      * ID of parent project
      */
@@ -134,7 +136,7 @@ export interface VlanArgs {
     /**
      * Facility where to create the VLAN
      */
-    readonly facility: pulumi.Input<string>;
+    readonly facility: pulumi.Input<Facility>;
     /**
      * ID of parent project
      */

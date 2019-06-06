@@ -4,6 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+import {Facility} from "./index";
+
 /**
  * Provides a Packet device resource. This can be used to create,
  * modify, and delete devices.
@@ -181,7 +183,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
      */
-    public readonly facilities!: pulumi.Output<string[]>;
+    public readonly facilities!: pulumi.Output<Facility[]>;
     /**
      * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
@@ -408,7 +410,7 @@ export interface DeviceState {
     /**
      * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
      */
-    readonly facilities?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly facilities?: pulumi.Input<pulumi.Input<Facility>[]>;
     /**
      * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
@@ -521,7 +523,7 @@ export interface DeviceArgs {
     /**
      * List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
      */
-    readonly facilities: pulumi.Input<pulumi.Input<string>[]>;
+    readonly facilities: pulumi.Input<pulumi.Input<Facility>[]>;
     /**
      * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
