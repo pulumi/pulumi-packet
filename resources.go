@@ -92,20 +92,55 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. An example
 			// is below.
-			"packet_bgp_session":          {Tok: makeResource(mainMod, "BgpSession")},
-			"packet_connect":              {Tok: makeResource(mainMod, "Connect")},
-			"packet_device":               {Tok: makeResource(mainMod, "Device")},
+			"packet_bgp_session": {Tok: makeResource(mainMod, "BgpSession")},
+			"packet_connect": {
+				Tok: makeResource(mainMod, "Connect"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"facility": {
+						Type: makeType(mainMod, "Facility"),
+					},
+				},
+			},
+			"packet_device": {
+				Tok: makeResource(mainMod, "Device"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"facilities": {
+						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
+					},
+				},
+			},
 			"packet_ip_attachment":        {Tok: makeResource(mainMod, "IpAttachment")},
 			"packet_organization":         {Tok: makeResource(mainMod, "Organization")},
 			"packet_port_vlan_attachment": {Tok: makeResource(mainMod, "PortVlanAttachment")},
 			"packet_project":              {Tok: makeResource(mainMod, "Project")},
 			"packet_project_ssh_key":      {Tok: makeResource(mainMod, "ProjectSshKey")},
-			"packet_reserved_ip_block":    {Tok: makeResource(mainMod, "ReservedIpBlock")},
-			"packet_spot_market_request":  {Tok: makeResource(mainMod, "SpotMarketRequest")},
-			"packet_ssh_key":              {Tok: makeResource(mainMod, "SshKey")},
-			"packet_vlan":                 {Tok: makeResource(mainMod, "Vlan")},
-			"packet_volume":               {Tok: makeResource(mainMod, "Volume")},
-			"packet_volume_attachment":    {Tok: makeResource(mainMod, "VolumeAttachment")},
+			"packet_reserved_ip_block": {
+				Tok: makeResource(mainMod, "ReservedIpBlock"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"facility": {
+						Type: makeType(mainMod, "Facility"),
+					},
+				},
+			},
+			"packet_spot_market_request": {Tok: makeResource(mainMod, "SpotMarketRequest")},
+			"packet_ssh_key":             {Tok: makeResource(mainMod, "SshKey")},
+			"packet_vlan": {
+				Tok: makeResource(mainMod, "Vlan"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"facility": {
+						Type: makeType(mainMod, "Facility"),
+					},
+				},
+			},
+			"packet_volume": {
+				Tok: makeResource(mainMod, "Volume"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"facility": {
+						Type: makeType(mainMod, "Facility"),
+					},
+				},
+			},
+			"packet_volume_attachment": {Tok: makeResource(mainMod, "VolumeAttachment")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
@@ -126,7 +161,11 @@ func Provider() tfbridge.ProviderInfo {
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
+			Overlay: &tfbridge.OverlayInfo{
+				DestFiles: []string{
+					"facility.ts",
+				},
+			},
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges

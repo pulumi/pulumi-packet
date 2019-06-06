@@ -4,6 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+import {Facility} from "./index";
+
 /**
  * Provides a resource for [Packet Connect](https://www.packet.com/cloud/all-features/packet-connect/), a link between Packet VLANs and VLANs in other cloud providers.
  * 
@@ -62,7 +64,7 @@ export class Connect extends pulumi.CustomResource {
     /**
      * Facility where to create the VLAN
      */
-    public readonly facility!: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<Facility>;
     /**
      * Name for the Connect resource
      */
@@ -156,7 +158,7 @@ export interface ConnectState {
     /**
      * Facility where to create the VLAN
      */
-    readonly facility?: pulumi.Input<string>;
+    readonly facility?: pulumi.Input<Facility>;
     /**
      * Name for the Connect resource
      */
@@ -195,7 +197,7 @@ export interface ConnectArgs {
     /**
      * Facility where to create the VLAN
      */
-    readonly facility: pulumi.Input<string>;
+    readonly facility: pulumi.Input<Facility>;
     /**
      * Name for the Connect resource
      */

@@ -4,6 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+import {Facility} from "./index";
+
 /**
  * Provides a Packet Block Storage Volume resource to allow you to
  * manage block volumes on your account.
@@ -84,7 +86,7 @@ export class Volume extends pulumi.CustomResource {
     /**
      * The facility to create the volume in
      */
-    public readonly facility!: pulumi.Output<string>;
+    public readonly facility!: pulumi.Output<Facility>;
     /**
      * Lock or unlock the volume
      */
@@ -198,7 +200,7 @@ export interface VolumeState {
     /**
      * The facility to create the volume in
      */
-    readonly facility?: pulumi.Input<string>;
+    readonly facility?: pulumi.Input<Facility>;
     /**
      * Lock or unlock the volume
      */
@@ -248,7 +250,7 @@ export interface VolumeArgs {
     /**
      * The facility to create the volume in
      */
-    readonly facility: pulumi.Input<string>;
+    readonly facility: pulumi.Input<Facility>;
     /**
      * Lock or unlock the volume
      */

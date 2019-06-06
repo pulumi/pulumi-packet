@@ -18,6 +18,7 @@
         "config/vars.ts",
         "connect.ts",
         "device.ts",
+        "facility.ts",
         "getOperatingSystem.ts",
         "getPrecreatedIpBlock.ts",
         "getSpotMarketPrice.ts",
