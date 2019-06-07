@@ -3,7 +3,12 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Add TypeScript type guards for each resource class
-* Add a mixin for Facility types
+* Add constants for Facility types
+* Add constants for Plan types
+* Add constants for OperatingSystem types
+* Add constants for BillingCycle types
+* Add constants for NetworkType types
+* Add constants for IpAddressType types
 
 ---
 

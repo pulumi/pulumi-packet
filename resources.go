@@ -104,8 +104,23 @@ func Provider() tfbridge.ProviderInfo {
 			"packet_device": {
 				Tok: makeResource(mainMod, "Device"),
 				Fields: map[string]*tfbridge.SchemaInfo{
+					"billing_cycle": {
+						Type: makeType(mainMod, "BillingCycle"),
+					},
 					"facilities": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
+					},
+					"ip_address_types": {
+						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "IpAddressType")},
+					},
+					"network_type": {
+						Type: makeType(mainMod, "NetworkType"),
+					},
+					"operating_system": {
+						Type: makeType(mainMod, "OperatingSystem"),
+					},
+					"plan": {
+						Type: makeType(mainMod, "Plan"),
 					},
 				},
 			},
@@ -163,7 +178,12 @@ func Provider() tfbridge.ProviderInfo {
 			// no overlay files.
 			Overlay: &tfbridge.OverlayInfo{
 				DestFiles: []string{
+					"billingCycle.ts",
 					"facility.ts",
+					"ipAddressType.ts",
+					"networkType.ts",
+					"operatingSystem.ts",
+					"plan.ts",
 				},
 			},
 		},

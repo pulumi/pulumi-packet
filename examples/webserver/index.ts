@@ -8,11 +8,12 @@ let project = new packet.Project("project", {
 
 let vm = new packet.Device("vm", {
     facilities: [packet.EWR1Facility],
-    billingCycle: "hourly",
+    billingCycle: packet.HourlyBilling,
     hostname: "lukehoban",
-    operatingSystem: "coreos_stable",
-    plan: "baremetal_0",
+    operatingSystem: packet.CoreOSStable,
+    plan: packet.T1SmallX86,
     projectId:  project.id,
+    ipAddressTypes: [packet.PublicIPv4, packet.PrivateIPv4, packet.PublicIPv6]
 });
 
 export let ip = vm.accessPublicIpv4;
