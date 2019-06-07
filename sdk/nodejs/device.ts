@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-import {BillingCycle, Facility, OperatingSystem, Plan} from "./index";
+import {BillingCycle, Facility, NetworkType, OperatingSystem, Plan} from "./index";
 
 /**
  * Provides a Packet device resource. This can be used to create,
@@ -167,7 +167,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * monthly or hourly
      */
-    public readonly billingCycle!: pulumi.Output<string>;
+    public readonly billingCycle!: pulumi.Output<BillingCycle>;
     /**
      * The timestamp for when the device was created
      */
@@ -219,7 +219,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
-    public readonly networkType!: pulumi.Output<string | undefined>;
+    public readonly networkType!: pulumi.Output<NetworkType | undefined>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
@@ -227,7 +227,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
-    public readonly plan!: pulumi.Output<string>;
+    public readonly plan!: pulumi.Output<Plan>;
     /**
      * Ports assigned to the device
      */
@@ -394,7 +394,7 @@ export interface DeviceState {
     /**
      * monthly or hourly
      */
-    readonly billingCycle?: pulumi.Input<string>;
+    readonly billingCycle?: pulumi.Input<BillingCycle>;
     /**
      * The timestamp for when the device was created
      */
@@ -446,7 +446,7 @@ export interface DeviceState {
     /**
      * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
-    readonly networkType?: pulumi.Input<string>;
+    readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
@@ -454,7 +454,7 @@ export interface DeviceState {
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
-    readonly plan?: pulumi.Input<string>;
+    readonly plan?: pulumi.Input<Plan>;
     /**
      * Ports assigned to the device
      */
@@ -515,7 +515,7 @@ export interface DeviceArgs {
     /**
      * monthly or hourly
      */
-    readonly billingCycle: pulumi.Input<string>;
+    readonly billingCycle: pulumi.Input<BillingCycle>;
     /**
      * Description string for the device
      */
@@ -546,7 +546,7 @@ export interface DeviceArgs {
     /**
      * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
      */
-    readonly networkType?: pulumi.Input<string>;
+    readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
@@ -554,7 +554,7 @@ export interface DeviceArgs {
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
-    readonly plan: pulumi.Input<string>;
+    readonly plan: pulumi.Input<Plan>;
     /**
      * The id of the project in which to create the device
      */

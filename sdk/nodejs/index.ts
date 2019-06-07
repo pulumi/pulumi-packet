@@ -11,6 +11,7 @@ export * from "./getOperatingSystem";
 export * from "./getPrecreatedIpBlock";
 export * from "./getSpotMarketPrice";
 export * from "./ipAttachment";
+export * from "./networkType";
 export * from "./operatingSystem";
 export * from "./organization";
 export * from "./plan";

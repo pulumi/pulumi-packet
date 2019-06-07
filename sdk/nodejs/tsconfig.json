@@ -25,6 +25,7 @@
         "getSpotMarketPrice.ts",
         "index.ts",
         "ipAttachment.ts",
+        "networkType.ts",
         "operatingSystem.ts",
         "organization.ts",
         "plan.ts",

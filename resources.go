@@ -105,16 +105,19 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "Device"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"billing_cycle": {
-						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "BillingCycle")},
+						Type: makeType(mainMod, "BillingCycle"),
 					},
 					"facilities": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
+					},
+					"network_type": {
+						Type: makeType(mainMod, "NetworkType"),
 					},
 					"operating_system": {
 						Type: makeType(mainMod, "OperatingSystem"),
 					},
 					"plan": {
-						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Plan")},
+						Type: makeType(mainMod, "Plan"),
 					},
 				},
 			},
@@ -174,6 +177,7 @@ func Provider() tfbridge.ProviderInfo {
 				DestFiles: []string{
 					"billingCycle.ts",
 					"facility.ts",
+					"networkType.ts",
 					"operatingSystem.ts",
 					"plan.ts",
 				},

@@ -7,6 +7,7 @@ CHANGELOG
 * Add constants for Plan types
 * Add constants for OperatingSystem types
 * Add constants for BillingCycle types
+* Add constants for NetworkType types
 
 ---
 
