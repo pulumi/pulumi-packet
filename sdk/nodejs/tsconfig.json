@@ -24,6 +24,7 @@
         "getPrecreatedIpBlock.ts",
         "getSpotMarketPrice.ts",
         "index.ts",
+        "ipAddressType.ts",
         "ipAttachment.ts",
         "networkType.ts",
         "operatingSystem.ts",

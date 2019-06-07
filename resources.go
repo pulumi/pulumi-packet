@@ -110,6 +110,9 @@ func Provider() tfbridge.ProviderInfo {
 					"facilities": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
 					},
+					"ip_address_types": {
+						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "IpAddressType")},
+					},
 					"network_type": {
 						Type: makeType(mainMod, "NetworkType"),
 					},
@@ -177,6 +180,7 @@ func Provider() tfbridge.ProviderInfo {
 				DestFiles: []string{
 					"billingCycle.ts",
 					"facility.ts",
+					"ipAddressType.ts",
 					"networkType.ts",
 					"operatingSystem.ts",
 					"plan.ts",

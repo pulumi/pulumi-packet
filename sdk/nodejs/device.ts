@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-import {BillingCycle, Facility, NetworkType, OperatingSystem, Plan} from "./index";
+import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Plan} from "./index";
 
 /**
  * Provides a Packet device resource. This can be used to create,
@@ -195,7 +195,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
      */
-    public readonly ipAddressTypes!: pulumi.Output<string[] | undefined>;
+    public readonly ipAddressTypes!: pulumi.Output<IpAddressType[] | undefined>;
     /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
@@ -422,7 +422,7 @@ export interface DeviceState {
     /**
      * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
      */
-    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
     /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
@@ -535,7 +535,7 @@ export interface DeviceArgs {
     /**
      * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
      */
-    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
     /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
