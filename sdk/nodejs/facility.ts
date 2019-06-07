@@ -27,6 +27,8 @@ export let SIN1Facility: Facility = "sin1";
 export let HKG1Facility: Facility = "hkg1";
 export let SYD1Facility: Facility = "syd1";
 export let MRS1Facility: Facility = "mrs1";
+export let YYZ1Facility: Facility = "yyz1";
+export let FRA2Facility: Facility = "fra2";
 
 /**
  * A Facility represents any valid Packet.net facility that may be targeted with deployments.
@@ -46,5 +48,7 @@ export type Facility =
     "sin1" |
     "hkg1" |
     "syd1" |
-    "mrs1" ;
+    "mrs1" |
+    "yyz1" |
+    "fra2" ;
 
