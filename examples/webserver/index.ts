@@ -11,7 +11,7 @@ let vm = new packet.Device("vm", {
     billingCycle: "hourly",
     hostname: "lukehoban",
     operatingSystem: "coreos_stable",
-    plan: "baremetal_0",
+    plan: packet.T1SmallX86,
     projectId:  project.id,
 });
 

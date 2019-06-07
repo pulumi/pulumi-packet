@@ -25,6 +25,7 @@
         "index.ts",
         "ipAttachment.ts",
         "organization.ts",
+        "plan.ts",
         "portVlanAttachment.ts",
         "project.ts",
         "projectSshKey.ts",

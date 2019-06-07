@@ -11,6 +11,7 @@ export * from "./getPrecreatedIpBlock";
 export * from "./getSpotMarketPrice";
 export * from "./ipAttachment";
 export * from "./organization";
+export * from "./plan";
 export * from "./portVlanAttachment";
 export * from "./project";
 export * from "./projectSshKey";

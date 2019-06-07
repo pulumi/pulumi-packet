@@ -107,6 +107,9 @@ func Provider() tfbridge.ProviderInfo {
 					"facilities": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
 					},
+					"plan": {
+						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Plan")},
+					},
 				},
 			},
 			"packet_ip_attachment":        {Tok: makeResource(mainMod, "IpAttachment")},
@@ -164,6 +167,7 @@ func Provider() tfbridge.ProviderInfo {
 			Overlay: &tfbridge.OverlayInfo{
 				DestFiles: []string{
 					"facility.ts",
+					"plan.ts",
 				},
 			},
 		},

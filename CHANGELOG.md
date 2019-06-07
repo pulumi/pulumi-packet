@@ -3,7 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Add TypeScript type guards for each resource class
-* Add a mixin for Facility types
+* Add constants for Facility types
+* Add constants for Plan types
 
 ---
 
