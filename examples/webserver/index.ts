@@ -10,7 +10,7 @@ let vm = new packet.Device("vm", {
     facilities: [packet.EWR1Facility],
     billingCycle: "hourly",
     hostname: "lukehoban",
-    operatingSystem: "coreos_stable",
+    operatingSystem: packet.CoreOSStable,
     plan: packet.T1SmallX86,
     projectId:  project.id,
 });

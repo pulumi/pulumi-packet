@@ -24,6 +24,7 @@
         "getSpotMarketPrice.ts",
         "index.ts",
         "ipAttachment.ts",
+        "operatingSystem.ts",
         "organization.ts",
         "plan.ts",
         "portVlanAttachment.ts",

@@ -10,6 +10,7 @@ export * from "./getOperatingSystem";
 export * from "./getPrecreatedIpBlock";
 export * from "./getSpotMarketPrice";
 export * from "./ipAttachment";
+export * from "./operatingSystem";
 export * from "./organization";
 export * from "./plan";
 export * from "./portVlanAttachment";

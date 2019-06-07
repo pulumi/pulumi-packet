@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-import {Facility, Plan} from "./index";
+import {Facility, OperatingSystem, Plan} from "./index";
 
 /**
  * Provides a Packet device resource. This can be used to create,
@@ -223,7 +223,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
-    public readonly operatingSystem!: pulumi.Output<string>;
+    public readonly operatingSystem!: pulumi.Output<OperatingSystem>;
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
@@ -450,7 +450,7 @@ export interface DeviceState {
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
-    readonly operatingSystem?: pulumi.Input<string>;
+    readonly operatingSystem?: pulumi.Input<OperatingSystem>;
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */
@@ -550,7 +550,7 @@ export interface DeviceArgs {
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
-    readonly operatingSystem: pulumi.Input<string>;
+    readonly operatingSystem: pulumi.Input<OperatingSystem>;
     /**
      * The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
      */

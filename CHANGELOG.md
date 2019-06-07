@@ -5,6 +5,7 @@ CHANGELOG
 * Add TypeScript type guards for each resource class
 * Add constants for Facility types
 * Add constants for Plan types
+* Add constants for OperatingSystem types
 
 ---
 

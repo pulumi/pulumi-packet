@@ -107,6 +107,9 @@ func Provider() tfbridge.ProviderInfo {
 					"facilities": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
 					},
+					"operating_system": {
+						Type: makeType(mainMod, "OperatingSystem"),
+					},
 					"plan": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Plan")},
 					},
@@ -167,6 +170,7 @@ func Provider() tfbridge.ProviderInfo {
 			Overlay: &tfbridge.OverlayInfo{
 				DestFiles: []string{
 					"facility.ts",
+					"operatingSystem.ts",
 					"plan.ts",
 				},
 			},
