@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-import {Facility, OperatingSystem, Plan} from "./index";
+import {BillingCycle, Facility, OperatingSystem, Plan} from "./index";
 
 /**
  * Provides a Packet device resource. This can be used to create,

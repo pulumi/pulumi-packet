@@ -14,6 +14,7 @@
     },
     "files": [
         "bgpSession.ts",
+        "billingCycle.ts",
         "config/index.ts",
         "config/vars.ts",
         "connect.ts",
