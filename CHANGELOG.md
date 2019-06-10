@@ -9,6 +9,7 @@ CHANGELOG
 * Add constants for BillingCycle types
 * Add constants for NetworkType types
 * Add constants for IpAddressType types
+* Add constants for IpBlockType types
 
 ---
 

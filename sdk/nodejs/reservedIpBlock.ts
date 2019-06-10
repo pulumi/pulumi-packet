@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-import {Facility} from "./index";
+import {Facility, IpBlockType} from "./index";
 
 /**
  * Provides a resource to create and manage blocks of reserved IP addresses in a project.
@@ -94,7 +94,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
     /**
      * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    public readonly type!: pulumi.Output<IpBlockType | undefined>;
 
     /**
      * Create a ReservedIpBlock resource with the given unique name, arguments, and options.
@@ -202,7 +202,7 @@ export interface ReservedIpBlockState {
     /**
      * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<IpBlockType>;
 }
 
 /**
@@ -224,5 +224,5 @@ export interface ReservedIpBlockArgs {
     /**
      * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<IpBlockType>;
 }
