@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export let PrivateIPv4: IpAddressType = "private_ipv4";
-export let PublicIPv4:  IpAddressType = "public_ipv4";
-export let PublicIPv6:  IpAddressType = "public_ipv6";
+export const PrivateIPv4: IpAddressType = "private_ipv4";
+export const PublicIPv4:  IpAddressType = "public_ipv4";
+export const PublicIPv6:  IpAddressType = "public_ipv6";
 
 export type IpAddressType =
     "private_ipv4" |
