@@ -153,6 +153,9 @@ func Provider() tfbridge.ProviderInfo {
 					"facility": {
 						Type: makeType(mainMod, "Facility"),
 					},
+					"billing_cycle": {
+						Type: makeType(mainMod, "BillingCycle"),
+					},
 				},
 			},
 			"packet_volume_attachment": {Tok: makeResource(mainMod, "VolumeAttachment")},

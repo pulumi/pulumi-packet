@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-import {Facility} from "./index";
+import {BillingCycle, Facility} from "./index";
 
 /**
  * Provides a Packet Block Storage Volume resource to allow you to
@@ -74,7 +74,7 @@ export class Volume extends pulumi.CustomResource {
     /**
      * The billing cycle, defaults to "hourly"
      */
-    public readonly billingCycle!: pulumi.Output<string>;
+    public readonly billingCycle!: pulumi.Output<BillingCycle>;
     /**
      * The timestamp for when the volume was created
      */
@@ -188,7 +188,7 @@ export interface VolumeState {
     /**
      * The billing cycle, defaults to "hourly"
      */
-    readonly billingCycle?: pulumi.Input<string>;
+    readonly billingCycle?: pulumi.Input<BillingCycle>;
     /**
      * The timestamp for when the volume was created
      */
@@ -242,7 +242,7 @@ export interface VolumeArgs {
     /**
      * The billing cycle, defaults to "hourly"
      */
-    readonly billingCycle?: pulumi.Input<string>;
+    readonly billingCycle?: pulumi.Input<BillingCycle>;
     /**
      * Optional description for the volume
      */
