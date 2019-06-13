@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export module NetworkTypes {
-    export const Layer3:           NetworkType = "layer3";
-    export const Hybrid:           NetworkType = "hybrid";
-    export const Layer2Individual: NetworkType = "layer2-individual";
-    export const Layer2Bonded:     NetworkType = "layer2-bonded";
+export module IpBlockTypes {
+    export const GlobalIPv4: IpBlockType = "global_ipv4";
+    export const PublicIPv4: IpBlockType = "public_ipv4";
 }
 
-export type NetworkType =
-    "layer3"            |
-    "hybrid"            |
-    "layer2-individual" |
-    "layer2-bonded"     ;
+export type IpBlockType =
+    "global_ipv4" |
+    "public_ipv4" ;

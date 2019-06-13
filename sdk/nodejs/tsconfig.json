@@ -26,6 +26,7 @@
         "index.ts",
         "ipAddressType.ts",
         "ipAttachment.ts",
+        "ipBlockType.ts",
         "networkType.ts",
         "operatingSystem.ts",
         "organization.ts",

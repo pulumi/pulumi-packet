@@ -7,13 +7,13 @@ let project = new packet.Project("project", {
 });
 
 let vm = new packet.Device("vm", {
-    facilities: [packet.EWR1Facility],
-    billingCycle: packet.HourlyBilling,
+    facilities: [packet.Facilities.EWR1],
+    billingCycle: packet.BillingCycles.Hourly,
     hostname: "lukehoban",
-    operatingSystem: packet.CoreOSStable,
-    plan: packet.T1SmallX86,
+    operatingSystem: packet.OperatingSystems.CoreOSStable,
+    plan: packet.Plans.T1SmallX86,
     projectId:  project.id,
-    ipAddressTypes: [packet.PublicIPv4, packet.PrivateIPv4, packet.PublicIPv6]
+    ipAddressTypes: [packet.IpAddressTypes.PublicIPv4, packet.IpAddressTypes.PrivateIPv4, packet.IpAddressTypes.PublicIPv6]
 });
 
 export let ip = vm.accessPublicIpv4;

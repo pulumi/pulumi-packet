@@ -12,19 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export let C2LargeARM:  Plan = "c2.large.arm";
-export let C2MediumX86: Plan = "c2.medium.x86";
-export let C1SmallX86:  Plan = "baremetal_1";
-export let C1LargeARM:  Plan = "baremetal_2a";
-export let C1XLargeX86: Plan = "baremetal_3";
-export let X2XLargeX86: Plan = "x2.xlarge.x86";
-export let X1SmallX86:  Plan = "baremetal_1e";
-export let G2LargeX86:  Plan = "g2.large.x86";
-export let M2XLargeX86: Plan = "m2.xlarge.x86";
-export let M1XLargeX86: Plan = "baremetal_2";
-export let T1SmallX86:  Plan = "baremetal_0";
-export let S1LargeX86:  Plan = "baremetal_s";
-
+export module Plans {
+    export const C2LargeARM:  Plan = "c2.large.arm";
+    export const C2MediumX86: Plan = "c2.medium.x86";
+    export const C1SmallX86:  Plan = "baremetal_1";
+    export const C1LargeARM:  Plan = "baremetal_2a";
+    export const C1XLargeX86: Plan = "baremetal_3";
+    export const X2XLargeX86: Plan = "x2.xlarge.x86";
+    export const X1SmallX86:  Plan = "baremetal_1e";
+    export const G2LargeX86:  Plan = "g2.large.x86";
+    export const M2XLargeX86: Plan = "m2.xlarge.x86";
+    export const M1XLargeX86: Plan = "baremetal_2";
+    export const T1SmallX86:  Plan = "baremetal_0";
+    export const S1LargeX86:  Plan = "baremetal_s";
+}
 
 /**
  * A Plan represents any valid Packet.net Plan that may be deployed.

@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export let HourlyBilling:  BillingCycle = "hourly";
-export let MonthlyBilling: BillingCycle = "monthly";
+export module BillingCycles {
+    export const Hourly:  BillingCycle = "hourly";
+    export const Monthly: BillingCycle = "monthly";
+}
 
 export type BillingCycle =
     "hourly"  |

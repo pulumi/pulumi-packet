@@ -135,6 +135,9 @@ func Provider() tfbridge.ProviderInfo {
 					"facility": {
 						Type: makeType(mainMod, "Facility"),
 					},
+					"type": {
+						Type: makeType(mainMod, "IpBlockType"),
+					},
 				},
 			},
 			"packet_spot_market_request": {Tok: makeResource(mainMod, "SpotMarketRequest")},
@@ -152,6 +155,9 @@ func Provider() tfbridge.ProviderInfo {
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"facility": {
 						Type: makeType(mainMod, "Facility"),
+					},
+					"billing_cycle": {
+						Type: makeType(mainMod, "BillingCycle"),
 					},
 				},
 			},
@@ -181,6 +187,7 @@ func Provider() tfbridge.ProviderInfo {
 					"billingCycle.ts",
 					"facility.ts",
 					"ipAddressType.ts",
+					"ipBlockType.ts",
 					"networkType.ts",
 					"operatingSystem.ts",
 					"plan.ts",

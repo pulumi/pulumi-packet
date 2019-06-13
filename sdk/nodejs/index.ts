@@ -12,6 +12,7 @@ export * from "./getPrecreatedIpBlock";
 export * from "./getSpotMarketPrice";
 export * from "./ipAddressType";
 export * from "./ipAttachment";
+export * from "./ipBlockType";
 export * from "./networkType";
 export * from "./operatingSystem";
 export * from "./organization";
