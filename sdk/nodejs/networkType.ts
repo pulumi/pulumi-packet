@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export const Layer3Network:           NetworkType = "layer3";
-export const HybridNetwork:           NetworkType = "hybrid";
-export const Layer2IndividualNetwork: NetworkType = "layer2-individual";
-export const Layer2BondedNetwork:     NetworkType = "layer2-bonded";
+export module NetworkTypes {
+    export const Layer3:           NetworkType = "layer3";
+    export const Hybrid:           NetworkType = "hybrid";
+    export const Layer2Individual: NetworkType = "layer2-individual";
+    export const Layer2Bonded:     NetworkType = "layer2-bonded";
+}
 
 export type NetworkType =
     "layer3"            |

@@ -12,23 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export const EWR1Facility: Facility = "ewr1";
-export const SJC1Facility: Facility = "sjc1";
-export const DFW1Facility: Facility = "dfw1";
-export const DFW2Facility: Facility = "dfw2";
-export const AMS1Facility: Facility = "ams1";
-export const NRT1Facility: Facility = "nrt1";
-export const SEA1Facility: Facility = "sea1";
-export const LAX1Facility: Facility = "lax1";
-export const ORD1Facility: Facility = "ord1";
-export const ATL1Facility: Facility = "atl1";
-export const IAD1Facility: Facility = "iad1";
-export const SIN1Facility: Facility = "sin1";
-export const HKG1Facility: Facility = "hkg1";
-export const SYD1Facility: Facility = "syd1";
-export const MRS1Facility: Facility = "mrs1";
-export const YYZ1Facility: Facility = "yyz1";
-export const FRA2Facility: Facility = "fra2";
+export module Facilities {
+    export const EWR1: Facility = "ewr1";
+    export const SJC1: Facility = "sjc1";
+    export const DFW1: Facility = "dfw1";
+    export const DFW2: Facility = "dfw2";
+    export const AMS1: Facility = "ams1";
+    export const NRT1: Facility = "nrt1";
+    export const SEA1: Facility = "sea1";
+    export const LAX1: Facility = "lax1";
+    export const ORD1: Facility = "ord1";
+    export const ATL1: Facility = "atl1";
+    export const IAD1: Facility = "iad1";
+    export const SIN1: Facility = "sin1";
+    export const HKG1: Facility = "hkg1";
+    export const SYD1: Facility = "syd1";
+    export const MRS1: Facility = "mrs1";
+    export const YYZ1: Facility = "yyz1";
+    export const FRA2: Facility = "fra2";
+}
 
 /**
  * A Facility represents any valid Packet.net facility that may be targeted with deployments.

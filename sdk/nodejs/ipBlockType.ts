@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export const GlobalIPv4Block: IpBlockType = "global_ipv4";
-export const PublicIPv4Block: IpBlockType = "public_ipv4";
+export module IpBlockTypes {
+    export const GlobalIPv4: IpBlockType = "global_ipv4";
+    export const PublicIPv4: IpBlockType = "public_ipv4";
+}
 
 export type IpBlockType =
     "global_ipv4" |
