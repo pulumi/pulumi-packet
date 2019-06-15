@@ -2,6 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+__NULL__
+
+---
+
+## 0.4.4 (2019-06-15)
 * Add TypeScript type guards for each resource class
 * Add constants for Facility types
 * Add constants for Plan types
@@ -10,8 +15,6 @@ CHANGELOG
 * Add constants for NetworkType types
 * Add constants for IpAddressType types
 * Add constants for IpBlockType types
-
----
 
 ## 0.4.3 (2019-04-05)
 * Update to v2.2.1 of the Packet.net provider
