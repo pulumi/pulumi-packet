@@ -6,6 +6,9 @@ __NULL__
 
 ---
 
+## 0.4.5 (2019-06-21)
+* Update to pulumi-terraform@3635bed3a5 which stops maps containing `.` being treated as nested maps.
+
 ## 0.4.4 (2019-06-15)
 * Add TypeScript type guards for each resource class
 * Add constants for Facility types
