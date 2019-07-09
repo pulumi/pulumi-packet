@@ -79,9 +79,6 @@ class Device(pulumi.CustomResource):
     The fields of the network attributes are:
     """
     network_type: pulumi.Output[str]
-    """
-    Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
-    """
     operating_system: pulumi.Output[str]
     """
     The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -159,7 +156,6 @@ class Device(pulumi.CustomResource):
                information is in the
                [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
                doc.
-        :param pulumi.Input[str] network_type: Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] project_id: The id of the project in which to create the device
@@ -170,6 +166,8 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
         :param pulumi.Input[list] tags: Tags attached to the device
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

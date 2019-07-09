@@ -35,6 +35,8 @@ class BgpSession(pulumi.CustomResource):
         :param pulumi.Input[str] address_family: `ipv4` or `ipv6`
         :param pulumi.Input[bool] default_route: Boolean flag to set the default route policy. False by default.
         :param pulumi.Input[str] device_id: ID of device 
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

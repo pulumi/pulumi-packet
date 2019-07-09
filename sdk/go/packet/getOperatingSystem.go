@@ -8,6 +8,8 @@ import (
 )
 
 // Use this data source to get Packet Operating System image.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
 func LookupOperatingSystem(ctx *pulumi.Context, args *GetOperatingSystemArgs) (*GetOperatingSystemResult, error) {
 	inputs := make(map[string]interface{})
 	if args != nil {

@@ -9,6 +9,8 @@ import (
 )
 
 // Provides a resource for [Packet Connect](https://www.packet.com/cloud/all-features/packet-connect/), a link between Packet VLANs and VLANs in other cloud providers.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/connect.html.markdown.
 type Connect struct {
 	s *pulumi.ResourceState
 }

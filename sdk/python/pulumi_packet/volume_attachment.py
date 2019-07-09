@@ -19,16 +19,14 @@ class VolumeAttachment(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, device_id=None, volume_id=None, __name__=None, __opts__=None):
         """
-        Provides attachment of Packet Block Storage Volume to Devices.
-        
-        Device and volume must be in the same location (facility).
-        
-        Once attached by Terraform, they must then be mounted using the `packet_block_attach` and `packet_block_detach` scripts.
+        Create a VolumeAttachment resource with the given unique name, props, and options.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The ID of the device to which the volume should be attached
         :param pulumi.Input[str] volume_id: The ID of the volume to attach
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume_attachment.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

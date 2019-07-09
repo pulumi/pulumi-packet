@@ -51,6 +51,8 @@ class SpotMarketRequest(pulumi.CustomResource):
         :param pulumi.Input[float] max_bid_price: Maximum price user is willing to pay per hour per device
         :param pulumi.Input[str] project_id: Project ID
         :param pulumi.Input[bool] wait_for_devices: On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/spot_market_request.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

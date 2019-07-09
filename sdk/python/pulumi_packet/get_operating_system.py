@@ -41,6 +41,8 @@ class GetOperatingSystemResult:
 async def get_operating_system(distro=None,name=None,provisionable_on=None,version=None,opts=None):
     """
     Use this data source to get Packet Operating System image.
+
+    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
     """
     __args__ = dict()
 

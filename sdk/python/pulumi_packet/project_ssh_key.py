@@ -44,6 +44,8 @@ class ProjectSshKey(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the SSH key for identification
         :param pulumi.Input[str] project_id: The ID of parent project
         :param pulumi.Input[str] public_key: The public key. If this is a file, it can be read using the file interpolation function
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

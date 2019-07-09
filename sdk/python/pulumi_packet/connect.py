@@ -56,6 +56,8 @@ class Connect(pulumi.CustomResource):
                * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
         :param pulumi.Input[str] provider_payload: Authorization key for the Connect provider
         :param pulumi.Input[float] vxlan: VXLAN Network identifier of the linked Packet VLAN
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/connect.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

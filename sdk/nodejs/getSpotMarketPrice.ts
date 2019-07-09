@@ -18,6 +18,8 @@ import * as utilities from "./utilities";
  *     plan: "c1.small.x86",
  * }));
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
  */
 export function getSpotMarketPrice(args: GetSpotMarketPriceArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketPriceResult> {
     return pulumi.runtime.invoke("packet:index/getSpotMarketPrice:getSpotMarketPrice", {

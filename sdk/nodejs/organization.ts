@@ -19,6 +19,8 @@ import * as utilities from "./utilities";
  *     name: "foobar",
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
  */
 export class Organization extends pulumi.CustomResource {
     /**

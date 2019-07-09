@@ -8,11 +8,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// Provides attachment of Packet Block Storage Volume to Devices.
-// 
-// Device and volume must be in the same location (facility).
-// 
-// Once attached by Terraform, they must then be mounted using the `packet_block_attach` and `packet_block_detach` scripts.
 type VolumeAttachment struct {
 	s *pulumi.ResourceState
 }

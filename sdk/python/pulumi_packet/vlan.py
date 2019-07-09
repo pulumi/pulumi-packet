@@ -38,6 +38,8 @@ class Vlan(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description string
         :param pulumi.Input[str] facility: Facility where to create the VLAN
         :param pulumi.Input[str] project_id: ID of parent project
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

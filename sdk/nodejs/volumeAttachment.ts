@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides attachment of Packet Block Storage Volume to Devices.
- * 
- * Device and volume must be in the same location (facility).
- * 
- * Once attached by Terraform, they must then be mounted using the `packet_block_attach` and `packet_block_detach` scripts.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const testDeviceVa = new packet.Device("test_device_va", {
- *     billingCycle: "hourly",
- *     facilities: ["ewr1"],
- *     hostname: "terraform-test-device-va",
- *     operatingSystem: "ubuntu_16_04",
- *     plan: "t1.small.x86",
- *     projectId: local_project_id,
- * });
- * const testVolumeVa = new packet.Volume("test_volume_va", {
- *     billingCycle: "hourly",
- *     facility: "ewr1",
- *     plan: "storage_1",
- *     projectId: local_project_id,
- *     size: 100,
- *     snapshotPolicies: [{
- *         snapshotCount: 7,
- *         snapshotFrequency: "1day",
- *     }],
- * });
- * const testVolumeAttachment = new packet.VolumeAttachment("test_volume_attachment", {
- *     deviceId: testDeviceVa.id,
- *     volumeId: testVolumeVa.id,
- * });
- * ```
- */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**
      * Get an existing VolumeAttachment resource's state with the given name, ID, and optional extra

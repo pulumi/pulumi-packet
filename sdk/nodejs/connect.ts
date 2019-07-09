@@ -33,6 +33,8 @@ import {Facility} from "./index";
  *     vxlan: vlan1.vxlan,
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/connect.html.markdown.
  */
 export class Connect extends pulumi.CustomResource {
     /**

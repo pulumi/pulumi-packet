@@ -9,6 +9,8 @@ import (
 
 // Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
 // You can then use the cidrsubnet TF builtin function to derive subnets.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
 func LookupPrecreatedIpBlock(ctx *pulumi.Context, args *GetPrecreatedIpBlockArgs) (*GetPrecreatedIpBlockResult, error) {
 	inputs := make(map[string]interface{})
 	if args != nil {

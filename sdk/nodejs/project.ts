@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Packet project resource to allow you manage devices
- * in your projects.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Create a new project
- * const tfProject1 = new packet.Project("tf_project_1", {
- *     name: "Terraform Fun",
- * });
- * ```
- * 
- * Example with BGP config
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Create a new Project
- * const tfProject1 = new packet.Project("tf_project_1", {
- *     bgpConfig: {
- *         asn: 65000,
- *         deploymentType: "local",
- *         md5: "C179c28c41a85b",
- *     },
- *     name: "tftest",
- * });
- * ```
- */
 export class Project extends pulumi.CustomResource {
     /**
      * Get an existing Project resource's state with the given name, ID, and optional extra

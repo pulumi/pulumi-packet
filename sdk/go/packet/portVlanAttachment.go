@@ -23,6 +23,8 @@ import (
 // * `id` - UUID of device port used in the assignment
 // * `vlan_id` - UUID of VLAN API resource
 // * `port_id` - UUID of device port
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
 type PortVlanAttachment struct {
 	s *pulumi.ResourceState
 }

@@ -42,6 +42,8 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Organization.
         :param pulumi.Input[str] twitter: Twitter handle.
         :param pulumi.Input[str] website: Website link.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
