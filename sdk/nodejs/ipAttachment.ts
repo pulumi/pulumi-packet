@@ -34,6 +34,8 @@ import * as utilities from "./utilities";
  *     deviceId: packet_device_mydevice.id,
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
  */
 export class IpAttachment extends pulumi.CustomResource {
     /**

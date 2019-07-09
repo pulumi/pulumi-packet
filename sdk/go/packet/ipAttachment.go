@@ -18,6 +18,8 @@ import (
 // with mask prefix length 32. More about the elastic IP subnets is [here](https://support.packet.com/kb/articles/elastic-ips).
 // 
 // Device and reserved block must be in the same facility.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
 type IpAttachment struct {
 	s *pulumi.ResourceState
 }

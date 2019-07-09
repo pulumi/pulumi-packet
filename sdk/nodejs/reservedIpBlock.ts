@@ -19,6 +19,8 @@ import {Facility, IpBlockType} from "./index";
  * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
  * 
  * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet_ip_attachment` resource.
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
  */
 export class ReservedIpBlock extends pulumi.CustomResource {
     /**

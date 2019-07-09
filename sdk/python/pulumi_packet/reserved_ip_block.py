@@ -78,6 +78,8 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
         :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
         :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

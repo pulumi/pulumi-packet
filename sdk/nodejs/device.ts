@@ -119,6 +119,8 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  * `,
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
  */
 export class Device extends pulumi.CustomResource {
     /**
@@ -216,9 +218,6 @@ export class Device extends pulumi.CustomResource {
      * The fields of the network attributes are:
      */
     public /*out*/ readonly networks!: pulumi.Output<{ address: string, cidr: number, family: number, gateway: string, public: boolean }[]>;
-    /**
-     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
-     */
     public readonly networkType!: pulumi.Output<NetworkType | undefined>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -443,9 +442,6 @@ export interface DeviceState {
      * The fields of the network attributes are:
      */
     readonly networks?: pulumi.Input<pulumi.Input<{ address?: pulumi.Input<string>, cidr?: pulumi.Input<number>, family?: pulumi.Input<number>, gateway?: pulumi.Input<string>, public?: pulumi.Input<boolean> }>[]>;
-    /**
-     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
-     */
     readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -543,9 +539,6 @@ export interface DeviceArgs {
      * doc.
      */
     readonly ipxeScriptUrl?: pulumi.Input<string>;
-    /**
-     * Network type of device, used for [Layer 2 networking](https://support.packet.com/kb/articles/layer-2-overview). Allowed values are `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`. If you keep it empty, Terraform will not handle the network type of the device.
-     */
     readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.

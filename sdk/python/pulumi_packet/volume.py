@@ -63,11 +63,7 @@ class Volume(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, billing_cycle=None, description=None, facility=None, locked=None, plan=None, project_id=None, size=None, snapshot_policies=None, __name__=None, __opts__=None):
         """
-        Provides a Packet Block Storage Volume resource to allow you to
-        manage block volumes on your account.
-        Once created by Terraform, they must then be attached and mounted
-        using the api and `packet_block_attach` and `packet_block_detach`
-        scripts.
+        Create a Volume resource with the given unique name, props, and options.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -79,6 +75,8 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
         :param pulumi.Input[float] size: The size in GB to make the volume
         :param pulumi.Input[list] snapshot_policies: Optional list of snapshot policies
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

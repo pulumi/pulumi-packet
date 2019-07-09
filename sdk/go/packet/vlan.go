@@ -13,6 +13,8 @@ import (
 // To learn more about Layer 2 networking in Packet, refer to
 // * https://support.packet.com/kb/articles/layer-2-configurations
 // * https://support.packet.com/kb/articles/layer-2-overview
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
 type Vlan struct {
 	s *pulumi.ResourceState
 }

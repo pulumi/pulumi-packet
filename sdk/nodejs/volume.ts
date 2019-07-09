@@ -6,40 +6,6 @@ import * as utilities from "./utilities";
 
 import {BillingCycle, Facility} from "./index";
 
-/**
- * Provides a Packet Block Storage Volume resource to allow you to
- * manage block volumes on your account.
- * Once created by Terraform, they must then be attached and mounted
- * using the api and `packet_block_attach` and `packet_block_detach`
- * scripts.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Create a new block volume
- * const volume1 = new packet.Volume("volume1", {
- *     billingCycle: "hourly",
- *     description: "terraform-volume-1",
- *     facility: "ewr1",
- *     plan: "storage_1",
- *     projectId: local_project_id,
- *     size: 100,
- *     snapshotPolicies: [
- *         {
- *             snapshotCount: 7,
- *             snapshotFrequency: "1day",
- *         },
- *         {
- *             snapshotCount: 6,
- *             snapshotFrequency: "1month",
- *         },
- *     ],
- * });
- * ```
- */
 export class Volume extends pulumi.CustomResource {
     /**
      * Get an existing Volume resource's state with the given name, ID, and optional extra

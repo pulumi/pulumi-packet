@@ -37,6 +37,8 @@ import * as utilities from "./utilities";
  *     deviceId: web1.id,
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
  */
 export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulumi.InvokeOptions): Promise<GetPrecreatedIpBlockResult> {
     return pulumi.runtime.invoke("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", {

@@ -49,6 +49,8 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)

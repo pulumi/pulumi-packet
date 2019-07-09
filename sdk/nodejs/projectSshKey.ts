@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  *     projectSshKeyIds: [testProjectSshKey.id],
  * });
  * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
  */
 export class ProjectSshKey extends pulumi.CustomResource {
     /**
