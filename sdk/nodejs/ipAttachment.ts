@@ -147,6 +147,13 @@ export class IpAttachment extends pulumi.CustomResource {
             inputs["network"] = undefined /*out*/;
             inputs["public"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(IpAttachment.__pulumiType, name, inputs, opts);
     }
 }

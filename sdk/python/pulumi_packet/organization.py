@@ -75,6 +75,10 @@ class Organization(pulumi.CustomResource):
         __props__['created'] = None
         __props__['updated'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(Organization, __self__).__init__(
             'packet:index/organization:Organization',
             resource_name,

@@ -87,6 +87,13 @@ export class SshKey extends pulumi.CustomResource {
             inputs["fingerprint"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(SshKey.__pulumiType, name, inputs, opts);
     }
 }

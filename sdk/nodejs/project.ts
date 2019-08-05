@@ -95,6 +95,13 @@ export class Project extends pulumi.CustomResource {
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(Project.__pulumiType, name, inputs, opts);
     }
 }

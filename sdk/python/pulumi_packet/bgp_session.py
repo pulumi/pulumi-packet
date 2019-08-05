@@ -65,6 +65,10 @@ class BgpSession(pulumi.CustomResource):
 
         __props__['status'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(BgpSession, __self__).__init__(
             'packet:index/bgpSession:BgpSession',
             resource_name,
