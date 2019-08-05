@@ -83,6 +83,13 @@ export class BgpSession extends pulumi.CustomResource {
             inputs["deviceId"] = args ? args.deviceId : undefined;
             inputs["status"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(BgpSession.__pulumiType, name, inputs, opts);
     }
 }

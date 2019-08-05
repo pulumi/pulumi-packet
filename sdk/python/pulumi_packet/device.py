@@ -243,6 +243,10 @@ class Device(pulumi.CustomResource):
         __props__['state'] = None
         __props__['updated'] = None
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(Device, __self__).__init__(
             'packet:index/device:Device',
             resource_name,

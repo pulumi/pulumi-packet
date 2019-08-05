@@ -149,6 +149,13 @@ export class Connect extends pulumi.CustomResource {
             inputs["vxlan"] = args ? args.vxlan : undefined;
             inputs["status"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(Connect.__pulumiType, name, inputs, opts);
     }
 }

@@ -159,6 +159,13 @@ export class PortVlanAttachment extends pulumi.CustomResource {
             inputs["portId"] = undefined /*out*/;
             inputs["vlanId"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(PortVlanAttachment.__pulumiType, name, inputs, opts);
     }
 }

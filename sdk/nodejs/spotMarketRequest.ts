@@ -135,6 +135,13 @@ export class SpotMarketRequest extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["waitForDevices"] = args ? args.waitForDevices : undefined;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(SpotMarketRequest.__pulumiType, name, inputs, opts);
     }
 }

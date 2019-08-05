@@ -101,6 +101,13 @@ export class Vlan extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["vxlan"] = undefined /*out*/;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(Vlan.__pulumiType, name, inputs, opts);
     }
 }

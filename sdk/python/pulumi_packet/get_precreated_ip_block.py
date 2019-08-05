@@ -65,7 +65,15 @@ class GetPrecreatedIpBlockResult:
         id is the provider-assigned unique ID for this managed resource.
         """
 
-async def get_precreated_ip_block(address_family=None,facility=None,global_=None,project_id=None,public=None,opts=None):
+    # pylint: disable=using-constant-test
+    def __await__(self):
+        if False:
+            yield self
+        return self
+
+    __iter__ = __await__
+
+def get_precreated_ip_block(address_family=None,facility=None,global_=None,project_id=None,public=None,opts=None):
     """
     Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
     You can then use the cidrsubnet TF builtin function to derive subnets.
@@ -79,7 +87,11 @@ async def get_precreated_ip_block(address_family=None,facility=None,global_=None
     __args__['global'] = global_
     __args__['projectId'] = project_id
     __args__['public'] = public
-    __ret__ = await pulumi.runtime.invoke('packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock', __args__, opts=opts)
+    if opts is None:
+        opts = pulumi.ResourceOptions()
+    if opts.version is None:
+        opts.version = utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock', __args__, opts=opts).value
 
     return GetPrecreatedIpBlockResult(
         address=__ret__.get('address'),

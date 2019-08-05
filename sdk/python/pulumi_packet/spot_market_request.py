@@ -95,6 +95,10 @@ class SpotMarketRequest(pulumi.CustomResource):
 
         __props__['wait_for_devices'] = wait_for_devices
 
+        if opts is None:
+            opts = pulumi.ResourceOptions()
+        if opts.version is None:
+            opts.version = utilities.get_version()
         super(SpotMarketRequest, __self__).__init__(
             'packet:index/spotMarketRequest:SpotMarketRequest',
             resource_name,

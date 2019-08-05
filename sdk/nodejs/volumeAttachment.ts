@@ -68,6 +68,13 @@ export class VolumeAttachment extends pulumi.CustomResource {
             inputs["deviceId"] = args ? args.deviceId : undefined;
             inputs["volumeId"] = args ? args.volumeId : undefined;
         }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
+        }
         super(VolumeAttachment.__pulumiType, name, inputs, opts);
     }
 }
