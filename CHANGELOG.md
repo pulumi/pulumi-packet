@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Update to pulumi-terraform@013b95b1c8
+* Upgrade to v2.3.0 of the Packet Terraform Provider
 
 ---
 

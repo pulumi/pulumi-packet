@@ -46,6 +46,7 @@ _SNAKE_TO_CAMEL_CASE_TABLE = {
     "vlan_vnid": "vlanVnid",
     "volume_id": "volumeId",
     "wait_for_devices": "waitForDevices",
+    "wait_for_reservation_deprovision": "waitForReservationDeprovision",
 }
 
 _CAMEL_TO_SNAKE_CASE_TABLE = {
@@ -92,4 +93,5 @@ _CAMEL_TO_SNAKE_CASE_TABLE = {
     "vlanVnid": "vlan_vnid",
     "volumeId": "volume_id",
     "waitForDevices": "wait_for_devices",
+    "waitForReservationDeprovision": "wait_for_reservation_deprovision",
 }
