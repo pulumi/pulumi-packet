@@ -273,6 +273,10 @@ export class Device extends pulumi.CustomResource {
      * A string of the desired User Data for the device.
      */
     public readonly userData!: pulumi.Output<string | undefined>;
+    /**
+     * Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+     */
+    public readonly waitForReservationDeprovision!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a Device resource with the given unique name, arguments, and options.
@@ -315,6 +319,7 @@ export class Device extends pulumi.CustomResource {
             inputs["tags"] = state ? state.tags : undefined;
             inputs["updated"] = state ? state.updated : undefined;
             inputs["userData"] = state ? state.userData : undefined;
+            inputs["waitForReservationDeprovision"] = state ? state.waitForReservationDeprovision : undefined;
         } else {
             const args = argsOrState as DeviceArgs | undefined;
             if (!args || args.billingCycle === undefined) {
@@ -352,6 +357,7 @@ export class Device extends pulumi.CustomResource {
             inputs["storage"] = args ? args.storage : undefined;
             inputs["tags"] = args ? args.tags : undefined;
             inputs["userData"] = args ? args.userData : undefined;
+            inputs["waitForReservationDeprovision"] = args ? args.waitForReservationDeprovision : undefined;
             inputs["accessPrivateIpv4"] = undefined /*out*/;
             inputs["accessPublicIpv4"] = undefined /*out*/;
             inputs["accessPublicIpv6"] = undefined /*out*/;
@@ -504,6 +510,10 @@ export interface DeviceState {
      * A string of the desired User Data for the device.
      */
     readonly userData?: pulumi.Input<string>;
+    /**
+     * Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+     */
+    readonly waitForReservationDeprovision?: pulumi.Input<boolean>;
 }
 
 /**
@@ -581,4 +591,8 @@ export interface DeviceArgs {
      * A string of the desired User Data for the device.
      */
     readonly userData?: pulumi.Input<string>;
+    /**
+     * Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+     */
+    readonly waitForReservationDeprovision?: pulumi.Input<boolean>;
 }

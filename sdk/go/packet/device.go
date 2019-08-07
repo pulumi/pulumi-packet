@@ -60,6 +60,7 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["storage"] = nil
 		inputs["tags"] = nil
 		inputs["userData"] = nil
+		inputs["waitForReservationDeprovision"] = nil
 	} else {
 		inputs["alwaysPxe"] = args.AlwaysPxe
 		inputs["billingCycle"] = args.BillingCycle
@@ -78,6 +79,7 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["storage"] = args.Storage
 		inputs["tags"] = args.Tags
 		inputs["userData"] = args.UserData
+		inputs["waitForReservationDeprovision"] = args.WaitForReservationDeprovision
 	}
 	inputs["accessPrivateIpv4"] = nil
 	inputs["accessPublicIpv4"] = nil
@@ -133,6 +135,7 @@ func GetDevice(ctx *pulumi.Context,
 		inputs["tags"] = state.Tags
 		inputs["updated"] = state.Updated
 		inputs["userData"] = state.UserData
+		inputs["waitForReservationDeprovision"] = state.WaitForReservationDeprovision
 	}
 	s, err := ctx.ReadResource("packet:index/device:Device", name, id, inputs, opts...)
 	if err != nil {
@@ -306,6 +309,11 @@ func (r *Device) UserData() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["userData"])
 }
 
+// Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+func (r *Device) WaitForReservationDeprovision() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["waitForReservationDeprovision"])
+}
+
 // Input properties used for looking up and filtering Device resources.
 type DeviceState struct {
 	// The ipv4 private IP assigned to the device
@@ -376,6 +384,8 @@ type DeviceState struct {
 	Updated interface{}
 	// A string of the desired User Data for the device.
 	UserData interface{}
+	// Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+	WaitForReservationDeprovision interface{}
 }
 
 // The set of arguments for constructing a Device resource.
@@ -419,4 +429,6 @@ type DeviceArgs struct {
 	Tags interface{}
 	// A string of the desired User Data for the device.
 	UserData interface{}
+	// Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+	WaitForReservationDeprovision interface{}
 }

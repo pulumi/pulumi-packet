@@ -133,7 +133,11 @@ class Device(pulumi.CustomResource):
     """
     A string of the desired User Data for the device.
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, __name__=None, __opts__=None):
+    wait_for_reservation_deprovision: pulumi.Output[bool]
+    """
+    Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+    """
+    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __name__=None, __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -166,6 +170,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
         :param pulumi.Input[list] tags: Tags attached to the device
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
+        :param pulumi.Input[bool] wait_for_reservation_deprovision: Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
         """
@@ -229,6 +234,8 @@ class Device(pulumi.CustomResource):
         __props__['tags'] = tags
 
         __props__['user_data'] = user_data
+
+        __props__['wait_for_reservation_deprovision'] = wait_for_reservation_deprovision
 
         __props__['access_private_ipv4'] = None
         __props__['access_public_ipv4'] = None
