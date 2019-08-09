@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  * 
  * Device and VLAN must be in the same facility.
  * 
- * If you need this resource to add the port back to bond on removal, set `force_bond = true`.
+ * If you need this resource to add the port back to bond on removal, set `forceBond = true`.
  * 
  * To learn more about Layer 2 networking in Packet, refer to
  * * https://support.packet.com/kb/articles/layer-2-configurations
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     facilities: ["ewr1"],
  *     hostname: "test",
  *     networkType: "layer2-individual",
- *     operatingSystem: "ubuntu_16_04",
+ *     operatingSystem: "ubuntu1604",
  *     plan: "m1.xlarge.x86",
  *     projectId: local_project_id,
  * });
@@ -66,8 +66,8 @@ import * as utilities from "./utilities";
  * ## Attribute Referece
  * 
  * * `id` - UUID of device port used in the assignment
- * * `vlan_id` - UUID of VLAN API resource
- * * `port_id` - UUID of device port
+ * * `vlanId` - UUID of VLAN API resource
+ * * `portId` - UUID of device port
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
  */
@@ -107,7 +107,7 @@ export class PortVlanAttachment extends pulumi.CustomResource {
      */
     public readonly forceBond!: pulumi.Output<boolean | undefined>;
     /**
-     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
      */
     public readonly native!: pulumi.Output<boolean | undefined>;
     public /*out*/ readonly portId!: pulumi.Output<string>;
@@ -183,7 +183,7 @@ export interface PortVlanAttachmentState {
      */
     readonly forceBond?: pulumi.Input<boolean>;
     /**
-     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
      */
     readonly native?: pulumi.Input<boolean>;
     readonly portId?: pulumi.Input<string>;
@@ -211,7 +211,7 @@ export interface PortVlanAttachmentArgs {
      */
     readonly forceBond?: pulumi.Input<boolean>;
     /**
-     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+     * Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
      */
     readonly native?: pulumi.Input<boolean>;
     /**

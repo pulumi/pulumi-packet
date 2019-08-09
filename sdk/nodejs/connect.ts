@@ -20,14 +20,14 @@ import {Facility} from "./index";
  *     facility: "ewr1",
  *     projectId: local_project_id,
  * });
- * const myExpressroute = new packet.Connect("my_expressroute", {
+ * const myExpressroute = new packet.Connect("myExpressroute", {
  *     facility: "ewr1",
  *     name: "test",
  *     portSpeed: 100,
  *     projectId: local_project_id,
  *     // provider ID for Azure ExpressRoute is ed5de8e0-77a9-4d3b-9de0-65281d3aa831
  *     providerId: "ed5de8e0-77a9-4d3b-9de0-65281d3aa831",
- *     // provider_payload for Azure ExpressRoute provider is your ExpressRoute
+ *     // providerPayload for Azure ExpressRoute provider is your ExpressRoute
  *     // authorization key (in UUID format)
  *     providerPayload: "58b4ec12-af34-4435-5435-db3bde4a4b3a",
  *     vxlan: vlan1.vxlan,

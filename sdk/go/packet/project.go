@@ -101,7 +101,7 @@ func (r *Project) OrganizationId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["organizationId"])
 }
 
-// The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+// The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
 func (r *Project) PaymentMethodId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["paymentMethodId"])
 }
@@ -123,7 +123,7 @@ type ProjectState struct {
 	Name interface{}
 	// The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
 	OrganizationId interface{}
-	// The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+	// The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
 	PaymentMethodId interface{}
 	// The timestamp for the last time the project was updated
 	Updated interface{}
@@ -139,6 +139,6 @@ type ProjectArgs struct {
 	Name interface{}
 	// The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
 	OrganizationId interface{}
-	// The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+	// The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
 	PaymentMethodId interface{}
 }

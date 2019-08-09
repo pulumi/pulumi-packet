@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     quantity: 2,
  * });
  * // Assign /32 subnet (single address) from reserved block to a device
- * const firstAddressAssignment = new packet.IpAttachment("first_address_assignment", {
+ * const firstAddressAssignment = new packet.IpAttachment("firstAddressAssignment", {
  *     cidrNotation: myblock.cidrNotation.apply(cidrNotation => `${(() => { throw "NYI: call to cidrhost"; })()}/32`),
  *     deviceId: packet_device_mydevice.id,
  * });

@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     instanceParameters: {
  *         billingCycle: "hourly",
  *         hostname: "testspot",
- *         operatingSystem: "coreos_stable",
+ *         operatingSystem: "coreosStable",
  *         plan: "t1.small.x86",
  *     },
  *     maxBidPrice: 0.03,
