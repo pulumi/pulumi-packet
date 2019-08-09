@@ -31,14 +31,16 @@ class GetSpotMarketPriceResult:
         """
         id is the provider-assigned unique ID for this managed resource.
         """
-
+class AwaitableGetSpotMarketPriceResult(GetSpotMarketPriceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return self
-
-    __iter__ = __await__
+        return GetSpotMarketPriceResult(
+            facility=self.facility,
+            plan=self.plan,
+            price=self.price,
+            id=self.id)
 
 def get_spot_market_price(facility=None,plan=None,opts=None):
     """
@@ -56,7 +58,7 @@ def get_spot_market_price(facility=None,plan=None,opts=None):
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__, opts=opts).value
 
-    return GetSpotMarketPriceResult(
+    return AwaitableGetSpotMarketPriceResult(
         facility=__ret__.get('facility'),
         plan=__ret__.get('plan'),
         price=__ret__.get('price'),

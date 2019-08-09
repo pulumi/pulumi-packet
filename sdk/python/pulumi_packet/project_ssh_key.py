@@ -33,7 +33,7 @@ class ProjectSshKey(pulumi.CustomResource):
     """
     The timestamp for the last time the SSH key was updated
     """
-    def __init__(__self__, resource_name, opts=None, name=None, project_id=None, public_key=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, name=None, project_id=None, public_key=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Packet project SSH key resource to manage project-specific SSH keys. On contrary to user SSH keys, project SSH keys are used to exclusively populate `authorized_keys` in new devices.
         
@@ -53,42 +53,62 @@ class ProjectSshKey(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError('Expected resource options to be a ResourceOptions instance')
-
-        __props__ = dict()
-
-        if name is None:
-            raise TypeError("Missing required property 'name'")
-        __props__['name'] = name
-
-        if project_id is None:
-            raise TypeError("Missing required property 'project_id'")
-        __props__['project_id'] = project_id
-
-        if public_key is None:
-            raise TypeError("Missing required property 'public_key'")
-        __props__['public_key'] = public_key
-
-        __props__['created'] = None
-        __props__['fingerprint'] = None
-        __props__['updated'] = None
-
         if opts is None:
             opts = pulumi.ResourceOptions()
+        if not isinstance(opts, pulumi.ResourceOptions):
+            raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = utilities.get_version()
+        if opts.id is None:
+            if __props__ is not None:
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+            __props__ = dict()
+
+            if name is None:
+                raise TypeError("Missing required property 'name'")
+            __props__['name'] = name
+            if project_id is None:
+                raise TypeError("Missing required property 'project_id'")
+            __props__['project_id'] = project_id
+            if public_key is None:
+                raise TypeError("Missing required property 'public_key'")
+            __props__['public_key'] = public_key
+            __props__['created'] = None
+            __props__['fingerprint'] = None
+            __props__['updated'] = None
         super(ProjectSshKey, __self__).__init__(
             'packet:index/projectSshKey:ProjectSshKey',
             resource_name,
             __props__,
             opts)
 
+    @staticmethod
+    def get(resource_name, id, opts=None, created=None, fingerprint=None, name=None, project_id=None, public_key=None, updated=None):
+        """
+        Get an existing ProjectSshKey resource's state with the given name, id, and optional extra
+        properties used to qualify the lookup.
+        :param str resource_name: The unique name of the resulting resource.
+        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created: The timestamp for when the SSH key was created
+        :param pulumi.Input[str] fingerprint: The fingerprint of the SSH key
+        :param pulumi.Input[str] name: The name of the SSH key for identification
+        :param pulumi.Input[str] project_id: The ID of parent project
+        :param pulumi.Input[str] public_key: The public key. If this is a file, it can be read using the file interpolation function
+        :param pulumi.Input[str] updated: The timestamp for the last time the SSH key was updated
 
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
+        """
+        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+
+        __props__ = dict()
+        __props__["created"] = created
+        __props__["fingerprint"] = fingerprint
+        __props__["name"] = name
+        __props__["project_id"] = project_id
+        __props__["public_key"] = public_key
+        __props__["updated"] = updated
+        return ProjectSshKey(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

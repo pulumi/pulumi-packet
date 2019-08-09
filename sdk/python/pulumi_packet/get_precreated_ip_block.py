@@ -64,14 +64,27 @@ class GetPrecreatedIpBlockResult:
         """
         id is the provider-assigned unique ID for this managed resource.
         """
-
+class AwaitableGetPrecreatedIpBlockResult(GetPrecreatedIpBlockResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return self
-
-    __iter__ = __await__
+        return GetPrecreatedIpBlockResult(
+            address=self.address,
+            address_family=self.address_family,
+            cidr=self.cidr,
+            cidr_notation=self.cidr_notation,
+            facility=self.facility,
+            gateway=self.gateway,
+            global_=self.global_,
+            manageable=self.manageable,
+            management=self.management,
+            netmask=self.netmask,
+            network=self.network,
+            project_id=self.project_id,
+            public=self.public,
+            quantity=self.quantity,
+            id=self.id)
 
 def get_precreated_ip_block(address_family=None,facility=None,global_=None,project_id=None,public=None,opts=None):
     """
@@ -93,7 +106,7 @@ def get_precreated_ip_block(address_family=None,facility=None,global_=None,proje
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock', __args__, opts=opts).value
 
-    return GetPrecreatedIpBlockResult(
+    return AwaitableGetPrecreatedIpBlockResult(
         address=__ret__.get('address'),
         address_family=__ret__.get('addressFamily'),
         cidr=__ret__.get('cidr'),

@@ -25,11 +25,11 @@ import * as utilities from "./utilities";
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
  *     hostname: "web1",
- *     operatingSystem: "ubuntu_16_04",
+ *     operatingSystem: "ubuntu1604",
  *     plan: "t1.small.x86",
  *     projectId: projectId,
  * });
- * const fromIpv6Block = new packet.IpAttachment("from_ipv6_block", {
+ * const fromIpv6Block = new packet.IpAttachment("fromIpv6Block", {
  *     cidrNotation: test.apply(test => (() => {
  *         throw "tf2pulumi error: NYI: call to cidrsubnet";
  *         return (() => { throw "NYI: call to cidrsubnet"; })();

@@ -37,14 +37,18 @@ class GetOperatingSystemResult:
         """
         id is the provider-assigned unique ID for this managed resource.
         """
-
+class AwaitableGetOperatingSystemResult(GetOperatingSystemResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return self
-
-    __iter__ = __await__
+        return GetOperatingSystemResult(
+            distro=self.distro,
+            name=self.name,
+            provisionable_on=self.provisionable_on,
+            slug=self.slug,
+            version=self.version,
+            id=self.id)
 
 def get_operating_system(distro=None,name=None,provisionable_on=None,version=None,opts=None):
     """
@@ -64,7 +68,7 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts).value
 
-    return GetOperatingSystemResult(
+    return AwaitableGetOperatingSystemResult(
         distro=__ret__.get('distro'),
         name=__ret__.get('name'),
         provisionable_on=__ret__.get('provisionableOn'),

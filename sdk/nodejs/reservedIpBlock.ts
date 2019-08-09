@@ -16,9 +16,9 @@ import {Facility, IpBlockType} from "./index";
  * 
  * Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
  * 
- * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
+ * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "globalIpv4" and you must omit the facility argument.
  * 
- * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet_ip_attachment` resource.
+ * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
  */
@@ -94,7 +94,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
      */
     public readonly quantity!: pulumi.Output<number>;
     /**
-     * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+     * Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
      */
     public readonly type!: pulumi.Output<IpBlockType | undefined>;
 
@@ -209,7 +209,7 @@ export interface ReservedIpBlockState {
      */
     readonly quantity?: pulumi.Input<number>;
     /**
-     * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+     * Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
      */
     readonly type?: pulumi.Input<IpBlockType>;
 }
@@ -231,7 +231,7 @@ export interface ReservedIpBlockArgs {
      */
     readonly quantity: pulumi.Input<number>;
     /**
-     * Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+     * Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
      */
     readonly type?: pulumi.Input<IpBlockType>;
 }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Packet project SSH key resource to manage project-specific SSH keys. On contrary to user SSH keys, project SSH keys are used to exclusively populate `authorized_keys` in new devices.
+ * Provides a Packet project SSH key resource to manage project-specific SSH keys. On contrary to user SSH keys, project SSH keys are used to exclusively populate `authorizedKeys` in new devices.
  * 
  * If you supply a list of project SSH keys when creating a new device, only the listed keys are used; user SSH keys are ignored.
  * 
@@ -25,8 +25,8 @@ import * as utilities from "./utilities";
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
  *     hostname: "test",
- *     operatingSystem: "ubuntu_16_04",
- *     plan: "baremetal_0",
+ *     operatingSystem: "ubuntu1604",
+ *     plan: "baremetal0",
  *     projectId: projectId,
  *     projectSshKeyIds: [testProjectSshKey.id],
  * });

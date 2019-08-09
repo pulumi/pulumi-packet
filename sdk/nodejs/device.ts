@@ -10,7 +10,7 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  * Provides a Packet device resource. This can be used to create,
  * modify, and delete devices.
  * 
- * > **Note:** All arguments including the `root_password` and `user_data` will be stored in
+ * > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
@@ -21,12 +21,12 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * // Create a device and add it to cool_project
+ * // Create a device and add it to coolProject
  * const web1 = new packet.Device("web1", {
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
  *     hostname: "tf.coreos2",
- *     operatingSystem: "coreos_stable",
+ *     operatingSystem: "coreosStable",
  *     plan: "t1.small.x86",
  *     projectId: local_project_id,
  * });
@@ -43,7 +43,7 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  *     facilities: ["ewr1"],
  *     hostname: "tf.coreos2-pxe",
  *     ipxeScriptUrl: "https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe",
- *     operatingSystem: "custom_ipxe",
+ *     operatingSystem: "customIpxe",
  *     plan: "t1.small.x86",
  *     projectId: local_project_id,
  *     userData: ignition_config_example.rendered,
@@ -60,7 +60,7 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  *     facilities: ["sjc1"],
  *     hardwareReservationId: "next-available",
  *     hostname: "tftest",
- *     operatingSystem: "ubuntu_16_04",
+ *     operatingSystem: "ubuntu1604",
  *     plan: "t1.small.x86",
  *     projectId: local_project_id,
  *     storage: `{
@@ -162,7 +162,7 @@ export class Device extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessPublicIpv6!: pulumi.Output<string>;
     /**
-     * If true, a device with OS `custom_ipxe` will
+     * If true, a device with OS `customIpxe` will
      * continue to boot via iPXE on reboots.
      */
     public readonly alwaysPxe!: pulumi.Output<boolean | undefined>;
@@ -195,7 +195,7 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+     * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
      */
     public readonly ipAddressTypes!: pulumi.Output<IpAddressType[] | undefined>;
     /**
@@ -236,7 +236,7 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
      */
     public readonly projectSshKeyIds!: pulumi.Output<string[] | undefined>;
     /**
@@ -399,7 +399,7 @@ export interface DeviceState {
      */
     readonly accessPublicIpv6?: pulumi.Input<string>;
     /**
-     * If true, a device with OS `custom_ipxe` will
+     * If true, a device with OS `customIpxe` will
      * continue to boot via iPXE on reboots.
      */
     readonly alwaysPxe?: pulumi.Input<boolean>;
@@ -432,7 +432,7 @@ export interface DeviceState {
      */
     readonly hostname?: pulumi.Input<string>;
     /**
-     * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+     * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
      */
     readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
     /**
@@ -473,7 +473,7 @@ export interface DeviceState {
      */
     readonly projectId?: pulumi.Input<string>;
     /**
-     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
      */
     readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -521,7 +521,7 @@ export interface DeviceState {
  */
 export interface DeviceArgs {
     /**
-     * If true, a device with OS `custom_ipxe` will
+     * If true, a device with OS `customIpxe` will
      * continue to boot via iPXE on reboots.
      */
     readonly alwaysPxe?: pulumi.Input<boolean>;
@@ -546,7 +546,7 @@ export interface DeviceArgs {
      */
     readonly hostname: pulumi.Input<string>;
     /**
-     * A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+     * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
      */
     readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
     /**
@@ -570,7 +570,7 @@ export interface DeviceArgs {
      */
     readonly projectId: pulumi.Input<string>;
     /**
-     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
      */
     readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

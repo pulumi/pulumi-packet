@@ -12,7 +12,7 @@ import (
 // 
 // Device and VLAN must be in the same facility.
 // 
-// If you need this resource to add the port back to bond on removal, set `force_bond = true`.
+// If you need this resource to add the port back to bond on removal, set `forceBond = true`.
 // 
 // To learn more about Layer 2 networking in Packet, refer to
 // * https://support.packet.com/kb/articles/layer-2-configurations
@@ -21,8 +21,8 @@ import (
 // ## Attribute Referece
 // 
 // * `id` - UUID of device port used in the assignment
-// * `vlan_id` - UUID of VLAN API resource
-// * `port_id` - UUID of device port
+// * `vlanId` - UUID of VLAN API resource
+// * `portId` - UUID of device port
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
 type PortVlanAttachment struct {
@@ -105,7 +105,7 @@ func (r *PortVlanAttachment) ForceBond() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["forceBond"])
 }
 
-// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
 func (r *PortVlanAttachment) Native() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["native"])
 }
@@ -134,7 +134,7 @@ type PortVlanAttachmentState struct {
 	DeviceId interface{}
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond interface{}
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
 	Native interface{}
 	PortId interface{}
 	// Name of network port to be assigned to the VLAN
@@ -150,7 +150,7 @@ type PortVlanAttachmentArgs struct {
 	DeviceId interface{}
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond interface{}
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
 	Native interface{}
 	// Name of network port to be assigned to the VLAN
 	PortName interface{}

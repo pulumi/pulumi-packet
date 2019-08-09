@@ -55,7 +55,7 @@ export class Project extends pulumi.CustomResource {
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
-     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
      */
     public readonly paymentMethodId!: pulumi.Output<string>;
     /**
@@ -131,7 +131,7 @@ export interface ProjectState {
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
      */
     readonly paymentMethodId?: pulumi.Input<string>;
     /**
@@ -161,7 +161,7 @@ export interface ProjectArgs {
      */
     readonly organizationId?: pulumi.Input<string>;
     /**
-     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+     * The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
      */
     readonly paymentMethodId?: pulumi.Input<string>;
 }

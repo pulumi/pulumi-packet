@@ -11,7 +11,7 @@ import (
 // Provides a Packet device resource. This can be used to create,
 // modify, and delete devices.
 // 
-// > **Note:** All arguments including the `root_password` and `user_data` will be stored in
+// > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
 //  the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 //
@@ -169,7 +169,7 @@ func (r *Device) AccessPublicIpv6() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["accessPublicIpv6"])
 }
 
-// If true, a device with OS `custom_ipxe` will
+// If true, a device with OS `customIpxe` will
 // continue to boot via iPXE on reboots.
 func (r *Device) AlwaysPxe() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["alwaysPxe"])
@@ -210,7 +210,7 @@ func (r *Device) Hostname() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["hostname"])
 }
 
-// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 func (r *Device) IpAddressTypes() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["ipAddressTypes"])
 }
@@ -262,7 +262,7 @@ func (r *Device) ProjectId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["projectId"])
 }
 
-// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 func (r *Device) ProjectSshKeyIds() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["projectSshKeyIds"])
 }
@@ -322,7 +322,7 @@ type DeviceState struct {
 	AccessPublicIpv4 interface{}
 	// The ipv6 maintenance IP assigned to the device
 	AccessPublicIpv6 interface{}
-	// If true, a device with OS `custom_ipxe` will
+	// If true, a device with OS `customIpxe` will
 	// continue to boot via iPXE on reboots.
 	AlwaysPxe interface{}
 	// monthly or hourly
@@ -339,7 +339,7 @@ type DeviceState struct {
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
-	// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes interface{}
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
@@ -364,7 +364,7 @@ type DeviceState struct {
 	Ports interface{}
 	// The id of the project in which to create the device
 	ProjectId interface{}
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds interface{}
 	// Size of allocated subnet, more
 	// information is in the
@@ -390,7 +390,7 @@ type DeviceState struct {
 
 // The set of arguments for constructing a Device resource.
 type DeviceArgs struct {
-	// If true, a device with OS `custom_ipxe` will
+	// If true, a device with OS `customIpxe` will
 	// continue to boot via iPXE on reboots.
 	AlwaysPxe interface{}
 	// monthly or hourly
@@ -403,7 +403,7 @@ type DeviceArgs struct {
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
-	// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
+	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes interface{}
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
@@ -417,7 +417,7 @@ type DeviceArgs struct {
 	Plan interface{}
 	// The id of the project in which to create the device
 	ProjectId interface{}
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.
+	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds interface{}
 	// Size of allocated subnet, more
 	// information is in the

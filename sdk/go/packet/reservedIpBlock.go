@@ -17,9 +17,9 @@ import (
 // 
 // Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
 // 
-// Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
+// Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "globalIpv4" and you must omit the facility argument.
 // 
-// Once IP block is allocated or imported, an address from it can be assigned to device with the `packet_ip_attachment` resource.
+// Once IP block is allocated or imported, an address from it can be assigned to device with the `.IpAttachment` resource.
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
 type ReservedIpBlock struct {
@@ -170,7 +170,7 @@ func (r *ReservedIpBlock) Quantity() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["quantity"])
 }
 
-// Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+// Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
 func (r *ReservedIpBlock) Type() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["type"])
 }
@@ -201,7 +201,7 @@ type ReservedIpBlockState struct {
 	Public interface{}
 	// The number of allocated /32 addresses, a power of 2
 	Quantity interface{}
-	// Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+	// Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
 	Type interface{}
 }
 
@@ -213,6 +213,6 @@ type ReservedIpBlockArgs struct {
 	ProjectId interface{}
 	// The number of allocated /32 addresses, a power of 2
 	Quantity interface{}
-	// Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+	// Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
 	Type interface{}
 }
