@@ -13,12 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * const example = pulumi.output(packet.getOperatingSystem({
+ * const example = packet.getOperatingSystem({
  *     distro: "coreos",
  *     name: "Container Linux",
  *     provisionableOn: "c1.small.x86",
  *     version: "alpha",
- * }));
+ * });
  * const server = new packet.Device("server", {
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
