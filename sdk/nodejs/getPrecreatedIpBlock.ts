@@ -15,12 +15,12 @@ import * as utilities from "./utilities";
  * import * as packet from "@pulumi/packet";
  * 
  * const projectId = "<UUID_of_your_project>";
- * const test = pulumi.output(packet.getPrecreatedIpBlock({
+ * const test = packet.getPrecreatedIpBlock({
  *     addressFamily: 6,
  *     facility: "ewr1",
  *     projectId: projectId,
  *     public: true,
- * }));
+ * });
  * const web1 = new packet.Device("web1", {
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
@@ -30,10 +30,10 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * });
  * const fromIpv6Block = new packet.IpAttachment("fromIpv6Block", {
- *     cidrNotation: test.apply(test => (() => {
+ *     cidrNotation: (() => {
  *         throw "tf2pulumi error: NYI: call to cidrsubnet";
  *         return (() => { throw "NYI: call to cidrsubnet"; })();
- *     })()),
+ *     })(),
  *     deviceId: web1.id,
  * });
  * ```
