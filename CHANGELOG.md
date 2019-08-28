@@ -2,8 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
-
+* Upgrade to pulumi-terraform 3f206601e7 
 ---
 
 ## 0.4.10 (2019-08-20)
