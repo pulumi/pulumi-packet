@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 import {BillingCycle, Facility} from "./index";
@@ -39,7 +41,7 @@ export class Volume extends pulumi.CustomResource {
     /**
      * A list of attachments, each with it's own `href` attribute
      */
-    public /*out*/ readonly attachments!: pulumi.Output<{ href: string }[]>;
+    public /*out*/ readonly attachments!: pulumi.Output<outputs.VolumeAttachment[]>;
     /**
      * The billing cycle, defaults to "hourly"
      */
@@ -79,7 +81,7 @@ export class Volume extends pulumi.CustomResource {
     /**
      * Optional list of snapshot policies
      */
-    public readonly snapshotPolicies!: pulumi.Output<{ snapshotCount: number, snapshotFrequency: string }[] | undefined>;
+    public readonly snapshotPolicies!: pulumi.Output<outputs.VolumeSnapshotPolicy[] | undefined>;
     /**
      * The state of the volume
      */
@@ -160,7 +162,7 @@ export interface VolumeState {
     /**
      * A list of attachments, each with it's own `href` attribute
      */
-    readonly attachments?: pulumi.Input<pulumi.Input<{ href?: pulumi.Input<string> }>[]>;
+    readonly attachments?: pulumi.Input<pulumi.Input<inputs.VolumeAttachment>[]>;
     /**
      * The billing cycle, defaults to "hourly"
      */
@@ -200,7 +202,7 @@ export interface VolumeState {
     /**
      * Optional list of snapshot policies
      */
-    readonly snapshotPolicies?: pulumi.Input<pulumi.Input<{ snapshotCount: pulumi.Input<number>, snapshotFrequency: pulumi.Input<string> }>[]>;
+    readonly snapshotPolicies?: pulumi.Input<pulumi.Input<inputs.VolumeSnapshotPolicy>[]>;
     /**
      * The state of the volume
      */
@@ -246,5 +248,5 @@ export interface VolumeArgs {
     /**
      * Optional list of snapshot policies
      */
-    readonly snapshotPolicies?: pulumi.Input<pulumi.Input<{ snapshotCount: pulumi.Input<number>, snapshotFrequency: pulumi.Input<string> }>[]>;
+    readonly snapshotPolicies?: pulumi.Input<pulumi.Input<inputs.VolumeSnapshotPolicy>[]>;
 }

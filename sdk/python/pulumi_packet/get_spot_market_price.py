@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class GetSpotMarketPriceResult:
@@ -45,6 +46,9 @@ class AwaitableGetSpotMarketPriceResult(GetSpotMarketPriceResult):
 def get_spot_market_price(facility=None,plan=None,opts=None):
     """
     Use this data source to get Packet Spot Market Price.
+    
+    :param str facility: Name of the facility.
+    :param str plan: Name of the plan.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
     """
@@ -53,7 +57,7 @@ def get_spot_market_price(facility=None,plan=None,opts=None):
     __args__['facility'] = facility
     __args__['plan'] = plan
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__, opts=opts).value

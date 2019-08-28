@@ -2,41 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
  * You can then use the cidrsubnet TF builtin function to derive subnets.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const projectId = "<UUID_of_your_project>";
- * const test = packet.getPrecreatedIpBlock({
- *     addressFamily: 6,
- *     facility: "ewr1",
- *     projectId: projectId,
- *     public: true,
- * });
- * const web1 = new packet.Device("web1", {
- *     billingCycle: "hourly",
- *     facilities: ["ewr1"],
- *     hostname: "web1",
- *     operatingSystem: "ubuntu1604",
- *     plan: "t1.small.x86",
- *     projectId: projectId,
- * });
- * const fromIpv6Block = new packet.IpAttachment("fromIpv6Block", {
- *     cidrNotation: (() => {
- *         throw "tf2pulumi error: NYI: call to cidrsubnet";
- *         return (() => { throw "NYI: call to cidrsubnet"; })();
- *     })(),
- *     deviceId: web1.id,
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
  */

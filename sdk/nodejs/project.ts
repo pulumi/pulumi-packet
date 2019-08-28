@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -41,7 +43,7 @@ export class Project extends pulumi.CustomResource {
     /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
-    public readonly bgpConfig!: pulumi.Output<{ asn: number, deploymentType: string, maxPrefix: number, md5?: string, status: string } | undefined>;
+    public readonly bgpConfig!: pulumi.Output<outputs.ProjectBgpConfig | undefined>;
     /**
      * The timestamp for when the project was created
      */
@@ -117,7 +119,7 @@ export interface ProjectState {
     /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
-    readonly bgpConfig?: pulumi.Input<{ asn: pulumi.Input<number>, deploymentType: pulumi.Input<string>, maxPrefix?: pulumi.Input<number>, md5?: pulumi.Input<string>, status?: pulumi.Input<string> }>;
+    readonly bgpConfig?: pulumi.Input<inputs.ProjectBgpConfig>;
     /**
      * The timestamp for when the project was created
      */
@@ -151,7 +153,7 @@ export interface ProjectArgs {
     /**
      * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
      */
-    readonly bgpConfig?: pulumi.Input<{ asn: pulumi.Input<number>, deploymentType: pulumi.Input<string>, maxPrefix?: pulumi.Input<number>, md5?: pulumi.Input<string>, status?: pulumi.Input<string> }>;
+    readonly bgpConfig?: pulumi.Input<inputs.ProjectBgpConfig>;
     /**
      * The name of the project
      */

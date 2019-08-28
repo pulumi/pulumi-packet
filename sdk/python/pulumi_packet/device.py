@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class Device(pulumi.CustomResource):
@@ -77,6 +78,12 @@ class Device(pulumi.CustomResource):
     * Private IPv4 at `packet_device.name.network.2`
     Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
     The fields of the network attributes are:
+    
+      * `address` (`str`) - IPv4 or IPv6 address string
+      * `cidr` (`float`) - bit length of the network mask of the address
+      * `family` (`float`) - IP version - "4" or "6"
+      * `gateway` (`str`) - address of router
+      * `public` (`bool`) - whether the address is routable from the Internet
     """
     network_type: pulumi.Output[str]
     operating_system: pulumi.Output[str]
@@ -90,6 +97,13 @@ class Device(pulumi.CustomResource):
     ports: pulumi.Output[list]
     """
     Ports assigned to the device
+    
+      * `bonded` (`bool`) - Whether this port is part of a bond in bonded network setup
+        * `project_id`- The ID of the project the device belongs to
+      * `id` (`str`) - ID of the port
+      * `mac` (`str`) - MAC address assigned to the port
+      * `name` (`str`) - Name of the port (e.g. `eth0`, or `bond0`)
+      * `type` (`str`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
     """
     project_id: pulumi.Output[str]
     """
@@ -244,6 +258,7 @@ class Device(pulumi.CustomResource):
         """
         Get an existing Device resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,10 +302,27 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] updated: The timestamp for the last time the device was updated
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
         :param pulumi.Input[bool] wait_for_reservation_deprovision: Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+        
+        The **networks** object supports the following:
+        
+          * `address` (`pulumi.Input[str]`) - IPv4 or IPv6 address string
+          * `cidr` (`pulumi.Input[float]`) - bit length of the network mask of the address
+          * `family` (`pulumi.Input[float]`) - IP version - "4" or "6"
+          * `gateway` (`pulumi.Input[str]`) - address of router
+          * `public` (`pulumi.Input[bool]`) - whether the address is routable from the Internet
+        
+        The **ports** object supports the following:
+        
+          * `bonded` (`pulumi.Input[bool]`) - Whether this port is part of a bond in bonded network setup
+            * `project_id`- The ID of the project the device belongs to
+          * `id` (`pulumi.Input[str]`) - ID of the port
+          * `mac` (`pulumi.Input[str]`) - MAC address assigned to the port
+          * `name` (`pulumi.Input[str]`) - Name of the port (e.g. `eth0`, or `bond0`)
+          * `type` (`pulumi.Input[str]`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["access_private_ipv4"] = access_private_ipv4

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -74,7 +76,7 @@ export class SpotMarketRequest extends pulumi.CustomResource {
     /**
      * Device parameters. See device resource for details
      */
-    public readonly instanceParameters!: pulumi.Output<{ alwaysPxe?: string, billingCycle: string, description?: string, features?: string[], hostname: string, locked?: string, operatingSystem: string, plan: string, projectSshKeys?: string[], termintationTime: string, userSshKeys?: string[], userdata?: string }>;
+    public readonly instanceParameters!: pulumi.Output<outputs.SpotMarketRequestInstanceParameters>;
     /**
      * Maximum price user is willing to pay per hour per device
      */
@@ -165,7 +167,7 @@ export interface SpotMarketRequestState {
     /**
      * Device parameters. See device resource for details
      */
-    readonly instanceParameters?: pulumi.Input<{ alwaysPxe?: pulumi.Input<string>, billingCycle: pulumi.Input<string>, description?: pulumi.Input<string>, features?: pulumi.Input<pulumi.Input<string>[]>, hostname: pulumi.Input<string>, locked?: pulumi.Input<string>, operatingSystem: pulumi.Input<string>, plan: pulumi.Input<string>, projectSshKeys?: pulumi.Input<pulumi.Input<string>[]>, termintationTime?: pulumi.Input<string>, userSshKeys?: pulumi.Input<pulumi.Input<string>[]>, userdata?: pulumi.Input<string> }>;
+    readonly instanceParameters?: pulumi.Input<inputs.SpotMarketRequestInstanceParameters>;
     /**
      * Maximum price user is willing to pay per hour per device
      */
@@ -199,7 +201,7 @@ export interface SpotMarketRequestArgs {
     /**
      * Device parameters. See device resource for details
      */
-    readonly instanceParameters: pulumi.Input<{ alwaysPxe?: pulumi.Input<string>, billingCycle: pulumi.Input<string>, description?: pulumi.Input<string>, features?: pulumi.Input<pulumi.Input<string>[]>, hostname: pulumi.Input<string>, locked?: pulumi.Input<string>, operatingSystem: pulumi.Input<string>, plan: pulumi.Input<string>, projectSshKeys?: pulumi.Input<pulumi.Input<string>[]>, termintationTime?: pulumi.Input<string>, userSshKeys?: pulumi.Input<pulumi.Input<string>[]>, userdata?: pulumi.Input<string> }>;
+    readonly instanceParameters: pulumi.Input<inputs.SpotMarketRequestInstanceParameters>;
     /**
      * Maximum price user is willing to pay per hour per device
      */
