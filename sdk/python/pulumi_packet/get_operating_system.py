@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class GetOperatingSystemResult:
@@ -53,6 +54,11 @@ class AwaitableGetOperatingSystemResult(GetOperatingSystemResult):
 def get_operating_system(distro=None,name=None,provisionable_on=None,version=None,opts=None):
     """
     Use this data source to get Packet Operating System image.
+    
+    :param str distro: Name of the OS distribution.
+    :param str name: Name or part of the name of the distribution. Case insensitive.
+    :param str provisionable_on: Plan name.
+    :param str version: Version of the distribution
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
     """
@@ -63,7 +69,7 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
     __args__['provisionableOn'] = provisionable_on
     __args__['version'] = version
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts).value

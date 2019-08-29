@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Plan} from "./index";
@@ -217,7 +219,7 @@ export class Device extends pulumi.CustomResource {
      * Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
      * The fields of the network attributes are:
      */
-    public /*out*/ readonly networks!: pulumi.Output<{ address: string, cidr: number, family: number, gateway: string, public: boolean }[]>;
+    public /*out*/ readonly networks!: pulumi.Output<outputs.DeviceNetwork[]>;
     public readonly networkType!: pulumi.Output<NetworkType | undefined>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -230,7 +232,7 @@ export class Device extends pulumi.CustomResource {
     /**
      * Ports assigned to the device
      */
-    public /*out*/ readonly ports!: pulumi.Output<{ bonded: boolean, id: string, mac: string, name: string, type: string }[]>;
+    public /*out*/ readonly ports!: pulumi.Output<outputs.DevicePort[]>;
     /**
      * The id of the project in which to create the device
      */
@@ -454,7 +456,7 @@ export interface DeviceState {
      * Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
      * The fields of the network attributes are:
      */
-    readonly networks?: pulumi.Input<pulumi.Input<{ address?: pulumi.Input<string>, cidr?: pulumi.Input<number>, family?: pulumi.Input<number>, gateway?: pulumi.Input<string>, public?: pulumi.Input<boolean> }>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputs.DeviceNetwork>[]>;
     readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -467,7 +469,7 @@ export interface DeviceState {
     /**
      * Ports assigned to the device
      */
-    readonly ports?: pulumi.Input<pulumi.Input<{ bonded?: pulumi.Input<boolean>, id?: pulumi.Input<string>, mac?: pulumi.Input<string>, name?: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
+    readonly ports?: pulumi.Input<pulumi.Input<inputs.DevicePort>[]>;
     /**
      * The id of the project in which to create the device
      */

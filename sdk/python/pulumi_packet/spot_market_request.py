@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class SpotMarketRequest(pulumi.CustomResource):
@@ -24,6 +25,19 @@ class SpotMarketRequest(pulumi.CustomResource):
     instance_parameters: pulumi.Output[dict]
     """
     Device parameters. See device resource for details
+    
+      * `always_pxe` (`str`)
+      * `billing_cycle` (`str`)
+      * `description` (`str`)
+      * `features` (`list`)
+      * `hostname` (`str`)
+      * `locked` (`str`)
+      * `operating_system` (`str`)
+      * `plan` (`str`)
+      * `projectSshKeys` (`list`)
+      * `termintationTime` (`str`)
+      * `userSshKeys` (`list`)
+      * `userdata` (`str`)
     """
     max_bid_price: pulumi.Output[float]
     """
@@ -51,6 +65,21 @@ class SpotMarketRequest(pulumi.CustomResource):
         :param pulumi.Input[float] max_bid_price: Maximum price user is willing to pay per hour per device
         :param pulumi.Input[str] project_id: Project ID
         :param pulumi.Input[bool] wait_for_devices: On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed
+        
+        The **instance_parameters** object supports the following:
+        
+          * `always_pxe` (`pulumi.Input[str]`)
+          * `billing_cycle` (`pulumi.Input[str]`)
+          * `description` (`pulumi.Input[str]`)
+          * `features` (`pulumi.Input[list]`)
+          * `hostname` (`pulumi.Input[str]`)
+          * `locked` (`pulumi.Input[str]`)
+          * `operating_system` (`pulumi.Input[str]`)
+          * `plan` (`pulumi.Input[str]`)
+          * `projectSshKeys` (`pulumi.Input[list]`)
+          * `termintationTime` (`pulumi.Input[str]`)
+          * `userSshKeys` (`pulumi.Input[list]`)
+          * `userdata` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/spot_market_request.html.markdown.
         """
@@ -101,6 +130,7 @@ class SpotMarketRequest(pulumi.CustomResource):
         """
         Get an existing SpotMarketRequest resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -111,10 +141,25 @@ class SpotMarketRequest(pulumi.CustomResource):
         :param pulumi.Input[float] max_bid_price: Maximum price user is willing to pay per hour per device
         :param pulumi.Input[str] project_id: Project ID
         :param pulumi.Input[bool] wait_for_devices: On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed
+        
+        The **instance_parameters** object supports the following:
+        
+          * `always_pxe` (`pulumi.Input[str]`)
+          * `billing_cycle` (`pulumi.Input[str]`)
+          * `description` (`pulumi.Input[str]`)
+          * `features` (`pulumi.Input[list]`)
+          * `hostname` (`pulumi.Input[str]`)
+          * `locked` (`pulumi.Input[str]`)
+          * `operating_system` (`pulumi.Input[str]`)
+          * `plan` (`pulumi.Input[str]`)
+          * `projectSshKeys` (`pulumi.Input[list]`)
+          * `termintationTime` (`pulumi.Input[str]`)
+          * `userSshKeys` (`pulumi.Input[list]`)
+          * `userdata` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/spot_market_request.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["devices_max"] = devices_max

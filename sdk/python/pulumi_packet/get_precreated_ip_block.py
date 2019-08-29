@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from . import utilities, tables
 
 class GetPrecreatedIpBlockResult:
@@ -90,6 +91,12 @@ def get_precreated_ip_block(address_family=None,facility=None,global_=None,proje
     """
     Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
     You can then use the cidrsubnet TF builtin function to derive subnets.
+    
+    :param float address_family: 4 or 6, depending on which block you are looking for.
+    :param str facility: Facility of the searched block. (Optional) Only allowed for non-global blocks.
+    :param bool global_: Whether to look for global block. Default is false for backward compatibility.
+    :param str project_id: ID of the project where the searched block should be.
+    :param bool public: Whether to look for public or private block. 
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
     """
@@ -101,7 +108,7 @@ def get_precreated_ip_block(address_family=None,facility=None,global_=None,proje
     __args__['projectId'] = project_id
     __args__['public'] = public
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock', __args__, opts=opts).value
