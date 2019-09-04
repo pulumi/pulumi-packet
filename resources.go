@@ -169,11 +169,12 @@ func Provider() tfbridge.ProviderInfo {
 			"packet_operating_system":    {Tok: makeDataSource(mainMod, "getOperatingSystem")},
 			"packet_precreated_ip_block": {Tok: makeDataSource(mainMod, "getPrecreatedIpBlock")},
 			"packet_spot_market_price":   {Tok: makeDataSource(mainMod, "getSpotMarketPrice")},
+			"packet_device":              {Tok: makeDataSource(mainMod, "getDevice")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^1.0.0-beta",
+				"@pulumi/pulumi": "^1.0.0",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
@@ -197,7 +198,7 @@ func Provider() tfbridge.ProviderInfo {
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
-				"pulumi": ">=0.17.28,<2.0.0",
+				"pulumi": ">=1.0.0,<2.0.0",
 			},
 		},
 	}

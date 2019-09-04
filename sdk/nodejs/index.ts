@@ -7,6 +7,7 @@ export * from "./billingCycle";
 export * from "./connect";
 export * from "./device";
 export * from "./facility";
+export * from "./getDevice";
 export * from "./getOperatingSystem";
 export * from "./getPrecreatedIpBlock";
 export * from "./getSpotMarketPrice";

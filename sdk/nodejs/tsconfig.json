@@ -20,6 +20,7 @@
         "connect.ts",
         "device.ts",
         "facility.ts",
+        "getDevice.ts",
         "getOperatingSystem.ts",
         "getPrecreatedIpBlock.ts",
         "getSpotMarketPrice.ts",
