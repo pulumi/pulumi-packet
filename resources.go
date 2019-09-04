@@ -169,6 +169,7 @@ func Provider() tfbridge.ProviderInfo {
 			"packet_operating_system":    {Tok: makeDataSource(mainMod, "getOperatingSystem")},
 			"packet_precreated_ip_block": {Tok: makeDataSource(mainMod, "getPrecreatedIpBlock")},
 			"packet_spot_market_price":   {Tok: makeDataSource(mainMod, "getSpotMarketPrice")},
+			"packet_device":              {Tok: makeDataSource(mainMod, "getDevice")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

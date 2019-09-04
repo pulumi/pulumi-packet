@@ -51,6 +51,52 @@ export interface DevicePort {
     type: string;
 }
 
+export interface GetDeviceNetwork {
+    /**
+     * IPv4 or IPv6 address string
+     */
+    address: string;
+    /**
+     * Bit length of the network mask of the address
+     */
+    cidr: number;
+    /**
+     * IP version - "4" or "6"
+     */
+    family: number;
+    /**
+     * Address of router
+     */
+    gateway: string;
+    /**
+     * Whether the address is routable from the Internet
+     */
+    public: boolean;
+}
+
+export interface GetDevicePort {
+    /**
+     * Whether this port is part of a bond in bonded network setup
+     */
+    bonded: boolean;
+    /**
+     * ID of the port
+     */
+    id: string;
+    /**
+     * MAC address assigned to the port
+     */
+    mac: string;
+    /**
+     * Name of the port (e.g. `eth0`, or `bond0`)
+     */
+    name: string;
+    /**
+     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     */
+    type: string;
+}
+
 export interface ProjectBgpConfig {
     asn: number;
     deploymentType: string;
