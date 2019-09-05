@@ -8,6 +8,7 @@ _(none)_
 
 ## 0.4.12 (2019-09-05)
 * Upgrade to Pulumi v1.0.0
+* Include missing support for `packet.getDevice` datasource
 
 ## 0.4.11 (2019-08-29)
 * Upgrade to pulumi-terraform 3f206601e7
