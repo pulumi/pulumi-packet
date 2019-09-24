@@ -189,7 +189,7 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly facilities!: pulumi.Output<Facility[]>;
     /**
-     * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+     * The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
     public readonly hardwareReservationId!: pulumi.Output<string>;
     /**
@@ -234,7 +234,7 @@ export class Device extends pulumi.CustomResource {
      */
     public /*out*/ readonly ports!: pulumi.Output<outputs.DevicePort[]>;
     /**
-     * The id of the project in which to create the device
+     * The ID of the project in which to create the device
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -426,7 +426,7 @@ export interface DeviceState {
      */
     readonly facilities?: pulumi.Input<pulumi.Input<Facility>[]>;
     /**
-     * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+     * The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
     readonly hardwareReservationId?: pulumi.Input<string>;
     /**
@@ -471,7 +471,7 @@ export interface DeviceState {
      */
     readonly ports?: pulumi.Input<pulumi.Input<inputs.DevicePort>[]>;
     /**
-     * The id of the project in which to create the device
+     * The ID of the project in which to create the device
      */
     readonly projectId?: pulumi.Input<string>;
     /**
@@ -540,7 +540,7 @@ export interface DeviceArgs {
      */
     readonly facilities: pulumi.Input<pulumi.Input<Facility>[]>;
     /**
-     * The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+     * The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
      */
     readonly hardwareReservationId?: pulumi.Input<string>;
     /**
@@ -568,7 +568,7 @@ export interface DeviceArgs {
      */
     readonly plan: pulumi.Input<Plan>;
     /**
-     * The id of the project in which to create the device
+     * The ID of the project in which to create the device
      */
     readonly projectId: pulumi.Input<string>;
     /**

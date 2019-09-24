@@ -49,7 +49,7 @@ class Device(pulumi.CustomResource):
     """
     hardware_reservation_id: pulumi.Output[str]
     """
-    The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+    The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
     """
     hostname: pulumi.Output[str]
     """
@@ -107,7 +107,7 @@ class Device(pulumi.CustomResource):
     """
     project_id: pulumi.Output[str]
     """
-    The id of the project in which to create the device
+    The ID of the project in which to create the device
     """
     project_ssh_key_ids: pulumi.Output[list]
     """
@@ -167,7 +167,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] billing_cycle: monthly or hourly
         :param pulumi.Input[str] description: Description string for the device
         :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] hardware_reservation_id: The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        :param pulumi.Input[str] hardware_reservation_id: The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
         :param pulumi.Input[str] hostname: The device name
         :param pulumi.Input[list] ip_address_types: A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
@@ -176,7 +176,7 @@ class Device(pulumi.CustomResource):
                doc.
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] project_id: The id of the project in which to create the device
+        :param pulumi.Input[str] project_id: The ID of the project in which to create the device
         :param pulumi.Input[list] project_ssh_key_ids: Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
         :param pulumi.Input[float] public_ipv4_subnet_size: Size of allocated subnet, more
                information is in the
@@ -272,7 +272,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] deployed_facility: The facility where the device is deployed.
         :param pulumi.Input[str] description: Description string for the device
         :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] hardware_reservation_id: The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        :param pulumi.Input[str] hardware_reservation_id: The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
         :param pulumi.Input[str] hostname: The device name
         :param pulumi.Input[list] ip_address_types: A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
@@ -289,7 +289,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[list] ports: Ports assigned to the device
-        :param pulumi.Input[str] project_id: The id of the project in which to create the device
+        :param pulumi.Input[str] project_id: The ID of the project in which to create the device
         :param pulumi.Input[list] project_ssh_key_ids: Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
         :param pulumi.Input[float] public_ipv4_subnet_size: Size of allocated subnet, more
                information is in the
