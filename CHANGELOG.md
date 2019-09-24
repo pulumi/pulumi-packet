@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.4.0 of the Packet Terraform Provider
+_(none)_
 
 ---
+
+## 0.4.13 (2019-09-24)
+* Upgrade to v2.4.0 of the Packet Terraform Provider
 
 ## 0.4.12 (2019-09-05)
 * Upgrade to Pulumi v1.0.0
