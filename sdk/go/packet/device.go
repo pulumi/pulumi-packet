@@ -200,7 +200,7 @@ func (r *Device) Facilities() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["facilities"])
 }
 
-// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 func (r *Device) HardwareReservationId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["hardwareReservationId"])
 }
@@ -257,7 +257,7 @@ func (r *Device) Ports() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["ports"])
 }
 
-// The id of the project in which to create the device
+// The ID of the project in which to create the device
 func (r *Device) ProjectId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["projectId"])
 }
@@ -335,7 +335,7 @@ type DeviceState struct {
 	Description interface{}
 	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
-	// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+	// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
@@ -362,7 +362,7 @@ type DeviceState struct {
 	Plan interface{}
 	// Ports assigned to the device
 	Ports interface{}
-	// The id of the project in which to create the device
+	// The ID of the project in which to create the device
 	ProjectId interface{}
 	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds interface{}
@@ -399,7 +399,7 @@ type DeviceArgs struct {
 	Description interface{}
 	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
-	// The id of hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+	// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
@@ -415,7 +415,7 @@ type DeviceArgs struct {
 	OperatingSystem interface{}
 	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
 	Plan interface{}
-	// The id of the project in which to create the device
+	// The ID of the project in which to create the device
 	ProjectId interface{}
 	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds interface{}

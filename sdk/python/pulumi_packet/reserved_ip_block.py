@@ -23,6 +23,10 @@ class ReservedIpBlock(pulumi.CustomResource):
     """
     Address and mask in CIDR notation, e.g. "147.229.15.30/31"
     """
+    description: pulumi.Output[str]
+    """
+    Arbitrary description
+    """
     facility: pulumi.Output[str]
     """
     Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
@@ -58,7 +62,7 @@ class ReservedIpBlock(pulumi.CustomResource):
     """
     Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
     """
-    def __init__(__self__, resource_name, opts=None, facility=None, project_id=None, quantity=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, quantity=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to create and manage blocks of reserved IP addresses in a project.
         
@@ -75,6 +79,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Arbitrary description
         :param pulumi.Input[str] facility: Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
         :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
@@ -99,6 +104,7 @@ class ReservedIpBlock(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['description'] = description
             __props__['facility'] = facility
             if project_id is None:
                 raise TypeError("Missing required property 'project_id'")
@@ -125,7 +131,7 @@ class ReservedIpBlock(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address=None, address_family=None, cidr=None, cidr_notation=None, facility=None, gateway=None, global_=None, manageable=None, management=None, netmask=None, network=None, project_id=None, public=None, quantity=None, type=None):
+    def get(resource_name, id, opts=None, address=None, address_family=None, cidr=None, cidr_notation=None, description=None, facility=None, gateway=None, global_=None, manageable=None, management=None, netmask=None, network=None, project_id=None, public=None, quantity=None, type=None):
         """
         Get an existing ReservedIpBlock resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -136,6 +142,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.Input[float] address_family: Address family as integer (4 or 6)
         :param pulumi.Input[float] cidr: length of CIDR prefix of the block as integer
         :param pulumi.Input[str] cidr_notation: Address and mask in CIDR notation, e.g. "147.229.15.30/31"
+        :param pulumi.Input[str] description: Arbitrary description
         :param pulumi.Input[str] facility: Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
         :param pulumi.Input[bool] global_: boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
         :param pulumi.Input[str] netmask: Mask in decimal notation, e.g. "255.255.255.0"
@@ -154,6 +161,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         __props__["address_family"] = address_family
         __props__["cidr"] = cidr
         __props__["cidr_notation"] = cidr_notation
+        __props__["description"] = description
         __props__["facility"] = facility
         __props__["gateway"] = gateway
         __props__["global_"] = global_

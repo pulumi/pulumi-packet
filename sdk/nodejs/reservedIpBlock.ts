@@ -65,6 +65,10 @@ export class ReservedIpBlock extends pulumi.CustomResource {
      */
     public /*out*/ readonly cidrNotation!: pulumi.Output<string>;
     /**
+     * Arbitrary description
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
     public readonly facility!: pulumi.Output<Facility | undefined>;
@@ -116,6 +120,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             inputs["addressFamily"] = state ? state.addressFamily : undefined;
             inputs["cidr"] = state ? state.cidr : undefined;
             inputs["cidrNotation"] = state ? state.cidrNotation : undefined;
+            inputs["description"] = state ? state.description : undefined;
             inputs["facility"] = state ? state.facility : undefined;
             inputs["gateway"] = state ? state.gateway : undefined;
             inputs["global"] = state ? state.global : undefined;
@@ -135,6 +140,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
             if (!args || args.quantity === undefined) {
                 throw new Error("Missing required property 'quantity'");
             }
+            inputs["description"] = args ? args.description : undefined;
             inputs["facility"] = args ? args.facility : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["quantity"] = args ? args.quantity : undefined;
@@ -180,6 +186,10 @@ export interface ReservedIpBlockState {
      */
     readonly cidrNotation?: pulumi.Input<string>;
     /**
+     * Arbitrary description
+     */
+    readonly description?: pulumi.Input<string>;
+    /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */
     readonly facility?: pulumi.Input<Facility>;
@@ -220,6 +230,10 @@ export interface ReservedIpBlockState {
  * The set of arguments for constructing a ReservedIpBlock resource.
  */
 export interface ReservedIpBlockArgs {
+    /**
+     * Arbitrary description
+     */
+    readonly description?: pulumi.Input<string>;
     /**
      * Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
      */

@@ -594,6 +594,8 @@ github.com/oxtoacart/bpool v0.0.0-20150712133111-4e1c5567d7c2/go.mod h1:L3UMQOTh
 github.com/packer-community/winrmcp v0.0.0-20180102160824-81144009af58/go.mod h1:f6Izs6JvFTdnRbziASagjZ2vmf55NSIkC/weStxCHqk=
 github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2 h1:072axQiUaVldPIo1azOPcjLloGbRaR7O9ERUrT5i10E=
 github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
+github.com/packethost/packngo v0.1.1-0.20190814142431-3f3bfdfcb88b h1:FNWDRwKg4NBhALev6jMyaxbf7Y0H2ay5+LqrYo7I7cA=
+github.com/packethost/packngo v0.1.1-0.20190814142431-3f3bfdfcb88b/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
 github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pascaldekloe/goe v0.1.0/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/patrickmn/go-cache v2.1.0+incompatible/go.mod h1:3Qf8kWWT7OJRJbdiICTKqZju1ZixQ/KpMGzzAfe6+WQ=
@@ -718,6 +720,8 @@ github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07/go.mod h1:kDXzergiv9cb
 github.com/terraform-providers/terraform-provider-openstack v1.15.0/go.mod h1:2aQ6n/BtChAl1y2S60vebhyJyZXBsuAI5G4+lHrT1Ew=
 github.com/terraform-providers/terraform-provider-packet v0.0.0-20190807130544-df52af91cdf1 h1:8JWcbtDCEsV1fCi2+yH4YDT3c+Eyk/BT5t1D5+Du6nA=
 github.com/terraform-providers/terraform-provider-packet v0.0.0-20190807130544-df52af91cdf1/go.mod h1:SEFR6rB+P05ICssmT85GMFTj3UmLGrwXC+J34D5mZ3Y=
+github.com/terraform-providers/terraform-provider-packet v0.0.0-20190923161718-07e5cb337dd6 h1:SeLUkpNsZQn4hWStLdd8BOOx1C+nEh/nuAH5PG4BPQE=
+github.com/terraform-providers/terraform-provider-packet v0.0.0-20190923161718-07e5cb337dd6/go.mod h1:s2bYwgZxIrg3wuCn16aCOnUTJ5TNIyKiUX/HvMuIMOc=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e h1:T5PdfK/M1xyrHwynxMIVMWLS7f/qHwfslZphxtGnw7s=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e/go.mod h1:XDKHRm5ThF8YJjx001LtgelzsoaEcvnA7lVWz9EeX3g=
 github.com/tidwall/pretty v0.0.0-20190325153808-1166b9ac2b65/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=

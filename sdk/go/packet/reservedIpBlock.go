@@ -37,11 +37,13 @@ func NewReservedIpBlock(ctx *pulumi.Context,
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
+		inputs["description"] = nil
 		inputs["facility"] = nil
 		inputs["projectId"] = nil
 		inputs["quantity"] = nil
 		inputs["type"] = nil
 	} else {
+		inputs["description"] = args.Description
 		inputs["facility"] = args.Facility
 		inputs["projectId"] = args.ProjectId
 		inputs["quantity"] = args.Quantity
@@ -75,6 +77,7 @@ func GetReservedIpBlock(ctx *pulumi.Context,
 		inputs["addressFamily"] = state.AddressFamily
 		inputs["cidr"] = state.Cidr
 		inputs["cidrNotation"] = state.CidrNotation
+		inputs["description"] = state.Description
 		inputs["facility"] = state.Facility
 		inputs["gateway"] = state.Gateway
 		inputs["global"] = state.Global
@@ -121,6 +124,11 @@ func (r *ReservedIpBlock) Cidr() *pulumi.IntOutput {
 // Address and mask in CIDR notation, e.g. "147.229.15.30/31"
 func (r *ReservedIpBlock) CidrNotation() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["cidrNotation"])
+}
+
+// Arbitrary description
+func (r *ReservedIpBlock) Description() *pulumi.StringOutput {
+	return (*pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
@@ -184,6 +192,8 @@ type ReservedIpBlockState struct {
 	Cidr interface{}
 	// Address and mask in CIDR notation, e.g. "147.229.15.30/31"
 	CidrNotation interface{}
+	// Arbitrary description
+	Description interface{}
 	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility interface{}
 	Gateway interface{}
@@ -207,6 +217,8 @@ type ReservedIpBlockState struct {
 
 // The set of arguments for constructing a ReservedIpBlock resource.
 type ReservedIpBlockArgs struct {
+	// Arbitrary description
+	Description interface{}
 	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility interface{}
 	// The packet project ID where to allocate the address block
