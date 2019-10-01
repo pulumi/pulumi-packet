@@ -23,6 +23,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
+ * const testVlan = new packet.Vlan("test", {
+ *     description: "VLAN in New Jersey",
+ *     facility: "ewr1",
+ *     projectId: local_project_id,
+ * });
  * const testDevice = new packet.Device("test", {
  *     billingCycle: "hourly",
  *     facilities: ["ewr1"],
@@ -32,10 +37,10 @@ import * as utilities from "./utilities";
  *     plan: "m1.xlarge.x86",
  *     projectId: local_project_id,
  * });
- * const testVlan = new packet.Vlan("test", {
- *     description: "VLAN in New Jersey",
- *     facility: "ewr1",
- *     projectId: local_project_id,
+ * const testPortVlanAttachment = new packet.PortVlanAttachment("test", {
+ *     deviceId: testDevice.id,
+ *     portName: "eth1",
+ *     vlanVnid: testVlan.vxlan,
  * });
  * const test1Vlan = new packet.Vlan("test1", {
  *     description: "VLAN in New Jersey",
@@ -46,11 +51,6 @@ import * as utilities from "./utilities";
  *     description: "VLAN in New Jersey",
  *     facility: "ewr1",
  *     projectId: local_project_id,
- * });
- * const testPortVlanAttachment = new packet.PortVlanAttachment("test", {
- *     deviceId: testDevice.id,
- *     portName: "eth1",
- *     vlanVnid: testVlan.vxlan,
  * });
  * const test1PortVlanAttachment = new packet.PortVlanAttachment("test1", {
  *     deviceId: testDevice.id,
