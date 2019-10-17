@@ -20,26 +20,39 @@ import (
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/testing/integration"
-
-	"github.com/stretchr/testify/assert"
 )
 
-var base = integration.ProgramTestOptions{
-	ExpectRefreshChanges: true,
-	// Note: no Config! This package should be usable without any config.
+func TestAccWebserver(t *testing.T) {
+	test := getJSBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "webserver"),
+		})
+
+	integration.ProgramTest(t, &test)
 }
 
-func TestWebserver(t *testing.T) {
+func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
-	if !assert.NoError(t, err) {
+	if err != nil {
 		t.FailNow()
 	}
 
-	opts := base.With(integration.ProgramTestOptions{
+	return cwd
+}
+
+func getBaseOptions() integration.ProgramTestOptions {
+	return integration.ProgramTestOptions{
+		ExpectRefreshChanges: true,
+	}
+}
+
+func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	base := getBaseOptions()
+	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"@pulumi/packet",
 		},
-		Dir: path.Join(cwd, "webserver"),
 	})
-	integration.ProgramTest(t, &opts)
+
+	return baseJS
 }
