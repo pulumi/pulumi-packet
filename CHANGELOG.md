@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Regenerate SDK based on tf2pulumi 0.6.0
-* Upgrade to v2.5.0 of the Packet Terraform Provider
+_(none)_
 
 ---
+
+## 1.0.0 (2019-10-18)
+* Regenerate SDK based on tf2pulumi 0.6.0
+* Upgrade to v2.5.0 of the Packet Terraform Provider
 
 ## 0.4.13 (2019-09-24)
 * Upgrade to v2.4.0 of the Packet Terraform Provider
