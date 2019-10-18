@@ -36,9 +36,8 @@ class ProjectSshKey(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, name=None, project_id=None, public_key=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a Packet project SSH key resource to manage project-specific SSH keys. On contrary to user SSH keys, project SSH keys are used to exclusively populate `authorized_keys` in new devices.
-        
-        If you supply a list of project SSH keys when creating a new device, only the listed keys are used; user SSH keys are ignored.
+        Provides a Packet project SSH key resource to manage project-specific SSH keys.
+        Project SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
