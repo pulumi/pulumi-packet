@@ -48,6 +48,15 @@ To use from Go, use ``go get`` to grab the latest version of the library
 
    $ go get github.com/pulumi/pulumi-packet/sdk/go/...
 
+Configuration
+-------------
+
+The following configuration points are available:
+
+-  ``packet:authToken`` - (Required) This is your Packet API Auth token.
+   This can also be specified with the ``PACKET_AUTH_TOKEN`` shell
+   environment variable.
+
 Reference
 ---------
 
