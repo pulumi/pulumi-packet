@@ -15,7 +15,8 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
  */
-export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> & GetDeviceResult {
+export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> & GetDeviceResult {
+    args = args || {};
     if (!opts) {
         opts = {}
     }
@@ -24,7 +25,7 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
         opts.version = utilities.getVersion();
     }
     const promise: Promise<GetDeviceResult> = pulumi.runtime.invoke("packet:index/getDevice:getDevice", {
-        "description": args.description,
+        "deviceId": args.deviceId,
         "hostname": args.hostname,
         "projectId": args.projectId,
     }, opts);
@@ -36,15 +37,18 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getDevice.
  */
 export interface GetDeviceArgs {
-    readonly description?: string;
+    /**
+     * Device ID
+     */
+    readonly deviceId?: string;
     /**
      * The device name
      */
-    readonly hostname: string;
+    readonly hostname?: string;
     /**
      * The id of the project in which the devices exists
      */
-    readonly projectId: string;
+    readonly projectId?: string;
 }
 
 /**
@@ -71,7 +75,8 @@ export interface GetDeviceResult {
     /**
      * Description string for the device
      */
-    readonly description?: string;
+    readonly description: string;
+    readonly deviceId: string;
     /**
      * The facility where the device is deployed.
      */
@@ -81,10 +86,6 @@ export interface GetDeviceResult {
      */
     readonly hardwareReservationId: string;
     readonly hostname: string;
-    /**
-     * ID of the port
-     */
-    readonly id: string;
     readonly ipxeScriptUrl: string;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
@@ -130,4 +131,8 @@ export interface GetDeviceResult {
      * Tags attached to the device
      */
     readonly tags: string[];
+    /**
+     * id is the provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
 }
