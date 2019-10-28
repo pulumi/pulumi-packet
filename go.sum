@@ -202,6 +202,8 @@ github.com/hashicorp/go-plugin v1.0.1 h1:4OtAfUGbnKC6yS48p0CtMX2oFYtzFZVv6rok3cR
 github.com/hashicorp/go-plugin v1.0.1/go.mod h1:++UyYGoz3o5w9ZzAdZxtQKrWWP+iqPBn3cQptSMzBuY=
 github.com/hashicorp/go-retryablehttp v0.5.3 h1:QlWt0KvWT0lq8MFppF9tsJGF+ynG7ztc2KIPhzRGk7s=
 github.com/hashicorp/go-retryablehttp v0.5.3/go.mod h1:9B5zBasrRhHXnJnui7y6sL7es7NDiJgTc6Er0maI1Xs=
+github.com/hashicorp/go-retryablehttp v0.6.2 h1:bHM2aVXwBtBJWxHtkSrWuI4umABCUczs52eiUS9nSiw=
+github.com/hashicorp/go-retryablehttp v0.6.2/go.mod h1:gEx6HMUGxYYhJScX7W1Il64m6cc2C1mDaW3NQ9sY1FY=
 github.com/hashicorp/go-rootcerts v1.0.0 h1:Rqb66Oo1X/eSV1x66xbDccZjhJigjg0+e82kpwzSwCI=
 github.com/hashicorp/go-rootcerts v1.0.0/go.mod h1:K6zTfqpRlCUIjkwsN4Z+hiSfzSTQa6eBIzfwKfwNnHU=
 github.com/hashicorp/go-safetemp v1.0.0 h1:2HR189eFNrjHQyENnQMMpCiBAsRxzbTMIgBhEyExpmo=
@@ -326,6 +328,8 @@ github.com/packethost/packngo v0.1.1-0.20190410075950-a02c426e4888 h1:ARzSqjQJcS
 github.com/packethost/packngo v0.1.1-0.20190410075950-a02c426e4888/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
 github.com/packethost/packngo v0.1.1-0.20190814142431-3f3bfdfcb88b h1:FNWDRwKg4NBhALev6jMyaxbf7Y0H2ay5+LqrYo7I7cA=
 github.com/packethost/packngo v0.1.1-0.20190814142431-3f3bfdfcb88b/go.mod h1:RQHg5xR1F614BwJyepfMqrKN+32IH0i7yX+ey43rEeQ=
+github.com/packethost/packngo v0.2.1-0.20191025141128-714bffd09a95 h1:BUvesp+suB4QFzJWBk+6Q7mAQIKShRv+5G+KfOY8sVk=
+github.com/packethost/packngo v0.2.1-0.20191025141128-714bffd09a95/go.mod h1:lTgI4wr0T6uAIArEQtlx1wu+n0cEy+opDJpIBAHvQ34=
 github.com/pascaldekloe/goe v0.1.0/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pelletier/go-buffruneio v0.2.0 h1:U4t4R6YkofJ5xHm3dJzuRpPZ0mr5MMCoAWooScCR7aA=
 github.com/pelletier/go-buffruneio v0.2.0/go.mod h1:JkE26KsDizTr40EUHkXVtNPvgGtbSNq5BcowyYOWdKo=
@@ -394,6 +398,8 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/terraform-providers/terraform-provider-packet v0.0.0-20191018063241-46e94569ebb7 h1:cEvthf1KVC6cShJ8xH2V64BWNaF/NMt1FTgUYHwzgZc=
 github.com/terraform-providers/terraform-provider-packet v0.0.0-20191018063241-46e94569ebb7/go.mod h1:9h0SeLEtPoJH8aAGdDX+xVqhurfd+/xVhB4pIEGjEKI=
+github.com/terraform-providers/terraform-provider-packet v0.0.0-20191028153034-aae6e1d44caa h1:e+BseSNxFhgSNtaV6uzA426FOBbFc95vtWZvnPBcE5g=
+github.com/terraform-providers/terraform-provider-packet v0.0.0-20191028153034-aae6e1d44caa/go.mod h1:mxo53tCqS6/d1vEa3A90Z1tSutyrkPPHf2kTpFPobuk=
 github.com/terraform-providers/terraform-provider-packet v1.7.2 h1:hYN7YsuR9dp4P/MPRRnh5m5J1/tw53BbXiLDlsDTWw4=
 github.com/terraform-providers/terraform-provider-packet v1.7.2/go.mod h1:/k5o0Y30me0844mFLk5hM0TnP7OM3v1FC1hu7ZTTrNM=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e h1:T5PdfK/M1xyrHwynxMIVMWLS7f/qHwfslZphxtGnw7s=
