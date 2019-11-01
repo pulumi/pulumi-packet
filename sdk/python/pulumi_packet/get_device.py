@@ -13,7 +13,7 @@ class GetDeviceResult:
     """
     A collection of values returned by getDevice.
     """
-    def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, facility=None, hardware_reservation_id=None, hostname=None, id=None, ipxe_script_url=None, networks=None, network_type=None, operating_system=None, plan=None, ports=None, project_id=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None):
+    def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, device_id=None, facility=None, hardware_reservation_id=None, hostname=None, ipxe_script_url=None, networks=None, network_type=None, operating_system=None, plan=None, ports=None, project_id=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, id=None):
         if access_private_ipv4 and not isinstance(access_private_ipv4, str):
             raise TypeError("Expected argument 'access_private_ipv4' to be a str")
         __self__.access_private_ipv4 = access_private_ipv4
@@ -47,6 +47,9 @@ class GetDeviceResult:
         """
         Description string for the device
         """
+        if device_id and not isinstance(device_id, str):
+            raise TypeError("Expected argument 'device_id' to be a str")
+        __self__.device_id = device_id
         if facility and not isinstance(facility, str):
             raise TypeError("Expected argument 'facility' to be a str")
         __self__.facility = facility
@@ -62,12 +65,6 @@ class GetDeviceResult:
         if hostname and not isinstance(hostname, str):
             raise TypeError("Expected argument 'hostname' to be a str")
         __self__.hostname = hostname
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        ID of the port
-        """
         if ipxe_script_url and not isinstance(ipxe_script_url, str):
             raise TypeError("Expected argument 'ipxe_script_url' to be a str")
         __self__.ipxe_script_url = ipxe_script_url
@@ -139,6 +136,12 @@ class GetDeviceResult:
         """
         Tags attached to the device
         """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
 class AwaitableGetDeviceResult(GetDeviceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -151,10 +154,10 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             always_pxe=self.always_pxe,
             billing_cycle=self.billing_cycle,
             description=self.description,
+            device_id=self.device_id,
             facility=self.facility,
             hardware_reservation_id=self.hardware_reservation_id,
             hostname=self.hostname,
-            id=self.id,
             ipxe_script_url=self.ipxe_script_url,
             networks=self.networks,
             network_type=self.network_type,
@@ -167,9 +170,10 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             ssh_key_ids=self.ssh_key_ids,
             state=self.state,
             storage=self.storage,
-            tags=self.tags)
+            tags=self.tags,
+            id=self.id)
 
-def get_device(description=None,hostname=None,project_id=None,opts=None):
+def get_device(device_id=None,hostname=None,project_id=None,opts=None):
     """
     Provides a Packet device datasource.
     
@@ -177,6 +181,7 @@ def get_device(description=None,hostname=None,project_id=None,opts=None):
      the raw state as plain-text.
     [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
     
+    :param str device_id: Device ID
     :param str hostname: The device name
     :param str project_id: The id of the project in which the devices exists
 
@@ -184,7 +189,7 @@ def get_device(description=None,hostname=None,project_id=None,opts=None):
     """
     __args__ = dict()
 
-    __args__['description'] = description
+    __args__['deviceId'] = device_id
     __args__['hostname'] = hostname
     __args__['projectId'] = project_id
     if opts is None:
@@ -200,10 +205,10 @@ def get_device(description=None,hostname=None,project_id=None,opts=None):
         always_pxe=__ret__.get('alwaysPxe'),
         billing_cycle=__ret__.get('billingCycle'),
         description=__ret__.get('description'),
+        device_id=__ret__.get('deviceId'),
         facility=__ret__.get('facility'),
         hardware_reservation_id=__ret__.get('hardwareReservationId'),
         hostname=__ret__.get('hostname'),
-        id=__ret__.get('id'),
         ipxe_script_url=__ret__.get('ipxeScriptUrl'),
         networks=__ret__.get('networks'),
         network_type=__ret__.get('networkType'),
@@ -216,4 +221,5 @@ def get_device(description=None,hostname=None,project_id=None,opts=None):
         ssh_key_ids=__ret__.get('sshKeyIds'),
         state=__ret__.get('state'),
         storage=__ret__.get('storage'),
-        tags=__ret__.get('tags'))
+        tags=__ret__.get('tags'),
+        id=__ret__.get('id'))

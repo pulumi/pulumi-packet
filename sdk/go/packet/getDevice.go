@@ -17,7 +17,7 @@ import (
 func LookupDevice(ctx *pulumi.Context, args *GetDeviceArgs) (*GetDeviceResult, error) {
 	inputs := make(map[string]interface{})
 	if args != nil {
-		inputs["description"] = args.Description
+		inputs["deviceId"] = args.DeviceId
 		inputs["hostname"] = args.Hostname
 		inputs["projectId"] = args.ProjectId
 	}
@@ -32,10 +32,10 @@ func LookupDevice(ctx *pulumi.Context, args *GetDeviceArgs) (*GetDeviceResult, e
 		AlwaysPxe: outputs["alwaysPxe"],
 		BillingCycle: outputs["billingCycle"],
 		Description: outputs["description"],
+		DeviceId: outputs["deviceId"],
 		Facility: outputs["facility"],
 		HardwareReservationId: outputs["hardwareReservationId"],
 		Hostname: outputs["hostname"],
-		Id: outputs["id"],
 		IpxeScriptUrl: outputs["ipxeScriptUrl"],
 		Networks: outputs["networks"],
 		NetworkType: outputs["networkType"],
@@ -49,12 +49,14 @@ func LookupDevice(ctx *pulumi.Context, args *GetDeviceArgs) (*GetDeviceResult, e
 		State: outputs["state"],
 		Storage: outputs["storage"],
 		Tags: outputs["tags"],
+		Id: outputs["id"],
 	}, nil
 }
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceArgs struct {
-	Description interface{}
+	// Device ID
+	DeviceId interface{}
 	// The device name
 	Hostname interface{}
 	// The id of the project in which the devices exists
@@ -74,13 +76,12 @@ type GetDeviceResult struct {
 	BillingCycle interface{}
 	// Description string for the device
 	Description interface{}
+	DeviceId interface{}
 	// The facility where the device is deployed.
 	Facility interface{}
 	// The id of hardware reservation which this device occupies
 	HardwareReservationId interface{}
 	Hostname interface{}
-	// ID of the port
-	Id interface{}
 	IpxeScriptUrl interface{}
 	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
 	// * Public IPv4 at `packet_device.name.network.0`
@@ -108,4 +109,6 @@ type GetDeviceResult struct {
 	Storage interface{}
 	// Tags attached to the device
 	Tags interface{}
+	// id is the provider-assigned unique ID for this managed resource.
+	Id interface{}
 }

@@ -97,6 +97,34 @@ export interface GetDevicePort {
     type: string;
 }
 
+export interface GetProjectBgpConfig {
+    /**
+     * Autonomous System Numer for local BGP deployment
+     */
+    asn: number;
+    /**
+     * `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
+     */
+    deploymentType: string;
+    /**
+     * The maximum number of route filters allowed per server
+     */
+    maxPrefix: number;
+    /**
+     * Password for BGP session in plaintext (not a checksum)
+     */
+    md5?: string;
+    /**
+     * status of BGP configuration in the project
+     */
+    status: string;
+}
+
+export interface GetVolumeSnapshotPolicy {
+    snapshotCount: number;
+    snapshotFrequency: string;
+}
+
 export interface ProjectBgpConfig {
     asn: number;
     deploymentType: string;
