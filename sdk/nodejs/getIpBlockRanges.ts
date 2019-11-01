@@ -12,24 +12,6 @@ import * as utilities from "./utilities";
  * There are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.
  * 
  * The datasource has 4 list attributes: `globalIpv4`, `publicIpv4`, `privateIpv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const projectId = "<UUID_of_your_project>";
- * const test = packet.getIpBlockRanges({
- *     "local.project_id": [{}],
- *     projectId: "",
- * });
- * 
- * export const out = {
- *     "data.packet_ip_block_ranges.test": [{}],
- *     value: "",
- * };
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
  */
