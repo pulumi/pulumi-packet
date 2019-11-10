@@ -36,6 +36,7 @@ func NewSshKey(ctx *pulumi.Context,
 	}
 	inputs["created"] = nil
 	inputs["fingerprint"] = nil
+	inputs["ownerId"] = nil
 	inputs["updated"] = nil
 	s, err := ctx.RegisterResource("packet:index/sshKey:SshKey", name, true, inputs, opts...)
 	if err != nil {
@@ -53,6 +54,7 @@ func GetSshKey(ctx *pulumi.Context,
 		inputs["created"] = state.Created
 		inputs["fingerprint"] = state.Fingerprint
 		inputs["name"] = state.Name
+		inputs["ownerId"] = state.OwnerId
 		inputs["publicKey"] = state.PublicKey
 		inputs["updated"] = state.Updated
 	}
@@ -88,6 +90,11 @@ func (r *SshKey) Name() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["name"])
 }
 
+// The UUID of the Packet API User who owns this key
+func (r *SshKey) OwnerId() *pulumi.StringOutput {
+	return (*pulumi.StringOutput)(r.s.State["ownerId"])
+}
+
 // The public key. If this is a file, it
 // can be read using the file interpolation function
 func (r *SshKey) PublicKey() *pulumi.StringOutput {
@@ -107,6 +114,8 @@ type SshKeyState struct {
 	Fingerprint interface{}
 	// The name of the SSH key for identification
 	Name interface{}
+	// The UUID of the Packet API User who owns this key
+	OwnerId interface{}
 	// The public key. If this is a file, it
 	// can be read using the file interpolation function
 	PublicKey interface{}

@@ -34,6 +34,12 @@ namespace Pulumi.Packet
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of parent project (same as project_id)
+        /// </summary>
+        [Output("ownerId")]
+        public Output<string> OwnerId { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of parent project
         /// </summary>
         [Output("projectId")]
@@ -139,6 +145,12 @@ namespace Pulumi.Packet
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of parent project (same as project_id)
+        /// </summary>
+        [Input("ownerId")]
+        public Input<string>? OwnerId { get; set; }
 
         /// <summary>
         /// The ID of parent project

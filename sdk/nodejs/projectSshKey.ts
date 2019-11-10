@@ -75,6 +75,10 @@ export class ProjectSshKey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The ID of parent project (same as project_id)
+     */
+    public /*out*/ readonly ownerId!: pulumi.Output<string>;
+    /**
      * The ID of parent project
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -102,6 +106,7 @@ export class ProjectSshKey extends pulumi.CustomResource {
             inputs["created"] = state ? state.created : undefined;
             inputs["fingerprint"] = state ? state.fingerprint : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["ownerId"] = state ? state.ownerId : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["publicKey"] = state ? state.publicKey : undefined;
             inputs["updated"] = state ? state.updated : undefined;
@@ -121,6 +126,7 @@ export class ProjectSshKey extends pulumi.CustomResource {
             inputs["publicKey"] = args ? args.publicKey : undefined;
             inputs["created"] = undefined /*out*/;
             inputs["fingerprint"] = undefined /*out*/;
+            inputs["ownerId"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
         if (!opts) {
@@ -150,6 +156,10 @@ export interface ProjectSshKeyState {
      * The name of the SSH key for identification
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The ID of parent project (same as project_id)
+     */
+    readonly ownerId?: pulumi.Input<string>;
     /**
      * The ID of parent project
      */

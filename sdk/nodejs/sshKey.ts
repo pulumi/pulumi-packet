@@ -49,6 +49,10 @@ export class SshKey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The UUID of the Packet API User who owns this key
+     */
+    public /*out*/ readonly ownerId!: pulumi.Output<string>;
+    /**
      * The public key. If this is a file, it
      * can be read using the file interpolation function
      */
@@ -73,6 +77,7 @@ export class SshKey extends pulumi.CustomResource {
             inputs["created"] = state ? state.created : undefined;
             inputs["fingerprint"] = state ? state.fingerprint : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["ownerId"] = state ? state.ownerId : undefined;
             inputs["publicKey"] = state ? state.publicKey : undefined;
             inputs["updated"] = state ? state.updated : undefined;
         } else {
@@ -87,6 +92,7 @@ export class SshKey extends pulumi.CustomResource {
             inputs["publicKey"] = args ? args.publicKey : undefined;
             inputs["created"] = undefined /*out*/;
             inputs["fingerprint"] = undefined /*out*/;
+            inputs["ownerId"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
         if (!opts) {
@@ -116,6 +122,10 @@ export interface SshKeyState {
      * The name of the SSH key for identification
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The UUID of the Packet API User who owns this key
+     */
+    readonly ownerId?: pulumi.Input<string>;
     /**
      * The public key. If this is a file, it
      * can be read using the file interpolation function
