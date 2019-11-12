@@ -35,6 +35,12 @@ namespace Pulumi.Packet
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The UUID of the Packet API User who owns this key
+        /// </summary>
+        [Output("ownerId")]
+        public Output<string> OwnerId { get; private set; } = null!;
+
+        /// <summary>
         /// The public key. If this is a file, it
         /// can be read using the file interpolation function
         /// </summary>
@@ -130,6 +136,12 @@ namespace Pulumi.Packet
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The UUID of the Packet API User who owns this key
+        /// </summary>
+        [Input("ownerId")]
+        public Input<string>? OwnerId { get; set; }
 
         /// <summary>
         /// The public key. If this is a file, it

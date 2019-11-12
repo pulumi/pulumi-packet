@@ -40,6 +40,7 @@ func NewProjectSshKey(ctx *pulumi.Context,
 	}
 	inputs["created"] = nil
 	inputs["fingerprint"] = nil
+	inputs["ownerId"] = nil
 	inputs["updated"] = nil
 	s, err := ctx.RegisterResource("packet:index/projectSshKey:ProjectSshKey", name, true, inputs, opts...)
 	if err != nil {
@@ -57,6 +58,7 @@ func GetProjectSshKey(ctx *pulumi.Context,
 		inputs["created"] = state.Created
 		inputs["fingerprint"] = state.Fingerprint
 		inputs["name"] = state.Name
+		inputs["ownerId"] = state.OwnerId
 		inputs["projectId"] = state.ProjectId
 		inputs["publicKey"] = state.PublicKey
 		inputs["updated"] = state.Updated
@@ -93,6 +95,11 @@ func (r *ProjectSshKey) Name() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["name"])
 }
 
+// The ID of parent project (same as project_id)
+func (r *ProjectSshKey) OwnerId() *pulumi.StringOutput {
+	return (*pulumi.StringOutput)(r.s.State["ownerId"])
+}
+
 // The ID of parent project
 func (r *ProjectSshKey) ProjectId() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["projectId"])
@@ -116,6 +123,8 @@ type ProjectSshKeyState struct {
 	Fingerprint interface{}
 	// The name of the SSH key for identification
 	Name interface{}
+	// The ID of parent project (same as project_id)
+	OwnerId interface{}
 	// The ID of parent project
 	ProjectId interface{}
 	// The public key. If this is a file, it can be read using the file interpolation function

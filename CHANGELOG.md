@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.6.0 of the Packet Terraform Provider
+* Upgrade to v2.6.1 of the Packet Terraform Provider
 * Add support for DotNet SDK Generation
 
 ---

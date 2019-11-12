@@ -22,6 +22,10 @@ class SshKey(pulumi.CustomResource):
     """
     The name of the SSH key for identification
     """
+    owner_id: pulumi.Output[str]
+    """
+    The UUID of the Packet API User who owns this key
+    """
     public_key: pulumi.Output[str]
     """
     The public key. If this is a file, it
@@ -70,6 +74,7 @@ class SshKey(pulumi.CustomResource):
             __props__['public_key'] = public_key
             __props__['created'] = None
             __props__['fingerprint'] = None
+            __props__['owner_id'] = None
             __props__['updated'] = None
         super(SshKey, __self__).__init__(
             'packet:index/sshKey:SshKey',
@@ -78,7 +83,7 @@ class SshKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, created=None, fingerprint=None, name=None, public_key=None, updated=None):
+    def get(resource_name, id, opts=None, created=None, fingerprint=None, name=None, owner_id=None, public_key=None, updated=None):
         """
         Get an existing SshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -89,6 +94,7 @@ class SshKey(pulumi.CustomResource):
         :param pulumi.Input[str] created: The timestamp for when the SSH key was created
         :param pulumi.Input[str] fingerprint: The fingerprint of the SSH key
         :param pulumi.Input[str] name: The name of the SSH key for identification
+        :param pulumi.Input[str] owner_id: The UUID of the Packet API User who owns this key
         :param pulumi.Input[str] public_key: The public key. If this is a file, it
                can be read using the file interpolation function
         :param pulumi.Input[str] updated: The timestamp for the last time the SSH key was updated
@@ -101,6 +107,7 @@ class SshKey(pulumi.CustomResource):
         __props__["created"] = created
         __props__["fingerprint"] = fingerprint
         __props__["name"] = name
+        __props__["owner_id"] = owner_id
         __props__["public_key"] = public_key
         __props__["updated"] = updated
         return SshKey(resource_name, opts=opts, __props__=__props__)
