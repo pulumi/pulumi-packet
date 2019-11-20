@@ -8,4 +8,5 @@ require (
 	github.com/pulumi/pulumi v1.3.3
 	github.com/pulumi/pulumi-terraform-bridge v1.2.1-0.20191030115615-68f8d85120cb
 	github.com/terraform-providers/terraform-provider-packet v0.0.0-20191105195844-7177a3d7bec9
+	golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7 // indirect
 )
