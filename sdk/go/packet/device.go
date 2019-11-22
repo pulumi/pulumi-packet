@@ -145,87 +145,87 @@ func GetDevice(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Device) URN() *pulumi.URNOutput {
+func (r *Device) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Device) ID() *pulumi.IDOutput {
+func (r *Device) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The ipv4 private IP assigned to the device
-func (r *Device) AccessPrivateIpv4() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessPrivateIpv4"])
+func (r *Device) AccessPrivateIpv4() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessPrivateIpv4"])
 }
 
 // The ipv4 maintenance IP assigned to the device
-func (r *Device) AccessPublicIpv4() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessPublicIpv4"])
+func (r *Device) AccessPublicIpv4() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessPublicIpv4"])
 }
 
 // The ipv6 maintenance IP assigned to the device
-func (r *Device) AccessPublicIpv6() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessPublicIpv6"])
+func (r *Device) AccessPublicIpv6() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessPublicIpv6"])
 }
 
 // If true, a device with OS `customIpxe` will
 // continue to boot via iPXE on reboots.
-func (r *Device) AlwaysPxe() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["alwaysPxe"])
+func (r *Device) AlwaysPxe() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["alwaysPxe"])
 }
 
 // monthly or hourly
-func (r *Device) BillingCycle() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["billingCycle"])
+func (r *Device) BillingCycle() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["billingCycle"])
 }
 
 // The timestamp for when the device was created
-func (r *Device) Created() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["created"])
+func (r *Device) Created() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["created"])
 }
 
 // The facility where the device is deployed.
-func (r *Device) DeployedFacility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["deployedFacility"])
+func (r *Device) DeployedFacility() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["deployedFacility"])
 }
 
 // Description string for the device
-func (r *Device) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Device) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-func (r *Device) Facilities() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["facilities"])
+func (r *Device) Facilities() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["facilities"])
 }
 
 // The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
-func (r *Device) HardwareReservationId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["hardwareReservationId"])
+func (r *Device) HardwareReservationId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["hardwareReservationId"])
 }
 
 // The device name
-func (r *Device) Hostname() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["hostname"])
+func (r *Device) Hostname() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["hostname"])
 }
 
 // A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-func (r *Device) IpAddressTypes() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["ipAddressTypes"])
+func (r *Device) IpAddressTypes() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["ipAddressTypes"])
 }
 
 // URL pointing to a hosted iPXE script. More
 // information is in the
 // [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
 // doc.
-func (r *Device) IpxeScriptUrl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ipxeScriptUrl"])
+func (r *Device) IpxeScriptUrl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ipxeScriptUrl"])
 }
 
 // Whether the device is locked
-func (r *Device) Locked() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["locked"])
+func (r *Device) Locked() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["locked"])
 }
 
 // The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
@@ -234,84 +234,84 @@ func (r *Device) Locked() *pulumi.BoolOutput {
 // * Private IPv4 at `packet_device.name.network.2`
 // Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
 // The fields of the network attributes are:
-func (r *Device) Networks() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["networks"])
+func (r *Device) Networks() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["networks"])
 }
 
-func (r *Device) NetworkType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["networkType"])
+func (r *Device) NetworkType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["networkType"])
 }
 
 // The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
-func (r *Device) OperatingSystem() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["operatingSystem"])
+func (r *Device) OperatingSystem() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["operatingSystem"])
 }
 
 // The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
-func (r *Device) Plan() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["plan"])
+func (r *Device) Plan() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["plan"])
 }
 
 // Ports assigned to the device
-func (r *Device) Ports() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["ports"])
+func (r *Device) Ports() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["ports"])
 }
 
 // The ID of the project in which to create the device
-func (r *Device) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *Device) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
-func (r *Device) ProjectSshKeyIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["projectSshKeyIds"])
+func (r *Device) ProjectSshKeyIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["projectSshKeyIds"])
 }
 
 // Size of allocated subnet, more
 // information is in the
 // [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
-func (r *Device) PublicIpv4SubnetSize() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["publicIpv4SubnetSize"])
+func (r *Device) PublicIpv4SubnetSize() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["publicIpv4SubnetSize"])
 }
 
 // Root password to the server (disabled after 24 hours)
-func (r *Device) RootPassword() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["rootPassword"])
+func (r *Device) RootPassword() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["rootPassword"])
 }
 
 // List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
-func (r *Device) SshKeyIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["sshKeyIds"])
+func (r *Device) SshKeyIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["sshKeyIds"])
 }
 
 // The status of the device
-func (r *Device) State() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["state"])
+func (r *Device) State() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["state"])
 }
 
 // JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
-func (r *Device) Storage() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["storage"])
+func (r *Device) Storage() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["storage"])
 }
 
 // Tags attached to the device
-func (r *Device) Tags() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tags"])
+func (r *Device) Tags() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tags"])
 }
 
 // The timestamp for the last time the device was updated
-func (r *Device) Updated() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["updated"])
+func (r *Device) Updated() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["updated"])
 }
 
 // A string of the desired User Data for the device.
-func (r *Device) UserData() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["userData"])
+func (r *Device) UserData() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["userData"])
 }
 
 // Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
-func (r *Device) WaitForReservationDeprovision() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["waitForReservationDeprovision"])
+func (r *Device) WaitForReservationDeprovision() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["waitForReservationDeprovision"])
 }
 
 // Input properties used for looking up and filtering Device resources.

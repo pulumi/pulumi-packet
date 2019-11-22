@@ -65,33 +65,33 @@ func GetVlan(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Vlan) URN() *pulumi.URNOutput {
+func (r *Vlan) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Vlan) ID() *pulumi.IDOutput {
+func (r *Vlan) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Description string
-func (r *Vlan) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Vlan) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Facility where to create the VLAN
-func (r *Vlan) Facility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["facility"])
+func (r *Vlan) Facility() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["facility"])
 }
 
 // ID of parent project
-func (r *Vlan) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *Vlan) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // VXLAN segment ID
-func (r *Vlan) Vxlan() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["vxlan"])
+func (r *Vlan) Vxlan() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["vxlan"])
 }
 
 // Input properties used for looking up and filtering Vlan resources.

@@ -65,32 +65,32 @@ func GetBgpSession(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *BgpSession) URN() *pulumi.URNOutput {
+func (r *BgpSession) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *BgpSession) ID() *pulumi.IDOutput {
+func (r *BgpSession) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // `ipv4` or `ipv6`
-func (r *BgpSession) AddressFamily() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["addressFamily"])
+func (r *BgpSession) AddressFamily() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["addressFamily"])
 }
 
 // Boolean flag to set the default route policy. False by default.
-func (r *BgpSession) DefaultRoute() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["defaultRoute"])
+func (r *BgpSession) DefaultRoute() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["defaultRoute"])
 }
 
 // ID of device 
-func (r *BgpSession) DeviceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["deviceId"])
+func (r *BgpSession) DeviceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["deviceId"])
 }
 
-func (r *BgpSession) Status() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["status"])
+func (r *BgpSession) Status() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["status"])
 }
 
 // Input properties used for looking up and filtering BgpSession resources.

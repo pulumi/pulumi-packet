@@ -85,70 +85,70 @@ func GetIpAttachment(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *IpAttachment) URN() *pulumi.URNOutput {
+func (r *IpAttachment) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *IpAttachment) ID() *pulumi.IDOutput {
+func (r *IpAttachment) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-func (r *IpAttachment) Address() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["address"])
+func (r *IpAttachment) Address() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["address"])
 }
 
 // Address family as integer (4 or 6)
-func (r *IpAttachment) AddressFamily() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["addressFamily"])
+func (r *IpAttachment) AddressFamily() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["addressFamily"])
 }
 
 // length of CIDR prefix of the subnet as integer
-func (r *IpAttachment) Cidr() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["cidr"])
+func (r *IpAttachment) Cidr() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["cidr"])
 }
 
 // CIDR notation of subnet from block reserved in the same
 // project and facility as the device
-func (r *IpAttachment) CidrNotation() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["cidrNotation"])
+func (r *IpAttachment) CidrNotation() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["cidrNotation"])
 }
 
 // ID of device to which to assign the subnet
-func (r *IpAttachment) DeviceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["deviceId"])
+func (r *IpAttachment) DeviceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["deviceId"])
 }
 
 // IP address of gateway for the subnet
-func (r *IpAttachment) Gateway() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["gateway"])
+func (r *IpAttachment) Gateway() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["gateway"])
 }
 
-func (r *IpAttachment) Global() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["global"])
+func (r *IpAttachment) Global() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["global"])
 }
 
-func (r *IpAttachment) Manageable() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["manageable"])
+func (r *IpAttachment) Manageable() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["manageable"])
 }
 
-func (r *IpAttachment) Management() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["management"])
+func (r *IpAttachment) Management() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["management"])
 }
 
 // Subnet mask in decimal notation, e.g. "255.255.255.0"
-func (r *IpAttachment) Netmask() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["netmask"])
+func (r *IpAttachment) Netmask() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["netmask"])
 }
 
 // Subnet network address
-func (r *IpAttachment) Network() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["network"])
+func (r *IpAttachment) Network() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["network"])
 }
 
 // boolean flag whether subnet is reachable from the Internet
-func (r *IpAttachment) Public() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["public"])
+func (r *IpAttachment) Public() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["public"])
 }
 
 // Input properties used for looking up and filtering IpAttachment resources.

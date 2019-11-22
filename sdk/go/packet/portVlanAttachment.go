@@ -86,46 +86,46 @@ func GetPortVlanAttachment(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *PortVlanAttachment) URN() *pulumi.URNOutput {
+func (r *PortVlanAttachment) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *PortVlanAttachment) ID() *pulumi.IDOutput {
+func (r *PortVlanAttachment) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // ID of device to be assigned to the VLAN
-func (r *PortVlanAttachment) DeviceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["deviceId"])
+func (r *PortVlanAttachment) DeviceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["deviceId"])
 }
 
 // Add port back to the bond when this resource is removed. Default is false.
-func (r *PortVlanAttachment) ForceBond() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["forceBond"])
+func (r *PortVlanAttachment) ForceBond() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["forceBond"])
 }
 
 // Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
-func (r *PortVlanAttachment) Native() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["native"])
+func (r *PortVlanAttachment) Native() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["native"])
 }
 
-func (r *PortVlanAttachment) PortId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["portId"])
+func (r *PortVlanAttachment) PortId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["portId"])
 }
 
 // Name of network port to be assigned to the VLAN
-func (r *PortVlanAttachment) PortName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["portName"])
+func (r *PortVlanAttachment) PortName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["portName"])
 }
 
-func (r *PortVlanAttachment) VlanId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["vlanId"])
+func (r *PortVlanAttachment) VlanId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["vlanId"])
 }
 
 // VXLAN Network Identifier, integer
-func (r *PortVlanAttachment) VlanVnid() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["vlanVnid"])
+func (r *PortVlanAttachment) VlanVnid() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["vlanVnid"])
 }
 
 // Input properties used for looking up and filtering PortVlanAttachment resources.

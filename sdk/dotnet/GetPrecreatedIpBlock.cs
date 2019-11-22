@@ -16,7 +16,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
         /// </summary>
         public static Task<GetPrecreatedIpBlockResult> GetPrecreatedIpBlock(GetPrecreatedIpBlockArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetPrecreatedIpBlockArgs : Pulumi.ResourceArgs

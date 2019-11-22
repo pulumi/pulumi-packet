@@ -84,48 +84,48 @@ func GetSpotMarketRequest(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SpotMarketRequest) URN() *pulumi.URNOutput {
+func (r *SpotMarketRequest) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SpotMarketRequest) ID() *pulumi.IDOutput {
+func (r *SpotMarketRequest) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Maximum number devices to be created
-func (r *SpotMarketRequest) DevicesMax() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["devicesMax"])
+func (r *SpotMarketRequest) DevicesMax() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["devicesMax"])
 }
 
 // Miniumum number devices to be created
-func (r *SpotMarketRequest) DevicesMin() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["devicesMin"])
+func (r *SpotMarketRequest) DevicesMin() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["devicesMin"])
 }
 
 // Facility IDs where devices should be created
-func (r *SpotMarketRequest) Facilities() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["facilities"])
+func (r *SpotMarketRequest) Facilities() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["facilities"])
 }
 
 // Device parameters. See device resource for details
-func (r *SpotMarketRequest) InstanceParameters() *pulumi.Output {
+func (r *SpotMarketRequest) InstanceParameters() pulumi.Output {
 	return r.s.State["instanceParameters"]
 }
 
 // Maximum price user is willing to pay per hour per device
-func (r *SpotMarketRequest) MaxBidPrice() *pulumi.Float64Output {
-	return (*pulumi.Float64Output)(r.s.State["maxBidPrice"])
+func (r *SpotMarketRequest) MaxBidPrice() pulumi.Float64Output {
+	return (pulumi.Float64Output)(r.s.State["maxBidPrice"])
 }
 
 // Project ID
-func (r *SpotMarketRequest) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *SpotMarketRequest) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed
-func (r *SpotMarketRequest) WaitForDevices() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["waitForDevices"])
+func (r *SpotMarketRequest) WaitForDevices() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["waitForDevices"])
 }
 
 // Input properties used for looking up and filtering SpotMarketRequest resources.

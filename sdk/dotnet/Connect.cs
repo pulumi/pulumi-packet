@@ -72,7 +72,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Connect(string name, ConnectArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/connect:Connect", name, args, MakeResourceOptions(options, ""))
+            : base("packet:index/connect:Connect", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

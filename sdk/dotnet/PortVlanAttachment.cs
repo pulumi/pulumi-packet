@@ -73,7 +73,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public PortVlanAttachment(string name, PortVlanAttachmentArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/portVlanAttachment:PortVlanAttachment", name, args, MakeResourceOptions(options, ""))
+            : base("packet:index/portVlanAttachment:PortVlanAttachment", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

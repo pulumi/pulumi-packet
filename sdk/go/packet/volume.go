@@ -88,78 +88,78 @@ func GetVolume(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Volume) URN() *pulumi.URNOutput {
+func (r *Volume) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Volume) ID() *pulumi.IDOutput {
+func (r *Volume) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // A list of attachments, each with it's own `href` attribute
-func (r *Volume) Attachments() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["attachments"])
+func (r *Volume) Attachments() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["attachments"])
 }
 
 // The billing cycle, defaults to "hourly"
-func (r *Volume) BillingCycle() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["billingCycle"])
+func (r *Volume) BillingCycle() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["billingCycle"])
 }
 
 // The timestamp for when the volume was created
-func (r *Volume) Created() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["created"])
+func (r *Volume) Created() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["created"])
 }
 
 // Optional description for the volume
-func (r *Volume) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Volume) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // The facility to create the volume in
-func (r *Volume) Facility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["facility"])
+func (r *Volume) Facility() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["facility"])
 }
 
 // Lock or unlock the volume
-func (r *Volume) Locked() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["locked"])
+func (r *Volume) Locked() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["locked"])
 }
 
 // The name of the volume
-func (r *Volume) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Volume) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The service plan slug of the volume
-func (r *Volume) Plan() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["plan"])
+func (r *Volume) Plan() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["plan"])
 }
 
 // The packet project ID to deploy the volume in
-func (r *Volume) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *Volume) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // The size in GB to make the volume
-func (r *Volume) Size() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["size"])
+func (r *Volume) Size() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["size"])
 }
 
 // Optional list of snapshot policies
-func (r *Volume) SnapshotPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["snapshotPolicies"])
+func (r *Volume) SnapshotPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["snapshotPolicies"])
 }
 
 // The state of the volume
-func (r *Volume) State() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["state"])
+func (r *Volume) State() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["state"])
 }
 
 // The timestamp for the last time the volume was updated
-func (r *Volume) Updated() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["updated"])
+func (r *Volume) Updated() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["updated"])
 }
 
 // Input properties used for looking up and filtering Volume resources.

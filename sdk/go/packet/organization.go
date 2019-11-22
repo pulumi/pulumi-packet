@@ -66,46 +66,46 @@ func GetOrganization(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Organization) URN() *pulumi.URNOutput {
+func (r *Organization) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Organization) ID() *pulumi.IDOutput {
+func (r *Organization) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-func (r *Organization) Created() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["created"])
+func (r *Organization) Created() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["created"])
 }
 
 // Description string.
-func (r *Organization) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Organization) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Logo URL.
-func (r *Organization) Logo() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["logo"])
+func (r *Organization) Logo() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["logo"])
 }
 
 // The name of the Organization.
-func (r *Organization) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Organization) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Twitter handle.
-func (r *Organization) Twitter() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["twitter"])
+func (r *Organization) Twitter() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["twitter"])
 }
 
-func (r *Organization) Updated() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["updated"])
+func (r *Organization) Updated() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["updated"])
 }
 
 // Website link.
-func (r *Organization) Website() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["website"])
+func (r *Organization) Website() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["website"])
 }
 
 // Input properties used for looking up and filtering Organization resources.

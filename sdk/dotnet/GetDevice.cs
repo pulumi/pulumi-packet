@@ -19,7 +19,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
         /// </summary>
         public static Task<GetDeviceResult> GetDevice(GetDeviceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetDeviceArgs : Pulumi.ResourceArgs

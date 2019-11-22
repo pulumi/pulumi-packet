@@ -67,48 +67,48 @@ func GetProject(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Project) URN() *pulumi.URNOutput {
+func (r *Project) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Project) ID() *pulumi.IDOutput {
+func (r *Project) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
-func (r *Project) BackendTransfer() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["backendTransfer"])
+func (r *Project) BackendTransfer() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["backendTransfer"])
 }
 
 // Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
-func (r *Project) BgpConfig() *pulumi.Output {
+func (r *Project) BgpConfig() pulumi.Output {
 	return r.s.State["bgpConfig"]
 }
 
 // The timestamp for when the project was created
-func (r *Project) Created() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["created"])
+func (r *Project) Created() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["created"])
 }
 
 // The name of the project
-func (r *Project) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Project) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
-func (r *Project) OrganizationId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["organizationId"])
+func (r *Project) OrganizationId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["organizationId"])
 }
 
 // The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organizationId`, or default).
-func (r *Project) PaymentMethodId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["paymentMethodId"])
+func (r *Project) PaymentMethodId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["paymentMethodId"])
 }
 
 // The timestamp for the last time the project was updated
-func (r *Project) Updated() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["updated"])
+func (r *Project) Updated() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["updated"])
 }
 
 // Input properties used for looking up and filtering Project resources.

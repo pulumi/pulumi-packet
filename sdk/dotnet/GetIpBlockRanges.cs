@@ -19,7 +19,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
         /// </summary>
         public static Task<GetIpBlockRangesResult> GetIpBlockRanges(GetIpBlockRangesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIpBlockRangesResult>("packet:index/getIpBlockRanges:getIpBlockRanges", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetIpBlockRangesResult>("packet:index/getIpBlockRanges:getIpBlockRanges", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetIpBlockRangesArgs : Pulumi.ResourceArgs
