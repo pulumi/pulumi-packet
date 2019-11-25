@@ -15,7 +15,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
         /// </summary>
         public static Task<GetOrganizationResult> GetOrganization(GetOrganizationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("packet:index/getOrganization:getOrganization", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("packet:index/getOrganization:getOrganization", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetOrganizationArgs : Pulumi.ResourceArgs

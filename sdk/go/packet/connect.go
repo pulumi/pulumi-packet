@@ -88,54 +88,54 @@ func GetConnect(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Connect) URN() *pulumi.URNOutput {
+func (r *Connect) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Connect) ID() *pulumi.IDOutput {
+func (r *Connect) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Facility where to create the VLAN
-func (r *Connect) Facility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["facility"])
+func (r *Connect) Facility() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["facility"])
 }
 
 // Name for the Connect resource
-func (r *Connect) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Connect) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Port speed in Mbps
-func (r *Connect) PortSpeed() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["portSpeed"])
+func (r *Connect) PortSpeed() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["portSpeed"])
 }
 
 // ID of parent project
-func (r *Connect) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *Connect) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // ID of Connect Provider. Provider IDs are
 // * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
-func (r *Connect) ProviderId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["providerId"])
+func (r *Connect) ProviderId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["providerId"])
 }
 
 // Authorization key for the Connect provider
-func (r *Connect) ProviderPayload() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["providerPayload"])
+func (r *Connect) ProviderPayload() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["providerPayload"])
 }
 
 // Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
-func (r *Connect) Status() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["status"])
+func (r *Connect) Status() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["status"])
 }
 
 // VXLAN Network identifier of the linked Packet VLAN
-func (r *Connect) Vxlan() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["vxlan"])
+func (r *Connect) Vxlan() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["vxlan"])
 }
 
 // Input properties used for looking up and filtering Connect resources.

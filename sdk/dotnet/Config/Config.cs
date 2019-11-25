@@ -3,7 +3,7 @@
 
 using System.Collections.Immutable;
 
-namespace Pulumi.Packet.Config
+namespace Pulumi.Packet
 {
     public static class Config
     {

@@ -15,7 +15,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
         /// </summary>
         public static Task<GetSpotMarketRequestResult> GetSpotMarketRequest(GetSpotMarketRequestArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetSpotMarketRequestArgs : Pulumi.ResourceArgs

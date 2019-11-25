@@ -71,48 +71,48 @@ func GetProjectSshKey(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *ProjectSshKey) URN() *pulumi.URNOutput {
+func (r *ProjectSshKey) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *ProjectSshKey) ID() *pulumi.IDOutput {
+func (r *ProjectSshKey) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The timestamp for when the SSH key was created
-func (r *ProjectSshKey) Created() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["created"])
+func (r *ProjectSshKey) Created() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["created"])
 }
 
 // The fingerprint of the SSH key
-func (r *ProjectSshKey) Fingerprint() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["fingerprint"])
+func (r *ProjectSshKey) Fingerprint() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["fingerprint"])
 }
 
 // The name of the SSH key for identification
-func (r *ProjectSshKey) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *ProjectSshKey) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The ID of parent project (same as project_id)
-func (r *ProjectSshKey) OwnerId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ownerId"])
+func (r *ProjectSshKey) OwnerId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ownerId"])
 }
 
 // The ID of parent project
-func (r *ProjectSshKey) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *ProjectSshKey) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // The public key. If this is a file, it can be read using the file interpolation function
-func (r *ProjectSshKey) PublicKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["publicKey"])
+func (r *ProjectSshKey) PublicKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["publicKey"])
 }
 
 // The timestamp for the last time the SSH key was updated
-func (r *ProjectSshKey) Updated() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["updated"])
+func (r *ProjectSshKey) Updated() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["updated"])
 }
 
 // Input properties used for looking up and filtering ProjectSshKey resources.

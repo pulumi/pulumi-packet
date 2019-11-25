@@ -15,7 +15,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
         /// </summary>
         public static Task<GetProjectResult> GetProject(GetProjectArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetProjectArgs : Pulumi.ResourceArgs

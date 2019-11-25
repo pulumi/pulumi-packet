@@ -98,89 +98,89 @@ func GetReservedIpBlock(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *ReservedIpBlock) URN() *pulumi.URNOutput {
+func (r *ReservedIpBlock) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *ReservedIpBlock) ID() *pulumi.IDOutput {
+func (r *ReservedIpBlock) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-func (r *ReservedIpBlock) Address() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["address"])
+func (r *ReservedIpBlock) Address() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["address"])
 }
 
 // Address family as integer (4 or 6)
-func (r *ReservedIpBlock) AddressFamily() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["addressFamily"])
+func (r *ReservedIpBlock) AddressFamily() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["addressFamily"])
 }
 
 // length of CIDR prefix of the block as integer
-func (r *ReservedIpBlock) Cidr() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["cidr"])
+func (r *ReservedIpBlock) Cidr() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["cidr"])
 }
 
 // Address and mask in CIDR notation, e.g. "147.229.15.30/31"
-func (r *ReservedIpBlock) CidrNotation() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["cidrNotation"])
+func (r *ReservedIpBlock) CidrNotation() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["cidrNotation"])
 }
 
 // Arbitrary description
-func (r *ReservedIpBlock) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *ReservedIpBlock) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
-func (r *ReservedIpBlock) Facility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["facility"])
+func (r *ReservedIpBlock) Facility() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["facility"])
 }
 
-func (r *ReservedIpBlock) Gateway() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["gateway"])
+func (r *ReservedIpBlock) Gateway() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["gateway"])
 }
 
 // boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
-func (r *ReservedIpBlock) Global() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["global"])
+func (r *ReservedIpBlock) Global() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["global"])
 }
 
-func (r *ReservedIpBlock) Manageable() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["manageable"])
+func (r *ReservedIpBlock) Manageable() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["manageable"])
 }
 
-func (r *ReservedIpBlock) Management() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["management"])
+func (r *ReservedIpBlock) Management() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["management"])
 }
 
 // Mask in decimal notation, e.g. "255.255.255.0"
-func (r *ReservedIpBlock) Netmask() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["netmask"])
+func (r *ReservedIpBlock) Netmask() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["netmask"])
 }
 
 // Network IP address portion of the block specification
-func (r *ReservedIpBlock) Network() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["network"])
+func (r *ReservedIpBlock) Network() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["network"])
 }
 
 // The packet project ID where to allocate the address block
-func (r *ReservedIpBlock) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *ReservedIpBlock) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // boolean flag whether addresses from a block are public
-func (r *ReservedIpBlock) Public() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["public"])
+func (r *ReservedIpBlock) Public() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["public"])
 }
 
 // The number of allocated /32 addresses, a power of 2
-func (r *ReservedIpBlock) Quantity() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["quantity"])
+func (r *ReservedIpBlock) Quantity() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["quantity"])
 }
 
 // Either "globalIpv4" or "publicIpv4", defaults to "publicIpv4" for backward compatibility
-func (r *ReservedIpBlock) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *ReservedIpBlock) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering ReservedIpBlock resources.

@@ -15,7 +15,7 @@ namespace Pulumi.Packet
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
         /// </summary>
         public static Task<GetVolumeResult> GetVolume(GetVolumeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetVolumeArgs : Pulumi.ResourceArgs
