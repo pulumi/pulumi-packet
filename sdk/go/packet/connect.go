@@ -8,7 +8,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// Provides a resource for [Packet Connect](https://www.packet.com/cloud/all-features/packet-connect/), a link between Packet VLANs and VLANs in other cloud providers.
+// Packet Connect was removed in release 2.7.0.
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/connect.html.markdown.
 type Connect struct {
@@ -97,83 +97,57 @@ func (r *Connect) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-// Facility where to create the VLAN
 func (r *Connect) Facility() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["facility"])
 }
 
-// Name for the Connect resource
 func (r *Connect) Name() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
-// Port speed in Mbps
 func (r *Connect) PortSpeed() pulumi.IntOutput {
 	return (pulumi.IntOutput)(r.s.State["portSpeed"])
 }
 
-// ID of parent project
 func (r *Connect) ProjectId() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
-// ID of Connect Provider. Provider IDs are
-// * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
 func (r *Connect) ProviderId() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["providerId"])
 }
 
-// Authorization key for the Connect provider
 func (r *Connect) ProviderPayload() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["providerPayload"])
 }
 
-// Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
 func (r *Connect) Status() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["status"])
 }
 
-// VXLAN Network identifier of the linked Packet VLAN
 func (r *Connect) Vxlan() pulumi.IntOutput {
 	return (pulumi.IntOutput)(r.s.State["vxlan"])
 }
 
 // Input properties used for looking up and filtering Connect resources.
 type ConnectState struct {
-	// Facility where to create the VLAN
 	Facility interface{}
-	// Name for the Connect resource
 	Name interface{}
-	// Port speed in Mbps
 	PortSpeed interface{}
-	// ID of parent project
 	ProjectId interface{}
-	// ID of Connect Provider. Provider IDs are
-	// * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
 	ProviderId interface{}
-	// Authorization key for the Connect provider
 	ProviderPayload interface{}
-	// Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
 	Status interface{}
-	// VXLAN Network identifier of the linked Packet VLAN
 	Vxlan interface{}
 }
 
 // The set of arguments for constructing a Connect resource.
 type ConnectArgs struct {
-	// Facility where to create the VLAN
 	Facility interface{}
-	// Name for the Connect resource
 	Name interface{}
-	// Port speed in Mbps
 	PortSpeed interface{}
-	// ID of parent project
 	ProjectId interface{}
-	// ID of Connect Provider. Provider IDs are
-	// * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
 	ProviderId interface{}
-	// Authorization key for the Connect provider
 	ProviderPayload interface{}
-	// VXLAN Network identifier of the linked Packet VLAN
 	Vxlan interface{}
 }
