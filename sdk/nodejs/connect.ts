@@ -7,32 +7,7 @@ import * as utilities from "./utilities";
 import {Facility} from "./index";
 
 /**
- * Provides a resource for [Packet Connect](https://www.packet.com/cloud/all-features/packet-connect/), a link between Packet VLANs and VLANs in other cloud providers.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const vlan1 = new packet.Vlan("vlan1", {
- *     description: "VLAN in New Jersey",
- *     facility: "ewr1",
- *     projectId: local_project_id,
- * });
- * const myExpressroute = new packet.Connect("myExpressroute", {
- *     facility: "ewr1",
- *     name: "test",
- *     portSpeed: 100,
- *     projectId: local_project_id,
- *     // provider ID for Azure ExpressRoute is ed5de8e0-77a9-4d3b-9de0-65281d3aa831
- *     providerId: "ed5de8e0-77a9-4d3b-9de0-65281d3aa831",
- *     // providerPayload for Azure ExpressRoute provider is your ExpressRoute
- *     // authorization key (in UUID format)
- *     providerPayload: "58b4ec12-af34-4435-5435-db3bde4a4b3a",
- *     vxlan: vlan1.vxlan,
- * });
- * ```
+ * Packet Connect was removed in release 2.7.0.
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/connect.html.markdown.
  */
@@ -63,38 +38,13 @@ export class Connect extends pulumi.CustomResource {
         return obj['__pulumiType'] === Connect.__pulumiType;
     }
 
-    /**
-     * Facility where to create the VLAN
-     */
     public readonly facility!: pulumi.Output<Facility>;
-    /**
-     * Name for the Connect resource
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * Port speed in Mbps
-     */
     public readonly portSpeed!: pulumi.Output<number>;
-    /**
-     * ID of parent project
-     */
     public readonly projectId!: pulumi.Output<string>;
-    /**
-     * ID of Connect Provider. Provider IDs are
-     * * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
-     */
     public readonly providerId!: pulumi.Output<string>;
-    /**
-     * Authorization key for the Connect provider
-     */
     public readonly providerPayload!: pulumi.Output<string>;
-    /**
-     * Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
-     */
     public /*out*/ readonly status!: pulumi.Output<string>;
-    /**
-     * VXLAN Network identifier of the linked Packet VLAN
-     */
     public readonly vxlan!: pulumi.Output<number>;
 
     /**
@@ -164,38 +114,13 @@ export class Connect extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Connect resources.
  */
 export interface ConnectState {
-    /**
-     * Facility where to create the VLAN
-     */
     readonly facility?: pulumi.Input<Facility>;
-    /**
-     * Name for the Connect resource
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Port speed in Mbps
-     */
     readonly portSpeed?: pulumi.Input<number>;
-    /**
-     * ID of parent project
-     */
     readonly projectId?: pulumi.Input<string>;
-    /**
-     * ID of Connect Provider. Provider IDs are
-     * * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
-     */
     readonly providerId?: pulumi.Input<string>;
-    /**
-     * Authorization key for the Connect provider
-     */
     readonly providerPayload?: pulumi.Input<string>;
-    /**
-     * Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED
-     */
     readonly status?: pulumi.Input<string>;
-    /**
-     * VXLAN Network identifier of the linked Packet VLAN
-     */
     readonly vxlan?: pulumi.Input<number>;
 }
 
@@ -203,33 +128,11 @@ export interface ConnectState {
  * The set of arguments for constructing a Connect resource.
  */
 export interface ConnectArgs {
-    /**
-     * Facility where to create the VLAN
-     */
     readonly facility: pulumi.Input<Facility>;
-    /**
-     * Name for the Connect resource
-     */
     readonly name: pulumi.Input<string>;
-    /**
-     * Port speed in Mbps
-     */
     readonly portSpeed: pulumi.Input<number>;
-    /**
-     * ID of parent project
-     */
     readonly projectId: pulumi.Input<string>;
-    /**
-     * ID of Connect Provider. Provider IDs are
-     * * Azure ExpressRoute - "ed5de8e0-77a9-4d3b-9de0-65281d3aa831"
-     */
     readonly providerId: pulumi.Input<string>;
-    /**
-     * Authorization key for the Connect provider
-     */
     readonly providerPayload: pulumi.Input<string>;
-    /**
-     * VXLAN Network identifier of the linked Packet VLAN
-     */
     readonly vxlan: pulumi.Input<number>;
 }
