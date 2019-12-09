@@ -47,10 +47,11 @@ class Device(pulumi.CustomResource):
     """
     List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
     """
+    force_detach_volumes: pulumi.Output[bool]
+    """
+    Delete device even if it has volumes attached. Only applies for destroy action.
+    """
     hardware_reservation_id: pulumi.Output[str]
-    """
-    The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
-    """
     hostname: pulumi.Output[str]
     """
     The device name
@@ -151,7 +152,7 @@ class Device(pulumi.CustomResource):
     """
     Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -167,7 +168,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] billing_cycle: monthly or hourly
         :param pulumi.Input[str] description: Description string for the device
         :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] hardware_reservation_id: The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        :param pulumi.Input[bool] force_detach_volumes: Delete device even if it has volumes attached. Only applies for destroy action.
         :param pulumi.Input[str] hostname: The device name
         :param pulumi.Input[list] ip_address_types: A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
@@ -213,6 +214,7 @@ class Device(pulumi.CustomResource):
             if facilities is None:
                 raise TypeError("Missing required property 'facilities'")
             __props__['facilities'] = facilities
+            __props__['force_detach_volumes'] = force_detach_volumes
             __props__['hardware_reservation_id'] = hardware_reservation_id
             if hostname is None:
                 raise TypeError("Missing required property 'hostname'")
@@ -254,7 +256,7 @@ class Device(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ipxe_script_url=None, locked=None, networks=None, network_type=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
+    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ipxe_script_url=None, locked=None, networks=None, network_type=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
         """
         Get an existing Device resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -272,7 +274,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] deployed_facility: The facility where the device is deployed.
         :param pulumi.Input[str] description: Description string for the device
         :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[str] hardware_reservation_id: The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        :param pulumi.Input[bool] force_detach_volumes: Delete device even if it has volumes attached. Only applies for destroy action.
         :param pulumi.Input[str] hostname: The device name
         :param pulumi.Input[list] ip_address_types: A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
@@ -334,6 +336,7 @@ class Device(pulumi.CustomResource):
         __props__["deployed_facility"] = deployed_facility
         __props__["description"] = description
         __props__["facilities"] = facilities
+        __props__["force_detach_volumes"] = force_detach_volumes
         __props__["hardware_reservation_id"] = hardware_reservation_id
         __props__["hostname"] = hostname
         __props__["ip_address_types"] = ip_address_types

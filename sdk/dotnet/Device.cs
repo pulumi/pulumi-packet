@@ -75,8 +75,11 @@ namespace Pulumi.Packet
         public Output<ImmutableArray<string>> Facilities { get; private set; } = null!;
 
         /// <summary>
-        /// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        /// Delete device even if it has volumes attached. Only applies for destroy action.
         /// </summary>
+        [Output("forceDetachVolumes")]
+        public Output<bool?> ForceDetachVolumes { get; private set; } = null!;
+
         [Output("hardwareReservationId")]
         public Output<string> HardwareReservationId { get; private set; } = null!;
 
@@ -285,8 +288,11 @@ namespace Pulumi.Packet
         }
 
         /// <summary>
-        /// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        /// Delete device even if it has volumes attached. Only applies for destroy action.
         /// </summary>
+        [Input("forceDetachVolumes")]
+        public Input<bool>? ForceDetachVolumes { get; set; }
+
         [Input("hardwareReservationId")]
         public Input<string>? HardwareReservationId { get; set; }
 
@@ -457,8 +463,11 @@ namespace Pulumi.Packet
         }
 
         /// <summary>
-        /// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+        /// Delete device even if it has volumes attached. Only applies for destroy action.
         /// </summary>
+        [Input("forceDetachVolumes")]
+        public Input<bool>? ForceDetachVolumes { get; set; }
+
         [Input("hardwareReservationId")]
         public Input<string>? HardwareReservationId { get; set; }
 

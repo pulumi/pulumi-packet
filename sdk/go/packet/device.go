@@ -47,6 +47,7 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["billingCycle"] = nil
 		inputs["description"] = nil
 		inputs["facilities"] = nil
+		inputs["forceDetachVolumes"] = nil
 		inputs["hardwareReservationId"] = nil
 		inputs["hostname"] = nil
 		inputs["ipAddressTypes"] = nil
@@ -66,6 +67,7 @@ func NewDevice(ctx *pulumi.Context,
 		inputs["billingCycle"] = args.BillingCycle
 		inputs["description"] = args.Description
 		inputs["facilities"] = args.Facilities
+		inputs["forceDetachVolumes"] = args.ForceDetachVolumes
 		inputs["hardwareReservationId"] = args.HardwareReservationId
 		inputs["hostname"] = args.Hostname
 		inputs["ipAddressTypes"] = args.IpAddressTypes
@@ -115,6 +117,7 @@ func GetDevice(ctx *pulumi.Context,
 		inputs["deployedFacility"] = state.DeployedFacility
 		inputs["description"] = state.Description
 		inputs["facilities"] = state.Facilities
+		inputs["forceDetachVolumes"] = state.ForceDetachVolumes
 		inputs["hardwareReservationId"] = state.HardwareReservationId
 		inputs["hostname"] = state.Hostname
 		inputs["ipAddressTypes"] = state.IpAddressTypes
@@ -200,7 +203,11 @@ func (r *Device) Facilities() pulumi.ArrayOutput {
 	return (pulumi.ArrayOutput)(r.s.State["facilities"])
 }
 
-// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+// Delete device even if it has volumes attached. Only applies for destroy action.
+func (r *Device) ForceDetachVolumes() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["forceDetachVolumes"])
+}
+
 func (r *Device) HardwareReservationId() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["hardwareReservationId"])
 }
@@ -335,7 +342,8 @@ type DeviceState struct {
 	Description interface{}
 	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
-	// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+	// Delete device even if it has volumes attached. Only applies for destroy action.
+	ForceDetachVolumes interface{}
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
@@ -399,7 +407,8 @@ type DeviceArgs struct {
 	Description interface{}
 	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
-	// The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+	// Delete device even if it has volumes attached. Only applies for destroy action.
+	ForceDetachVolumes interface{}
 	HardwareReservationId interface{}
 	// The device name
 	Hostname interface{}
