@@ -2,13 +2,16 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 1.3.0 (2019-12-11)
 * Upgrade to v2.7.2 of the Packet Terraform Provider
 
   **PLEASE NOTE:**
   `packet.Connect` has been removed from this resource. It was `deprecated` in
   v1.2.0 and the underlying resource was removed in this release
-
----
 
 ## 1.2.0 (2019-12-04)
 * Upgrade to support go 1.13.x
