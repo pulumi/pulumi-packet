@@ -11,7 +11,6 @@ for pkg in __all__:
 
 # Export this package's modules as members:
 from .bgp_session import *
-from .connect import *
 from .device import *
 from .ip_attachment import *
 from .organization import *

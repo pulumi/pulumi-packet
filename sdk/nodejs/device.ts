@@ -189,8 +189,9 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly facilities!: pulumi.Output<Facility[]>;
     /**
-     * The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+     * Delete device even if it has volumes attached. Only applies for destroy action.
      */
+    public readonly forceDetachVolumes!: pulumi.Output<boolean | undefined>;
     public readonly hardwareReservationId!: pulumi.Output<string>;
     /**
      * The device name
@@ -301,6 +302,7 @@ export class Device extends pulumi.CustomResource {
             inputs["deployedFacility"] = state ? state.deployedFacility : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["facilities"] = state ? state.facilities : undefined;
+            inputs["forceDetachVolumes"] = state ? state.forceDetachVolumes : undefined;
             inputs["hardwareReservationId"] = state ? state.hardwareReservationId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
             inputs["ipAddressTypes"] = state ? state.ipAddressTypes : undefined;
@@ -346,6 +348,7 @@ export class Device extends pulumi.CustomResource {
             inputs["billingCycle"] = args ? args.billingCycle : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["facilities"] = args ? args.facilities : undefined;
+            inputs["forceDetachVolumes"] = args ? args.forceDetachVolumes : undefined;
             inputs["hardwareReservationId"] = args ? args.hardwareReservationId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
             inputs["ipAddressTypes"] = args ? args.ipAddressTypes : undefined;
@@ -426,8 +429,9 @@ export interface DeviceState {
      */
     readonly facilities?: pulumi.Input<pulumi.Input<Facility>[]>;
     /**
-     * The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+     * Delete device even if it has volumes attached. Only applies for destroy action.
      */
+    readonly forceDetachVolumes?: pulumi.Input<boolean>;
     readonly hardwareReservationId?: pulumi.Input<string>;
     /**
      * The device name
@@ -540,8 +544,9 @@ export interface DeviceArgs {
      */
     readonly facilities: pulumi.Input<pulumi.Input<Facility>[]>;
     /**
-     * The `full ID` of the hardware reservation where you want this device deployed, or `next-available` if you want to pick your next available reservation automatically.
+     * Delete device even if it has volumes attached. Only applies for destroy action.
      */
+    readonly forceDetachVolumes?: pulumi.Input<boolean>;
     readonly hardwareReservationId?: pulumi.Input<string>;
     /**
      * The device name

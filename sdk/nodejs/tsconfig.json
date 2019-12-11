@@ -17,7 +17,6 @@
         "billingCycle.ts",
         "config/index.ts",
         "config/vars.ts",
-        "connect.ts",
         "device.ts",
         "facility.ts",
         "getDevice.ts",

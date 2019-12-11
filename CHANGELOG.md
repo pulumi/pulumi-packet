@@ -2,7 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.7.1 of the Packet Terraform Provider
+* Upgrade to v2.7.2 of the Packet Terraform Provider
+
+  **PLEASE NOTE:**
+  `packet.Connect` has been removed from this resource. It was `deprecated` in
+  v1.2.0 and the underlying resource was removed in this release
 
 ---
 
