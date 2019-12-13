@@ -2,9 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.7.3 of the Packet Terraform Provider
+_(none)_
 
 ---
+
+## 1.4.0 (2019-12-13)
+* Upgrade to v2.7.3 of the Packet Terraform Provider
+* Namespace names in .NET SDK are adjusted to PascalCase
+([#49](https://github.com/pulumi/pulumi-packet/pull/49)).
 
 ## 1.3.0 (2019-12-11)
 * Upgrade to v2.7.2 of the Packet Terraform Provider
