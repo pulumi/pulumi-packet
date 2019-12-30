@@ -93,14 +93,6 @@ func Provider() tfbridge.ProviderInfo {
 			// Map each resource in the Terraform provider to a Pulumi type. An example
 			// is below.
 			"packet_bgp_session": {Tok: makeResource(mainMod, "BgpSession")},
-			"packet_connect": {
-				Tok: makeResource(mainMod, "Connect"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"facility": {
-						Type: makeType(mainMod, "Facility"),
-					},
-				},
-			},
 			"packet_device": {
 				Tok: makeResource(mainMod, "Device"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -208,7 +200,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.5.0-*",
+				"Pulumi":                       "1.7.0-preview",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: map[string]string{

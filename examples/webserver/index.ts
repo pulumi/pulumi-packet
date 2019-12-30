@@ -2,9 +2,7 @@
 
 import * as packet from "@pulumi/packet";
 
-let project = new packet.Project("project", {
-    name: "pulumi",
-});
+let project = packet.getProject({name: "ci-project"});
 
 let vm = new packet.Device("vm", {
     facilities: [packet.Facilities.EWR1],
