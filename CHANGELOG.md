@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v1.5.2
+_(none)_
 
 ---
+
+## 1.5.0 (2020-01-06)
+* Upgrade to pulumi-terraform-bridge v1.5.2
 
 ## 1.4.0 (2019-12-13)
 * Upgrade to v2.7.3 of the Packet Terraform Provider
