@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
  */
-export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulumi.InvokeOptions): Promise<GetPrecreatedIpBlockResult> & GetPrecreatedIpBlockResult {
+export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulumi.InvokeOptions): Promise<GetPrecreatedIpBlockResult> {
     if (!opts) {
         opts = {}
     }
@@ -20,15 +20,13 @@ export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulu
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetPrecreatedIpBlockResult> = pulumi.runtime.invoke("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", {
+    return pulumi.runtime.invoke("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", {
         "addressFamily": args.addressFamily,
         "facility": args.facility,
         "global": args.global,
         "projectId": args.projectId,
         "public": args.public,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

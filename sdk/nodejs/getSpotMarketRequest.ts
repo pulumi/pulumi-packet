@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
  */
-export function getSpotMarketRequest(args: GetSpotMarketRequestArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketRequestResult> & GetSpotMarketRequestResult {
+export function getSpotMarketRequest(args: GetSpotMarketRequestArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketRequestResult> {
     if (!opts) {
         opts = {}
     }
@@ -19,11 +19,9 @@ export function getSpotMarketRequest(args: GetSpotMarketRequestArgs, opts?: pulu
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetSpotMarketRequestResult> = pulumi.runtime.invoke("packet:index/getSpotMarketRequest:getSpotMarketRequest", {
+    return pulumi.runtime.invoke("packet:index/getSpotMarketRequest:getSpotMarketRequest", {
         "requestId": args.requestId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

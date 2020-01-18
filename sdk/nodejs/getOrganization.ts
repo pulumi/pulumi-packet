@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
  */
-export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> & GetOrganizationResult {
+export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -20,12 +20,10 @@ export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.Invoke
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetOrganizationResult> = pulumi.runtime.invoke("packet:index/getOrganization:getOrganization", {
+    return pulumi.runtime.invoke("packet:index/getOrganization:getOrganization", {
         "name": args.name,
         "organizationId": args.organizationId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

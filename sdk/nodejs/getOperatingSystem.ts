@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
  */
-export function getOperatingSystem(args?: GetOperatingSystemArgs, opts?: pulumi.InvokeOptions): Promise<GetOperatingSystemResult> & GetOperatingSystemResult {
+export function getOperatingSystem(args?: GetOperatingSystemArgs, opts?: pulumi.InvokeOptions): Promise<GetOperatingSystemResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -42,14 +42,12 @@ export function getOperatingSystem(args?: GetOperatingSystemArgs, opts?: pulumi.
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetOperatingSystemResult> = pulumi.runtime.invoke("packet:index/getOperatingSystem:getOperatingSystem", {
+    return pulumi.runtime.invoke("packet:index/getOperatingSystem:getOperatingSystem", {
         "distro": args.distro,
         "name": args.name,
         "provisionableOn": args.provisionableOn,
         "version": args.version,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

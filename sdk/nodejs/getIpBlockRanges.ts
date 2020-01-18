@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
  */
-export function getIpBlockRanges(args: GetIpBlockRangesArgs, opts?: pulumi.InvokeOptions): Promise<GetIpBlockRangesResult> & GetIpBlockRangesResult {
+export function getIpBlockRanges(args: GetIpBlockRangesArgs, opts?: pulumi.InvokeOptions): Promise<GetIpBlockRangesResult> {
     if (!opts) {
         opts = {}
     }
@@ -23,12 +23,10 @@ export function getIpBlockRanges(args: GetIpBlockRangesArgs, opts?: pulumi.Invok
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetIpBlockRangesResult> = pulumi.runtime.invoke("packet:index/getIpBlockRanges:getIpBlockRanges", {
+    return pulumi.runtime.invoke("packet:index/getIpBlockRanges:getIpBlockRanges", {
         "facility": args.facility,
         "projectId": args.projectId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
  */
-export function getSpotMarketPrice(args: GetSpotMarketPriceArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketPriceResult> & GetSpotMarketPriceResult {
+export function getSpotMarketPrice(args: GetSpotMarketPriceArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketPriceResult> {
     if (!opts) {
         opts = {}
     }
@@ -31,12 +31,10 @@ export function getSpotMarketPrice(args: GetSpotMarketPriceArgs, opts?: pulumi.I
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetSpotMarketPriceResult> = pulumi.runtime.invoke("packet:index/getSpotMarketPrice:getSpotMarketPrice", {
+    return pulumi.runtime.invoke("packet:index/getSpotMarketPrice:getSpotMarketPrice", {
         "facility": args.facility,
         "plan": args.plan,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**
