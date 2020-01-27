@@ -37,11 +37,11 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
-     * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+     * Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
      */
     public readonly backendTransfer!: pulumi.Output<boolean | undefined>;
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+     * Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
      */
     public readonly bgpConfig!: pulumi.Output<outputs.ProjectBgpConfig | undefined>;
     /**
@@ -113,11 +113,11 @@ export class Project extends pulumi.CustomResource {
  */
 export interface ProjectState {
     /**
-     * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+     * Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
      */
     readonly backendTransfer?: pulumi.Input<boolean>;
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+     * Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
      */
     readonly bgpConfig?: pulumi.Input<inputs.ProjectBgpConfig>;
     /**
@@ -147,11 +147,11 @@ export interface ProjectState {
  */
 export interface ProjectArgs {
     /**
-     * Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+     * Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
      */
     readonly backendTransfer?: pulumi.Input<boolean>;
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+     * Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
      */
     readonly bgpConfig?: pulumi.Input<inputs.ProjectBgpConfig>;
     /**

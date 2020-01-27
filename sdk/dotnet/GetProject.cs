@@ -46,7 +46,7 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly bool BackendTransfer;
         /// <summary>
-        /// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        /// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         /// </summary>
         public readonly Outputs.GetProjectBgpConfigResult BgpConfig;
         /// <summary>

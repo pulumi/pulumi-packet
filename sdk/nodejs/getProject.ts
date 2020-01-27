@@ -51,7 +51,7 @@ export interface GetProjectResult {
      */
     readonly backendTransfer: boolean;
     /**
-     * Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+     * Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
      */
     readonly bgpConfig: outputs.GetProjectBgpConfig;
     /**

@@ -17,13 +17,13 @@ namespace Pulumi.Packet
     public partial class Project : Pulumi.CustomResource
     {
         /// <summary>
-        /// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+        /// Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
         /// </summary>
         [Output("backendTransfer")]
         public Output<bool?> BackendTransfer { get; private set; } = null!;
 
         /// <summary>
-        /// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        /// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         /// </summary>
         [Output("bgpConfig")]
         public Output<Outputs.ProjectBgpConfig?> BgpConfig { get; private set; } = null!;
@@ -105,13 +105,13 @@ namespace Pulumi.Packet
     public sealed class ProjectArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+        /// Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
         /// </summary>
         [Input("backendTransfer")]
         public Input<bool>? BackendTransfer { get; set; }
 
         /// <summary>
-        /// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        /// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         /// </summary>
         [Input("bgpConfig")]
         public Input<Inputs.ProjectBgpConfigArgs>? BgpConfig { get; set; }
@@ -142,13 +142,13 @@ namespace Pulumi.Packet
     public sealed class ProjectState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+        /// Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
         /// </summary>
         [Input("backendTransfer")]
         public Input<bool>? BackendTransfer { get; set; }
 
         /// <summary>
-        /// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        /// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         /// </summary>
         [Input("bgpConfig")]
         public Input<Inputs.ProjectBgpConfigGetArgs>? BgpConfig { get; set; }

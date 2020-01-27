@@ -70,7 +70,7 @@ namespace Pulumi.Packet
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+        /// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Output("facilities")]
         public Output<ImmutableArray<string>> Facilities { get; private set; } = null!;
@@ -99,7 +99,7 @@ namespace Pulumi.Packet
         /// <summary>
         /// URL pointing to a hosted iPXE script. More
         /// information is in the
-        /// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
+        /// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
         /// doc.
         /// </summary>
         [Output("ipxeScriptUrl")]
@@ -126,13 +126,13 @@ namespace Pulumi.Packet
         public Output<string?> NetworkType { get; private set; } = null!;
 
         /// <summary>
-        /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+        /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Output("operatingSystem")]
         public Output<string> OperatingSystem { get; private set; } = null!;
 
         /// <summary>
-        /// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
+        /// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Pulumi.Packet
         /// <summary>
         /// Size of allocated subnet, more
         /// information is in the
-        /// [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
+        /// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
         /// </summary>
         [Output("publicIpv4SubnetSize")]
         public Output<int> PublicIpv4SubnetSize { get; private set; } = null!;
@@ -182,7 +182,7 @@ namespace Pulumi.Packet
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
+        /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
         /// </summary>
         [Output("storage")]
         public Output<string?> Storage { get; private set; } = null!;
@@ -280,7 +280,7 @@ namespace Pulumi.Packet
         private InputList<string>? _facilities;
 
         /// <summary>
-        /// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+        /// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
         /// </summary>
         public InputList<string> Facilities
         {
@@ -318,7 +318,7 @@ namespace Pulumi.Packet
         /// <summary>
         /// URL pointing to a hosted iPXE script. More
         /// information is in the
-        /// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
+        /// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
         /// doc.
         /// </summary>
         [Input("ipxeScriptUrl")]
@@ -328,13 +328,13 @@ namespace Pulumi.Packet
         public Input<string>? NetworkType { get; set; }
 
         /// <summary>
-        /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+        /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Input("operatingSystem", required: true)]
         public Input<string> OperatingSystem { get; set; } = null!;
 
         /// <summary>
-        /// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
+        /// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Input("plan", required: true)]
         public Input<string> Plan { get; set; } = null!;
@@ -360,13 +360,13 @@ namespace Pulumi.Packet
         /// <summary>
         /// Size of allocated subnet, more
         /// information is in the
-        /// [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
+        /// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
         /// </summary>
         [Input("publicIpv4SubnetSize")]
         public Input<int>? PublicIpv4SubnetSize { get; set; }
 
         /// <summary>
-        /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
+        /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
         /// </summary>
         [Input("storage")]
         public Input<string>? Storage { get; set; }
@@ -455,7 +455,7 @@ namespace Pulumi.Packet
         private InputList<string>? _facilities;
 
         /// <summary>
-        /// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+        /// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
         /// </summary>
         public InputList<string> Facilities
         {
@@ -493,7 +493,7 @@ namespace Pulumi.Packet
         /// <summary>
         /// URL pointing to a hosted iPXE script. More
         /// information is in the
-        /// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
+        /// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
         /// doc.
         /// </summary>
         [Input("ipxeScriptUrl")]
@@ -526,13 +526,13 @@ namespace Pulumi.Packet
         public Input<string>? NetworkType { get; set; }
 
         /// <summary>
-        /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+        /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Input("operatingSystem")]
         public Input<string>? OperatingSystem { get; set; }
 
         /// <summary>
-        /// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
+        /// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -570,7 +570,7 @@ namespace Pulumi.Packet
         /// <summary>
         /// Size of allocated subnet, more
         /// information is in the
-        /// [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
+        /// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
         /// </summary>
         [Input("publicIpv4SubnetSize")]
         public Input<int>? PublicIpv4SubnetSize { get; set; }
@@ -600,7 +600,7 @@ namespace Pulumi.Packet
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
+        /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
         /// </summary>
         [Input("storage")]
         public Input<string>? Storage { get; set; }

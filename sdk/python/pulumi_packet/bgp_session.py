@@ -25,7 +25,7 @@ class BgpSession(pulumi.CustomResource):
     status: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, address_family=None, default_route=None, device_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://support.packet.com/kb/articles/bgp) for more details.
+        Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/) for more details.
         
         You need to have BGP config enabled in your project.
         
