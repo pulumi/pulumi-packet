@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Upgrade to v2.7.4 of the Packet Terraform Provider
+* Upgrade to pulumi-terraform-bridge v1.6.4
 
 ---
 
