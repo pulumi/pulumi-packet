@@ -198,7 +198,7 @@ func (r *Device) Description() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
-// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
 func (r *Device) Facilities() pulumi.ArrayOutput {
 	return (pulumi.ArrayOutput)(r.s.State["facilities"])
 }
@@ -224,7 +224,7 @@ func (r *Device) IpAddressTypes() pulumi.ArrayOutput {
 
 // URL pointing to a hosted iPXE script. More
 // information is in the
-// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
+// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 // doc.
 func (r *Device) IpxeScriptUrl() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["ipxeScriptUrl"])
@@ -249,12 +249,12 @@ func (r *Device) NetworkType() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["networkType"])
 }
 
-// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 func (r *Device) OperatingSystem() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["operatingSystem"])
 }
 
-// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
+// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
 func (r *Device) Plan() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["plan"])
 }
@@ -276,7 +276,7 @@ func (r *Device) ProjectSshKeyIds() pulumi.ArrayOutput {
 
 // Size of allocated subnet, more
 // information is in the
-// [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
+// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
 func (r *Device) PublicIpv4SubnetSize() pulumi.IntOutput {
 	return (pulumi.IntOutput)(r.s.State["publicIpv4SubnetSize"])
 }
@@ -296,7 +296,7 @@ func (r *Device) State() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["state"])
 }
 
-// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
+// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
 func (r *Device) Storage() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["storage"])
 }
@@ -340,7 +340,7 @@ type DeviceState struct {
 	DeployedFacility interface{}
 	// Description string for the device
 	Description interface{}
-	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes interface{}
@@ -351,7 +351,7 @@ type DeviceState struct {
 	IpAddressTypes interface{}
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
-	// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
+	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 	// doc.
 	IpxeScriptUrl interface{}
 	// Whether the device is locked
@@ -364,9 +364,9 @@ type DeviceState struct {
 	// The fields of the network attributes are:
 	Networks interface{}
 	NetworkType interface{}
-	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem interface{}
-	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
+	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
 	Plan interface{}
 	// Ports assigned to the device
 	Ports interface{}
@@ -376,7 +376,7 @@ type DeviceState struct {
 	ProjectSshKeyIds interface{}
 	// Size of allocated subnet, more
 	// information is in the
-	// [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
+	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
 	PublicIpv4SubnetSize interface{}
 	// Root password to the server (disabled after 24 hours)
 	RootPassword interface{}
@@ -384,7 +384,7 @@ type DeviceState struct {
 	SshKeyIds interface{}
 	// The status of the device
 	State interface{}
-	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
+	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
 	Storage interface{}
 	// Tags attached to the device
 	Tags interface{}
@@ -405,7 +405,7 @@ type DeviceArgs struct {
 	BillingCycle interface{}
 	// Description string for the device
 	Description interface{}
-	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.
+	// List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
 	Facilities interface{}
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes interface{}
@@ -416,13 +416,13 @@ type DeviceArgs struct {
 	IpAddressTypes interface{}
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
-	// [Custom iPXE](https://support.packet.com/kb/articles/custom-ipxe)
+	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 	// doc.
 	IpxeScriptUrl interface{}
 	NetworkType interface{}
-	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem interface{}
-	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.
+	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
 	Plan interface{}
 	// The ID of the project in which to create the device
 	ProjectId interface{}
@@ -430,9 +430,9 @@ type DeviceArgs struct {
 	ProjectSshKeyIds interface{}
 	// Size of allocated subnet, more
 	// information is in the
-	// [Custom Subnet Size](https://support.packet.com/kb/articles/custom-subnet-size) doc.
+	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
 	PublicIpv4SubnetSize interface{}
-	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://support.packet.com/kb/articles/custom-partitioning-raid) doc.
+	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
 	Storage interface{}
 	// Tags attached to the device
 	Tags interface{}

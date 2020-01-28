@@ -24,7 +24,7 @@ class GetProjectResult:
             raise TypeError("Expected argument 'bgp_config' to be a dict")
         __self__.bgp_config = bgp_config
         """
-        Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         """
         if created and not isinstance(created, str):
             raise TypeError("Expected argument 'created' to be a str")

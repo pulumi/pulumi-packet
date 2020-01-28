@@ -76,12 +76,12 @@ func (r *Project) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+// Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
 func (r *Project) BackendTransfer() pulumi.BoolOutput {
 	return (pulumi.BoolOutput)(r.s.State["backendTransfer"])
 }
 
-// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
 func (r *Project) BgpConfig() pulumi.Output {
 	return r.s.State["bgpConfig"]
 }
@@ -113,9 +113,9 @@ func (r *Project) Updated() pulumi.StringOutput {
 
 // Input properties used for looking up and filtering Project resources.
 type ProjectState struct {
-	// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+	// Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
 	BackendTransfer interface{}
-	// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+	// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
 	BgpConfig interface{}
 	// The timestamp for when the project was created
 	Created interface{}
@@ -131,9 +131,9 @@ type ProjectState struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
-	// Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+	// Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
 	BackendTransfer interface{}
-	// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+	// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
 	BgpConfig interface{}
 	// The name of the project
 	Name interface{}

@@ -12,11 +12,11 @@ from . import utilities, tables
 class Project(pulumi.CustomResource):
     backend_transfer: pulumi.Output[bool]
     """
-    Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
+    Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
     """
     bgp_config: pulumi.Output[dict]
     """
-    Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+    Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
     
       * `asn` (`float`)
       * `deploymentType` (`str`)
@@ -51,8 +51,8 @@ class Project(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
-        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
+        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
@@ -108,8 +108,8 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false
-        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+        :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
+        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         :param pulumi.Input[str] created: The timestamp for when the project was created
         :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.

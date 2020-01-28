@@ -46,7 +46,7 @@ type GetProjectArgs struct {
 type GetProjectResult struct {
 	// Whether Backend Transfer is enabled for this project
 	BackendTransfer interface{}
-	// Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp).
+	// Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
 	BgpConfig interface{}
 	// The timestamp for when the project was created
 	Created interface{}
