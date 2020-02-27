@@ -48,6 +48,8 @@ type Device struct {
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes pulumi.StringArrayOutput `pulumi:"ipAddressTypes"`
+	// A list of IP address types for the device (structure is documented below). 
+	IpAddresses DeviceIpAddressArrayOutput `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -71,7 +73,6 @@ type Device struct {
 	Ports DevicePortArrayOutput `pulumi:"ports"`
 	// The ID of the project in which to create the device
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds pulumi.StringArrayOutput `pulumi:"projectSshKeyIds"`
 	// Size of allocated subnet, more
 	// information is in the
@@ -167,6 +168,8 @@ type deviceState struct {
 	Hostname *string `pulumi:"hostname"`
 	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes []string `pulumi:"ipAddressTypes"`
+	// A list of IP address types for the device (structure is documented below). 
+	IpAddresses []DeviceIpAddress `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -190,7 +193,6 @@ type deviceState struct {
 	Ports []DevicePort `pulumi:"ports"`
 	// The ID of the project in which to create the device
 	ProjectId *string `pulumi:"projectId"`
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds []string `pulumi:"projectSshKeyIds"`
 	// Size of allocated subnet, more
 	// information is in the
@@ -241,6 +243,8 @@ type DeviceState struct {
 	Hostname pulumi.StringPtrInput
 	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes pulumi.StringArrayInput
+	// A list of IP address types for the device (structure is documented below). 
+	IpAddresses DeviceIpAddressArrayInput
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -264,7 +268,6 @@ type DeviceState struct {
 	Ports DevicePortArrayInput
 	// The ID of the project in which to create the device
 	ProjectId pulumi.StringPtrInput
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds pulumi.StringArrayInput
 	// Size of allocated subnet, more
 	// information is in the
@@ -309,6 +312,8 @@ type deviceArgs struct {
 	Hostname string `pulumi:"hostname"`
 	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes []string `pulumi:"ipAddressTypes"`
+	// A list of IP address types for the device (structure is documented below). 
+	IpAddresses []DeviceIpAddress `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -321,7 +326,6 @@ type deviceArgs struct {
 	Plan string `pulumi:"plan"`
 	// The ID of the project in which to create the device
 	ProjectId string `pulumi:"projectId"`
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds []string `pulumi:"projectSshKeyIds"`
 	// Size of allocated subnet, more
 	// information is in the
@@ -355,6 +359,8 @@ type DeviceArgs struct {
 	Hostname pulumi.StringInput
 	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
 	IpAddressTypes pulumi.StringArrayInput
+	// A list of IP address types for the device (structure is documented below). 
+	IpAddresses DeviceIpAddressArrayInput
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -367,7 +373,6 @@ type DeviceArgs struct {
 	Plan pulumi.StringInput
 	// The ID of the project in which to create the device
 	ProjectId pulumi.StringInput
-	// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [.ProjectSshKey][packet_project_ssh_key.html] resource.
 	ProjectSshKeyIds pulumi.StringArrayInput
 	// Size of allocated subnet, more
 	// information is in the

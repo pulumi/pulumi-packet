@@ -14,19 +14,6 @@ import {Facility} from "./index";
  * To learn more about Layer 2 networking in Packet, refer to
  * * https://www.packet.com/resources/guides/layer-2-configurations/
  * * https://www.packet.com/developers/docs/network/advanced/layer-2/
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const vlan1 = new packet.Vlan("vlan1", {
- *     description: "VLAN in New Jersey",
- *     facility: "ewr1",
- *     projectId: local_project_id,
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
  */

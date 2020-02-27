@@ -17,54 +17,6 @@ import * as utilities from "./utilities";
  * * https://www.packet.com/resources/guides/layer-2-configurations/ 
  * * https://www.packet.com/developers/docs/network/advanced/layer-2/
  * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * const testVlan = new packet.Vlan("test", {
- *     description: "VLAN in New Jersey",
- *     facility: "ewr1",
- *     projectId: local_project_id,
- * });
- * const testDevice = new packet.Device("test", {
- *     billingCycle: "hourly",
- *     facilities: ["ewr1"],
- *     hostname: "test",
- *     networkType: "layer2-individual",
- *     operatingSystem: "ubuntu1604",
- *     plan: "m1.xlarge.x86",
- *     projectId: local_project_id,
- * });
- * const testPortVlanAttachment = new packet.PortVlanAttachment("test", {
- *     deviceId: testDevice.id,
- *     portName: "eth1",
- *     vlanVnid: testVlan.vxlan,
- * });
- * const test1Vlan = new packet.Vlan("test1", {
- *     description: "VLAN in New Jersey",
- *     facility: "ewr1",
- *     projectId: local_project_id,
- * });
- * const test2Vlan = new packet.Vlan("test2", {
- *     description: "VLAN in New Jersey",
- *     facility: "ewr1",
- *     projectId: local_project_id,
- * });
- * const test1PortVlanAttachment = new packet.PortVlanAttachment("test1", {
- *     deviceId: testDevice.id,
- *     portName: "eth1",
- *     vlanVnid: test1Vlan.vxlan,
- * });
- * const test2PortVlanAttachment = new packet.PortVlanAttachment("test2", {
- *     deviceId: testDevice.id,
- *     native: true,
- *     portName: "eth1",
- *     vlanVnid: test2Vlan.vxlan,
- * }, {dependsOn: [test1PortVlanAttachment]});
- * ```
- * 
  * ## Attribute Referece
  * 
  * * `id` - UUID of device port used in the assignment

@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 
+export interface DeviceIpAddress {
+    /**
+     * bit length of the network mask of the address
+     */
+    cidr?: pulumi.Input<number>;
+    reservationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface DeviceNetwork {
     /**
      * IPv4 or IPv6 address string

@@ -91,6 +91,12 @@ namespace Pulumi.Packet
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
+        /// A list of IP address types for the device (structure is documented below). 
+        /// </summary>
+        [Output("ipAddresses")]
+        public Output<ImmutableArray<Outputs.DeviceIpAddresses>> IpAddresses { get; private set; } = null!;
+
+        /// <summary>
         /// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         /// </summary>
         [Output("ipAddressTypes")]
@@ -149,9 +155,6 @@ namespace Pulumi.Packet
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
-        /// <summary>
-        /// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
-        /// </summary>
         [Output("projectSshKeyIds")]
         public Output<ImmutableArray<string>> ProjectSshKeyIds { get; private set; } = null!;
 
@@ -303,6 +306,18 @@ namespace Pulumi.Packet
         [Input("hostname", required: true)]
         public Input<string> Hostname { get; set; } = null!;
 
+        [Input("ipAddresses")]
+        private InputList<Inputs.DeviceIpAddressesArgs>? _ipAddresses;
+
+        /// <summary>
+        /// A list of IP address types for the device (structure is documented below). 
+        /// </summary>
+        public InputList<Inputs.DeviceIpAddressesArgs> IpAddresses
+        {
+            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressesArgs>());
+            set => _ipAddresses = value;
+        }
+
         [Input("ipAddressTypes")]
         private InputList<string>? _ipAddressTypes;
 
@@ -347,10 +362,6 @@ namespace Pulumi.Packet
 
         [Input("projectSshKeyIds")]
         private InputList<string>? _projectSshKeyIds;
-
-        /// <summary>
-        /// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
-        /// </summary>
         public InputList<string> ProjectSshKeyIds
         {
             get => _projectSshKeyIds ?? (_projectSshKeyIds = new InputList<string>());
@@ -478,6 +489,18 @@ namespace Pulumi.Packet
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
+        [Input("ipAddresses")]
+        private InputList<Inputs.DeviceIpAddressesGetArgs>? _ipAddresses;
+
+        /// <summary>
+        /// A list of IP address types for the device (structure is documented below). 
+        /// </summary>
+        public InputList<Inputs.DeviceIpAddressesGetArgs> IpAddresses
+        {
+            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressesGetArgs>());
+            set => _ipAddresses = value;
+        }
+
         [Input("ipAddressTypes")]
         private InputList<string>? _ipAddressTypes;
 
@@ -557,10 +580,6 @@ namespace Pulumi.Packet
 
         [Input("projectSshKeyIds")]
         private InputList<string>? _projectSshKeyIds;
-
-        /// <summary>
-        /// Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
-        /// </summary>
         public InputList<string> ProjectSshKeyIds
         {
             get => _projectSshKeyIds ?? (_projectSshKeyIds = new InputList<string>());
@@ -643,6 +662,60 @@ namespace Pulumi.Packet
     namespace Inputs
     {
 
+    public sealed class DeviceIpAddressesArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// bit length of the network mask of the address
+        /// </summary>
+        [Input("cidr")]
+        public Input<int>? Cidr { get; set; }
+
+        [Input("reservationIds")]
+        private InputList<string>? _reservationIds;
+        public InputList<string> ReservationIds
+        {
+            get => _reservationIds ?? (_reservationIds = new InputList<string>());
+            set => _reservationIds = value;
+        }
+
+        /// <summary>
+        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// </summary>
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
+
+        public DeviceIpAddressesArgs()
+        {
+        }
+    }
+
+    public sealed class DeviceIpAddressesGetArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// bit length of the network mask of the address
+        /// </summary>
+        [Input("cidr")]
+        public Input<int>? Cidr { get; set; }
+
+        [Input("reservationIds")]
+        private InputList<string>? _reservationIds;
+        public InputList<string> ReservationIds
+        {
+            get => _reservationIds ?? (_reservationIds = new InputList<string>());
+            set => _reservationIds = value;
+        }
+
+        /// <summary>
+        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// </summary>
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
+
+        public DeviceIpAddressesGetArgs()
+        {
+        }
+    }
+
     public sealed class DeviceNetworksGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
@@ -721,6 +794,31 @@ namespace Pulumi.Packet
 
     namespace Outputs
     {
+
+    [OutputType]
+    public sealed class DeviceIpAddresses
+    {
+        /// <summary>
+        /// bit length of the network mask of the address
+        /// </summary>
+        public readonly int? Cidr;
+        public readonly ImmutableArray<string> ReservationIds;
+        /// <summary>
+        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// </summary>
+        public readonly string Type;
+
+        [OutputConstructor]
+        private DeviceIpAddresses(
+            int? cidr,
+            ImmutableArray<string> reservationIds,
+            string type)
+        {
+            Cidr = cidr;
+            ReservationIds = reservationIds;
+            Type = type;
+        }
+    }
 
     [OutputType]
     public sealed class DeviceNetworks
