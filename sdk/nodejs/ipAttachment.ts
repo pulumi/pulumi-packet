@@ -17,25 +17,6 @@ import * as utilities from "./utilities";
  * with mask prefix length 32. More about the elastic IP subnets is [here](https://www.packet.com/developers/docs/network/basic/elastic-ips/).
  * 
  * Device and reserved block must be in the same facility.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Reserve /30 block of max 2 public IPv4 addresses in Parsippany, NJ (ewr1) for myproject
- * const myblock = new packet.ReservedIpBlock("myblock", {
- *     facility: "ewr1",
- *     projectId: local_project_id,
- *     quantity: 2,
- * });
- * // Assign /32 subnet (single address) from reserved block to a device
- * const firstAddressAssignment = new packet.IpAttachment("firstAddressAssignment", {
- *     cidrNotation: myblock.cidrNotation.apply(cidrNotation => `${(() => { throw "NYI: call to cidrhost"; })()}/32`),
- *     deviceId: packet_device_mydevice.id,
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
  */

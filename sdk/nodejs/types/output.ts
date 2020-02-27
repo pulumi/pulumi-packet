@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as outputs from "../types/output";
 
+export interface DeviceIpAddress {
+    /**
+     * bit length of the network mask of the address
+     */
+    cidr?: number;
+    reservationIds?: string[];
+    /**
+     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     */
+    type: string;
+}
+
 export interface DeviceNetwork {
     /**
      * IPv4 or IPv6 address string

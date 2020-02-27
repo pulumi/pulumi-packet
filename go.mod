@@ -7,7 +7,7 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.9.1
 	github.com/pulumi/pulumi-terraform-bridge v1.6.5
-	github.com/terraform-providers/terraform-provider-packet v1.7.3-0.20200124184801-772743aa87cb
+	github.com/terraform-providers/terraform-provider-packet v1.7.3-0.20200226132411-763d24acef79
 )
 
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible

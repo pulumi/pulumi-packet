@@ -364,8 +364,8 @@ github.com/opentracing/basictracer-go v1.0.0/go.mod h1:QfBfYuafItcjQuMwinw9GhYKw
 github.com/opentracing/opentracing-go v1.0.2 h1:3jA2P6O1F9UOrWVpwrIo17pu01KWvNWg4X946/Y5Zwg=
 github.com/opentracing/opentracing-go v1.0.2/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
 github.com/openzipkin/zipkin-go v0.1.6/go.mod h1:QgAqvLzwWbR/WpD4A3cGpPtJrZXNIiJc5AZX7/PBEpw=
-github.com/packethost/packngo v0.2.1-0.20191121150456-ac94adc96a1f h1:v0wmpiLqYzfGtqmaVb4jxojC1WHzQY3JQKXDxg3IKeU=
-github.com/packethost/packngo v0.2.1-0.20191121150456-ac94adc96a1f/go.mod h1:lTgI4wr0T6uAIArEQtlx1wu+n0cEy+opDJpIBAHvQ34=
+github.com/packethost/packngo v0.2.1-0.20200224173249-1156d996f0d5 h1:zYQI6m89hXkqnR1urzsl6xMpEP525Vh4kmUB+pF5fHo=
+github.com/packethost/packngo v0.2.1-0.20200224173249-1156d996f0d5/go.mod h1:lTgI4wr0T6uAIArEQtlx1wu+n0cEy+opDJpIBAHvQ34=
 github.com/pascaldekloe/goe v0.1.0/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pelletier/go-buffruneio v0.2.0 h1:U4t4R6YkofJ5xHm3dJzuRpPZ0mr5MMCoAWooScCR7aA=
 github.com/pelletier/go-buffruneio v0.2.0/go.mod h1:JkE26KsDizTr40EUHkXVtNPvgGtbSNq5BcowyYOWdKo=
@@ -434,8 +434,8 @@ github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXf
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.4.1-0.20191106224347-f1bd0923b832 h1:oun9LXpnh9ourZ6f+yQUGVg4g+Klumg+eFXQztqkHSY=
 github.com/stretchr/testify v1.4.1-0.20191106224347-f1bd0923b832/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
-github.com/terraform-providers/terraform-provider-packet v1.7.3-0.20200124184801-772743aa87cb h1:17WcqKWTYUQXkG0oqSdMGRvW6ehaJ2QOwkNgTnBaFfI=
-github.com/terraform-providers/terraform-provider-packet v1.7.3-0.20200124184801-772743aa87cb/go.mod h1:W1vQC5lyvSfhECTgdrVPZf4p+hQT6qSlZIyDGhdorpg=
+github.com/terraform-providers/terraform-provider-packet v1.7.3-0.20200226132411-763d24acef79 h1:0k9Y9UQF9KLDjLr5EZbt4TEaLM3nQ16BYEhAXUETwiI=
+github.com/terraform-providers/terraform-provider-packet v1.7.3-0.20200226132411-763d24acef79/go.mod h1:nf+ZUaSu9XrhP0p9SFeILT8ogsQndsh+aJhzT8UktBM=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e h1:T5PdfK/M1xyrHwynxMIVMWLS7f/qHwfslZphxtGnw7s=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e/go.mod h1:XDKHRm5ThF8YJjx001LtgelzsoaEcvnA7lVWz9EeX3g=
 github.com/tidwall/pretty v0.0.0-20190325153808-1166b9ac2b65/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=

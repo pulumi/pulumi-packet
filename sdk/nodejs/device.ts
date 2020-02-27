@@ -15,112 +15,6 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  * > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Create a device and add it to coolProject
- * const web1 = new packet.Device("web1", {
- *     billingCycle: "hourly",
- *     facilities: ["ewr1"],
- *     hostname: "tf.coreos2",
- *     operatingSystem: "coreosStable",
- *     plan: "t1.small.x86",
- *     projectId: local_project_id,
- * });
- * ```
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Same as above, but boot via iPXE initially, using the Ignition Provider for provisioning
- * const pxe1 = new packet.Device("pxe1", {
- *     alwaysPxe: false,
- *     billingCycle: "hourly",
- *     facilities: ["ewr1"],
- *     hostname: "tf.coreos2-pxe",
- *     ipxeScriptUrl: "https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe",
- *     operatingSystem: "customIpxe",
- *     plan: "t1.small.x86",
- *     projectId: local_project_id,
- *     userData: ignition_config_example.rendered,
- * });
- * ```
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as packet from "@pulumi/packet";
- * 
- * // Deploy device on next-available reserved hardware and do custom partitioning.
- * const web1 = new packet.Device("web1", {
- *     billingCycle: "hourly",
- *     facilities: ["sjc1"],
- *     hardwareReservationId: "next-available",
- *     hostname: "tftest",
- *     operatingSystem: "ubuntu1604",
- *     plan: "t1.small.x86",
- *     projectId: local_project_id,
- *     storage: `{
- *   "disks": [
- *     {
- *       "device": "/dev/sda",
- *       "wipeTable": true,
- *       "partitions": [
- *         {
- *           "label": "BIOS",
- *           "number": 1,
- *           "size": 4096
- *         },
- *         {
- *           "label": "SWAP",
- *           "number": 2,
- *           "size": "3993600"
- *         },
- *         {
- *           "label": "ROOT",
- *           "number": 3,
- *           "size": 0
- *         }
- *       ]
- *     }
- *   ],
- *   "filesystems": [
- *     {
- *       "mount": {
- *         "device": "/dev/sda3",
- *         "format": "ext4",
- *         "point": "/",
- *         "create": {
- *           "options": [
- *             "-L",
- *             "ROOT"
- *           ]
- *         }
- *       }
- *     },
- *     {
- *       "mount": {
- *         "device": "/dev/sda2",
- *         "format": "swap",
- *         "point": "none",
- *         "create": {
- *           "options": [
- *             "-L",
- *             "SWAP"
- *           ]
- *         }
- *       }
- *     }
- *   ]
- * }
- * `,
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
  */
@@ -198,6 +92,10 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
+     * A list of IP address types for the device (structure is documented below). 
+     */
+    public readonly ipAddresses!: pulumi.Output<outputs.DeviceIpAddress[] | undefined>;
+    /**
      * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
      */
     public readonly ipAddressTypes!: pulumi.Output<IpAddressType[] | undefined>;
@@ -238,9 +136,6 @@ export class Device extends pulumi.CustomResource {
      * The ID of the project in which to create the device
      */
     public readonly projectId!: pulumi.Output<string>;
-    /**
-     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
-     */
     public readonly projectSshKeyIds!: pulumi.Output<string[] | undefined>;
     /**
      * Size of allocated subnet, more
@@ -305,6 +200,7 @@ export class Device extends pulumi.CustomResource {
             inputs["forceDetachVolumes"] = state ? state.forceDetachVolumes : undefined;
             inputs["hardwareReservationId"] = state ? state.hardwareReservationId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
+            inputs["ipAddresses"] = state ? state.ipAddresses : undefined;
             inputs["ipAddressTypes"] = state ? state.ipAddressTypes : undefined;
             inputs["ipxeScriptUrl"] = state ? state.ipxeScriptUrl : undefined;
             inputs["locked"] = state ? state.locked : undefined;
@@ -351,6 +247,7 @@ export class Device extends pulumi.CustomResource {
             inputs["forceDetachVolumes"] = args ? args.forceDetachVolumes : undefined;
             inputs["hardwareReservationId"] = args ? args.hardwareReservationId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
+            inputs["ipAddresses"] = args ? args.ipAddresses : undefined;
             inputs["ipAddressTypes"] = args ? args.ipAddressTypes : undefined;
             inputs["ipxeScriptUrl"] = args ? args.ipxeScriptUrl : undefined;
             inputs["networkType"] = args ? args.networkType : undefined;
@@ -438,6 +335,10 @@ export interface DeviceState {
      */
     readonly hostname?: pulumi.Input<string>;
     /**
+     * A list of IP address types for the device (structure is documented below). 
+     */
+    readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
+    /**
      * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
      */
     readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
@@ -478,9 +379,6 @@ export interface DeviceState {
      * The ID of the project in which to create the device
      */
     readonly projectId?: pulumi.Input<string>;
-    /**
-     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
-     */
     readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Size of allocated subnet, more
@@ -553,6 +451,10 @@ export interface DeviceArgs {
      */
     readonly hostname: pulumi.Input<string>;
     /**
+     * A list of IP address types for the device (structure is documented below). 
+     */
+    readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
+    /**
      * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
      */
     readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
@@ -576,9 +478,6 @@ export interface DeviceArgs {
      * The ID of the project in which to create the device
      */
     readonly projectId: pulumi.Input<string>;
-    /**
-     * Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet..ProjectSshKey][packet_project_ssh_key.html] resource.
-     */
     readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Size of allocated subnet, more

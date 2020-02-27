@@ -11,6 +11,110 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+type DeviceIpAddress struct {
+	// bit length of the network mask of the address
+	Cidr *int `pulumi:"cidr"`
+	ReservationIds []string `pulumi:"reservationIds"`
+	// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+	Type string `pulumi:"type"`
+}
+
+type DeviceIpAddressInput interface {
+	pulumi.Input
+
+	ToDeviceIpAddressOutput() DeviceIpAddressOutput
+	ToDeviceIpAddressOutputWithContext(context.Context) DeviceIpAddressOutput
+}
+
+type DeviceIpAddressArgs struct {
+	// bit length of the network mask of the address
+	Cidr pulumi.IntPtrInput `pulumi:"cidr"`
+	ReservationIds pulumi.StringArrayInput `pulumi:"reservationIds"`
+	// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (DeviceIpAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceIpAddress)(nil)).Elem()
+}
+
+func (i DeviceIpAddressArgs) ToDeviceIpAddressOutput() DeviceIpAddressOutput {
+	return i.ToDeviceIpAddressOutputWithContext(context.Background())
+}
+
+func (i DeviceIpAddressArgs) ToDeviceIpAddressOutputWithContext(ctx context.Context) DeviceIpAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceIpAddressOutput)
+}
+
+type DeviceIpAddressArrayInput interface {
+	pulumi.Input
+
+	ToDeviceIpAddressArrayOutput() DeviceIpAddressArrayOutput
+	ToDeviceIpAddressArrayOutputWithContext(context.Context) DeviceIpAddressArrayOutput
+}
+
+type DeviceIpAddressArray []DeviceIpAddressInput
+
+func (DeviceIpAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeviceIpAddress)(nil)).Elem()
+}
+
+func (i DeviceIpAddressArray) ToDeviceIpAddressArrayOutput() DeviceIpAddressArrayOutput {
+	return i.ToDeviceIpAddressArrayOutputWithContext(context.Background())
+}
+
+func (i DeviceIpAddressArray) ToDeviceIpAddressArrayOutputWithContext(ctx context.Context) DeviceIpAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceIpAddressArrayOutput)
+}
+
+type DeviceIpAddressOutput struct { *pulumi.OutputState }
+
+func (DeviceIpAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceIpAddress)(nil)).Elem()
+}
+
+func (o DeviceIpAddressOutput) ToDeviceIpAddressOutput() DeviceIpAddressOutput {
+	return o
+}
+
+func (o DeviceIpAddressOutput) ToDeviceIpAddressOutputWithContext(ctx context.Context) DeviceIpAddressOutput {
+	return o
+}
+
+// bit length of the network mask of the address
+func (o DeviceIpAddressOutput) Cidr() pulumi.IntPtrOutput {
+	return o.ApplyT(func (v DeviceIpAddress) *int { return v.Cidr }).(pulumi.IntPtrOutput)
+}
+
+func (o DeviceIpAddressOutput) ReservationIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func (v DeviceIpAddress) []string { return v.ReservationIds }).(pulumi.StringArrayOutput)
+}
+
+// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+func (o DeviceIpAddressOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func (v DeviceIpAddress) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type DeviceIpAddressArrayOutput struct { *pulumi.OutputState}
+
+func (DeviceIpAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeviceIpAddress)(nil)).Elem()
+}
+
+func (o DeviceIpAddressArrayOutput) ToDeviceIpAddressArrayOutput() DeviceIpAddressArrayOutput {
+	return o
+}
+
+func (o DeviceIpAddressArrayOutput) ToDeviceIpAddressArrayOutputWithContext(ctx context.Context) DeviceIpAddressArrayOutput {
+	return o
+}
+
+func (o DeviceIpAddressArrayOutput) Index(i pulumi.IntInput) DeviceIpAddressOutput {
+	return pulumi.All(o, i).ApplyT(func (vs []interface{}) DeviceIpAddress {
+		return vs[0].([]DeviceIpAddress)[vs[1].(int)]
+	}).(DeviceIpAddressOutput)
+}
+
 type DeviceNetwork struct {
 	// IPv4 or IPv6 address string
 	Address *string `pulumi:"address"`
@@ -1243,6 +1347,8 @@ func (o GetVolumeSnapshotPolicyArrayOutput) Index(i pulumi.IntInput) GetVolumeSn
 }
 
 func init() {
+	pulumi.RegisterOutputType(DeviceIpAddressOutput{})
+	pulumi.RegisterOutputType(DeviceIpAddressArrayOutput{})
 	pulumi.RegisterOutputType(DeviceNetworkOutput{})
 	pulumi.RegisterOutputType(DeviceNetworkArrayOutput{})
 	pulumi.RegisterOutputType(DevicePortOutput{})
