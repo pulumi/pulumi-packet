@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.7.5 of the Packet Terraform Provider
+_(none)_
 
 ---
+
+## 1.7.0 (2020-02-27)
+* Upgrade to v2.7.5 of the Packet Terraform Provider
 
 ## 1.6.0 (2020-01-29)
 * Upgrade to v2.7.4 of the Packet Terraform Provider
