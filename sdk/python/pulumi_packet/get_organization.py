@@ -13,12 +13,18 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, description=None, logo=None, name=None, organization_id=None, project_ids=None, twitter=None, website=None, id=None):
+    def __init__(__self__, description=None, id=None, logo=None, name=None, organization_id=None, project_ids=None, twitter=None, website=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description
         """
         Description string
+        """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
         """
         if logo and not isinstance(logo, str):
             raise TypeError("Expected argument 'logo' to be a str")
@@ -50,12 +56,6 @@ class GetOrganizationResult:
         """
         Website link
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,24 +63,26 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             yield self
         return GetOrganizationResult(
             description=self.description,
+            id=self.id,
             logo=self.logo,
             name=self.name,
             organization_id=self.organization_id,
             project_ids=self.project_ids,
             twitter=self.twitter,
-            website=self.website,
-            id=self.id)
+            website=self.website)
 
 def get_organization(name=None,organization_id=None,opts=None):
     """
     Provides a Packet organization datasource.
-    
-    :param str name: The organization name
-    :param str organization_id: The UUID of the organization resource
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
+
+
+    :param str name: The organization name
+    :param str organization_id: The UUID of the organization resource
     """
     __args__ = dict()
+
 
     __args__['name'] = name
     __args__['organizationId'] = organization_id
@@ -92,10 +94,10 @@ def get_organization(name=None,organization_id=None,opts=None):
 
     return AwaitableGetOrganizationResult(
         description=__ret__.get('description'),
+        id=__ret__.get('id'),
         logo=__ret__.get('logo'),
         name=__ret__.get('name'),
         organization_id=__ret__.get('organizationId'),
         project_ids=__ret__.get('projectIds'),
         twitter=__ret__.get('twitter'),
-        website=__ret__.get('website'),
-        id=__ret__.get('id'))
+        website=__ret__.get('website'))

@@ -13,7 +13,7 @@ class GetDeviceResult:
     """
     A collection of values returned by getDevice.
     """
-    def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, device_id=None, facility=None, hardware_reservation_id=None, hostname=None, ipxe_script_url=None, networks=None, network_type=None, operating_system=None, plan=None, ports=None, project_id=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, id=None):
+    def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, device_id=None, facility=None, hardware_reservation_id=None, hostname=None, id=None, ipxe_script_url=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None):
         if access_private_ipv4 and not isinstance(access_private_ipv4, str):
             raise TypeError("Expected argument 'access_private_ipv4' to be a str")
         __self__.access_private_ipv4 = access_private_ipv4
@@ -65,9 +65,21 @@ class GetDeviceResult:
         if hostname and not isinstance(hostname, str):
             raise TypeError("Expected argument 'hostname' to be a str")
         __self__.hostname = hostname
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if ipxe_script_url and not isinstance(ipxe_script_url, str):
             raise TypeError("Expected argument 'ipxe_script_url' to be a str")
         __self__.ipxe_script_url = ipxe_script_url
+        if network_type and not isinstance(network_type, str):
+            raise TypeError("Expected argument 'network_type' to be a str")
+        __self__.network_type = network_type
+        """
+        L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
+        """
         if networks and not isinstance(networks, list):
             raise TypeError("Expected argument 'networks' to be a list")
         __self__.networks = networks
@@ -78,12 +90,6 @@ class GetDeviceResult:
         * Private IPv4 at `packet_device.name.network.2`
         Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
         The fields of the network attributes are:
-        """
-        if network_type and not isinstance(network_type, str):
-            raise TypeError("Expected argument 'network_type' to be a str")
-        __self__.network_type = network_type
-        """
-        L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
         """
         if operating_system and not isinstance(operating_system, str):
             raise TypeError("Expected argument 'operating_system' to be a str")
@@ -136,12 +142,6 @@ class GetDeviceResult:
         """
         Tags attached to the device
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetDeviceResult(GetDeviceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -158,9 +158,10 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             facility=self.facility,
             hardware_reservation_id=self.hardware_reservation_id,
             hostname=self.hostname,
+            id=self.id,
             ipxe_script_url=self.ipxe_script_url,
-            networks=self.networks,
             network_type=self.network_type,
+            networks=self.networks,
             operating_system=self.operating_system,
             plan=self.plan,
             ports=self.ports,
@@ -170,24 +171,25 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             ssh_key_ids=self.ssh_key_ids,
             state=self.state,
             storage=self.storage,
-            tags=self.tags,
-            id=self.id)
+            tags=self.tags)
 
 def get_device(device_id=None,hostname=None,project_id=None,opts=None):
     """
     Provides a Packet device datasource.
-    
+
     > **Note:** All arguments including the `root_password` and `user_data` will be stored in
      the raw state as plain-text.
     [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-    
+
+    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
+
+
     :param str device_id: Device ID
     :param str hostname: The device name
     :param str project_id: The id of the project in which the devices exists
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['deviceId'] = device_id
     __args__['hostname'] = hostname
@@ -209,9 +211,10 @@ def get_device(device_id=None,hostname=None,project_id=None,opts=None):
         facility=__ret__.get('facility'),
         hardware_reservation_id=__ret__.get('hardwareReservationId'),
         hostname=__ret__.get('hostname'),
+        id=__ret__.get('id'),
         ipxe_script_url=__ret__.get('ipxeScriptUrl'),
-        networks=__ret__.get('networks'),
         network_type=__ret__.get('networkType'),
+        networks=__ret__.get('networks'),
         operating_system=__ret__.get('operatingSystem'),
         plan=__ret__.get('plan'),
         ports=__ret__.get('ports'),
@@ -221,5 +224,4 @@ def get_device(device_id=None,hostname=None,project_id=None,opts=None):
         ssh_key_ids=__ret__.get('sshKeyIds'),
         state=__ret__.get('state'),
         storage=__ret__.get('storage'),
-        tags=__ret__.get('tags'),
-        id=__ret__.get('id'))
+        tags=__ret__.get('tags'))

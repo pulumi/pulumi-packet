@@ -29,18 +29,18 @@ class Vlan(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to allow users to manage Virtual Networks in their projects.
-        
+
         To learn more about Layer 2 networking in Packet, refer to
         * https://www.packet.com/resources/guides/layer-2-configurations/
         * https://www.packet.com/developers/docs/network/advanced/layer-2/
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description string
         :param pulumi.Input[str] facility: Facility where to create the VLAN
         :param pulumi.Input[str] project_id: ID of parent project
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -78,7 +78,7 @@ class Vlan(pulumi.CustomResource):
         """
         Get an existing Vlan resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -86,12 +86,11 @@ class Vlan(pulumi.CustomResource):
         :param pulumi.Input[str] facility: Facility where to create the VLAN
         :param pulumi.Input[str] project_id: ID of parent project
         :param pulumi.Input[float] vxlan: VXLAN segment ID
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["description"] = description
         __props__["facility"] = facility
         __props__["project_id"] = project_id

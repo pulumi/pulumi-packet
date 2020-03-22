@@ -38,16 +38,16 @@ class SshKey(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, name=None, public_key=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
-        
+
         The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ssh_key.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the SSH key for identification
         :param pulumi.Input[str] public_key: The public key. If this is a file, it
                can be read using the file interpolation function
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ssh_key.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -87,7 +87,7 @@ class SshKey(pulumi.CustomResource):
         """
         Get an existing SshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -98,12 +98,11 @@ class SshKey(pulumi.CustomResource):
         :param pulumi.Input[str] public_key: The public key. If this is a file, it
                can be read using the file interpolation function
         :param pulumi.Input[str] updated: The timestamp for the last time the SSH key was updated
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ssh_key.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["created"] = created
         __props__["fingerprint"] = fingerprint
         __props__["name"] = name

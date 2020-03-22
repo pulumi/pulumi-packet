@@ -13,11 +13,11 @@ import (
 
 // Provides a Packet device resource. This can be used to create,
 // modify, and delete devices.
-// 
+//
 // > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
 //  the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
 type Device struct {
 	pulumi.CustomResourceState
@@ -43,6 +43,8 @@ type Device struct {
 	Facilities pulumi.StringArrayOutput `pulumi:"facilities"`
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes pulumi.BoolPtrOutput `pulumi:"forceDetachVolumes"`
+	// The ID of hardware reservation which this device occupies
+	// * `hostname`- The hostname of the device
 	HardwareReservationId pulumi.StringOutput `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
@@ -163,6 +165,8 @@ type deviceState struct {
 	Facilities []string `pulumi:"facilities"`
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes *bool `pulumi:"forceDetachVolumes"`
+	// The ID of hardware reservation which this device occupies
+	// * `hostname`- The hostname of the device
 	HardwareReservationId *string `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname *string `pulumi:"hostname"`
@@ -238,6 +242,8 @@ type DeviceState struct {
 	Facilities pulumi.StringArrayInput
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes pulumi.BoolPtrInput
+	// The ID of hardware reservation which this device occupies
+	// * `hostname`- The hostname of the device
 	HardwareReservationId pulumi.StringPtrInput
 	// The device name
 	Hostname pulumi.StringPtrInput
@@ -307,6 +313,8 @@ type deviceArgs struct {
 	Facilities []string `pulumi:"facilities"`
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes *bool `pulumi:"forceDetachVolumes"`
+	// The ID of hardware reservation which this device occupies
+	// * `hostname`- The hostname of the device
 	HardwareReservationId *string `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname string `pulumi:"hostname"`
@@ -354,6 +362,8 @@ type DeviceArgs struct {
 	Facilities pulumi.StringArrayInput
 	// Delete device even if it has volumes attached. Only applies for destroy action.
 	ForceDetachVolumes pulumi.BoolPtrInput
+	// The ID of hardware reservation which this device occupies
+	// * `hostname`- The hostname of the device
 	HardwareReservationId pulumi.StringPtrInput
 	// The device name
 	Hostname pulumi.StringInput

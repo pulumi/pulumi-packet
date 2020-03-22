@@ -12,7 +12,7 @@ import (
 )
 
 // Provides a resource to manage organization resource in Packet.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
 type Organization struct {
 	pulumi.CustomResourceState

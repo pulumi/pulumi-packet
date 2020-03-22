@@ -42,14 +42,14 @@ class ProjectSshKey(pulumi.CustomResource):
         """
         Provides a Packet project SSH key resource to manage project-specific SSH keys.
         Project SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the SSH key for identification
         :param pulumi.Input[str] project_id: The ID of parent project
         :param pulumi.Input[str] public_key: The public key. If this is a file, it can be read using the file interpolation function
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,7 +92,7 @@ class ProjectSshKey(pulumi.CustomResource):
         """
         Get an existing ProjectSshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -103,12 +103,11 @@ class ProjectSshKey(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The ID of parent project
         :param pulumi.Input[str] public_key: The public key. If this is a file, it can be read using the file interpolation function
         :param pulumi.Input[str] updated: The timestamp for the last time the SSH key was updated
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["created"] = created
         __props__["fingerprint"] = fingerprint
         __props__["name"] = name

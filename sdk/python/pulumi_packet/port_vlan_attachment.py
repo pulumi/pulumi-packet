@@ -35,21 +35,23 @@ class PortVlanAttachment(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, device_id=None, force_bond=None, native=None, port_name=None, vlan_vnid=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to attach device ports to VLANs.
-        
+
         Device and VLAN must be in the same facility.
-        
+
         If you need this resource to add the port back to bond on removal, set `force_bond = true`.
-        
+
         To learn more about Layer 2 networking in Packet, refer to
         * https://www.packet.com/resources/guides/layer-2-configurations/ 
         * https://www.packet.com/developers/docs/network/advanced/layer-2/
-        
+
         ## Attribute Referece
-        
+
         * `id` - UUID of device port used in the assignment
         * `vlan_id` - UUID of VLAN API resource
         * `port_id` - UUID of device port
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: ID of device to be assigned to the VLAN
@@ -57,8 +59,6 @@ class PortVlanAttachment(pulumi.CustomResource):
         :param pulumi.Input[bool] native: Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
         :param pulumi.Input[str] port_name: Name of network port to be assigned to the VLAN
         :param pulumi.Input[float] vlan_vnid: VXLAN Network Identifier, integer
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -101,7 +101,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         """
         Get an existing PortVlanAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -110,12 +110,11 @@ class PortVlanAttachment(pulumi.CustomResource):
         :param pulumi.Input[bool] native: Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
         :param pulumi.Input[str] port_name: Name of network port to be assigned to the VLAN
         :param pulumi.Input[float] vlan_vnid: VXLAN Network Identifier, integer
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["device_id"] = device_id
         __props__["force_bond"] = force_bond
         __props__["native"] = native

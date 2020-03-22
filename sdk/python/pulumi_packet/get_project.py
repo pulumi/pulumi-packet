@@ -13,7 +13,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, backend_transfer=None, bgp_config=None, created=None, name=None, organization_id=None, payment_method_id=None, project_id=None, updated=None, user_ids=None, id=None):
+    def __init__(__self__, backend_transfer=None, bgp_config=None, created=None, id=None, name=None, organization_id=None, payment_method_id=None, project_id=None, updated=None, user_ids=None):
         if backend_transfer and not isinstance(backend_transfer, bool):
             raise TypeError("Expected argument 'backend_transfer' to be a bool")
         __self__.backend_transfer = backend_transfer
@@ -31,6 +31,12 @@ class GetProjectResult:
         __self__.created = created
         """
         The timestamp for when the project was created
+        """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
         """
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
@@ -62,12 +68,6 @@ class GetProjectResult:
         """
         List of UUIDs of user accounts which beling to this project
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetProjectResult(GetProjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -77,24 +77,26 @@ class AwaitableGetProjectResult(GetProjectResult):
             backend_transfer=self.backend_transfer,
             bgp_config=self.bgp_config,
             created=self.created,
+            id=self.id,
             name=self.name,
             organization_id=self.organization_id,
             payment_method_id=self.payment_method_id,
             project_id=self.project_id,
             updated=self.updated,
-            user_ids=self.user_ids,
-            id=self.id)
+            user_ids=self.user_ids)
 
 def get_project(name=None,project_id=None,opts=None):
     """
     Use this datasource to retrieve attributes of the Project API resource.
-    
-    :param str name: The name which is used to look up the project
-    :param str project_id: The UUID by which to look up the project
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
+
+
+    :param str name: The name which is used to look up the project
+    :param str project_id: The UUID by which to look up the project
     """
     __args__ = dict()
+
 
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -108,10 +110,10 @@ def get_project(name=None,project_id=None,opts=None):
         backend_transfer=__ret__.get('backendTransfer'),
         bgp_config=__ret__.get('bgpConfig'),
         created=__ret__.get('created'),
+        id=__ret__.get('id'),
         name=__ret__.get('name'),
         organization_id=__ret__.get('organizationId'),
         payment_method_id=__ret__.get('paymentMethodId'),
         project_id=__ret__.get('projectId'),
         updated=__ret__.get('updated'),
-        user_ids=__ret__.get('userIds'),
-        id=__ret__.get('id'))
+        user_ids=__ret__.get('userIds'))

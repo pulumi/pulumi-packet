@@ -13,7 +13,7 @@ class Volume(pulumi.CustomResource):
     attachments: pulumi.Output[list]
     """
     A list of attachments, each with it's own `href` attribute
-    
+
       * `href` (`str`)
     """
     billing_cycle: pulumi.Output[str]
@@ -55,7 +55,7 @@ class Volume(pulumi.CustomResource):
     snapshot_policies: pulumi.Output[list]
     """
     Optional list of snapshot policies
-    
+
       * `snapshotCount` (`float`)
       * `snapshotFrequency` (`str`)
     """
@@ -70,7 +70,6 @@ class Volume(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, billing_cycle=None, description=None, facility=None, locked=None, plan=None, project_id=None, size=None, snapshot_policies=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Volume resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_cycle: The billing cycle, defaults to "hourly"
@@ -81,13 +80,11 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
         :param pulumi.Input[float] size: The size in GB to make the volume
         :param pulumi.Input[list] snapshot_policies: Optional list of snapshot policies
-        
+
         The **snapshot_policies** object supports the following:
-        
+
           * `snapshotCount` (`pulumi.Input[float]`)
           * `snapshotFrequency` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -138,7 +135,7 @@ class Volume(pulumi.CustomResource):
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -155,21 +152,20 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[list] snapshot_policies: Optional list of snapshot policies
         :param pulumi.Input[str] state: The state of the volume
         :param pulumi.Input[str] updated: The timestamp for the last time the volume was updated
-        
+
         The **attachments** object supports the following:
-        
+
           * `href` (`pulumi.Input[str]`)
-        
+
         The **snapshot_policies** object supports the following:
-        
+
           * `snapshotCount` (`pulumi.Input[float]`)
           * `snapshotFrequency` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["attachments"] = attachments
         __props__["billing_cycle"] = billing_cycle
         __props__["created"] = created

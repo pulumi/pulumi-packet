@@ -17,7 +17,7 @@ class Project(pulumi.CustomResource):
     bgp_config: pulumi.Output[dict]
     """
     Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
-    
+
       * `asn` (`float`)
       * `deploymentType` (`str`)
       * `maxPrefix` (`float`) - The maximum number of route filters allowed per server
@@ -48,7 +48,9 @@ class Project(pulumi.CustomResource):
         """
         Provides a Packet project resource to allow you manage devices
         in your projects.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
@@ -56,16 +58,14 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
-        
+
         The **bgp_config** object supports the following:
-        
+
           * `asn` (`pulumi.Input[float]`)
           * `deploymentType` (`pulumi.Input[str]`)
           * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
           * `md5` (`pulumi.Input[str]`)
           * `status` (`pulumi.Input[str]`) - status of BGP configuration in the project
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -104,7 +104,7 @@ class Project(pulumi.CustomResource):
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -115,20 +115,19 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
         :param pulumi.Input[str] updated: The timestamp for the last time the project was updated
-        
+
         The **bgp_config** object supports the following:
-        
+
           * `asn` (`pulumi.Input[float]`)
           * `deploymentType` (`pulumi.Input[str]`)
           * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
           * `md5` (`pulumi.Input[str]`)
           * `status` (`pulumi.Input[str]`) - status of BGP configuration in the project
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend_transfer"] = backend_transfer
         __props__["bgp_config"] = bgp_config
         __props__["created"] = created

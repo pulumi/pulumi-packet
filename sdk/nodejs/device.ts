@@ -86,6 +86,10 @@ export class Device extends pulumi.CustomResource {
      * Delete device even if it has volumes attached. Only applies for destroy action.
      */
     public readonly forceDetachVolumes!: pulumi.Output<boolean | undefined>;
+    /**
+     * The ID of hardware reservation which this device occupies
+     * * `hostname`- The hostname of the device
+     */
     public readonly hardwareReservationId!: pulumi.Output<string>;
     /**
      * The device name
@@ -329,6 +333,10 @@ export interface DeviceState {
      * Delete device even if it has volumes attached. Only applies for destroy action.
      */
     readonly forceDetachVolumes?: pulumi.Input<boolean>;
+    /**
+     * The ID of hardware reservation which this device occupies
+     * * `hostname`- The hostname of the device
+     */
     readonly hardwareReservationId?: pulumi.Input<string>;
     /**
      * The device name
@@ -340,6 +348,8 @@ export interface DeviceState {
     readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
     /**
      * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
+     * 
+     * @deprecated Deprecated in favor of 'ip_address' attribute.
      */
     readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
     /**
@@ -445,6 +455,10 @@ export interface DeviceArgs {
      * Delete device even if it has volumes attached. Only applies for destroy action.
      */
     readonly forceDetachVolumes?: pulumi.Input<boolean>;
+    /**
+     * The ID of hardware reservation which this device occupies
+     * * `hostname`- The hostname of the device
+     */
     readonly hardwareReservationId?: pulumi.Input<string>;
     /**
      * The device name
@@ -456,6 +470,8 @@ export interface DeviceArgs {
     readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
     /**
      * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
+     * 
+     * @deprecated Deprecated in favor of 'ip_address' attribute.
      */
     readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
     /**

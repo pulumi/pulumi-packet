@@ -65,18 +65,20 @@ class ReservedIpBlock(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, quantity=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to create and manage blocks of reserved IP addresses in a project.
-        
+
         When a user provisions first device in a facility, Packet API automatically allocates IPv6/56 and private IPv4/25 blocks.
         The new device then gets IPv6 and private IPv4 addresses from those block. It also gets a public IPv4/31 address.
         Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from these pre-allocated blocks.
         The IPv6 and private IPv4 blocks can't be created, only imported. With this resource, it's possible to create either public IPv4 blocks or global IPv4 blocks.
-        
+
         Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
-        
+
         Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
-        
+
         Once IP block is allocated or imported, an address from it can be assigned to device with the `.IpAttachment` resource.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Arbitrary description
@@ -84,8 +86,6 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
         :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
         :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -135,7 +135,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         """
         Get an existing ReservedIpBlock resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -151,12 +151,11 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.Input[bool] public: boolean flag whether addresses from a block are public
         :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
         :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["address"] = address
         __props__["address_family"] = address_family
         __props__["cidr"] = cidr

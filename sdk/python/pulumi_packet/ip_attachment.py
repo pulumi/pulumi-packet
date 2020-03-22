@@ -50,23 +50,23 @@ class IpAttachment(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, cidr_notation=None, device_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to attach elastic IP subnets to devices.
-        
+
         To attach an IP subnet from a reserved block to a provisioned device, you must derive a subnet CIDR belonging to
         one of your reserved blocks in the same project and facility as the target device.
-        
+
         For example, you have reserved IPv4 address block 147.229.10.152/30, you can choose to assign either the whole
         block as one subnet to a device; or 2 subnets with CIDRs 147.229.10.152/31' and 147.229.10.154/31; or 4 subnets
         with mask prefix length 32. More about the elastic IP subnets is [here](https://www.packet.com/developers/docs/network/basic/elastic-ips/).
-        
+
         Device and reserved block must be in the same facility.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cidr_notation: CIDR notation of subnet from block reserved in the same
                project and facility as the device
         :param pulumi.Input[str] device_id: ID of device to which to assign the subnet
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -112,7 +112,7 @@ class IpAttachment(pulumi.CustomResource):
         """
         Get an existing IpAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -125,12 +125,11 @@ class IpAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] netmask: Subnet mask in decimal notation, e.g. "255.255.255.0"
         :param pulumi.Input[str] network: Subnet network address
         :param pulumi.Input[bool] public: boolean flag whether subnet is reachable from the Internet
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["address"] = address
         __props__["address_family"] = address_family
         __props__["cidr"] = cidr

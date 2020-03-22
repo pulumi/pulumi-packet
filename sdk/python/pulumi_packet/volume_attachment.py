@@ -21,13 +21,10 @@ class VolumeAttachment(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, device_id=None, volume_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a VolumeAttachment resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The ID of the device to which the volume should be attached
         :param pulumi.Input[str] volume_id: The ID of the volume to attach
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume_attachment.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -63,18 +60,17 @@ class VolumeAttachment(pulumi.CustomResource):
         """
         Get an existing VolumeAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The ID of the device to which the volume should be attached
         :param pulumi.Input[str] volume_id: The ID of the volume to attach
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume_attachment.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["device_id"] = device_id
         __props__["volume_id"] = volume_id
         return VolumeAttachment(resource_name, opts=opts, __props__=__props__)
