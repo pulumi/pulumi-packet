@@ -13,10 +13,16 @@ class GetOperatingSystemResult:
     """
     A collection of values returned by getOperatingSystem.
     """
-    def __init__(__self__, distro=None, name=None, provisionable_on=None, slug=None, version=None, id=None):
+    def __init__(__self__, distro=None, id=None, name=None, provisionable_on=None, slug=None, version=None):
         if distro and not isinstance(distro, str):
             raise TypeError("Expected argument 'distro' to be a str")
         __self__.distro = distro
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         __self__.name = name
@@ -32,12 +38,6 @@ class GetOperatingSystemResult:
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         __self__.version = version
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetOperatingSystemResult(GetOperatingSystemResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -45,24 +45,26 @@ class AwaitableGetOperatingSystemResult(GetOperatingSystemResult):
             yield self
         return GetOperatingSystemResult(
             distro=self.distro,
+            id=self.id,
             name=self.name,
             provisionable_on=self.provisionable_on,
             slug=self.slug,
-            version=self.version,
-            id=self.id)
+            version=self.version)
 
 def get_operating_system(distro=None,name=None,provisionable_on=None,version=None,opts=None):
     """
     Use this data source to get Packet Operating System image.
-    
+
+    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
+
+
     :param str distro: Name of the OS distribution.
     :param str name: Name or part of the name of the distribution. Case insensitive.
     :param str provisionable_on: Plan name.
     :param str version: Version of the distribution
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['distro'] = distro
     __args__['name'] = name
@@ -76,8 +78,8 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
 
     return AwaitableGetOperatingSystemResult(
         distro=__ret__.get('distro'),
+        id=__ret__.get('id'),
         name=__ret__.get('name'),
         provisionable_on=__ret__.get('provisionableOn'),
         slug=__ret__.get('slug'),
-        version=__ret__.get('version'),
-        id=__ret__.get('id'))
+        version=__ret__.get('version'))

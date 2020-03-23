@@ -13,7 +13,7 @@ class GetVolumeResult:
     """
     A collection of values returned by getVolume.
     """
-    def __init__(__self__, billing_cycle=None, created=None, description=None, device_ids=None, facility=None, locked=None, name=None, plan=None, project_id=None, size=None, snapshot_policies=None, state=None, updated=None, volume_id=None, id=None):
+    def __init__(__self__, billing_cycle=None, created=None, description=None, device_ids=None, facility=None, id=None, locked=None, name=None, plan=None, project_id=None, size=None, snapshot_policies=None, state=None, updated=None, volume_id=None):
         if billing_cycle and not isinstance(billing_cycle, str):
             raise TypeError("Expected argument 'billing_cycle' to be a str")
         __self__.billing_cycle = billing_cycle
@@ -37,6 +37,12 @@ class GetVolumeResult:
         __self__.facility = facility
         """
         The facility slug the volume resides in
+        """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
         """
         if locked and not isinstance(locked, bool):
             raise TypeError("Expected argument 'locked' to be a bool")
@@ -81,12 +87,6 @@ class GetVolumeResult:
         if volume_id and not isinstance(volume_id, str):
             raise TypeError("Expected argument 'volume_id' to be a str")
         __self__.volume_id = volume_id
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetVolumeResult(GetVolumeResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -98,6 +98,7 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             description=self.description,
             device_ids=self.device_ids,
             facility=self.facility,
+            id=self.id,
             locked=self.locked,
             name=self.name,
             plan=self.plan,
@@ -106,19 +107,20 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             snapshot_policies=self.snapshot_policies,
             state=self.state,
             updated=self.updated,
-            volume_id=self.volume_id,
-            id=self.id)
+            volume_id=self.volume_id)
 
 def get_volume(name=None,project_id=None,volume_id=None,opts=None):
     """
     Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
-    
-    :param str name: Name of volume for lookup
-    :param str project_id: The ID the parent Packet project (for lookup by name)
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
+
+
+    :param str name: Name of volume for lookup
+    :param str project_id: The ID the parent Packet project (for lookup by name)
     """
     __args__ = dict()
+
 
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -135,6 +137,7 @@ def get_volume(name=None,project_id=None,volume_id=None,opts=None):
         description=__ret__.get('description'),
         device_ids=__ret__.get('deviceIds'),
         facility=__ret__.get('facility'),
+        id=__ret__.get('id'),
         locked=__ret__.get('locked'),
         name=__ret__.get('name'),
         plan=__ret__.get('plan'),
@@ -143,5 +146,4 @@ def get_volume(name=None,project_id=None,volume_id=None,opts=None):
         snapshot_policies=__ret__.get('snapshotPolicies'),
         state=__ret__.get('state'),
         updated=__ret__.get('updated'),
-        volume_id=__ret__.get('volumeId'),
-        id=__ret__.get('id'))
+        volume_id=__ret__.get('volumeId'))

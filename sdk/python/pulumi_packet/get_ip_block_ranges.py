@@ -13,7 +13,7 @@ class GetIpBlockRangesResult:
     """
     A collection of values returned by getIpBlockRanges.
     """
-    def __init__(__self__, facility=None, global_ipv4s=None, ipv6s=None, private_ipv4s=None, project_id=None, public_ipv4s=None, id=None):
+    def __init__(__self__, facility=None, global_ipv4s=None, id=None, ipv6s=None, private_ipv4s=None, project_id=None, public_ipv4s=None):
         if facility and not isinstance(facility, str):
             raise TypeError("Expected argument 'facility' to be a str")
         __self__.facility = facility
@@ -22,6 +22,12 @@ class GetIpBlockRangesResult:
         __self__.global_ipv4s = global_ipv4s
         """
         list of CIDR expressions for Global IPv4 blocks in the project
+        """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
         """
         if ipv6s and not isinstance(ipv6s, list):
             raise TypeError("Expected argument 'ipv6s' to be a list")
@@ -44,12 +50,6 @@ class GetIpBlockRangesResult:
         """
         list of CIDR expressions for Public IPv4 blocks in the project
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetIpBlockRangesResult(GetIpBlockRangesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -58,26 +58,28 @@ class AwaitableGetIpBlockRangesResult(GetIpBlockRangesResult):
         return GetIpBlockRangesResult(
             facility=self.facility,
             global_ipv4s=self.global_ipv4s,
+            id=self.id,
             ipv6s=self.ipv6s,
             private_ipv4s=self.private_ipv4s,
             project_id=self.project_id,
-            public_ipv4s=self.public_ipv4s,
-            id=self.id)
+            public_ipv4s=self.public_ipv4s)
 
 def get_ip_block_ranges(facility=None,project_id=None,opts=None):
     """
     Use this datasource to get CIDR expressions for allocated IP blocks of all the types in a project, optionally filtered by facility.
-    
+
     There are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.
-    
+
     The datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
-    
-    :param str facility: Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this, all the block from the project will be listed.
-    :param str project_id: ID of the project from which to list the blocks. 
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
+
+
+    :param str facility: Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this, all the block from the project will be listed.
+    :param str project_id: ID of the project from which to list the blocks. 
     """
     __args__ = dict()
+
 
     __args__['facility'] = facility
     __args__['projectId'] = project_id
@@ -90,8 +92,8 @@ def get_ip_block_ranges(facility=None,project_id=None,opts=None):
     return AwaitableGetIpBlockRangesResult(
         facility=__ret__.get('facility'),
         global_ipv4s=__ret__.get('globalIpv4s'),
+        id=__ret__.get('id'),
         ipv6s=__ret__.get('ipv6s'),
         private_ipv4s=__ret__.get('privateIpv4s'),
         project_id=__ret__.get('projectId'),
-        public_ipv4s=__ret__.get('publicIpv4s'),
-        id=__ret__.get('id'))
+        public_ipv4s=__ret__.get('publicIpv4s'))

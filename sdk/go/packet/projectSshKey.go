@@ -13,7 +13,7 @@ import (
 
 // Provides a Packet project SSH key resource to manage project-specific SSH keys.
 // Project SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
 type ProjectSshKey struct {
 	pulumi.CustomResourceState

@@ -35,7 +35,9 @@ class Organization(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, description=None, logo=None, name=None, twitter=None, website=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage organization resource in Packet.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description string.
@@ -43,8 +45,6 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Organization.
         :param pulumi.Input[str] twitter: Twitter handle.
         :param pulumi.Input[str] website: Website link.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,7 +83,7 @@ class Organization(pulumi.CustomResource):
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -92,12 +92,11 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Organization.
         :param pulumi.Input[str] twitter: Twitter handle.
         :param pulumi.Input[str] website: Website link.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["created"] = created
         __props__["description"] = description
         __props__["logo"] = logo

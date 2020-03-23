@@ -13,10 +13,16 @@ class GetSpotMarketPriceResult:
     """
     A collection of values returned by getSpotMarketPrice.
     """
-    def __init__(__self__, facility=None, plan=None, price=None, id=None):
+    def __init__(__self__, facility=None, id=None, plan=None, price=None):
         if facility and not isinstance(facility, str):
             raise TypeError("Expected argument 'facility' to be a str")
         __self__.facility = facility
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if plan and not isinstance(plan, str):
             raise TypeError("Expected argument 'plan' to be a str")
         __self__.plan = plan
@@ -26,12 +32,6 @@ class GetSpotMarketPriceResult:
         """
         Current spot market price for given plan in given facility.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetSpotMarketPriceResult(GetSpotMarketPriceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -39,20 +39,22 @@ class AwaitableGetSpotMarketPriceResult(GetSpotMarketPriceResult):
             yield self
         return GetSpotMarketPriceResult(
             facility=self.facility,
+            id=self.id,
             plan=self.plan,
-            price=self.price,
-            id=self.id)
+            price=self.price)
 
 def get_spot_market_price(facility=None,plan=None,opts=None):
     """
     Use this data source to get Packet Spot Market Price.
-    
-    :param str facility: Name of the facility.
-    :param str plan: Name of the plan.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
+
+
+    :param str facility: Name of the facility.
+    :param str plan: Name of the plan.
     """
     __args__ = dict()
+
 
     __args__['facility'] = facility
     __args__['plan'] = plan
@@ -64,6 +66,6 @@ def get_spot_market_price(facility=None,plan=None,opts=None):
 
     return AwaitableGetSpotMarketPriceResult(
         facility=__ret__.get('facility'),
+        id=__ret__.get('id'),
         plan=__ret__.get('plan'),
-        price=__ret__.get('price'),
-        id=__ret__.get('id'))
+        price=__ret__.get('price'))

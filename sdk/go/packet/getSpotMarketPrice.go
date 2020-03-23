@@ -9,7 +9,7 @@ import (
 )
 
 // Use this data source to get Packet Spot Market Price.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
 func GetSpotMarketPrice(ctx *pulumi.Context, args *GetSpotMarketPriceArgs, opts ...pulumi.InvokeOption) (*GetSpotMarketPriceResult, error) {
 	var rv GetSpotMarketPriceResult

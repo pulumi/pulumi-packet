@@ -26,18 +26,18 @@ class BgpSession(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, address_family=None, default_route=None, device_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/) for more details.
-        
+
         You need to have BGP config enabled in your project.
-        
+
         BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_family: `ipv4` or `ipv6`
         :param pulumi.Input[bool] default_route: Boolean flag to set the default route policy. False by default.
         :param pulumi.Input[str] device_id: ID of device 
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -75,19 +75,18 @@ class BgpSession(pulumi.CustomResource):
         """
         Get an existing BgpSession resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_family: `ipv4` or `ipv6`
         :param pulumi.Input[bool] default_route: Boolean flag to set the default route policy. False by default.
         :param pulumi.Input[str] device_id: ID of device 
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["address_family"] = address_family
         __props__["default_route"] = default_route
         __props__["device_id"] = device_id

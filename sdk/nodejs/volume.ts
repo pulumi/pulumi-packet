@@ -8,9 +8,6 @@ import * as utilities from "./utilities";
 
 import {BillingCycle, Facility} from "./index";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/volume.html.markdown.
- */
 export class Volume extends pulumi.CustomResource {
     /**
      * Get an existing Volume resource's state with the given name, ID, and optional extra
