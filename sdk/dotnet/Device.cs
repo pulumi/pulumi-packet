@@ -102,12 +102,6 @@ namespace Pulumi.Packet
         public Output<ImmutableArray<Outputs.DeviceIpAddresses>> IpAddresses { get; private set; } = null!;
 
         /// <summary>
-        /// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
-        /// </summary>
-        [Output("ipAddressTypes")]
-        public Output<ImmutableArray<string>> IpAddressTypes { get; private set; } = null!;
-
-        /// <summary>
         /// URL pointing to a hosted iPXE script. More
         /// information is in the
         /// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -327,19 +321,6 @@ namespace Pulumi.Packet
             set => _ipAddresses = value;
         }
 
-        [Input("ipAddressTypes")]
-        private InputList<string>? _ipAddressTypes;
-
-        /// <summary>
-        /// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
-        /// </summary>
-        [Obsolete(@"Deprecated in favor of 'ip_address' attribute.")]
-        public InputList<string> IpAddressTypes
-        {
-            get => _ipAddressTypes ?? (_ipAddressTypes = new InputList<string>());
-            set => _ipAddressTypes = value;
-        }
-
         /// <summary>
         /// URL pointing to a hosted iPXE script. More
         /// information is in the
@@ -513,19 +494,6 @@ namespace Pulumi.Packet
         {
             get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressesGetArgs>());
             set => _ipAddresses = value;
-        }
-
-        [Input("ipAddressTypes")]
-        private InputList<string>? _ipAddressTypes;
-
-        /// <summary>
-        /// A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
-        /// </summary>
-        [Obsolete(@"Deprecated in favor of 'ip_address' attribute.")]
-        public InputList<string> IpAddressTypes
-        {
-            get => _ipAddressTypes ?? (_ipAddressTypes = new InputList<string>());
-            set => _ipAddressTypes = value;
         }
 
         /// <summary>

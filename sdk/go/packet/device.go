@@ -48,8 +48,6 @@ type Device struct {
 	HardwareReservationId pulumi.StringOutput `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-	IpAddressTypes pulumi.StringArrayOutput `pulumi:"ipAddressTypes"`
 	// A list of IP address types for the device (structure is documented below). 
 	IpAddresses DeviceIpAddressArrayOutput `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
@@ -170,8 +168,6 @@ type deviceState struct {
 	HardwareReservationId *string `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname *string `pulumi:"hostname"`
-	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-	IpAddressTypes []string `pulumi:"ipAddressTypes"`
 	// A list of IP address types for the device (structure is documented below). 
 	IpAddresses []DeviceIpAddress `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
@@ -247,8 +243,6 @@ type DeviceState struct {
 	HardwareReservationId pulumi.StringPtrInput
 	// The device name
 	Hostname pulumi.StringPtrInput
-	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-	IpAddressTypes pulumi.StringArrayInput
 	// A list of IP address types for the device (structure is documented below). 
 	IpAddresses DeviceIpAddressArrayInput
 	// URL pointing to a hosted iPXE script. More
@@ -318,8 +312,6 @@ type deviceArgs struct {
 	HardwareReservationId *string `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname string `pulumi:"hostname"`
-	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-	IpAddressTypes []string `pulumi:"ipAddressTypes"`
 	// A list of IP address types for the device (structure is documented below). 
 	IpAddresses []DeviceIpAddress `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
@@ -367,8 +359,6 @@ type DeviceArgs struct {
 	HardwareReservationId pulumi.StringPtrInput
 	// The device name
 	Hostname pulumi.StringInput
-	// A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-	IpAddressTypes pulumi.StringArrayInput
 	// A list of IP address types for the device (structure is documented below). 
 	IpAddresses DeviceIpAddressArrayInput
 	// URL pointing to a hosted iPXE script. More

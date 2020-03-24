@@ -60,10 +60,6 @@ class Device(pulumi.CustomResource):
     """
     The device name
     """
-    ip_address_types: pulumi.Output[list]
-    """
-    A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
-    """
     ip_addresses: pulumi.Output[list]
     """
     A list of IP address types for the device (structure is documented below). 
@@ -161,7 +157,7 @@ class Device(pulumi.CustomResource):
     """
     Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ip_addresses=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -183,7 +179,6 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] hardware_reservation_id: The ID of hardware reservation which this device occupies
                * `hostname`- The hostname of the device
         :param pulumi.Input[str] hostname: The device name
-        :param pulumi.Input[list] ip_address_types: A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         :param pulumi.Input[list] ip_addresses: A list of IP address types for the device (structure is documented below). 
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
                information is in the
@@ -236,7 +231,6 @@ class Device(pulumi.CustomResource):
             if hostname is None:
                 raise TypeError("Missing required property 'hostname'")
             __props__['hostname'] = hostname
-            __props__['ip_address_types'] = ip_address_types
             __props__['ip_addresses'] = ip_addresses
             __props__['ipxe_script_url'] = ipxe_script_url
             __props__['network_type'] = network_type
@@ -274,7 +268,7 @@ class Device(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_address_types=None, ip_addresses=None, ipxe_script_url=None, locked=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
+    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, locked=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
         """
         Get an existing Device resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -296,7 +290,6 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] hardware_reservation_id: The ID of hardware reservation which this device occupies
                * `hostname`- The hostname of the device
         :param pulumi.Input[str] hostname: The device name
-        :param pulumi.Input[list] ip_address_types: A set containing one or more of [`private_ipv4`, `public_ipv4`, `public_ipv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`private_ipv4`].
         :param pulumi.Input[list] ip_addresses: A list of IP address types for the device (structure is documented below). 
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
                information is in the
@@ -364,7 +357,6 @@ class Device(pulumi.CustomResource):
         __props__["force_detach_volumes"] = force_detach_volumes
         __props__["hardware_reservation_id"] = hardware_reservation_id
         __props__["hostname"] = hostname
-        __props__["ip_address_types"] = ip_address_types
         __props__["ip_addresses"] = ip_addresses
         __props__["ipxe_script_url"] = ipxe_script_url
         __props__["locked"] = locked
