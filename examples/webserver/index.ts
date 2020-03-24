@@ -11,7 +11,6 @@ let vm = new packet.Device("vm", {
     operatingSystem: packet.OperatingSystems.CoreOSStable,
     plan: packet.Plans.T1SmallX86,
     projectId:  project.then(p => p.id),
-    ipAddressTypes: [packet.IpAddressTypes.PublicIPv4, packet.IpAddressTypes.PrivateIPv4, packet.IpAddressTypes.PublicIPv6]
 });
 
 export let ip = vm.accessPublicIpv4;

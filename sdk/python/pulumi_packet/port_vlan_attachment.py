@@ -41,6 +41,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         If you need this resource to add the port back to bond on removal, set `force_bond = true`.
 
         To learn more about Layer 2 networking in Packet, refer to
+
         * https://www.packet.com/resources/guides/layer-2-configurations/ 
         * https://www.packet.com/developers/docs/network/advanced/layer-2/
 

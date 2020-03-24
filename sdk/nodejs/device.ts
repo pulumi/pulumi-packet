@@ -100,10 +100,6 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly ipAddresses!: pulumi.Output<outputs.DeviceIpAddress[] | undefined>;
     /**
-     * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-     */
-    public readonly ipAddressTypes!: pulumi.Output<IpAddressType[] | undefined>;
-    /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
      * [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -205,7 +201,6 @@ export class Device extends pulumi.CustomResource {
             inputs["hardwareReservationId"] = state ? state.hardwareReservationId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
             inputs["ipAddresses"] = state ? state.ipAddresses : undefined;
-            inputs["ipAddressTypes"] = state ? state.ipAddressTypes : undefined;
             inputs["ipxeScriptUrl"] = state ? state.ipxeScriptUrl : undefined;
             inputs["locked"] = state ? state.locked : undefined;
             inputs["networks"] = state ? state.networks : undefined;
@@ -252,7 +247,6 @@ export class Device extends pulumi.CustomResource {
             inputs["hardwareReservationId"] = args ? args.hardwareReservationId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
             inputs["ipAddresses"] = args ? args.ipAddresses : undefined;
-            inputs["ipAddressTypes"] = args ? args.ipAddressTypes : undefined;
             inputs["ipxeScriptUrl"] = args ? args.ipxeScriptUrl : undefined;
             inputs["networkType"] = args ? args.networkType : undefined;
             inputs["operatingSystem"] = args ? args.operatingSystem : undefined;
@@ -347,12 +341,6 @@ export interface DeviceState {
      */
     readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
     /**
-     * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-     * 
-     * @deprecated Deprecated in favor of 'ip_address' attribute.
-     */
-    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
-    /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
      * [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -394,6 +382,8 @@ export interface DeviceState {
      * Size of allocated subnet, more
      * information is in the
      * [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
+     * 
+     * @deprecated Deprecated in favor of 'ip_address' attribute.
      */
     readonly publicIpv4SubnetSize?: pulumi.Input<number>;
     /**
@@ -469,12 +459,6 @@ export interface DeviceArgs {
      */
     readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
     /**
-     * A set containing one or more of [`privateIpv4`, `publicIpv4`, `publicIpv6`]. It specifies which IP address types a new device should obtain. If omitted, a created device will obtain all 3 addresses. If you only want private IPv4 address for the new device, pass [`privateIpv4`].
-     * 
-     * @deprecated Deprecated in favor of 'ip_address' attribute.
-     */
-    readonly ipAddressTypes?: pulumi.Input<pulumi.Input<IpAddressType>[]>;
-    /**
      * URL pointing to a hosted iPXE script. More
      * information is in the
      * [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -499,6 +483,8 @@ export interface DeviceArgs {
      * Size of allocated subnet, more
      * information is in the
      * [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
+     * 
+     * @deprecated Deprecated in favor of 'ip_address' attribute.
      */
     readonly publicIpv4SubnetSize?: pulumi.Input<number>;
     /**
