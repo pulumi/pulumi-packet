@@ -2,12 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+---
+
+## 1.10.0 (2020-04-02)
 * Upgrade to Pulumi v1.13.1
 * Upgrade to pulumi-terraform-bridge v1.8.4
 * Upgrade terraform sdk to v1.7.0
 * Update layout to support go Modules
-
----
 
 ## 1.9.0 (2020-03-24)
 * Upgrade to v2.8.0 of the Packet Terraform Provider
