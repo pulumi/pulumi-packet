@@ -17,7 +17,19 @@ namespace Pulumi.Packet
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
         /// </summary>
+        [Obsolete("Use GetPrecreatedIpBlock.InvokeAsync() instead")]
         public static Task<GetPrecreatedIpBlockResult> GetPrecreatedIpBlock(GetPrecreatedIpBlockArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetPrecreatedIpBlock
+    {
+        /// <summary>
+        /// Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
+        /// You can then use the cidrsubnet TF builtin function to derive subnets.
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
+        /// </summary>
+        public static Task<GetPrecreatedIpBlockResult> InvokeAsync(GetPrecreatedIpBlockArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

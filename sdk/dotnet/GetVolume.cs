@@ -16,7 +16,18 @@ namespace Pulumi.Packet
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
         /// </summary>
+        [Obsolete("Use GetVolume.InvokeAsync() instead")]
         public static Task<GetVolumeResult> GetVolume(GetVolumeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetVolume
+    {
+        /// <summary>
+        /// Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
+        /// </summary>
+        public static Task<GetVolumeResult> InvokeAsync(GetVolumeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

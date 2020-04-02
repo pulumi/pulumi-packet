@@ -64,9 +64,9 @@ class Device(pulumi.CustomResource):
     """
     A list of IP address types for the device (structure is documented below). 
 
-      * `cidr` (`float`) - bit length of the network mask of the address
+      * `cidr` (`float`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
       * `reservationIds` (`list`)
-      * `type` (`str`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+      * `type` (`str`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
     """
     ipxe_script_url: pulumi.Output[str]
     """
@@ -90,7 +90,7 @@ class Device(pulumi.CustomResource):
     The fields of the network attributes are:
 
       * `address` (`str`) - IPv4 or IPv6 address string
-      * `cidr` (`float`) - bit length of the network mask of the address
+      * `cidr` (`float`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
       * `family` (`float`) - IP version - "4" or "6"
       * `gateway` (`str`) - address of router
       * `public` (`bool`) - whether the address is routable from the Internet
@@ -112,7 +112,7 @@ class Device(pulumi.CustomResource):
       * `id` (`str`) - ID of the port
       * `mac` (`str`) - MAC address assigned to the port
       * `name` (`str`) - Name of the port (e.g. `eth0`, or `bond0`)
-      * `type` (`str`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+      * `type` (`str`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
     """
     project_id: pulumi.Output[str]
     """
@@ -197,9 +197,9 @@ class Device(pulumi.CustomResource):
 
         The **ip_addresses** object supports the following:
 
-          * `cidr` (`pulumi.Input[float]`) - bit length of the network mask of the address
+          * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
           * `reservationIds` (`pulumi.Input[list]`)
-          * `type` (`pulumi.Input[str]`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+          * `type` (`pulumi.Input[str]`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -320,14 +320,14 @@ class Device(pulumi.CustomResource):
 
         The **ip_addresses** object supports the following:
 
-          * `cidr` (`pulumi.Input[float]`) - bit length of the network mask of the address
+          * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
           * `reservationIds` (`pulumi.Input[list]`)
-          * `type` (`pulumi.Input[str]`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+          * `type` (`pulumi.Input[str]`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
 
         The **networks** object supports the following:
 
           * `address` (`pulumi.Input[str]`) - IPv4 or IPv6 address string
-          * `cidr` (`pulumi.Input[float]`) - bit length of the network mask of the address
+          * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
           * `family` (`pulumi.Input[float]`) - IP version - "4" or "6"
           * `gateway` (`pulumi.Input[str]`) - address of router
           * `public` (`pulumi.Input[bool]`) - whether the address is routable from the Internet
@@ -339,7 +339,7 @@ class Device(pulumi.CustomResource):
           * `id` (`pulumi.Input[str]`) - ID of the port
           * `mac` (`pulumi.Input[str]`) - MAC address assigned to the port
           * `name` (`pulumi.Input[str]`) - Name of the port (e.g. `eth0`, or `bond0`)
-          * `type` (`pulumi.Input[str]`) - Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+          * `type` (`pulumi.Input[str]`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

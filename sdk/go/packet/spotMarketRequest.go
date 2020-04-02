@@ -155,4 +155,3 @@ type SpotMarketRequestArgs struct {
 func (SpotMarketRequestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*spotMarketRequestArgs)(nil)).Elem()
 }
-

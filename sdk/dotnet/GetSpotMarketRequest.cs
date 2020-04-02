@@ -16,7 +16,18 @@ namespace Pulumi.Packet
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
         /// </summary>
+        [Obsolete("Use GetSpotMarketRequest.InvokeAsync() instead")]
         public static Task<GetSpotMarketRequestResult> GetSpotMarketRequest(GetSpotMarketRequestArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetSpotMarketRequest
+    {
+        /// <summary>
+        /// Provides a Packet spot_market_request datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
+        /// </summary>
+        public static Task<GetSpotMarketRequestResult> InvokeAsync(GetSpotMarketRequestArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

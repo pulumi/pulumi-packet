@@ -18,10 +18,10 @@ class Project(pulumi.CustomResource):
     """
     Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
 
-      * `asn` (`float`)
-      * `deploymentType` (`str`)
+      * `asn` (`float`) - Autonomous System Numer for local BGP deployment
+      * `deploymentType` (`str`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
       * `maxPrefix` (`float`) - The maximum number of route filters allowed per server
-      * `md5` (`str`)
+      * `md5` (`str`) - Password for BGP session in plaintext (not a checksum)
       * `status` (`str`) - status of BGP configuration in the project
     """
     created: pulumi.Output[str]
@@ -61,10 +61,10 @@ class Project(pulumi.CustomResource):
 
         The **bgp_config** object supports the following:
 
-          * `asn` (`pulumi.Input[float]`)
-          * `deploymentType` (`pulumi.Input[str]`)
+          * `asn` (`pulumi.Input[float]`) - Autonomous System Numer for local BGP deployment
+          * `deploymentType` (`pulumi.Input[str]`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
           * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
-          * `md5` (`pulumi.Input[str]`)
+          * `md5` (`pulumi.Input[str]`) - Password for BGP session in plaintext (not a checksum)
           * `status` (`pulumi.Input[str]`) - status of BGP configuration in the project
         """
         if __name__ is not None:
@@ -118,10 +118,10 @@ class Project(pulumi.CustomResource):
 
         The **bgp_config** object supports the following:
 
-          * `asn` (`pulumi.Input[float]`)
-          * `deploymentType` (`pulumi.Input[str]`)
+          * `asn` (`pulumi.Input[float]`) - Autonomous System Numer for local BGP deployment
+          * `deploymentType` (`pulumi.Input[str]`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
           * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
-          * `md5` (`pulumi.Input[str]`)
+          * `md5` (`pulumi.Input[str]`) - Password for BGP session in plaintext (not a checksum)
           * `status` (`pulumi.Input[str]`) - status of BGP configuration in the project
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

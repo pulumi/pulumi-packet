@@ -194,9 +194,15 @@ namespace Pulumi.Packet
 
     public sealed class ProjectBgpConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Autonomous System Numer for local BGP deployment
+        /// </summary>
         [Input("asn", required: true)]
         public Input<int> Asn { get; set; } = null!;
 
+        /// <summary>
+        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
+        /// </summary>
         [Input("deploymentType", required: true)]
         public Input<string> DeploymentType { get; set; } = null!;
 
@@ -206,6 +212,9 @@ namespace Pulumi.Packet
         [Input("maxPrefix")]
         public Input<int>? MaxPrefix { get; set; }
 
+        /// <summary>
+        /// Password for BGP session in plaintext (not a checksum)
+        /// </summary>
         [Input("md5")]
         public Input<string>? Md5 { get; set; }
 
@@ -222,9 +231,15 @@ namespace Pulumi.Packet
 
     public sealed class ProjectBgpConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Autonomous System Numer for local BGP deployment
+        /// </summary>
         [Input("asn", required: true)]
         public Input<int> Asn { get; set; } = null!;
 
+        /// <summary>
+        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
+        /// </summary>
         [Input("deploymentType", required: true)]
         public Input<string> DeploymentType { get; set; } = null!;
 
@@ -234,6 +249,9 @@ namespace Pulumi.Packet
         [Input("maxPrefix")]
         public Input<int>? MaxPrefix { get; set; }
 
+        /// <summary>
+        /// Password for BGP session in plaintext (not a checksum)
+        /// </summary>
         [Input("md5")]
         public Input<string>? Md5 { get; set; }
 
@@ -255,12 +273,21 @@ namespace Pulumi.Packet
     [OutputType]
     public sealed class ProjectBgpConfig
     {
+        /// <summary>
+        /// Autonomous System Numer for local BGP deployment
+        /// </summary>
         public readonly int Asn;
+        /// <summary>
+        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
+        /// </summary>
         public readonly string DeploymentType;
         /// <summary>
         /// The maximum number of route filters allowed per server
         /// </summary>
         public readonly int MaxPrefix;
+        /// <summary>
+        /// Password for BGP session in plaintext (not a checksum)
+        /// </summary>
         public readonly string? Md5;
         /// <summary>
         /// status of BGP configuration in the project

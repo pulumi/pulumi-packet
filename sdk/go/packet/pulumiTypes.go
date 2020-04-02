@@ -12,10 +12,10 @@ import (
 )
 
 type DeviceIpAddress struct {
-	// bit length of the network mask of the address
-	Cidr *int `pulumi:"cidr"`
+	// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
+	Cidr           *int     `pulumi:"cidr"`
 	ReservationIds []string `pulumi:"reservationIds"`
-	// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+	// One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
 	Type string `pulumi:"type"`
 }
 
@@ -27,10 +27,10 @@ type DeviceIpAddressInput interface {
 }
 
 type DeviceIpAddressArgs struct {
-	// bit length of the network mask of the address
-	Cidr pulumi.IntPtrInput `pulumi:"cidr"`
+	// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
+	Cidr           pulumi.IntPtrInput      `pulumi:"cidr"`
 	ReservationIds pulumi.StringArrayInput `pulumi:"reservationIds"`
-	// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+	// One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -67,7 +67,7 @@ func (i DeviceIpAddressArray) ToDeviceIpAddressArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceIpAddressArrayOutput)
 }
 
-type DeviceIpAddressOutput struct { *pulumi.OutputState }
+type DeviceIpAddressOutput struct{ *pulumi.OutputState }
 
 func (DeviceIpAddressOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*DeviceIpAddress)(nil)).Elem()
@@ -81,21 +81,21 @@ func (o DeviceIpAddressOutput) ToDeviceIpAddressOutputWithContext(ctx context.Co
 	return o
 }
 
-// bit length of the network mask of the address
+// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
 func (o DeviceIpAddressOutput) Cidr() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v DeviceIpAddress) *int { return v.Cidr }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v DeviceIpAddress) *int { return v.Cidr }).(pulumi.IntPtrOutput)
 }
 
 func (o DeviceIpAddressOutput) ReservationIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v DeviceIpAddress) []string { return v.ReservationIds }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v DeviceIpAddress) []string { return v.ReservationIds }).(pulumi.StringArrayOutput)
 }
 
-// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+// One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
 func (o DeviceIpAddressOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v DeviceIpAddress) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v DeviceIpAddress) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type DeviceIpAddressArrayOutput struct { *pulumi.OutputState}
+type DeviceIpAddressArrayOutput struct{ *pulumi.OutputState }
 
 func (DeviceIpAddressArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]DeviceIpAddress)(nil)).Elem()
@@ -110,7 +110,7 @@ func (o DeviceIpAddressArrayOutput) ToDeviceIpAddressArrayOutputWithContext(ctx 
 }
 
 func (o DeviceIpAddressArrayOutput) Index(i pulumi.IntInput) DeviceIpAddressOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) DeviceIpAddress {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeviceIpAddress {
 		return vs[0].([]DeviceIpAddress)[vs[1].(int)]
 	}).(DeviceIpAddressOutput)
 }
@@ -118,7 +118,7 @@ func (o DeviceIpAddressArrayOutput) Index(i pulumi.IntInput) DeviceIpAddressOutp
 type DeviceNetwork struct {
 	// IPv4 or IPv6 address string
 	Address *string `pulumi:"address"`
-	// bit length of the network mask of the address
+	// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
 	Cidr *int `pulumi:"cidr"`
 	// IP version - "4" or "6"
 	Family *int `pulumi:"family"`
@@ -138,7 +138,7 @@ type DeviceNetworkInput interface {
 type DeviceNetworkArgs struct {
 	// IPv4 or IPv6 address string
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// bit length of the network mask of the address
+	// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
 	Cidr pulumi.IntPtrInput `pulumi:"cidr"`
 	// IP version - "4" or "6"
 	Family pulumi.IntPtrInput `pulumi:"family"`
@@ -181,7 +181,7 @@ func (i DeviceNetworkArray) ToDeviceNetworkArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceNetworkArrayOutput)
 }
 
-type DeviceNetworkOutput struct { *pulumi.OutputState }
+type DeviceNetworkOutput struct{ *pulumi.OutputState }
 
 func (DeviceNetworkOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*DeviceNetwork)(nil)).Elem()
@@ -197,30 +197,30 @@ func (o DeviceNetworkOutput) ToDeviceNetworkOutputWithContext(ctx context.Contex
 
 // IPv4 or IPv6 address string
 func (o DeviceNetworkOutput) Address() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v DeviceNetwork) *string { return v.Address }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v DeviceNetwork) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// bit length of the network mask of the address
+// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
 func (o DeviceNetworkOutput) Cidr() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v DeviceNetwork) *int { return v.Cidr }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v DeviceNetwork) *int { return v.Cidr }).(pulumi.IntPtrOutput)
 }
 
 // IP version - "4" or "6"
 func (o DeviceNetworkOutput) Family() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v DeviceNetwork) *int { return v.Family }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v DeviceNetwork) *int { return v.Family }).(pulumi.IntPtrOutput)
 }
 
 // address of router
 func (o DeviceNetworkOutput) Gateway() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v DeviceNetwork) *string { return v.Gateway }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v DeviceNetwork) *string { return v.Gateway }).(pulumi.StringPtrOutput)
 }
 
 // whether the address is routable from the Internet
 func (o DeviceNetworkOutput) Public() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v DeviceNetwork) *bool { return v.Public }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v DeviceNetwork) *bool { return v.Public }).(pulumi.BoolPtrOutput)
 }
 
-type DeviceNetworkArrayOutput struct { *pulumi.OutputState}
+type DeviceNetworkArrayOutput struct{ *pulumi.OutputState }
 
 func (DeviceNetworkArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]DeviceNetwork)(nil)).Elem()
@@ -235,7 +235,7 @@ func (o DeviceNetworkArrayOutput) ToDeviceNetworkArrayOutputWithContext(ctx cont
 }
 
 func (o DeviceNetworkArrayOutput) Index(i pulumi.IntInput) DeviceNetworkOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) DeviceNetwork {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeviceNetwork {
 		return vs[0].([]DeviceNetwork)[vs[1].(int)]
 	}).(DeviceNetworkOutput)
 }
@@ -250,7 +250,7 @@ type DevicePort struct {
 	Mac *string `pulumi:"mac"`
 	// Name of the port (e.g. `eth0`, or `bond0`)
 	Name *string `pulumi:"name"`
-	// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+	// One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
 	Type *string `pulumi:"type"`
 }
 
@@ -271,7 +271,7 @@ type DevicePortArgs struct {
 	Mac pulumi.StringPtrInput `pulumi:"mac"`
 	// Name of the port (e.g. `eth0`, or `bond0`)
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+	// One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -308,7 +308,7 @@ func (i DevicePortArray) ToDevicePortArrayOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DevicePortArrayOutput)
 }
 
-type DevicePortOutput struct { *pulumi.OutputState }
+type DevicePortOutput struct{ *pulumi.OutputState }
 
 func (DevicePortOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*DevicePort)(nil)).Elem()
@@ -325,30 +325,30 @@ func (o DevicePortOutput) ToDevicePortOutputWithContext(ctx context.Context) Dev
 // Whether this port is part of a bond in bonded network setup
 // * `projectId`- The ID of the project the device belongs to
 func (o DevicePortOutput) Bonded() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v DevicePort) *bool { return v.Bonded }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v DevicePort) *bool { return v.Bonded }).(pulumi.BoolPtrOutput)
 }
 
 // ID of the port
 func (o DevicePortOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v DevicePort) *string { return v.Id }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v DevicePort) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // MAC address assigned to the port
 func (o DevicePortOutput) Mac() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v DevicePort) *string { return v.Mac }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v DevicePort) *string { return v.Mac }).(pulumi.StringPtrOutput)
 }
 
 // Name of the port (e.g. `eth0`, or `bond0`)
 func (o DevicePortOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v DevicePort) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v DevicePort) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+// One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
 func (o DevicePortOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v DevicePort) *string { return v.Type }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v DevicePort) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-type DevicePortArrayOutput struct { *pulumi.OutputState}
+type DevicePortArrayOutput struct{ *pulumi.OutputState }
 
 func (DevicePortArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]DevicePort)(nil)).Elem()
@@ -363,16 +363,19 @@ func (o DevicePortArrayOutput) ToDevicePortArrayOutputWithContext(ctx context.Co
 }
 
 func (o DevicePortArrayOutput) Index(i pulumi.IntInput) DevicePortOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) DevicePort {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DevicePort {
 		return vs[0].([]DevicePort)[vs[1].(int)]
 	}).(DevicePortOutput)
 }
 
 type ProjectBgpConfig struct {
+	// Autonomous System Numer for local BGP deployment
 	Asn int `pulumi:"asn"`
+	// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 	DeploymentType string `pulumi:"deploymentType"`
 	// The maximum number of route filters allowed per server
 	MaxPrefix *int `pulumi:"maxPrefix"`
+	// Password for BGP session in plaintext (not a checksum)
 	Md5 *string `pulumi:"md5"`
 	// status of BGP configuration in the project
 	Status *string `pulumi:"status"`
@@ -386,10 +389,13 @@ type ProjectBgpConfigInput interface {
 }
 
 type ProjectBgpConfigArgs struct {
+	// Autonomous System Numer for local BGP deployment
 	Asn pulumi.IntInput `pulumi:"asn"`
+	// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
 	// The maximum number of route filters allowed per server
 	MaxPrefix pulumi.IntPtrInput `pulumi:"maxPrefix"`
+	// Password for BGP session in plaintext (not a checksum)
 	Md5 pulumi.StringPtrInput `pulumi:"md5"`
 	// status of BGP configuration in the project
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -424,7 +430,8 @@ type ProjectBgpConfigPtrInput interface {
 
 type projectBgpConfigPtrType ProjectBgpConfigArgs
 
-func ProjectBgpConfigPtr(v *ProjectBgpConfigArgs) ProjectBgpConfigPtrInput {	return (*projectBgpConfigPtrType)(v)
+func ProjectBgpConfigPtr(v *ProjectBgpConfigArgs) ProjectBgpConfigPtrInput {
+	return (*projectBgpConfigPtrType)(v)
 }
 
 func (*projectBgpConfigPtrType) ElementType() reflect.Type {
@@ -439,7 +446,7 @@ func (i *projectBgpConfigPtrType) ToProjectBgpConfigPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectBgpConfigPtrOutput)
 }
 
-type ProjectBgpConfigOutput struct { *pulumi.OutputState }
+type ProjectBgpConfigOutput struct{ *pulumi.OutputState }
 
 func (ProjectBgpConfigOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectBgpConfig)(nil)).Elem()
@@ -462,29 +469,33 @@ func (o ProjectBgpConfigOutput) ToProjectBgpConfigPtrOutputWithContext(ctx conte
 		return &v
 	}).(ProjectBgpConfigPtrOutput)
 }
+
+// Autonomous System Numer for local BGP deployment
 func (o ProjectBgpConfigOutput) Asn() pulumi.IntOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
 }
 
+// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 func (o ProjectBgpConfigOutput) DeploymentType() pulumi.StringOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
 }
 
 // The maximum number of route filters allowed per server
 func (o ProjectBgpConfigOutput) MaxPrefix() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) *int { return v.MaxPrefix }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) *int { return v.MaxPrefix }).(pulumi.IntPtrOutput)
 }
 
+// Password for BGP session in plaintext (not a checksum)
 func (o ProjectBgpConfigOutput) Md5() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
 }
 
 // status of BGP configuration in the project
 func (o ProjectBgpConfigOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) *string { return v.Status }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-type ProjectBgpConfigPtrOutput struct { *pulumi.OutputState}
+type ProjectBgpConfigPtrOutput struct{ *pulumi.OutputState }
 
 func (ProjectBgpConfigPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**ProjectBgpConfig)(nil)).Elem()
@@ -499,44 +510,47 @@ func (o ProjectBgpConfigPtrOutput) ToProjectBgpConfigPtrOutputWithContext(ctx co
 }
 
 func (o ProjectBgpConfigPtrOutput) Elem() ProjectBgpConfigOutput {
-	return o.ApplyT(func (v *ProjectBgpConfig) ProjectBgpConfig { return *v }).(ProjectBgpConfigOutput)
+	return o.ApplyT(func(v *ProjectBgpConfig) ProjectBgpConfig { return *v }).(ProjectBgpConfigOutput)
 }
 
+// Autonomous System Numer for local BGP deployment
 func (o ProjectBgpConfigPtrOutput) Asn() pulumi.IntOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
 }
 
+// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 func (o ProjectBgpConfigPtrOutput) DeploymentType() pulumi.StringOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
 }
 
 // The maximum number of route filters allowed per server
 func (o ProjectBgpConfigPtrOutput) MaxPrefix() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) *int { return v.MaxPrefix }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) *int { return v.MaxPrefix }).(pulumi.IntPtrOutput)
 }
 
+// Password for BGP session in plaintext (not a checksum)
 func (o ProjectBgpConfigPtrOutput) Md5() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
 }
 
 // status of BGP configuration in the project
 func (o ProjectBgpConfigPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ProjectBgpConfig) *string { return v.Status }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ProjectBgpConfig) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
 type SpotMarketRequestInstanceParameters struct {
-	AlwaysPxe *string `pulumi:"alwaysPxe"`
-	BillingCycle string `pulumi:"billingCycle"`
-	Description *string `pulumi:"description"`
-	Features []string `pulumi:"features"`
-	Hostname string `pulumi:"hostname"`
-	Locked *string `pulumi:"locked"`
-	OperatingSystem string `pulumi:"operatingSystem"`
-	Plan string `pulumi:"plan"`
-	ProjectSshKeys []string `pulumi:"projectSshKeys"`
-	TermintationTime *string `pulumi:"termintationTime"`
-	UserSshKeys []string `pulumi:"userSshKeys"`
-	Userdata *string `pulumi:"userdata"`
+	AlwaysPxe        *string  `pulumi:"alwaysPxe"`
+	BillingCycle     string   `pulumi:"billingCycle"`
+	Description      *string  `pulumi:"description"`
+	Features         []string `pulumi:"features"`
+	Hostname         string   `pulumi:"hostname"`
+	Locked           *string  `pulumi:"locked"`
+	OperatingSystem  string   `pulumi:"operatingSystem"`
+	Plan             string   `pulumi:"plan"`
+	ProjectSshKeys   []string `pulumi:"projectSshKeys"`
+	TermintationTime *string  `pulumi:"termintationTime"`
+	UserSshKeys      []string `pulumi:"userSshKeys"`
+	Userdata         *string  `pulumi:"userdata"`
 }
 
 type SpotMarketRequestInstanceParametersInput interface {
@@ -547,18 +561,18 @@ type SpotMarketRequestInstanceParametersInput interface {
 }
 
 type SpotMarketRequestInstanceParametersArgs struct {
-	AlwaysPxe pulumi.StringPtrInput `pulumi:"alwaysPxe"`
-	BillingCycle pulumi.StringInput `pulumi:"billingCycle"`
-	Description pulumi.StringPtrInput `pulumi:"description"`
-	Features pulumi.StringArrayInput `pulumi:"features"`
-	Hostname pulumi.StringInput `pulumi:"hostname"`
-	Locked pulumi.StringPtrInput `pulumi:"locked"`
-	OperatingSystem pulumi.StringInput `pulumi:"operatingSystem"`
-	Plan pulumi.StringInput `pulumi:"plan"`
-	ProjectSshKeys pulumi.StringArrayInput `pulumi:"projectSshKeys"`
-	TermintationTime pulumi.StringPtrInput `pulumi:"termintationTime"`
-	UserSshKeys pulumi.StringArrayInput `pulumi:"userSshKeys"`
-	Userdata pulumi.StringPtrInput `pulumi:"userdata"`
+	AlwaysPxe        pulumi.StringPtrInput   `pulumi:"alwaysPxe"`
+	BillingCycle     pulumi.StringInput      `pulumi:"billingCycle"`
+	Description      pulumi.StringPtrInput   `pulumi:"description"`
+	Features         pulumi.StringArrayInput `pulumi:"features"`
+	Hostname         pulumi.StringInput      `pulumi:"hostname"`
+	Locked           pulumi.StringPtrInput   `pulumi:"locked"`
+	OperatingSystem  pulumi.StringInput      `pulumi:"operatingSystem"`
+	Plan             pulumi.StringInput      `pulumi:"plan"`
+	ProjectSshKeys   pulumi.StringArrayInput `pulumi:"projectSshKeys"`
+	TermintationTime pulumi.StringPtrInput   `pulumi:"termintationTime"`
+	UserSshKeys      pulumi.StringArrayInput `pulumi:"userSshKeys"`
+	Userdata         pulumi.StringPtrInput   `pulumi:"userdata"`
 }
 
 func (SpotMarketRequestInstanceParametersArgs) ElementType() reflect.Type {
@@ -590,7 +604,8 @@ type SpotMarketRequestInstanceParametersPtrInput interface {
 
 type spotMarketRequestInstanceParametersPtrType SpotMarketRequestInstanceParametersArgs
 
-func SpotMarketRequestInstanceParametersPtr(v *SpotMarketRequestInstanceParametersArgs) SpotMarketRequestInstanceParametersPtrInput {	return (*spotMarketRequestInstanceParametersPtrType)(v)
+func SpotMarketRequestInstanceParametersPtr(v *SpotMarketRequestInstanceParametersArgs) SpotMarketRequestInstanceParametersPtrInput {
+	return (*spotMarketRequestInstanceParametersPtrType)(v)
 }
 
 func (*spotMarketRequestInstanceParametersPtrType) ElementType() reflect.Type {
@@ -605,7 +620,7 @@ func (i *spotMarketRequestInstanceParametersPtrType) ToSpotMarketRequestInstance
 	return pulumi.ToOutputWithContext(ctx, i).(SpotMarketRequestInstanceParametersPtrOutput)
 }
 
-type SpotMarketRequestInstanceParametersOutput struct { *pulumi.OutputState }
+type SpotMarketRequestInstanceParametersOutput struct{ *pulumi.OutputState }
 
 func (SpotMarketRequestInstanceParametersOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SpotMarketRequestInstanceParameters)(nil)).Elem()
@@ -629,54 +644,54 @@ func (o SpotMarketRequestInstanceParametersOutput) ToSpotMarketRequestInstancePa
 	}).(SpotMarketRequestInstanceParametersPtrOutput)
 }
 func (o SpotMarketRequestInstanceParametersOutput) AlwaysPxe() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.AlwaysPxe }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.AlwaysPxe }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) BillingCycle() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.BillingCycle }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.BillingCycle }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) Features() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) []string { return v.Features }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.Features }).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.Hostname }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) Locked() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.Locked }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Locked }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) OperatingSystem() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.OperatingSystem }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.OperatingSystem }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) Plan() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.Plan }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.Plan }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) ProjectSshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) []string { return v.ProjectSshKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.ProjectSshKeys }).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) TermintationTime() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.TermintationTime }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.TermintationTime }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) UserSshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) []string { return v.UserSshKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.UserSshKeys }).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersOutput) Userdata() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.Userdata }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Userdata }).(pulumi.StringPtrOutput)
 }
 
-type SpotMarketRequestInstanceParametersPtrOutput struct { *pulumi.OutputState}
+type SpotMarketRequestInstanceParametersPtrOutput struct{ *pulumi.OutputState }
 
 func (SpotMarketRequestInstanceParametersPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SpotMarketRequestInstanceParameters)(nil)).Elem()
@@ -691,55 +706,55 @@ func (o SpotMarketRequestInstanceParametersPtrOutput) ToSpotMarketRequestInstanc
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Elem() SpotMarketRequestInstanceParametersOutput {
-	return o.ApplyT(func (v *SpotMarketRequestInstanceParameters) SpotMarketRequestInstanceParameters { return *v }).(SpotMarketRequestInstanceParametersOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) SpotMarketRequestInstanceParameters { return *v }).(SpotMarketRequestInstanceParametersOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) AlwaysPxe() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.AlwaysPxe }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.AlwaysPxe }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) BillingCycle() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.BillingCycle }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.BillingCycle }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Features() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) []string { return v.Features }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.Features }).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.Hostname }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Locked() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.Locked }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Locked }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) OperatingSystem() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.OperatingSystem }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.OperatingSystem }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Plan() pulumi.StringOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) string { return v.Plan }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.Plan }).(pulumi.StringOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) ProjectSshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) []string { return v.ProjectSshKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.ProjectSshKeys }).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) TermintationTime() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.TermintationTime }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.TermintationTime }).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) UserSshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) []string { return v.UserSshKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.UserSshKeys }).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Userdata() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SpotMarketRequestInstanceParameters) *string { return v.Userdata }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Userdata }).(pulumi.StringPtrOutput)
 }
 
 type VolumeAttachmentType struct {
@@ -790,7 +805,7 @@ func (i VolumeAttachmentTypeArray) ToVolumeAttachmentTypeArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentTypeArrayOutput)
 }
 
-type VolumeAttachmentTypeOutput struct { *pulumi.OutputState }
+type VolumeAttachmentTypeOutput struct{ *pulumi.OutputState }
 
 func (VolumeAttachmentTypeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*VolumeAttachmentType)(nil)).Elem()
@@ -805,10 +820,10 @@ func (o VolumeAttachmentTypeOutput) ToVolumeAttachmentTypeOutputWithContext(ctx 
 }
 
 func (o VolumeAttachmentTypeOutput) Href() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v VolumeAttachmentType) *string { return v.Href }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v VolumeAttachmentType) *string { return v.Href }).(pulumi.StringPtrOutput)
 }
 
-type VolumeAttachmentTypeArrayOutput struct { *pulumi.OutputState}
+type VolumeAttachmentTypeArrayOutput struct{ *pulumi.OutputState }
 
 func (VolumeAttachmentTypeArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]VolumeAttachmentType)(nil)).Elem()
@@ -823,13 +838,13 @@ func (o VolumeAttachmentTypeArrayOutput) ToVolumeAttachmentTypeArrayOutputWithCo
 }
 
 func (o VolumeAttachmentTypeArrayOutput) Index(i pulumi.IntInput) VolumeAttachmentTypeOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) VolumeAttachmentType {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeAttachmentType {
 		return vs[0].([]VolumeAttachmentType)[vs[1].(int)]
 	}).(VolumeAttachmentTypeOutput)
 }
 
 type VolumeSnapshotPolicy struct {
-	SnapshotCount int `pulumi:"snapshotCount"`
+	SnapshotCount     int    `pulumi:"snapshotCount"`
 	SnapshotFrequency string `pulumi:"snapshotFrequency"`
 }
 
@@ -841,7 +856,7 @@ type VolumeSnapshotPolicyInput interface {
 }
 
 type VolumeSnapshotPolicyArgs struct {
-	SnapshotCount pulumi.IntInput `pulumi:"snapshotCount"`
+	SnapshotCount     pulumi.IntInput    `pulumi:"snapshotCount"`
 	SnapshotFrequency pulumi.StringInput `pulumi:"snapshotFrequency"`
 }
 
@@ -878,7 +893,7 @@ func (i VolumeSnapshotPolicyArray) ToVolumeSnapshotPolicyArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeSnapshotPolicyArrayOutput)
 }
 
-type VolumeSnapshotPolicyOutput struct { *pulumi.OutputState }
+type VolumeSnapshotPolicyOutput struct{ *pulumi.OutputState }
 
 func (VolumeSnapshotPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*VolumeSnapshotPolicy)(nil)).Elem()
@@ -893,14 +908,14 @@ func (o VolumeSnapshotPolicyOutput) ToVolumeSnapshotPolicyOutputWithContext(ctx 
 }
 
 func (o VolumeSnapshotPolicyOutput) SnapshotCount() pulumi.IntOutput {
-	return o.ApplyT(func (v VolumeSnapshotPolicy) int { return v.SnapshotCount }).(pulumi.IntOutput)
+	return o.ApplyT(func(v VolumeSnapshotPolicy) int { return v.SnapshotCount }).(pulumi.IntOutput)
 }
 
 func (o VolumeSnapshotPolicyOutput) SnapshotFrequency() pulumi.StringOutput {
-	return o.ApplyT(func (v VolumeSnapshotPolicy) string { return v.SnapshotFrequency }).(pulumi.StringOutput)
+	return o.ApplyT(func(v VolumeSnapshotPolicy) string { return v.SnapshotFrequency }).(pulumi.StringOutput)
 }
 
-type VolumeSnapshotPolicyArrayOutput struct { *pulumi.OutputState}
+type VolumeSnapshotPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (VolumeSnapshotPolicyArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]VolumeSnapshotPolicy)(nil)).Elem()
@@ -915,7 +930,7 @@ func (o VolumeSnapshotPolicyArrayOutput) ToVolumeSnapshotPolicyArrayOutputWithCo
 }
 
 func (o VolumeSnapshotPolicyArrayOutput) Index(i pulumi.IntInput) VolumeSnapshotPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) VolumeSnapshotPolicy {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeSnapshotPolicy {
 		return vs[0].([]VolumeSnapshotPolicy)[vs[1].(int)]
 	}).(VolumeSnapshotPolicyOutput)
 }
@@ -986,7 +1001,7 @@ func (i GetDeviceNetworkArray) ToGetDeviceNetworkArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceNetworkArrayOutput)
 }
 
-type GetDeviceNetworkOutput struct { *pulumi.OutputState }
+type GetDeviceNetworkOutput struct{ *pulumi.OutputState }
 
 func (GetDeviceNetworkOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetDeviceNetwork)(nil)).Elem()
@@ -1002,30 +1017,30 @@ func (o GetDeviceNetworkOutput) ToGetDeviceNetworkOutputWithContext(ctx context.
 
 // IPv4 or IPv6 address string
 func (o GetDeviceNetworkOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func (v GetDeviceNetwork) string { return v.Address }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetDeviceNetwork) string { return v.Address }).(pulumi.StringOutput)
 }
 
 // Bit length of the network mask of the address
 func (o GetDeviceNetworkOutput) Cidr() pulumi.IntOutput {
-	return o.ApplyT(func (v GetDeviceNetwork) int { return v.Cidr }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetDeviceNetwork) int { return v.Cidr }).(pulumi.IntOutput)
 }
 
 // IP version - "4" or "6"
 func (o GetDeviceNetworkOutput) Family() pulumi.IntOutput {
-	return o.ApplyT(func (v GetDeviceNetwork) int { return v.Family }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetDeviceNetwork) int { return v.Family }).(pulumi.IntOutput)
 }
 
 // Address of router
 func (o GetDeviceNetworkOutput) Gateway() pulumi.StringOutput {
-	return o.ApplyT(func (v GetDeviceNetwork) string { return v.Gateway }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetDeviceNetwork) string { return v.Gateway }).(pulumi.StringOutput)
 }
 
 // Whether the address is routable from the Internet
 func (o GetDeviceNetworkOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func (v GetDeviceNetwork) bool { return v.Public }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v GetDeviceNetwork) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
-type GetDeviceNetworkArrayOutput struct { *pulumi.OutputState}
+type GetDeviceNetworkArrayOutput struct{ *pulumi.OutputState }
 
 func (GetDeviceNetworkArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetDeviceNetwork)(nil)).Elem()
@@ -1040,7 +1055,7 @@ func (o GetDeviceNetworkArrayOutput) ToGetDeviceNetworkArrayOutputWithContext(ct
 }
 
 func (o GetDeviceNetworkArrayOutput) Index(i pulumi.IntInput) GetDeviceNetworkOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetDeviceNetwork {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeviceNetwork {
 		return vs[0].([]GetDeviceNetwork)[vs[1].(int)]
 	}).(GetDeviceNetworkOutput)
 }
@@ -1111,7 +1126,7 @@ func (i GetDevicePortArray) ToGetDevicePortArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDevicePortArrayOutput)
 }
 
-type GetDevicePortOutput struct { *pulumi.OutputState }
+type GetDevicePortOutput struct{ *pulumi.OutputState }
 
 func (GetDevicePortOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetDevicePort)(nil)).Elem()
@@ -1127,30 +1142,30 @@ func (o GetDevicePortOutput) ToGetDevicePortOutputWithContext(ctx context.Contex
 
 // Whether this port is part of a bond in bonded network setup
 func (o GetDevicePortOutput) Bonded() pulumi.BoolOutput {
-	return o.ApplyT(func (v GetDevicePort) bool { return v.Bonded }).(pulumi.BoolOutput)
+	return o.ApplyT(func(v GetDevicePort) bool { return v.Bonded }).(pulumi.BoolOutput)
 }
 
 // ID of the port
 func (o GetDevicePortOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func (v GetDevicePort) string { return v.Id }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetDevicePort) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // MAC address assigned to the port
 func (o GetDevicePortOutput) Mac() pulumi.StringOutput {
-	return o.ApplyT(func (v GetDevicePort) string { return v.Mac }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetDevicePort) string { return v.Mac }).(pulumi.StringOutput)
 }
 
 // Name of the port (e.g. `eth0`, or `bond0`)
 func (o GetDevicePortOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v GetDevicePort) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetDevicePort) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
 func (o GetDevicePortOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func (v GetDevicePort) string { return v.Type }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetDevicePort) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetDevicePortArrayOutput struct { *pulumi.OutputState}
+type GetDevicePortArrayOutput struct{ *pulumi.OutputState }
 
 func (GetDevicePortArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetDevicePort)(nil)).Elem()
@@ -1165,7 +1180,7 @@ func (o GetDevicePortArrayOutput) ToGetDevicePortArrayOutputWithContext(ctx cont
 }
 
 func (o GetDevicePortArrayOutput) Index(i pulumi.IntInput) GetDevicePortOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetDevicePort {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDevicePort {
 		return vs[0].([]GetDevicePort)[vs[1].(int)]
 	}).(GetDevicePortOutput)
 }
@@ -1215,7 +1230,7 @@ func (i GetProjectBgpConfigArgs) ToGetProjectBgpConfigOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetProjectBgpConfigOutput)
 }
 
-type GetProjectBgpConfigOutput struct { *pulumi.OutputState }
+type GetProjectBgpConfigOutput struct{ *pulumi.OutputState }
 
 func (GetProjectBgpConfigOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetProjectBgpConfig)(nil)).Elem()
@@ -1231,31 +1246,31 @@ func (o GetProjectBgpConfigOutput) ToGetProjectBgpConfigOutputWithContext(ctx co
 
 // Autonomous System Numer for local BGP deployment
 func (o GetProjectBgpConfigOutput) Asn() pulumi.IntOutput {
-	return o.ApplyT(func (v GetProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
 }
 
 // `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 func (o GetProjectBgpConfigOutput) DeploymentType() pulumi.StringOutput {
-	return o.ApplyT(func (v GetProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
 }
 
 // The maximum number of route filters allowed per server
 func (o GetProjectBgpConfigOutput) MaxPrefix() pulumi.IntOutput {
-	return o.ApplyT(func (v GetProjectBgpConfig) int { return v.MaxPrefix }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetProjectBgpConfig) int { return v.MaxPrefix }).(pulumi.IntOutput)
 }
 
 // Password for BGP session in plaintext (not a checksum)
 func (o GetProjectBgpConfigOutput) Md5() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
 }
 
 // status of BGP configuration in the project
 func (o GetProjectBgpConfigOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func (v GetProjectBgpConfig) string { return v.Status }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetProjectBgpConfig) string { return v.Status }).(pulumi.StringOutput)
 }
 
 type GetVolumeSnapshotPolicy struct {
-	SnapshotCount int `pulumi:"snapshotCount"`
+	SnapshotCount     int    `pulumi:"snapshotCount"`
 	SnapshotFrequency string `pulumi:"snapshotFrequency"`
 }
 
@@ -1267,7 +1282,7 @@ type GetVolumeSnapshotPolicyInput interface {
 }
 
 type GetVolumeSnapshotPolicyArgs struct {
-	SnapshotCount pulumi.IntInput `pulumi:"snapshotCount"`
+	SnapshotCount     pulumi.IntInput    `pulumi:"snapshotCount"`
 	SnapshotFrequency pulumi.StringInput `pulumi:"snapshotFrequency"`
 }
 
@@ -1304,7 +1319,7 @@ func (i GetVolumeSnapshotPolicyArray) ToGetVolumeSnapshotPolicyArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetVolumeSnapshotPolicyArrayOutput)
 }
 
-type GetVolumeSnapshotPolicyOutput struct { *pulumi.OutputState }
+type GetVolumeSnapshotPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetVolumeSnapshotPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetVolumeSnapshotPolicy)(nil)).Elem()
@@ -1319,14 +1334,14 @@ func (o GetVolumeSnapshotPolicyOutput) ToGetVolumeSnapshotPolicyOutputWithContex
 }
 
 func (o GetVolumeSnapshotPolicyOutput) SnapshotCount() pulumi.IntOutput {
-	return o.ApplyT(func (v GetVolumeSnapshotPolicy) int { return v.SnapshotCount }).(pulumi.IntOutput)
+	return o.ApplyT(func(v GetVolumeSnapshotPolicy) int { return v.SnapshotCount }).(pulumi.IntOutput)
 }
 
 func (o GetVolumeSnapshotPolicyOutput) SnapshotFrequency() pulumi.StringOutput {
-	return o.ApplyT(func (v GetVolumeSnapshotPolicy) string { return v.SnapshotFrequency }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetVolumeSnapshotPolicy) string { return v.SnapshotFrequency }).(pulumi.StringOutput)
 }
 
-type GetVolumeSnapshotPolicyArrayOutput struct { *pulumi.OutputState}
+type GetVolumeSnapshotPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (GetVolumeSnapshotPolicyArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetVolumeSnapshotPolicy)(nil)).Elem()
@@ -1341,7 +1356,7 @@ func (o GetVolumeSnapshotPolicyArrayOutput) ToGetVolumeSnapshotPolicyArrayOutput
 }
 
 func (o GetVolumeSnapshotPolicyArrayOutput) Index(i pulumi.IntInput) GetVolumeSnapshotPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetVolumeSnapshotPolicy {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVolumeSnapshotPolicy {
 		return vs[0].([]GetVolumeSnapshotPolicy)[vs[1].(int)]
 	}).(GetVolumeSnapshotPolicyOutput)
 }

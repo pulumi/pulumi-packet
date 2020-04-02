@@ -16,7 +16,18 @@ namespace Pulumi.Packet
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
         /// </summary>
+        [Obsolete("Use GetSpotMarketPrice.InvokeAsync() instead")]
         public static Task<GetSpotMarketPriceResult> GetSpotMarketPrice(GetSpotMarketPriceArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketPriceResult>("packet:index/getSpotMarketPrice:getSpotMarketPrice", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetSpotMarketPrice
+    {
+        /// <summary>
+        /// Use this data source to get Packet Spot Market Price.
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
+        /// </summary>
+        public static Task<GetSpotMarketPriceResult> InvokeAsync(GetSpotMarketPriceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketPriceResult>("packet:index/getSpotMarketPrice:getSpotMarketPrice", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

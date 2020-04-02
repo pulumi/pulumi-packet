@@ -31,29 +31,27 @@ type GetPrecreatedIpBlockArgs struct {
 	Global *bool `pulumi:"global"`
 	// ID of the project where the searched block should be.
 	ProjectId string `pulumi:"projectId"`
-	// Whether to look for public or private block. 
+	// Whether to look for public or private block.
 	Public bool `pulumi:"public"`
 }
-
 
 // A collection of values returned by getPrecreatedIpBlock.
 type GetPrecreatedIpBlockResult struct {
-	Address string `pulumi:"address"`
-	AddressFamily int `pulumi:"addressFamily"`
-	Cidr int `pulumi:"cidr"`
+	Address       string `pulumi:"address"`
+	AddressFamily int    `pulumi:"addressFamily"`
+	Cidr          int    `pulumi:"cidr"`
 	// CIDR notation of the looked up block.
-	CidrNotation string `pulumi:"cidrNotation"`
-	Facility *string `pulumi:"facility"`
-	Gateway string `pulumi:"gateway"`
-	Global *bool `pulumi:"global"`
+	CidrNotation string  `pulumi:"cidrNotation"`
+	Facility     *string `pulumi:"facility"`
+	Gateway      string  `pulumi:"gateway"`
+	Global       *bool   `pulumi:"global"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	Manageable bool `pulumi:"manageable"`
-	Management bool `pulumi:"management"`
-	Netmask string `pulumi:"netmask"`
-	Network string `pulumi:"network"`
-	ProjectId string `pulumi:"projectId"`
-	Public bool `pulumi:"public"`
-	Quantity int `pulumi:"quantity"`
+	Id         string `pulumi:"id"`
+	Manageable bool   `pulumi:"manageable"`
+	Management bool   `pulumi:"management"`
+	Netmask    string `pulumi:"netmask"`
+	Network    string `pulumi:"network"`
+	ProjectId  string `pulumi:"projectId"`
+	Public     bool   `pulumi:"public"`
+	Quantity   int    `pulumi:"quantity"`
 }
-

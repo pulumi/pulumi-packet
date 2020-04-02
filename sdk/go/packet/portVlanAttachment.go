@@ -19,7 +19,7 @@ import (
 //
 // To learn more about Layer 2 networking in Packet, refer to
 //
-// * https://www.packet.com/resources/guides/layer-2-configurations/ 
+// * https://www.packet.com/resources/guides/layer-2-configurations/
 // * https://www.packet.com/developers/docs/network/advanced/layer-2/
 //
 // ## Attribute Referece
@@ -36,12 +36,12 @@ type PortVlanAttachment struct {
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond pulumi.BoolPtrOutput `pulumi:"forceBond"`
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
 	Native pulumi.BoolPtrOutput `pulumi:"native"`
-	PortId pulumi.StringOutput `pulumi:"portId"`
+	PortId pulumi.StringOutput  `pulumi:"portId"`
 	// Name of network port to be assigned to the VLAN
 	PortName pulumi.StringOutput `pulumi:"portName"`
-	VlanId pulumi.StringOutput `pulumi:"vlanId"`
+	VlanId   pulumi.StringOutput `pulumi:"vlanId"`
 	// VXLAN Network Identifier, integer
 	VlanVnid pulumi.IntOutput `pulumi:"vlanVnid"`
 }
@@ -87,12 +87,12 @@ type portVlanAttachmentState struct {
 	DeviceId *string `pulumi:"deviceId"`
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond *bool `pulumi:"forceBond"`
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
-	Native *bool `pulumi:"native"`
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
+	Native *bool   `pulumi:"native"`
 	PortId *string `pulumi:"portId"`
 	// Name of network port to be assigned to the VLAN
 	PortName *string `pulumi:"portName"`
-	VlanId *string `pulumi:"vlanId"`
+	VlanId   *string `pulumi:"vlanId"`
 	// VXLAN Network Identifier, integer
 	VlanVnid *int `pulumi:"vlanVnid"`
 }
@@ -102,12 +102,12 @@ type PortVlanAttachmentState struct {
 	DeviceId pulumi.StringPtrInput
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond pulumi.BoolPtrInput
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
 	Native pulumi.BoolPtrInput
 	PortId pulumi.StringPtrInput
 	// Name of network port to be assigned to the VLAN
 	PortName pulumi.StringPtrInput
-	VlanId pulumi.StringPtrInput
+	VlanId   pulumi.StringPtrInput
 	// VXLAN Network Identifier, integer
 	VlanVnid pulumi.IntPtrInput
 }
@@ -121,7 +121,7 @@ type portVlanAttachmentArgs struct {
 	DeviceId string `pulumi:"deviceId"`
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond *bool `pulumi:"forceBond"`
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
 	Native *bool `pulumi:"native"`
 	// Name of network port to be assigned to the VLAN
 	PortName string `pulumi:"portName"`
@@ -135,7 +135,7 @@ type PortVlanAttachmentArgs struct {
 	DeviceId pulumi.StringInput
 	// Add port back to the bond when this resource is removed. Default is false.
 	ForceBond pulumi.BoolPtrInput
-	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+	// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `dependsOn` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
 	Native pulumi.BoolPtrInput
 	// Name of network port to be assigned to the VLAN
 	PortName pulumi.StringInput
@@ -146,4 +146,3 @@ type PortVlanAttachmentArgs struct {
 func (PortVlanAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*portVlanAttachmentArgs)(nil)).Elem()
 }
-
