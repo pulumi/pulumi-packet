@@ -648,7 +648,7 @@ namespace Pulumi.Packet
     public sealed class DeviceIpAddressesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// bit length of the network mask of the address
+        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         /// </summary>
         [Input("cidr")]
         public Input<int>? Cidr { get; set; }
@@ -662,7 +662,7 @@ namespace Pulumi.Packet
         }
 
         /// <summary>
-        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -675,7 +675,7 @@ namespace Pulumi.Packet
     public sealed class DeviceIpAddressesGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// bit length of the network mask of the address
+        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         /// </summary>
         [Input("cidr")]
         public Input<int>? Cidr { get; set; }
@@ -689,7 +689,7 @@ namespace Pulumi.Packet
         }
 
         /// <summary>
-        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -708,7 +708,7 @@ namespace Pulumi.Packet
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// bit length of the network mask of the address
+        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         /// </summary>
         [Input("cidr")]
         public Input<int>? Cidr { get; set; }
@@ -764,7 +764,7 @@ namespace Pulumi.Packet
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -782,12 +782,12 @@ namespace Pulumi.Packet
     public sealed class DeviceIpAddresses
     {
         /// <summary>
-        /// bit length of the network mask of the address
+        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         /// </summary>
         public readonly int? Cidr;
         public readonly ImmutableArray<string> ReservationIds;
         /// <summary>
-        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         /// </summary>
         public readonly string Type;
 
@@ -811,7 +811,7 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// bit length of the network mask of the address
+        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         /// </summary>
         public readonly int Cidr;
         /// <summary>
@@ -864,7 +864,7 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         /// </summary>
         public readonly string Type;
 

@@ -28,7 +28,6 @@ type LookupOrganizationArgs struct {
 	OrganizationId *string `pulumi:"organizationId"`
 }
 
-
 // A collection of values returned by getOrganization.
 type LookupOrganizationResult struct {
 	// Description string
@@ -36,8 +35,8 @@ type LookupOrganizationResult struct {
 	// id is the provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Logo URL
-	Logo string `pulumi:"logo"`
-	Name string `pulumi:"name"`
+	Logo           string `pulumi:"logo"`
+	Name           string `pulumi:"name"`
 	OrganizationId string `pulumi:"organizationId"`
 	// UUIDs of project resources which belong to this organization
 	ProjectIds []string `pulumi:"projectIds"`
@@ -46,4 +45,3 @@ type LookupOrganizationResult struct {
 	// Website link
 	Website string `pulumi:"website"`
 }
-

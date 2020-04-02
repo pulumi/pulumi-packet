@@ -26,7 +26,7 @@ type Organization struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Twitter handle.
 	Twitter pulumi.StringPtrOutput `pulumi:"twitter"`
-	Updated pulumi.StringOutput `pulumi:"updated"`
+	Updated pulumi.StringOutput    `pulumi:"updated"`
 	// Website link.
 	Website pulumi.StringPtrOutput `pulumi:"website"`
 }
@@ -125,4 +125,3 @@ type OrganizationArgs struct {
 func (OrganizationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationArgs)(nil)).Elem()
 }
-

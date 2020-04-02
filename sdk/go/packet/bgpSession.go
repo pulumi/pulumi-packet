@@ -15,7 +15,7 @@ import (
 //
 // You need to have BGP config enabled in your project.
 //
-// BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
+// BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers.
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
 type BgpSession struct {
@@ -25,9 +25,9 @@ type BgpSession struct {
 	AddressFamily pulumi.StringOutput `pulumi:"addressFamily"`
 	// Boolean flag to set the default route policy. False by default.
 	DefaultRoute pulumi.BoolPtrOutput `pulumi:"defaultRoute"`
-	// ID of device 
+	// ID of device
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
-	Status pulumi.StringOutput `pulumi:"status"`
+	Status   pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewBgpSession registers a new resource with the given unique name, arguments, and options.
@@ -68,9 +68,9 @@ type bgpSessionState struct {
 	AddressFamily *string `pulumi:"addressFamily"`
 	// Boolean flag to set the default route policy. False by default.
 	DefaultRoute *bool `pulumi:"defaultRoute"`
-	// ID of device 
+	// ID of device
 	DeviceId *string `pulumi:"deviceId"`
-	Status *string `pulumi:"status"`
+	Status   *string `pulumi:"status"`
 }
 
 type BgpSessionState struct {
@@ -78,9 +78,9 @@ type BgpSessionState struct {
 	AddressFamily pulumi.StringPtrInput
 	// Boolean flag to set the default route policy. False by default.
 	DefaultRoute pulumi.BoolPtrInput
-	// ID of device 
+	// ID of device
 	DeviceId pulumi.StringPtrInput
-	Status pulumi.StringPtrInput
+	Status   pulumi.StringPtrInput
 }
 
 func (BgpSessionState) ElementType() reflect.Type {
@@ -92,7 +92,7 @@ type bgpSessionArgs struct {
 	AddressFamily string `pulumi:"addressFamily"`
 	// Boolean flag to set the default route policy. False by default.
 	DefaultRoute *bool `pulumi:"defaultRoute"`
-	// ID of device 
+	// ID of device
 	DeviceId string `pulumi:"deviceId"`
 }
 
@@ -102,11 +102,10 @@ type BgpSessionArgs struct {
 	AddressFamily pulumi.StringInput
 	// Boolean flag to set the default route policy. False by default.
 	DefaultRoute pulumi.BoolPtrInput
-	// ID of device 
+	// ID of device
 	DeviceId pulumi.StringInput
 }
 
 func (BgpSessionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bgpSessionArgs)(nil)).Elem()
 }
-

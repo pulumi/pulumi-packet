@@ -6,12 +6,12 @@ import * as outputs from "../types/output";
 
 export interface DeviceIpAddress {
     /**
-     * bit length of the network mask of the address
+     * CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
      */
     cidr?: number;
     reservationIds?: string[];
     /**
-     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     * One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
      */
     type: string;
 }
@@ -22,7 +22,7 @@ export interface DeviceNetwork {
      */
     address: string;
     /**
-     * bit length of the network mask of the address
+     * CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
      */
     cidr: number;
     /**
@@ -58,7 +58,7 @@ export interface DevicePort {
      */
     name: string;
     /**
-     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     * One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
      */
     type: string;
 }
@@ -138,12 +138,21 @@ export interface GetVolumeSnapshotPolicy {
 }
 
 export interface ProjectBgpConfig {
+    /**
+     * Autonomous System Numer for local BGP deployment
+     */
     asn: number;
+    /**
+     * `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
+     */
     deploymentType: string;
     /**
      * The maximum number of route filters allowed per server
      */
     maxPrefix: number;
+    /**
+     * Password for BGP session in plaintext (not a checksum)
+     */
     md5?: string;
     /**
      * status of BGP configuration in the project

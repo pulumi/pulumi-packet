@@ -28,7 +28,6 @@ type LookupProjectArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 }
 
-
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
 	// Whether Backend Transfer is enabled for this project
@@ -38,16 +37,15 @@ type LookupProjectResult struct {
 	// The timestamp for when the project was created
 	Created string `pulumi:"created"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 	// The UUID of this project's parent organization
 	OrganizationId string `pulumi:"organizationId"`
 	// The UUID of payment method for this project
 	PaymentMethodId string `pulumi:"paymentMethodId"`
-	ProjectId string `pulumi:"projectId"`
+	ProjectId       string `pulumi:"projectId"`
 	// The timestamp for the last time the project was updated
 	Updated string `pulumi:"updated"`
 	// List of UUIDs of user accounts which beling to this project
 	UserIds []string `pulumi:"userIds"`
 }
-

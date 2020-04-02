@@ -26,16 +26,15 @@ type LookupVolumeArgs struct {
 	Name *string `pulumi:"name"`
 	// The ID the parent Packet project (for lookup by name)
 	ProjectId *string `pulumi:"projectId"`
-	VolumeId *string `pulumi:"volumeId"`
+	VolumeId  *string `pulumi:"volumeId"`
 }
-
 
 // A collection of values returned by getVolume.
 type LookupVolumeResult struct {
 	// The billing cycle, defaults to hourly
 	BillingCycle string `pulumi:"billingCycle"`
-	Created string `pulumi:"created"`
-	Description string `pulumi:"description"`
+	Created      string `pulumi:"created"`
+	Description  string `pulumi:"description"`
 	// UUIDs of devices to which this volume is attached
 	DeviceIds []string `pulumi:"deviceIds"`
 	// The facility slug the volume resides in
@@ -48,14 +47,13 @@ type LookupVolumeResult struct {
 	// * `projectId ` - The project id the volume is in
 	Name string `pulumi:"name"`
 	// Performance plan the volume is on
-	Plan string `pulumi:"plan"`
+	Plan      string `pulumi:"plan"`
 	ProjectId string `pulumi:"projectId"`
 	// The size in GB of the volume
-	Size int `pulumi:"size"`
+	Size             int                       `pulumi:"size"`
 	SnapshotPolicies []GetVolumeSnapshotPolicy `pulumi:"snapshotPolicies"`
 	// The state of the volume
-	State string `pulumi:"state"`
-	Updated string `pulumi:"updated"`
+	State    string `pulumi:"state"`
+	Updated  string `pulumi:"updated"`
 	VolumeId string `pulumi:"volumeId"`
 }
-

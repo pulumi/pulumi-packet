@@ -37,10 +37,10 @@ type IpAttachment struct {
 	// ID of device to which to assign the subnet
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
 	// IP address of gateway for the subnet
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	Global pulumi.BoolOutput `pulumi:"global"`
-	Manageable pulumi.BoolOutput `pulumi:"manageable"`
-	Management pulumi.BoolOutput `pulumi:"management"`
+	Gateway    pulumi.StringOutput `pulumi:"gateway"`
+	Global     pulumi.BoolOutput   `pulumi:"global"`
+	Manageable pulumi.BoolOutput   `pulumi:"manageable"`
+	Management pulumi.BoolOutput   `pulumi:"management"`
 	// Subnet mask in decimal notation, e.g. "255.255.255.0"
 	Netmask pulumi.StringOutput `pulumi:"netmask"`
 	// Subnet network address
@@ -94,10 +94,10 @@ type ipAttachmentState struct {
 	// ID of device to which to assign the subnet
 	DeviceId *string `pulumi:"deviceId"`
 	// IP address of gateway for the subnet
-	Gateway *string `pulumi:"gateway"`
-	Global *bool `pulumi:"global"`
-	Manageable *bool `pulumi:"manageable"`
-	Management *bool `pulumi:"management"`
+	Gateway    *string `pulumi:"gateway"`
+	Global     *bool   `pulumi:"global"`
+	Manageable *bool   `pulumi:"manageable"`
+	Management *bool   `pulumi:"management"`
 	// Subnet mask in decimal notation, e.g. "255.255.255.0"
 	Netmask *string `pulumi:"netmask"`
 	// Subnet network address
@@ -118,8 +118,8 @@ type IpAttachmentState struct {
 	// ID of device to which to assign the subnet
 	DeviceId pulumi.StringPtrInput
 	// IP address of gateway for the subnet
-	Gateway pulumi.StringPtrInput
-	Global pulumi.BoolPtrInput
+	Gateway    pulumi.StringPtrInput
+	Global     pulumi.BoolPtrInput
 	Manageable pulumi.BoolPtrInput
 	Management pulumi.BoolPtrInput
 	// Subnet mask in decimal notation, e.g. "255.255.255.0"
@@ -154,4 +154,3 @@ type IpAttachmentArgs struct {
 func (IpAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipAttachmentArgs)(nil)).Elem()
 }
-

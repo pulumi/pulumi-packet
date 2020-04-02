@@ -16,7 +16,18 @@ namespace Pulumi.Packet
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
         /// </summary>
+        [Obsolete("Use GetOperatingSystem.InvokeAsync() instead")]
         public static Task<GetOperatingSystemResult> GetOperatingSystem(GetOperatingSystemArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetOperatingSystemResult>("packet:index/getOperatingSystem:getOperatingSystem", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetOperatingSystem
+    {
+        /// <summary>
+        /// Use this data source to get Packet Operating System image.
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
+        /// </summary>
+        public static Task<GetOperatingSystemResult> InvokeAsync(GetOperatingSystemArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOperatingSystemResult>("packet:index/getOperatingSystem:getOperatingSystem", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

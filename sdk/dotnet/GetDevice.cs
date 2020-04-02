@@ -20,7 +20,22 @@ namespace Pulumi.Packet
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
         /// </summary>
+        [Obsolete("Use GetDevice.InvokeAsync() instead")]
         public static Task<GetDeviceResult> GetDevice(GetDeviceArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetDevice
+    {
+        /// <summary>
+        /// Provides a Packet device datasource.
+        /// 
+        /// &gt; **Note:** All arguments including the `root_password` and `user_data` will be stored in
+        ///  the raw state as plain-text.
+        /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
+        /// </summary>
+        public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

@@ -28,10 +28,9 @@ func GetIpBlockRanges(ctx *pulumi.Context, args *GetIpBlockRangesArgs, opts ...p
 type GetIpBlockRangesArgs struct {
 	// Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this, all the block from the project will be listed.
 	Facility *string `pulumi:"facility"`
-	// ID of the project from which to list the blocks. 
+	// ID of the project from which to list the blocks.
 	ProjectId string `pulumi:"projectId"`
 }
-
 
 // A collection of values returned by getIpBlockRanges.
 type GetIpBlockRangesResult struct {
@@ -44,8 +43,7 @@ type GetIpBlockRangesResult struct {
 	Ipv6s []string `pulumi:"ipv6s"`
 	// list of CIDR expressions for Private IPv4 blocks in the project
 	PrivateIpv4s []string `pulumi:"privateIpv4s"`
-	ProjectId string `pulumi:"projectId"`
+	ProjectId    string   `pulumi:"projectId"`
 	// list of CIDR expressions for Public IPv4 blocks in the project
 	PublicIpv4s []string `pulumi:"publicIpv4s"`
 }
-

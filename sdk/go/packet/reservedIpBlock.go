@@ -39,9 +39,9 @@ type ReservedIpBlock struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility pulumi.StringPtrOutput `pulumi:"facility"`
-	Gateway pulumi.StringOutput `pulumi:"gateway"`
+	Gateway  pulumi.StringOutput    `pulumi:"gateway"`
 	// boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
-	Global pulumi.BoolOutput `pulumi:"global"`
+	Global     pulumi.BoolOutput `pulumi:"global"`
 	Manageable pulumi.BoolOutput `pulumi:"manageable"`
 	Management pulumi.BoolOutput `pulumi:"management"`
 	// Mask in decimal notation, e.g. "255.255.255.0"
@@ -103,9 +103,9 @@ type reservedIpBlockState struct {
 	Description *string `pulumi:"description"`
 	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility *string `pulumi:"facility"`
-	Gateway *string `pulumi:"gateway"`
+	Gateway  *string `pulumi:"gateway"`
 	// boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
-	Global *bool `pulumi:"global"`
+	Global     *bool `pulumi:"global"`
 	Manageable *bool `pulumi:"manageable"`
 	Management *bool `pulumi:"management"`
 	// Mask in decimal notation, e.g. "255.255.255.0"
@@ -134,9 +134,9 @@ type ReservedIpBlockState struct {
 	Description pulumi.StringPtrInput
 	// Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
 	Facility pulumi.StringPtrInput
-	Gateway pulumi.StringPtrInput
+	Gateway  pulumi.StringPtrInput
 	// boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
-	Global pulumi.BoolPtrInput
+	Global     pulumi.BoolPtrInput
 	Manageable pulumi.BoolPtrInput
 	Management pulumi.BoolPtrInput
 	// Mask in decimal notation, e.g. "255.255.255.0"
@@ -187,4 +187,3 @@ type ReservedIpBlockArgs struct {
 func (ReservedIpBlockArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*reservedIpBlockArgs)(nil)).Elem()
 }
-

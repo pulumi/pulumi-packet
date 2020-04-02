@@ -112,4 +112,3 @@ type VlanArgs struct {
 func (VlanArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vlanArgs)(nil)).Elem()
 }
-

@@ -6,12 +6,12 @@ import * as inputs from "../types/input";
 
 export interface DeviceIpAddress {
     /**
-     * bit length of the network mask of the address
+     * CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
      */
     cidr?: pulumi.Input<number>;
     reservationIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     * One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
      */
     type: pulumi.Input<string>;
 }
@@ -22,7 +22,7 @@ export interface DeviceNetwork {
      */
     address?: pulumi.Input<string>;
     /**
-     * bit length of the network mask of the address
+     * CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
      */
     cidr?: pulumi.Input<number>;
     /**
@@ -58,18 +58,27 @@ export interface DevicePort {
      */
     name?: pulumi.Input<string>;
     /**
-     * Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
+     * One of [`privateIpv4`, `publicIpv4`, `publicIpv6`]
      */
     type?: pulumi.Input<string>;
 }
 
 export interface ProjectBgpConfig {
+    /**
+     * Autonomous System Numer for local BGP deployment
+     */
     asn: pulumi.Input<number>;
+    /**
+     * `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
+     */
     deploymentType: pulumi.Input<string>;
     /**
      * The maximum number of route filters allowed per server
      */
     maxPrefix?: pulumi.Input<number>;
+    /**
+     * Password for BGP session in plaintext (not a checksum)
+     */
     md5?: pulumi.Input<string>;
     /**
      * status of BGP configuration in the project

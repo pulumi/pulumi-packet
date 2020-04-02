@@ -48,7 +48,7 @@ type Device struct {
 	HardwareReservationId pulumi.StringOutput `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// A list of IP address types for the device (structure is documented below). 
+	// A list of IP address types for the device (structure is documented below).
 	IpAddresses DeviceIpAddressArrayOutput `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
@@ -56,9 +56,9 @@ type Device struct {
 	// doc.
 	IpxeScriptUrl pulumi.StringPtrOutput `pulumi:"ipxeScriptUrl"`
 	// Whether the device is locked
-	Locked pulumi.BoolOutput `pulumi:"locked"`
+	Locked      pulumi.BoolOutput      `pulumi:"locked"`
 	NetworkType pulumi.StringPtrOutput `pulumi:"networkType"`
-	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
@@ -72,7 +72,7 @@ type Device struct {
 	// Ports assigned to the device
 	Ports DevicePortArrayOutput `pulumi:"ports"`
 	// The ID of the project in which to create the device
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId        pulumi.StringOutput      `pulumi:"projectId"`
 	ProjectSshKeyIds pulumi.StringArrayOutput `pulumi:"projectSshKeyIds"`
 	// Size of allocated subnet, more
 	// information is in the
@@ -168,7 +168,7 @@ type deviceState struct {
 	HardwareReservationId *string `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname *string `pulumi:"hostname"`
-	// A list of IP address types for the device (structure is documented below). 
+	// A list of IP address types for the device (structure is documented below).
 	IpAddresses []DeviceIpAddress `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
@@ -176,9 +176,9 @@ type deviceState struct {
 	// doc.
 	IpxeScriptUrl *string `pulumi:"ipxeScriptUrl"`
 	// Whether the device is locked
-	Locked *bool `pulumi:"locked"`
+	Locked      *bool   `pulumi:"locked"`
 	NetworkType *string `pulumi:"networkType"`
-	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
@@ -192,7 +192,7 @@ type deviceState struct {
 	// Ports assigned to the device
 	Ports []DevicePort `pulumi:"ports"`
 	// The ID of the project in which to create the device
-	ProjectId *string `pulumi:"projectId"`
+	ProjectId        *string  `pulumi:"projectId"`
 	ProjectSshKeyIds []string `pulumi:"projectSshKeyIds"`
 	// Size of allocated subnet, more
 	// information is in the
@@ -243,7 +243,7 @@ type DeviceState struct {
 	HardwareReservationId pulumi.StringPtrInput
 	// The device name
 	Hostname pulumi.StringPtrInput
-	// A list of IP address types for the device (structure is documented below). 
+	// A list of IP address types for the device (structure is documented below).
 	IpAddresses DeviceIpAddressArrayInput
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
@@ -251,9 +251,9 @@ type DeviceState struct {
 	// doc.
 	IpxeScriptUrl pulumi.StringPtrInput
 	// Whether the device is locked
-	Locked pulumi.BoolPtrInput
+	Locked      pulumi.BoolPtrInput
 	NetworkType pulumi.StringPtrInput
-	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
@@ -267,7 +267,7 @@ type DeviceState struct {
 	// Ports assigned to the device
 	Ports DevicePortArrayInput
 	// The ID of the project in which to create the device
-	ProjectId pulumi.StringPtrInput
+	ProjectId        pulumi.StringPtrInput
 	ProjectSshKeyIds pulumi.StringArrayInput
 	// Size of allocated subnet, more
 	// information is in the
@@ -312,20 +312,20 @@ type deviceArgs struct {
 	HardwareReservationId *string `pulumi:"hardwareReservationId"`
 	// The device name
 	Hostname string `pulumi:"hostname"`
-	// A list of IP address types for the device (structure is documented below). 
+	// A list of IP address types for the device (structure is documented below).
 	IpAddresses []DeviceIpAddress `pulumi:"ipAddresses"`
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 	// doc.
 	IpxeScriptUrl *string `pulumi:"ipxeScriptUrl"`
-	NetworkType *string `pulumi:"networkType"`
+	NetworkType   *string `pulumi:"networkType"`
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem string `pulumi:"operatingSystem"`
 	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
 	Plan string `pulumi:"plan"`
 	// The ID of the project in which to create the device
-	ProjectId string `pulumi:"projectId"`
+	ProjectId        string   `pulumi:"projectId"`
 	ProjectSshKeyIds []string `pulumi:"projectSshKeyIds"`
 	// Size of allocated subnet, more
 	// information is in the
@@ -359,20 +359,20 @@ type DeviceArgs struct {
 	HardwareReservationId pulumi.StringPtrInput
 	// The device name
 	Hostname pulumi.StringInput
-	// A list of IP address types for the device (structure is documented below). 
+	// A list of IP address types for the device (structure is documented below).
 	IpAddresses DeviceIpAddressArrayInput
 	// URL pointing to a hosted iPXE script. More
 	// information is in the
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 	// doc.
 	IpxeScriptUrl pulumi.StringPtrInput
-	NetworkType pulumi.StringPtrInput
+	NetworkType   pulumi.StringPtrInput
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem pulumi.StringInput
 	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
 	Plan pulumi.StringInput
 	// The ID of the project in which to create the device
-	ProjectId pulumi.StringInput
+	ProjectId        pulumi.StringInput
 	ProjectSshKeyIds pulumi.StringArrayInput
 	// Size of allocated subnet, more
 	// information is in the
@@ -391,4 +391,3 @@ type DeviceArgs struct {
 func (DeviceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*deviceArgs)(nil)).Elem()
 }
-
