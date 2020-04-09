@@ -5,10 +5,12 @@
 package packet
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Use this datasource to retrieve attributes of the Project API resource.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {

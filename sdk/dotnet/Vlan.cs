@@ -16,6 +16,8 @@ namespace Pulumi.Packet
     /// * https://www.packet.com/resources/guides/layer-2-configurations/
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
     /// </summary>
     public partial class Vlan : Pulumi.CustomResource

@@ -12,10 +12,11 @@ import * as utilities from "./utilities";
  * There are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.
  * 
  * The datasource has 4 list attributes: `globalIpv4`, `publicIpv4`, `privateIpv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
+ * 
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
  */
-export function getIpBlockRanges(args: GetIpBlockRangesArgs, opts?: pulumi.InvokeOptions): Promise<GetIpBlockRangesResult> & GetIpBlockRangesResult {
+export function getIpBlockRanges(args: GetIpBlockRangesArgs, opts?: pulumi.InvokeOptions): Promise<GetIpBlockRangesResult> {
     if (!opts) {
         opts = {}
     }
@@ -23,12 +24,10 @@ export function getIpBlockRanges(args: GetIpBlockRangesArgs, opts?: pulumi.Invok
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetIpBlockRangesResult> = pulumi.runtime.invoke("packet:index/getIpBlockRanges:getIpBlockRanges", {
+    return pulumi.runtime.invoke("packet:index/getIpBlockRanges:getIpBlockRanges", {
         "facility": args.facility,
         "projectId": args.projectId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

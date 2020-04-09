@@ -43,6 +43,10 @@ def get_spot_market_request(request_id=None,opts=None):
     """
     Provides a Packet spot_market_request datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
 
+
+
+
+
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
 
 

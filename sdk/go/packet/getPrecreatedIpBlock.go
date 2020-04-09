@@ -5,11 +5,13 @@
 package packet
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
 // You can then use the cidrsubnet TF builtin function to derive subnets.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
 func GetPrecreatedIpBlock(ctx *pulumi.Context, args *GetPrecreatedIpBlockArgs, opts ...pulumi.InvokeOption) (*GetPrecreatedIpBlockResult, error) {

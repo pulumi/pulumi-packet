@@ -18,6 +18,9 @@ namespace Pulumi.Packet
         ///  the raw state as plain-text.
         /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
         /// 
+        /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
         /// </summary>
         [Obsolete("Use GetDevice.InvokeAsync() instead")]
@@ -32,6 +35,9 @@ namespace Pulumi.Packet
         /// &gt; **Note:** All arguments including the `root_password` and `user_data` will be stored in
         ///  the raw state as plain-text.
         /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
         /// </summary>

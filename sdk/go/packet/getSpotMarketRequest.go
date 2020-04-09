@@ -5,10 +5,14 @@
 package packet
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Provides a Packet spotMarketRequest datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
+//
+//
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
 func LookupSpotMarketRequest(ctx *pulumi.Context, args *LookupSpotMarketRequestArgs, opts ...pulumi.InvokeOption) (*LookupSpotMarketRequestResult, error) {

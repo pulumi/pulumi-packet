@@ -14,6 +14,8 @@ namespace Pulumi.Packet
         /// <summary>
         /// Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
         /// </summary>
         [Obsolete("Use GetVolume.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Packet
     {
         /// <summary>
         /// Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
         /// </summary>

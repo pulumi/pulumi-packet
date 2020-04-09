@@ -13,6 +13,8 @@ namespace Pulumi.Packet
     /// Provides a Packet Spot Market Request resource to allow you to
     /// manage spot market requests on your account. For more detail on Spot Market, see [this article in Packing documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/spot_market_request.html.markdown.
     /// </summary>
     public partial class SpotMarketRequest : Pulumi.CustomResource

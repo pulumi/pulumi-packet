@@ -72,6 +72,8 @@ def get_ip_block_ranges(facility=None,project_id=None,opts=None):
 
     The datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
 
+
+
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
 
 

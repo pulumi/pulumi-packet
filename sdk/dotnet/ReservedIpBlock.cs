@@ -23,6 +23,8 @@ namespace Pulumi.Packet
     /// 
     /// Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
     /// </summary>
     public partial class ReservedIpBlock : Pulumi.CustomResource

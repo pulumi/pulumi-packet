@@ -14,6 +14,8 @@ namespace Pulumi.Packet
         /// <summary>
         /// Use this data source to get Packet Spot Market Price.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
         /// </summary>
         [Obsolete("Use GetSpotMarketPrice.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Packet
     {
         /// <summary>
         /// Use this data source to get Packet Spot Market Price.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
         /// </summary>

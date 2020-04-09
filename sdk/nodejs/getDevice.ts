@@ -12,10 +12,12 @@ import * as utilities from "./utilities";
  * > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+ * 
+ * 
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
  */
-export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> & GetDeviceResult {
+export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -24,13 +26,11 @@ export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pr
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetDeviceResult> = pulumi.runtime.invoke("packet:index/getDevice:getDevice", {
+    return pulumi.runtime.invoke("packet:index/getDevice:getDevice", {
         "deviceId": args.deviceId,
         "hostname": args.hostname,
         "projectId": args.projectId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

@@ -14,6 +14,8 @@ namespace Pulumi.Packet
         /// <summary>
         /// Use this datasource to retrieve attributes of the Project API resource.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
         /// </summary>
         [Obsolete("Use GetProject.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Packet
     {
         /// <summary>
         /// Use this datasource to retrieve attributes of the Project API resource.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
         /// </summary>

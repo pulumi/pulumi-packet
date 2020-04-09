@@ -16,6 +16,8 @@ namespace Pulumi.Packet
     /// 
     /// BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
     /// </summary>
     public partial class BgpSession : Pulumi.CustomResource

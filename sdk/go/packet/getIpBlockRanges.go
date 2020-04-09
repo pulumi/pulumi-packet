@@ -5,7 +5,7 @@
 package packet
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Use this datasource to get CIDR expressions for allocated IP blocks of all the types in a project, optionally filtered by facility.
@@ -13,6 +13,8 @@ import (
 // There are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.
 //
 // The datasource has 4 list attributes: `globalIpv4`, `publicIpv4`, `privateIpv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
 func GetIpBlockRanges(ctx *pulumi.Context, args *GetIpBlockRangesArgs, opts ...pulumi.InvokeOption) (*GetIpBlockRangesResult, error) {

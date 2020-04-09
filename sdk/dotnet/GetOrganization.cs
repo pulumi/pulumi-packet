@@ -14,6 +14,8 @@ namespace Pulumi.Packet
         /// <summary>
         /// Provides a Packet organization datasource.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
         /// </summary>
         [Obsolete("Use GetOrganization.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Packet
     {
         /// <summary>
         /// Provides a Packet organization datasource.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
         /// </summary>

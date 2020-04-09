@@ -77,6 +77,8 @@ class ReservedIpBlock(pulumi.CustomResource):
 
         Once IP block is allocated or imported, an address from it can be assigned to device with the `.IpAttachment` resource.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
 
         :param str resource_name: The name of the resource.

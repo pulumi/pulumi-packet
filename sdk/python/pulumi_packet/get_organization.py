@@ -75,6 +75,8 @@ def get_organization(name=None,organization_id=None,opts=None):
     """
     Provides a Packet organization datasource.
 
+
+
     > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
 
 

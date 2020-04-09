@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Provides a resource to attach device ports to VLANs.
@@ -21,6 +21,7 @@ import (
 //
 // * https://www.packet.com/resources/guides/layer-2-configurations/
 // * https://www.packet.com/developers/docs/network/advanced/layer-2/
+//
 //
 // ## Attribute Referece
 //

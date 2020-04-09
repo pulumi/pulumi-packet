@@ -18,6 +18,8 @@ namespace Pulumi.Packet
         /// 
         /// The datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`&lt;network&gt;/&lt;mask&gt;`) of respective blocks from the project.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
         /// </summary>
         [Obsolete("Use GetIpBlockRanges.InvokeAsync() instead")]
@@ -32,6 +34,8 @@ namespace Pulumi.Packet
         /// There are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.
         /// 
         /// The datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`&lt;network&gt;/&lt;mask&gt;`) of respective blocks from the project.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
         /// </summary>

@@ -8,10 +8,11 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
+ * 
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
  */
-export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> & GetVolumeResult {
+export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -20,13 +21,11 @@ export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Pr
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetVolumeResult> = pulumi.runtime.invoke("packet:index/getVolume:getVolume", {
+    return pulumi.runtime.invoke("packet:index/getVolume:getVolume", {
         "name": args.name,
         "projectId": args.projectId,
         "volumeId": args.volumeId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

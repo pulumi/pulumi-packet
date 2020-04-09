@@ -12,6 +12,8 @@ namespace Pulumi.Packet
     /// <summary>
     /// Provides a resource to manage organization resource in Packet.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/organization.html.markdown.
     /// </summary>
     public partial class Organization : Pulumi.CustomResource

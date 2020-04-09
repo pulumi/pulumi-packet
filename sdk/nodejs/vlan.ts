@@ -14,6 +14,7 @@ import {Facility} from "./index";
  * To learn more about Layer 2 networking in Packet, refer to
  * * https://www.packet.com/resources/guides/layer-2-configurations/
  * * https://www.packet.com/developers/docs/network/advanced/layer-2/
+ * 
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
  */

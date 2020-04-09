@@ -13,6 +13,8 @@ namespace Pulumi.Packet
     /// Provides a Packet project resource to allow you manage devices
     /// in your projects.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project.html.markdown.
     /// </summary>
     public partial class Project : Pulumi.CustomResource

@@ -8,10 +8,11 @@ import * as utilities from "./utilities";
 
 /**
  * Use this datasource to retrieve attributes of the Project API resource.
+ * 
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
  */
-export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> & GetProjectResult {
+export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -20,12 +21,10 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetProjectResult> = pulumi.runtime.invoke("packet:index/getProject:getProject", {
+    return pulumi.runtime.invoke("packet:index/getProject:getProject", {
         "name": args.name,
         "projectId": args.projectId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

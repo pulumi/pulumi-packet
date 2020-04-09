@@ -41,6 +41,8 @@ class SshKey(pulumi.CustomResource):
 
         The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ssh_key.html.markdown.
 
         :param str resource_name: The name of the resource.

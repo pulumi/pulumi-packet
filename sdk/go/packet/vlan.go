@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Provides a resource to allow users to manage Virtual Networks in their projects.
@@ -16,6 +16,8 @@ import (
 // To learn more about Layer 2 networking in Packet, refer to
 // * https://www.packet.com/resources/guides/layer-2-configurations/
 // * https://www.packet.com/developers/docs/network/advanced/layer-2/
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
 type Vlan struct {

@@ -21,6 +21,7 @@ namespace Pulumi.Packet
     /// * https://www.packet.com/resources/guides/layer-2-configurations/ 
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
     /// 
+    /// 
     /// ## Attribute Referece
     /// 
     /// * `id` - UUID of device port used in the assignment
