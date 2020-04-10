@@ -57,8 +57,6 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
-
 
     :param str distro: Name of the OS distribution.
     :param str name: Name or part of the name of the distribution. Case insensitive.

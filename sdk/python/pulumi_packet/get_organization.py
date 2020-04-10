@@ -77,8 +77,6 @@ def get_organization(name=None,organization_id=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
-
 
     :param str name: The organization name
     :param str organization_id: The UUID of the organization resource

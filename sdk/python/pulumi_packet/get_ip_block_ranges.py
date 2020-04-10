@@ -74,8 +74,6 @@ def get_ip_block_ranges(facility=None,project_id=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
-
 
     :param str facility: Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this, all the block from the project will be listed.
     :param str project_id: ID of the project from which to list the blocks. 

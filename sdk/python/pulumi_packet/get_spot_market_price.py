@@ -49,8 +49,6 @@ def get_spot_market_price(facility=None,plan=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
-
 
     :param str facility: Name of the facility.
     :param str plan: Name of the plan.

@@ -115,8 +115,6 @@ def get_volume(name=None,project_id=None,volume_id=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
-
 
     :param str name: Name of volume for lookup
     :param str project_id: The ID the parent Packet project (for lookup by name)

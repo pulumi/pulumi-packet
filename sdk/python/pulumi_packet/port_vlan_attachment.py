@@ -52,8 +52,6 @@ class PortVlanAttachment(pulumi.CustomResource):
         * `vlan_id` - UUID of VLAN API resource
         * `port_id` - UUID of device port
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: ID of device to be assigned to the VLAN

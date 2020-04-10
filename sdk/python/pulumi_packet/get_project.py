@@ -91,8 +91,6 @@ def get_project(name=None,project_id=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
-
 
     :param str name: The name which is used to look up the project
     :param str project_id: The UUID by which to look up the project

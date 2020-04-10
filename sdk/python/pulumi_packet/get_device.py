@@ -184,8 +184,6 @@ def get_device(device_id=None,hostname=None,project_id=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
-
 
     :param str device_id: Device ID
     :param str hostname: The device name

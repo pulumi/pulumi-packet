@@ -94,8 +94,6 @@ def get_precreated_ip_block(address_family=None,facility=None,global_=None,proje
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
-
 
     :param float address_family: 4 or 6, depending on which block you are looking for.
     :param str facility: Facility of the searched block. (Optional) Only allowed for non-global blocks.
