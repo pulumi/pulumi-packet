@@ -1,0 +1,3 @@
+name: packet
+description: A Pulumi resource provider for packet.
+language: dotnet
