@@ -9,27 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Use this data source to get Packet Operating System image.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetOperatingSystem.InvokeAsync() instead")]
-        public static Task<GetOperatingSystemResult> GetOperatingSystem(GetOperatingSystemArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOperatingSystemResult>("packet:index/getOperatingSystem:getOperatingSystem", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetOperatingSystem
     {
         /// <summary>
         /// Use this data source to get Packet Operating System image.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetOperatingSystemResult> InvokeAsync(GetOperatingSystemArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOperatingSystemResult>("packet:index/getOperatingSystem:getOperatingSystem", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetOperatingSystemResult>("packet:index/getOperatingSystem:getOperatingSystem", args ?? new GetOperatingSystemArgs(), options.WithVersion());
     }
+
 
     public sealed class GetOperatingSystemArgs : Pulumi.InvokeArgs
     {
@@ -62,10 +53,15 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetOperatingSystemResult
     {
         public readonly string? Distro;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly string? Name;
         public readonly string? ProvisionableOn;
         /// <summary>
@@ -73,26 +69,27 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly string Slug;
         public readonly string? Version;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetOperatingSystemResult(
             string? distro,
+
+            string id,
+
             string? name,
+
             string? provisionableOn,
+
             string slug,
-            string? version,
-            string id)
+
+            string? version)
         {
             Distro = distro;
+            Id = id;
             Name = name;
             ProvisionableOn = provisionableOn;
             Slug = slug;
             Version = version;
-            Id = id;
         }
     }
 }

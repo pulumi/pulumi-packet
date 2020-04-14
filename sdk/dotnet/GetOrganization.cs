@@ -9,27 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Provides a Packet organization datasource.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetOrganization.InvokeAsync() instead")]
-        public static Task<GetOrganizationResult> GetOrganization(GetOrganizationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("packet:index/getOrganization:getOrganization", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetOrganization
     {
         /// <summary>
         /// Provides a Packet organization datasource.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/organization.html.markdown.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetOrganizationResult> InvokeAsync(GetOrganizationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("packet:index/getOrganization:getOrganization", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("packet:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithVersion());
     }
+
 
     public sealed class GetOrganizationArgs : Pulumi.InvokeArgs
     {
@@ -50,6 +41,7 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetOrganizationResult
     {
@@ -57,6 +49,10 @@ namespace Pulumi.Packet
         /// Description string
         /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         /// <summary>
         /// Logo URL
         /// </summary>
@@ -75,30 +71,33 @@ namespace Pulumi.Packet
         /// Website link
         /// </summary>
         public readonly string Website;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetOrganizationResult(
             string description,
+
+            string id,
+
             string logo,
+
             string name,
+
             string organizationId,
+
             ImmutableArray<string> projectIds,
+
             string twitter,
-            string website,
-            string id)
+
+            string website)
         {
             Description = description;
+            Id = id;
             Logo = logo;
             Name = name;
             OrganizationId = organizationId;
             ProjectIds = projectIds;
             Twitter = twitter;
             Website = website;
-            Id = id;
         }
     }
 }

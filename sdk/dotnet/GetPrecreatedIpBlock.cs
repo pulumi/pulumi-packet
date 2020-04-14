@@ -9,29 +9,19 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
-        /// You can then use the cidrsubnet TF builtin function to derive subnets.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetPrecreatedIpBlock.InvokeAsync() instead")]
-        public static Task<GetPrecreatedIpBlockResult> GetPrecreatedIpBlock(GetPrecreatedIpBlockArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetPrecreatedIpBlock
     {
         /// <summary>
         /// Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
         /// You can then use the cidrsubnet TF builtin function to derive subnets.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/precreated_ip_block.html.markdown.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetPrecreatedIpBlockResult> InvokeAsync(GetPrecreatedIpBlockArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? new GetPrecreatedIpBlockArgs(), options.WithVersion());
     }
+
 
     public sealed class GetPrecreatedIpBlockArgs : Pulumi.InvokeArgs
     {
@@ -70,6 +60,7 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetPrecreatedIpBlockResult
     {
@@ -83,6 +74,10 @@ namespace Pulumi.Packet
         public readonly string? Facility;
         public readonly string Gateway;
         public readonly bool? Global;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly bool Manageable;
         public readonly bool Management;
         public readonly string Netmask;
@@ -90,28 +85,38 @@ namespace Pulumi.Packet
         public readonly string ProjectId;
         public readonly bool Public;
         public readonly int Quantity;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetPrecreatedIpBlockResult(
             string address,
+
             int addressFamily,
+
             int cidr,
+
             string cidrNotation,
+
             string? facility,
+
             string gateway,
+
             bool? global,
+
+            string id,
+
             bool manageable,
+
             bool management,
+
             string netmask,
+
             string network,
+
             string projectId,
+
             bool @public,
-            int quantity,
-            string id)
+
+            int quantity)
         {
             Address = address;
             AddressFamily = addressFamily;
@@ -120,6 +125,7 @@ namespace Pulumi.Packet
             Facility = facility;
             Gateway = gateway;
             Global = global;
+            Id = id;
             Manageable = manageable;
             Management = management;
             Netmask = netmask;
@@ -127,7 +133,6 @@ namespace Pulumi.Packet
             ProjectId = projectId;
             Public = @public;
             Quantity = quantity;
-            Id = id;
         }
     }
 }

@@ -12,8 +12,6 @@ namespace Pulumi.Packet
     /// <summary>
     /// Provides a Packet project resource to allow you manage devices
     /// in your projects.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project.html.markdown.
     /// </summary>
     public partial class Project : Pulumi.CustomResource
     {
@@ -68,7 +66,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Project(string name, ProjectArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/project:Project", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/project:Project", name, args ?? new ProjectArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -187,127 +185,5 @@ namespace Pulumi.Packet
         public ProjectState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class ProjectBgpConfigArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Autonomous System Numer for local BGP deployment
-        /// </summary>
-        [Input("asn", required: true)]
-        public Input<int> Asn { get; set; } = null!;
-
-        /// <summary>
-        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        /// </summary>
-        [Input("deploymentType", required: true)]
-        public Input<string> DeploymentType { get; set; } = null!;
-
-        /// <summary>
-        /// The maximum number of route filters allowed per server
-        /// </summary>
-        [Input("maxPrefix")]
-        public Input<int>? MaxPrefix { get; set; }
-
-        /// <summary>
-        /// Password for BGP session in plaintext (not a checksum)
-        /// </summary>
-        [Input("md5")]
-        public Input<string>? Md5 { get; set; }
-
-        /// <summary>
-        /// status of BGP configuration in the project
-        /// </summary>
-        [Input("status")]
-        public Input<string>? Status { get; set; }
-
-        public ProjectBgpConfigArgs()
-        {
-        }
-    }
-
-    public sealed class ProjectBgpConfigGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Autonomous System Numer for local BGP deployment
-        /// </summary>
-        [Input("asn", required: true)]
-        public Input<int> Asn { get; set; } = null!;
-
-        /// <summary>
-        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        /// </summary>
-        [Input("deploymentType", required: true)]
-        public Input<string> DeploymentType { get; set; } = null!;
-
-        /// <summary>
-        /// The maximum number of route filters allowed per server
-        /// </summary>
-        [Input("maxPrefix")]
-        public Input<int>? MaxPrefix { get; set; }
-
-        /// <summary>
-        /// Password for BGP session in plaintext (not a checksum)
-        /// </summary>
-        [Input("md5")]
-        public Input<string>? Md5 { get; set; }
-
-        /// <summary>
-        /// status of BGP configuration in the project
-        /// </summary>
-        [Input("status")]
-        public Input<string>? Status { get; set; }
-
-        public ProjectBgpConfigGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class ProjectBgpConfig
-    {
-        /// <summary>
-        /// Autonomous System Numer for local BGP deployment
-        /// </summary>
-        public readonly int Asn;
-        /// <summary>
-        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        /// </summary>
-        public readonly string DeploymentType;
-        /// <summary>
-        /// The maximum number of route filters allowed per server
-        /// </summary>
-        public readonly int MaxPrefix;
-        /// <summary>
-        /// Password for BGP session in plaintext (not a checksum)
-        /// </summary>
-        public readonly string? Md5;
-        /// <summary>
-        /// status of BGP configuration in the project
-        /// </summary>
-        public readonly string Status;
-
-        [OutputConstructor]
-        private ProjectBgpConfig(
-            int asn,
-            string deploymentType,
-            int maxPrefix,
-            string? md5,
-            string status)
-        {
-            Asn = asn;
-            DeploymentType = deploymentType;
-            MaxPrefix = maxPrefix;
-            Md5 = md5;
-            Status = status;
-        }
-    }
     }
 }

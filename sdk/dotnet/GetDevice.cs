@@ -9,21 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Provides a Packet device datasource.
-        /// 
-        /// &gt; **Note:** All arguments including the `root_password` and `user_data` will be stored in
-        ///  the raw state as plain-text.
-        /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetDevice.InvokeAsync() instead")]
-        public static Task<GetDeviceResult> GetDevice(GetDeviceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetDevice
     {
         /// <summary>
@@ -33,11 +18,14 @@ namespace Pulumi.Packet
         ///  the raw state as plain-text.
         /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device.html.markdown.
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithVersion());
     }
+
 
     public sealed class GetDeviceArgs : Pulumi.InvokeArgs
     {
@@ -63,6 +51,7 @@ namespace Pulumi.Packet
         {
         }
     }
+
 
     [OutputType]
     public sealed class GetDeviceResult
@@ -98,7 +87,15 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly string HardwareReservationId;
         public readonly string Hostname;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly string IpxeScriptUrl;
+        /// <summary>
+        /// L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
+        /// </summary>
+        public readonly string NetworkType;
         /// <summary>
         /// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
         /// * Public IPv4 at `packet_device.name.network.0`
@@ -107,11 +104,7 @@ namespace Pulumi.Packet
         /// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
         /// The fields of the network attributes are:
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetDeviceNetworksResult> Networks;
-        /// <summary>
-        /// L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
-        /// </summary>
-        public readonly string NetworkType;
+        public readonly ImmutableArray<Outputs.GetDeviceNetworkResult> Networks;
         /// <summary>
         /// The operating system running on the device
         /// </summary>
@@ -123,7 +116,7 @@ namespace Pulumi.Packet
         /// <summary>
         /// Ports assigned to the device
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetDevicePortsResult> Ports;
+        public readonly ImmutableArray<Outputs.GetDevicePortResult> Ports;
         public readonly string ProjectId;
         public readonly int PublicIpv4SubnetSize;
         /// <summary>
@@ -143,37 +136,56 @@ namespace Pulumi.Packet
         /// Tags attached to the device
         /// </summary>
         public readonly ImmutableArray<string> Tags;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetDeviceResult(
             string accessPrivateIpv4,
+
             string accessPublicIpv4,
+
             string accessPublicIpv6,
+
             bool alwaysPxe,
+
             string billingCycle,
+
             string description,
+
             string deviceId,
+
             string facility,
+
             string hardwareReservationId,
+
             string hostname,
+
+            string id,
+
             string ipxeScriptUrl,
-            ImmutableArray<Outputs.GetDeviceNetworksResult> networks,
+
             string networkType,
+
+            ImmutableArray<Outputs.GetDeviceNetworkResult> networks,
+
             string operatingSystem,
+
             string plan,
-            ImmutableArray<Outputs.GetDevicePortsResult> ports,
+
+            ImmutableArray<Outputs.GetDevicePortResult> ports,
+
             string projectId,
+
             int publicIpv4SubnetSize,
+
             string rootPassword,
+
             ImmutableArray<string> sshKeyIds,
+
             string state,
+
             string storage,
-            ImmutableArray<string> tags,
-            string id)
+
+            ImmutableArray<string> tags)
         {
             AccessPrivateIpv4 = accessPrivateIpv4;
             AccessPublicIpv4 = accessPublicIpv4;
@@ -185,9 +197,10 @@ namespace Pulumi.Packet
             Facility = facility;
             HardwareReservationId = hardwareReservationId;
             Hostname = hostname;
+            Id = id;
             IpxeScriptUrl = ipxeScriptUrl;
-            Networks = networks;
             NetworkType = networkType;
+            Networks = networks;
             OperatingSystem = operatingSystem;
             Plan = plan;
             Ports = ports;
@@ -198,91 +211,6 @@ namespace Pulumi.Packet
             State = state;
             Storage = storage;
             Tags = tags;
-            Id = id;
         }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class GetDeviceNetworksResult
-    {
-        /// <summary>
-        /// IPv4 or IPv6 address string
-        /// </summary>
-        public readonly string Address;
-        /// <summary>
-        /// Bit length of the network mask of the address
-        /// </summary>
-        public readonly int Cidr;
-        /// <summary>
-        /// IP version - "4" or "6"
-        /// </summary>
-        public readonly int Family;
-        /// <summary>
-        /// Address of router
-        /// </summary>
-        public readonly string Gateway;
-        /// <summary>
-        /// Whether the address is routable from the Internet
-        /// </summary>
-        public readonly bool Public;
-
-        [OutputConstructor]
-        private GetDeviceNetworksResult(
-            string address,
-            int cidr,
-            int family,
-            string gateway,
-            bool @public)
-        {
-            Address = address;
-            Cidr = cidr;
-            Family = family;
-            Gateway = gateway;
-            Public = @public;
-        }
-    }
-
-    [OutputType]
-    public sealed class GetDevicePortsResult
-    {
-        /// <summary>
-        /// Whether this port is part of a bond in bonded network setup
-        /// </summary>
-        public readonly bool Bonded;
-        /// <summary>
-        /// ID of the port
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
-        /// MAC address assigned to the port
-        /// </summary>
-        public readonly string Mac;
-        /// <summary>
-        /// Name of the port (e.g. `eth0`, or `bond0`)
-        /// </summary>
-        public readonly string Name;
-        /// <summary>
-        /// Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)
-        /// </summary>
-        public readonly string Type;
-
-        [OutputConstructor]
-        private GetDevicePortsResult(
-            bool bonded,
-            string id,
-            string mac,
-            string name,
-            string type)
-        {
-            Bonded = bonded;
-            Id = id;
-            Mac = mac;
-            Name = name;
-            Type = type;
-        }
-    }
     }
 }

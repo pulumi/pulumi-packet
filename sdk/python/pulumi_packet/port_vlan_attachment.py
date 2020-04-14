@@ -45,13 +45,12 @@ class PortVlanAttachment(pulumi.CustomResource):
         * https://www.packet.com/resources/guides/layer-2-configurations/ 
         * https://www.packet.com/developers/docs/network/advanced/layer-2/
 
+
         ## Attribute Referece
 
         * `id` - UUID of device port used in the assignment
         * `vlan_id` - UUID of VLAN API resource
         * `port_id` - UUID of device port
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

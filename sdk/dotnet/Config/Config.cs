@@ -8,14 +8,10 @@ namespace Pulumi.Packet
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("packet");
-
         /// <summary>
         /// The API auth key for API operations.
         /// </summary>
         public static string? AuthToken { get; set; } = __config.Get("authToken") ?? Utilities.GetEnv("PACKET_AUTH_TOKEN");
 
-    }
-    namespace ConfigTypes
-    {
     }
 }

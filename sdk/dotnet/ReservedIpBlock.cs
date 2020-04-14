@@ -22,8 +22,6 @@ namespace Pulumi.Packet
     /// Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "global_ipv4" and you must omit the facility argument.
     /// 
     /// Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
     /// </summary>
     public partial class ReservedIpBlock : Pulumi.CustomResource
     {
@@ -120,7 +118,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ReservedIpBlock(string name, ReservedIpBlockArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/reservedIpBlock:ReservedIpBlock", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/reservedIpBlock:ReservedIpBlock", name, args ?? new ReservedIpBlockArgs(), MakeResourceOptions(options, ""))
         {
         }
 

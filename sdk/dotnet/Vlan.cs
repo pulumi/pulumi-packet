@@ -15,8 +15,6 @@ namespace Pulumi.Packet
     /// To learn more about Layer 2 networking in Packet, refer to
     /// * https://www.packet.com/resources/guides/layer-2-configurations/
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/vlan.html.markdown.
     /// </summary>
     public partial class Vlan : Pulumi.CustomResource
     {
@@ -53,7 +51,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Vlan(string name, VlanArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/vlan:Vlan", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/vlan:Vlan", name, args ?? new VlanArgs(), MakeResourceOptions(options, ""))
         {
         }
 

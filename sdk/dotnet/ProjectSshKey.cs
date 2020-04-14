@@ -12,8 +12,6 @@ namespace Pulumi.Packet
     /// <summary>
     /// Provides a Packet project SSH key resource to manage project-specific SSH keys.
     /// Project SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
     /// </summary>
     public partial class ProjectSshKey : Pulumi.CustomResource
     {
@@ -68,7 +66,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ProjectSshKey(string name, ProjectSshKeyArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/projectSshKey:ProjectSshKey", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/projectSshKey:ProjectSshKey", name, args ?? new ProjectSshKeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 

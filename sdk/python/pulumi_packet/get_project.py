@@ -89,7 +89,7 @@ def get_project(name=None,project_id=None,opts=None):
     """
     Use this datasource to retrieve attributes of the Project API resource.
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
+
 
 
     :param str name: The name which is used to look up the project

@@ -12,8 +12,6 @@ namespace Pulumi.Packet
     /// <summary>
     /// Provides a Packet Spot Market Request resource to allow you to
     /// manage spot market requests on your account. For more detail on Spot Market, see [this article in Packing documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/spot_market_request.html.markdown.
     /// </summary>
     public partial class SpotMarketRequest : Pulumi.CustomResource
     {
@@ -68,7 +66,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SpotMarketRequest(string name, SpotMarketRequestArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/spotMarketRequest:SpotMarketRequest", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/spotMarketRequest:SpotMarketRequest", name, args ?? new SpotMarketRequestArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -211,175 +209,5 @@ namespace Pulumi.Packet
         public SpotMarketRequestState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class SpotMarketRequestInstanceParametersArgs : Pulumi.ResourceArgs
-    {
-        [Input("alwaysPxe")]
-        public Input<string>? AlwaysPxe { get; set; }
-
-        [Input("billingCycle", required: true)]
-        public Input<string> BillingCycle { get; set; } = null!;
-
-        [Input("description")]
-        public Input<string>? Description { get; set; }
-
-        [Input("features")]
-        private InputList<string>? _features;
-        public InputList<string> Features
-        {
-            get => _features ?? (_features = new InputList<string>());
-            set => _features = value;
-        }
-
-        [Input("hostname", required: true)]
-        public Input<string> Hostname { get; set; } = null!;
-
-        [Input("locked")]
-        public Input<string>? Locked { get; set; }
-
-        [Input("operatingSystem", required: true)]
-        public Input<string> OperatingSystem { get; set; } = null!;
-
-        [Input("plan", required: true)]
-        public Input<string> Plan { get; set; } = null!;
-
-        [Input("projectSshKeys")]
-        private InputList<string>? _projectSshKeys;
-        public InputList<string> ProjectSshKeys
-        {
-            get => _projectSshKeys ?? (_projectSshKeys = new InputList<string>());
-            set => _projectSshKeys = value;
-        }
-
-        [Input("termintationTime")]
-        public Input<string>? TermintationTime { get; set; }
-
-        [Input("userSshKeys")]
-        private InputList<string>? _userSshKeys;
-        public InputList<string> UserSshKeys
-        {
-            get => _userSshKeys ?? (_userSshKeys = new InputList<string>());
-            set => _userSshKeys = value;
-        }
-
-        [Input("userdata")]
-        public Input<string>? Userdata { get; set; }
-
-        public SpotMarketRequestInstanceParametersArgs()
-        {
-        }
-    }
-
-    public sealed class SpotMarketRequestInstanceParametersGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("alwaysPxe")]
-        public Input<string>? AlwaysPxe { get; set; }
-
-        [Input("billingCycle", required: true)]
-        public Input<string> BillingCycle { get; set; } = null!;
-
-        [Input("description")]
-        public Input<string>? Description { get; set; }
-
-        [Input("features")]
-        private InputList<string>? _features;
-        public InputList<string> Features
-        {
-            get => _features ?? (_features = new InputList<string>());
-            set => _features = value;
-        }
-
-        [Input("hostname", required: true)]
-        public Input<string> Hostname { get; set; } = null!;
-
-        [Input("locked")]
-        public Input<string>? Locked { get; set; }
-
-        [Input("operatingSystem", required: true)]
-        public Input<string> OperatingSystem { get; set; } = null!;
-
-        [Input("plan", required: true)]
-        public Input<string> Plan { get; set; } = null!;
-
-        [Input("projectSshKeys")]
-        private InputList<string>? _projectSshKeys;
-        public InputList<string> ProjectSshKeys
-        {
-            get => _projectSshKeys ?? (_projectSshKeys = new InputList<string>());
-            set => _projectSshKeys = value;
-        }
-
-        [Input("termintationTime")]
-        public Input<string>? TermintationTime { get; set; }
-
-        [Input("userSshKeys")]
-        private InputList<string>? _userSshKeys;
-        public InputList<string> UserSshKeys
-        {
-            get => _userSshKeys ?? (_userSshKeys = new InputList<string>());
-            set => _userSshKeys = value;
-        }
-
-        [Input("userdata")]
-        public Input<string>? Userdata { get; set; }
-
-        public SpotMarketRequestInstanceParametersGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class SpotMarketRequestInstanceParameters
-    {
-        public readonly string? AlwaysPxe;
-        public readonly string BillingCycle;
-        public readonly string? Description;
-        public readonly ImmutableArray<string> Features;
-        public readonly string Hostname;
-        public readonly string? Locked;
-        public readonly string OperatingSystem;
-        public readonly string Plan;
-        public readonly ImmutableArray<string> ProjectSshKeys;
-        public readonly string TermintationTime;
-        public readonly ImmutableArray<string> UserSshKeys;
-        public readonly string? Userdata;
-
-        [OutputConstructor]
-        private SpotMarketRequestInstanceParameters(
-            string? alwaysPxe,
-            string billingCycle,
-            string? description,
-            ImmutableArray<string> features,
-            string hostname,
-            string? locked,
-            string operatingSystem,
-            string plan,
-            ImmutableArray<string> projectSshKeys,
-            string termintationTime,
-            ImmutableArray<string> userSshKeys,
-            string? userdata)
-        {
-            AlwaysPxe = alwaysPxe;
-            BillingCycle = billingCycle;
-            Description = description;
-            Features = features;
-            Hostname = hostname;
-            Locked = locked;
-            OperatingSystem = operatingSystem;
-            Plan = plan;
-            ProjectSshKeys = projectSshKeys;
-            TermintationTime = termintationTime;
-            UserSshKeys = userSshKeys;
-            Userdata = userdata;
-        }
-    }
     }
 }

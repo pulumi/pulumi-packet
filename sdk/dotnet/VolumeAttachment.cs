@@ -32,7 +32,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public VolumeAttachment(string name, VolumeAttachmentArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/volumeAttachment:VolumeAttachment", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/volumeAttachment:VolumeAttachment", name, args ?? new VolumeAttachmentArgs(), MakeResourceOptions(options, ""))
         {
         }
 

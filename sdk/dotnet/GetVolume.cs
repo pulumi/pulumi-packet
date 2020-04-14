@@ -9,27 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetVolume.InvokeAsync() instead")]
-        public static Task<GetVolumeResult> GetVolume(GetVolumeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetVolume
     {
         /// <summary>
         /// Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/volume.html.markdown.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetVolumeResult> InvokeAsync(GetVolumeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? new GetVolumeArgs(), options.WithVersion());
     }
+
 
     public sealed class GetVolumeArgs : Pulumi.InvokeArgs
     {
@@ -53,6 +44,7 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetVolumeResult
     {
@@ -71,6 +63,10 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly string Facility;
         /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Whether the volume is locked or not
         /// </summary>
         public readonly bool Locked;
@@ -88,41 +84,52 @@ namespace Pulumi.Packet
         /// The size in GB of the volume
         /// </summary>
         public readonly int Size;
-        public readonly ImmutableArray<Outputs.GetVolumeSnapshotPoliciesResult> SnapshotPolicies;
+        public readonly ImmutableArray<Outputs.GetVolumeSnapshotPolicyResult> SnapshotPolicies;
         /// <summary>
         /// The state of the volume
         /// </summary>
         public readonly string State;
         public readonly string Updated;
         public readonly string VolumeId;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetVolumeResult(
             string billingCycle,
+
             string created,
+
             string description,
+
             ImmutableArray<string> deviceIds,
+
             string facility,
+
+            string id,
+
             bool locked,
+
             string name,
+
             string plan,
+
             string projectId,
+
             int size,
-            ImmutableArray<Outputs.GetVolumeSnapshotPoliciesResult> snapshotPolicies,
+
+            ImmutableArray<Outputs.GetVolumeSnapshotPolicyResult> snapshotPolicies,
+
             string state,
+
             string updated,
-            string volumeId,
-            string id)
+
+            string volumeId)
         {
             BillingCycle = billingCycle;
             Created = created;
             Description = description;
             DeviceIds = deviceIds;
             Facility = facility;
+            Id = id;
             Locked = locked;
             Name = name;
             Plan = plan;
@@ -132,27 +139,6 @@ namespace Pulumi.Packet
             State = state;
             Updated = updated;
             VolumeId = volumeId;
-            Id = id;
         }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class GetVolumeSnapshotPoliciesResult
-    {
-        public readonly int SnapshotCount;
-        public readonly string SnapshotFrequency;
-
-        [OutputConstructor]
-        private GetVolumeSnapshotPoliciesResult(
-            int snapshotCount,
-            string snapshotFrequency)
-        {
-            SnapshotCount = snapshotCount;
-            SnapshotFrequency = snapshotFrequency;
-        }
-    }
     }
 }

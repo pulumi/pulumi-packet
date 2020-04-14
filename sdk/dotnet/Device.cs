@@ -16,8 +16,6 @@ namespace Pulumi.Packet
     /// &gt; **Note:** All arguments including the `root_password` and `user_data` will be stored in
     ///  the raw state as plain-text.
     /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
     /// </summary>
     public partial class Device : Pulumi.CustomResource
     {
@@ -99,7 +97,7 @@ namespace Pulumi.Packet
         /// A list of IP address types for the device (structure is documented below). 
         /// </summary>
         [Output("ipAddresses")]
-        public Output<ImmutableArray<Outputs.DeviceIpAddresses>> IpAddresses { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.DeviceIpAddress>> IpAddresses { get; private set; } = null!;
 
         /// <summary>
         /// URL pointing to a hosted iPXE script. More
@@ -116,6 +114,9 @@ namespace Pulumi.Packet
         [Output("locked")]
         public Output<bool> Locked { get; private set; } = null!;
 
+        [Output("networkType")]
+        public Output<string?> NetworkType { get; private set; } = null!;
+
         /// <summary>
         /// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
         /// * Public IPv4 at `packet_device.name.network.0`
@@ -125,10 +126,7 @@ namespace Pulumi.Packet
         /// The fields of the network attributes are:
         /// </summary>
         [Output("networks")]
-        public Output<ImmutableArray<Outputs.DeviceNetworks>> Networks { get; private set; } = null!;
-
-        [Output("networkType")]
-        public Output<string?> NetworkType { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.DeviceNetwork>> Networks { get; private set; } = null!;
 
         /// <summary>
         /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -146,7 +144,7 @@ namespace Pulumi.Packet
         /// Ports assigned to the device
         /// </summary>
         [Output("ports")]
-        public Output<ImmutableArray<Outputs.DevicePorts>> Ports { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.DevicePort>> Ports { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the project in which to create the device
@@ -222,7 +220,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Device(string name, DeviceArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/device:Device", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/device:Device", name, args ?? new DeviceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -310,14 +308,14 @@ namespace Pulumi.Packet
         public Input<string> Hostname { get; set; } = null!;
 
         [Input("ipAddresses")]
-        private InputList<Inputs.DeviceIpAddressesArgs>? _ipAddresses;
+        private InputList<Inputs.DeviceIpAddressArgs>? _ipAddresses;
 
         /// <summary>
         /// A list of IP address types for the device (structure is documented below). 
         /// </summary>
-        public InputList<Inputs.DeviceIpAddressesArgs> IpAddresses
+        public InputList<Inputs.DeviceIpAddressArgs> IpAddresses
         {
-            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressesArgs>());
+            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressArgs>());
             set => _ipAddresses = value;
         }
 
@@ -485,14 +483,14 @@ namespace Pulumi.Packet
         public Input<string>? Hostname { get; set; }
 
         [Input("ipAddresses")]
-        private InputList<Inputs.DeviceIpAddressesGetArgs>? _ipAddresses;
+        private InputList<Inputs.DeviceIpAddressGetArgs>? _ipAddresses;
 
         /// <summary>
         /// A list of IP address types for the device (structure is documented below). 
         /// </summary>
-        public InputList<Inputs.DeviceIpAddressesGetArgs> IpAddresses
+        public InputList<Inputs.DeviceIpAddressGetArgs> IpAddresses
         {
-            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressesGetArgs>());
+            get => _ipAddresses ?? (_ipAddresses = new InputList<Inputs.DeviceIpAddressGetArgs>());
             set => _ipAddresses = value;
         }
 
@@ -511,8 +509,11 @@ namespace Pulumi.Packet
         [Input("locked")]
         public Input<bool>? Locked { get; set; }
 
+        [Input("networkType")]
+        public Input<string>? NetworkType { get; set; }
+
         [Input("networks")]
-        private InputList<Inputs.DeviceNetworksGetArgs>? _networks;
+        private InputList<Inputs.DeviceNetworkGetArgs>? _networks;
 
         /// <summary>
         /// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
@@ -522,14 +523,11 @@ namespace Pulumi.Packet
         /// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
         /// The fields of the network attributes are:
         /// </summary>
-        public InputList<Inputs.DeviceNetworksGetArgs> Networks
+        public InputList<Inputs.DeviceNetworkGetArgs> Networks
         {
-            get => _networks ?? (_networks = new InputList<Inputs.DeviceNetworksGetArgs>());
+            get => _networks ?? (_networks = new InputList<Inputs.DeviceNetworkGetArgs>());
             set => _networks = value;
         }
-
-        [Input("networkType")]
-        public Input<string>? NetworkType { get; set; }
 
         /// <summary>
         /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
@@ -544,14 +542,14 @@ namespace Pulumi.Packet
         public Input<string>? Plan { get; set; }
 
         [Input("ports")]
-        private InputList<Inputs.DevicePortsGetArgs>? _ports;
+        private InputList<Inputs.DevicePortGetArgs>? _ports;
 
         /// <summary>
         /// Ports assigned to the device
         /// </summary>
-        public InputList<Inputs.DevicePortsGetArgs> Ports
+        public InputList<Inputs.DevicePortGetArgs> Ports
         {
-            get => _ports ?? (_ports = new InputList<Inputs.DevicePortsGetArgs>());
+            get => _ports ?? (_ports = new InputList<Inputs.DevicePortGetArgs>());
             set => _ports = value;
         }
 
@@ -640,248 +638,5 @@ namespace Pulumi.Packet
         public DeviceState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class DeviceIpAddressesArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        /// </summary>
-        [Input("cidr")]
-        public Input<int>? Cidr { get; set; }
-
-        [Input("reservationIds")]
-        private InputList<string>? _reservationIds;
-        public InputList<string> ReservationIds
-        {
-            get => _reservationIds ?? (_reservationIds = new InputList<string>());
-            set => _reservationIds = value;
-        }
-
-        /// <summary>
-        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
-
-        public DeviceIpAddressesArgs()
-        {
-        }
-    }
-
-    public sealed class DeviceIpAddressesGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        /// </summary>
-        [Input("cidr")]
-        public Input<int>? Cidr { get; set; }
-
-        [Input("reservationIds")]
-        private InputList<string>? _reservationIds;
-        public InputList<string> ReservationIds
-        {
-            get => _reservationIds ?? (_reservationIds = new InputList<string>());
-            set => _reservationIds = value;
-        }
-
-        /// <summary>
-        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
-
-        public DeviceIpAddressesGetArgs()
-        {
-        }
-    }
-
-    public sealed class DeviceNetworksGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// IPv4 or IPv6 address string
-        /// </summary>
-        [Input("address")]
-        public Input<string>? Address { get; set; }
-
-        /// <summary>
-        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        /// </summary>
-        [Input("cidr")]
-        public Input<int>? Cidr { get; set; }
-
-        /// <summary>
-        /// IP version - "4" or "6"
-        /// </summary>
-        [Input("family")]
-        public Input<int>? Family { get; set; }
-
-        /// <summary>
-        /// address of router
-        /// </summary>
-        [Input("gateway")]
-        public Input<string>? Gateway { get; set; }
-
-        /// <summary>
-        /// whether the address is routable from the Internet
-        /// </summary>
-        [Input("public")]
-        public Input<bool>? Public { get; set; }
-
-        public DeviceNetworksGetArgs()
-        {
-        }
-    }
-
-    public sealed class DevicePortsGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Whether this port is part of a bond in bonded network setup
-        /// * `project_id`- The ID of the project the device belongs to
-        /// </summary>
-        [Input("bonded")]
-        public Input<bool>? Bonded { get; set; }
-
-        /// <summary>
-        /// ID of the port
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
-        /// <summary>
-        /// MAC address assigned to the port
-        /// </summary>
-        [Input("mac")]
-        public Input<string>? Mac { get; set; }
-
-        /// <summary>
-        /// Name of the port (e.g. `eth0`, or `bond0`)
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        /// </summary>
-        [Input("type")]
-        public Input<string>? Type { get; set; }
-
-        public DevicePortsGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class DeviceIpAddresses
-    {
-        /// <summary>
-        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        /// </summary>
-        public readonly int? Cidr;
-        public readonly ImmutableArray<string> ReservationIds;
-        /// <summary>
-        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        /// </summary>
-        public readonly string Type;
-
-        [OutputConstructor]
-        private DeviceIpAddresses(
-            int? cidr,
-            ImmutableArray<string> reservationIds,
-            string type)
-        {
-            Cidr = cidr;
-            ReservationIds = reservationIds;
-            Type = type;
-        }
-    }
-
-    [OutputType]
-    public sealed class DeviceNetworks
-    {
-        /// <summary>
-        /// IPv4 or IPv6 address string
-        /// </summary>
-        public readonly string Address;
-        /// <summary>
-        /// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        /// </summary>
-        public readonly int Cidr;
-        /// <summary>
-        /// IP version - "4" or "6"
-        /// </summary>
-        public readonly int Family;
-        /// <summary>
-        /// address of router
-        /// </summary>
-        public readonly string Gateway;
-        /// <summary>
-        /// whether the address is routable from the Internet
-        /// </summary>
-        public readonly bool Public;
-
-        [OutputConstructor]
-        private DeviceNetworks(
-            string address,
-            int cidr,
-            int family,
-            string gateway,
-            bool @public)
-        {
-            Address = address;
-            Cidr = cidr;
-            Family = family;
-            Gateway = gateway;
-            Public = @public;
-        }
-    }
-
-    [OutputType]
-    public sealed class DevicePorts
-    {
-        /// <summary>
-        /// Whether this port is part of a bond in bonded network setup
-        /// * `project_id`- The ID of the project the device belongs to
-        /// </summary>
-        public readonly bool Bonded;
-        /// <summary>
-        /// ID of the port
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
-        /// MAC address assigned to the port
-        /// </summary>
-        public readonly string Mac;
-        /// <summary>
-        /// Name of the port (e.g. `eth0`, or `bond0`)
-        /// </summary>
-        public readonly string Name;
-        /// <summary>
-        /// One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        /// </summary>
-        public readonly string Type;
-
-        [OutputConstructor]
-        private DevicePorts(
-            bool bonded,
-            string id,
-            string mac,
-            string name,
-            string type)
-        {
-            Bonded = bonded;
-            Id = id;
-            Mac = mac;
-            Name = name;
-            Type = type;
-        }
-    }
     }
 }

@@ -21,13 +21,12 @@ namespace Pulumi.Packet
     /// * https://www.packet.com/resources/guides/layer-2-configurations/ 
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
     /// 
+    /// 
     /// ## Attribute Referece
     /// 
     /// * `id` - UUID of device port used in the assignment
     /// * `vlan_id` - UUID of VLAN API resource
     /// * `port_id` - UUID of device port
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
     /// </summary>
     public partial class PortVlanAttachment : Pulumi.CustomResource
     {
@@ -76,7 +75,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public PortVlanAttachment(string name, PortVlanAttachmentArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/portVlanAttachment:PortVlanAttachment", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/portVlanAttachment:PortVlanAttachment", name, args ?? new PortVlanAttachmentArgs(), MakeResourceOptions(options, ""))
         {
         }
 

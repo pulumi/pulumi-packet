@@ -9,27 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Use this datasource to retrieve attributes of the Project API resource.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetProject.InvokeAsync() instead")]
-        public static Task<GetProjectResult> GetProject(GetProjectArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetProject
     {
         /// <summary>
         /// Use this datasource to retrieve attributes of the Project API resource.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/project.html.markdown.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithVersion());
     }
+
 
     public sealed class GetProjectArgs : Pulumi.InvokeArgs
     {
@@ -50,6 +41,7 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetProjectResult
     {
@@ -65,6 +57,10 @@ namespace Pulumi.Packet
         /// The timestamp for when the project was created
         /// </summary>
         public readonly string Created;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly string Name;
         /// <summary>
         /// The UUID of this project's parent organization
@@ -83,78 +79,39 @@ namespace Pulumi.Packet
         /// List of UUIDs of user accounts which beling to this project
         /// </summary>
         public readonly ImmutableArray<string> UserIds;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetProjectResult(
             bool backendTransfer,
+
             Outputs.GetProjectBgpConfigResult bgpConfig,
+
             string created,
+
+            string id,
+
             string name,
+
             string organizationId,
+
             string paymentMethodId,
+
             string projectId,
+
             string updated,
-            ImmutableArray<string> userIds,
-            string id)
+
+            ImmutableArray<string> userIds)
         {
             BackendTransfer = backendTransfer;
             BgpConfig = bgpConfig;
             Created = created;
+            Id = id;
             Name = name;
             OrganizationId = organizationId;
             PaymentMethodId = paymentMethodId;
             ProjectId = projectId;
             Updated = updated;
             UserIds = userIds;
-            Id = id;
         }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class GetProjectBgpConfigResult
-    {
-        /// <summary>
-        /// Autonomous System Numer for local BGP deployment
-        /// </summary>
-        public readonly int Asn;
-        /// <summary>
-        /// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        /// </summary>
-        public readonly string DeploymentType;
-        /// <summary>
-        /// The maximum number of route filters allowed per server
-        /// </summary>
-        public readonly int MaxPrefix;
-        /// <summary>
-        /// Password for BGP session in plaintext (not a checksum)
-        /// </summary>
-        public readonly string? Md5;
-        /// <summary>
-        /// status of BGP configuration in the project
-        /// </summary>
-        public readonly string Status;
-
-        [OutputConstructor]
-        private GetProjectBgpConfigResult(
-            int asn,
-            string deploymentType,
-            int maxPrefix,
-            string? md5,
-            string status)
-        {
-            Asn = asn;
-            DeploymentType = deploymentType;
-            MaxPrefix = maxPrefix;
-            Md5 = md5;
-            Status = status;
-        }
-    }
     }
 }

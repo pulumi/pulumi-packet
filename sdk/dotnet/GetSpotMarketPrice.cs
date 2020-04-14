@@ -9,27 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Use this data source to get Packet Spot Market Price.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetSpotMarketPrice.InvokeAsync() instead")]
-        public static Task<GetSpotMarketPriceResult> GetSpotMarketPrice(GetSpotMarketPriceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketPriceResult>("packet:index/getSpotMarketPrice:getSpotMarketPrice", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetSpotMarketPrice
     {
         /// <summary>
         /// Use this data source to get Packet Spot Market Price.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetSpotMarketPriceResult> InvokeAsync(GetSpotMarketPriceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketPriceResult>("packet:index/getSpotMarketPrice:getSpotMarketPrice", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketPriceResult>("packet:index/getSpotMarketPrice:getSpotMarketPrice", args ?? new GetSpotMarketPriceArgs(), options.WithVersion());
     }
+
 
     public sealed class GetSpotMarketPriceArgs : Pulumi.InvokeArgs
     {
@@ -50,31 +41,35 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetSpotMarketPriceResult
     {
         public readonly string Facility;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly string Plan;
         /// <summary>
         /// Current spot market price for given plan in given facility.
         /// </summary>
         public readonly double Price;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetSpotMarketPriceResult(
             string facility,
+
+            string id,
+
             string plan,
-            double price,
-            string id)
+
+            double price)
         {
             Facility = facility;
+            Id = id;
             Plan = plan;
             Price = price;
-            Id = id;
         }
     }
 }

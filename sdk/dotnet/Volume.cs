@@ -15,7 +15,7 @@ namespace Pulumi.Packet
         /// A list of attachments, each with it's own `href` attribute
         /// </summary>
         [Output("attachments")]
-        public Output<ImmutableArray<Outputs.VolumeAttachments>> Attachments { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.VolumeAttachment>> Attachments { get; private set; } = null!;
 
         /// <summary>
         /// The billing cycle, defaults to "hourly"
@@ -75,7 +75,7 @@ namespace Pulumi.Packet
         /// Optional list of snapshot policies
         /// </summary>
         [Output("snapshotPolicies")]
-        public Output<ImmutableArray<Outputs.VolumeSnapshotPolicies>> SnapshotPolicies { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.VolumeSnapshotPolicy>> SnapshotPolicies { get; private set; } = null!;
 
         /// <summary>
         /// The state of the volume
@@ -98,7 +98,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Volume(string name, VolumeArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/volume:Volume", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/volume:Volume", name, args ?? new VolumeArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -178,14 +178,14 @@ namespace Pulumi.Packet
         public Input<int> Size { get; set; } = null!;
 
         [Input("snapshotPolicies")]
-        private InputList<Inputs.VolumeSnapshotPoliciesArgs>? _snapshotPolicies;
+        private InputList<Inputs.VolumeSnapshotPolicyArgs>? _snapshotPolicies;
 
         /// <summary>
         /// Optional list of snapshot policies
         /// </summary>
-        public InputList<Inputs.VolumeSnapshotPoliciesArgs> SnapshotPolicies
+        public InputList<Inputs.VolumeSnapshotPolicyArgs> SnapshotPolicies
         {
-            get => _snapshotPolicies ?? (_snapshotPolicies = new InputList<Inputs.VolumeSnapshotPoliciesArgs>());
+            get => _snapshotPolicies ?? (_snapshotPolicies = new InputList<Inputs.VolumeSnapshotPolicyArgs>());
             set => _snapshotPolicies = value;
         }
 
@@ -197,14 +197,14 @@ namespace Pulumi.Packet
     public sealed class VolumeState : Pulumi.ResourceArgs
     {
         [Input("attachments")]
-        private InputList<Inputs.VolumeAttachmentsGetArgs>? _attachments;
+        private InputList<Inputs.VolumeAttachmentGetArgs>? _attachments;
 
         /// <summary>
         /// A list of attachments, each with it's own `href` attribute
         /// </summary>
-        public InputList<Inputs.VolumeAttachmentsGetArgs> Attachments
+        public InputList<Inputs.VolumeAttachmentGetArgs> Attachments
         {
-            get => _attachments ?? (_attachments = new InputList<Inputs.VolumeAttachmentsGetArgs>());
+            get => _attachments ?? (_attachments = new InputList<Inputs.VolumeAttachmentGetArgs>());
             set => _attachments = value;
         }
 
@@ -263,14 +263,14 @@ namespace Pulumi.Packet
         public Input<int>? Size { get; set; }
 
         [Input("snapshotPolicies")]
-        private InputList<Inputs.VolumeSnapshotPoliciesGetArgs>? _snapshotPolicies;
+        private InputList<Inputs.VolumeSnapshotPolicyGetArgs>? _snapshotPolicies;
 
         /// <summary>
         /// Optional list of snapshot policies
         /// </summary>
-        public InputList<Inputs.VolumeSnapshotPoliciesGetArgs> SnapshotPolicies
+        public InputList<Inputs.VolumeSnapshotPolicyGetArgs> SnapshotPolicies
         {
-            get => _snapshotPolicies ?? (_snapshotPolicies = new InputList<Inputs.VolumeSnapshotPoliciesGetArgs>());
+            get => _snapshotPolicies ?? (_snapshotPolicies = new InputList<Inputs.VolumeSnapshotPolicyGetArgs>());
             set => _snapshotPolicies = value;
         }
 
@@ -289,77 +289,5 @@ namespace Pulumi.Packet
         public VolumeState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class VolumeAttachmentsGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("href")]
-        public Input<string>? Href { get; set; }
-
-        public VolumeAttachmentsGetArgs()
-        {
-        }
-    }
-
-    public sealed class VolumeSnapshotPoliciesArgs : Pulumi.ResourceArgs
-    {
-        [Input("snapshotCount", required: true)]
-        public Input<int> SnapshotCount { get; set; } = null!;
-
-        [Input("snapshotFrequency", required: true)]
-        public Input<string> SnapshotFrequency { get; set; } = null!;
-
-        public VolumeSnapshotPoliciesArgs()
-        {
-        }
-    }
-
-    public sealed class VolumeSnapshotPoliciesGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("snapshotCount", required: true)]
-        public Input<int> SnapshotCount { get; set; } = null!;
-
-        [Input("snapshotFrequency", required: true)]
-        public Input<string> SnapshotFrequency { get; set; } = null!;
-
-        public VolumeSnapshotPoliciesGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class VolumeAttachments
-    {
-        public readonly string Href;
-
-        [OutputConstructor]
-        private VolumeAttachments(string href)
-        {
-            Href = href;
-        }
-    }
-
-    [OutputType]
-    public sealed class VolumeSnapshotPolicies
-    {
-        public readonly int SnapshotCount;
-        public readonly string SnapshotFrequency;
-
-        [OutputConstructor]
-        private VolumeSnapshotPolicies(
-            int snapshotCount,
-            string snapshotFrequency)
-        {
-            SnapshotCount = snapshotCount;
-            SnapshotFrequency = snapshotFrequency;
-        }
-    }
     }
 }

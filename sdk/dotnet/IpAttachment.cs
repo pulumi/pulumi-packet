@@ -20,8 +20,6 @@ namespace Pulumi.Packet
     /// with mask prefix length 32. More about the elastic IP subnets is [here](https://www.packet.com/developers/docs/network/basic/elastic-ips/).
     /// 
     /// Device and reserved block must be in the same facility.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/ip_attachment.html.markdown.
     /// </summary>
     public partial class IpAttachment : Pulumi.CustomResource
     {
@@ -95,7 +93,7 @@ namespace Pulumi.Packet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public IpAttachment(string name, IpAttachmentArgs args, CustomResourceOptions? options = null)
-            : base("packet:index/ipAttachment:IpAttachment", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("packet:index/ipAttachment:IpAttachment", name, args ?? new IpAttachmentArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -9,27 +9,20 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Provides a Packet spot_market_request datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
-        /// </summary>
-        [Obsolete("Use GetSpotMarketRequest.InvokeAsync() instead")]
-        public static Task<GetSpotMarketRequestResult> GetSpotMarketRequest(GetSpotMarketRequestArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetSpotMarketRequest
     {
         /// <summary>
         /// Provides a Packet spot_market_request datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetSpotMarketRequestResult> InvokeAsync(GetSpotMarketRequestArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? new GetSpotMarketRequestArgs(), options.WithVersion());
     }
+
 
     public sealed class GetSpotMarketRequestArgs : Pulumi.InvokeArgs
     {
@@ -44,6 +37,7 @@ namespace Pulumi.Packet
         }
     }
 
+
     [OutputType]
     public sealed class GetSpotMarketRequestResult
     {
@@ -51,21 +45,23 @@ namespace Pulumi.Packet
         /// List of IDs of devices spawned by the referenced Spot Market Request
         /// </summary>
         public readonly ImmutableArray<string> DeviceIds;
-        public readonly string RequestId;
         /// <summary>
         /// id is the provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string RequestId;
 
         [OutputConstructor]
         private GetSpotMarketRequestResult(
             ImmutableArray<string> deviceIds,
-            string requestId,
-            string id)
+
+            string id,
+
+            string requestId)
         {
             DeviceIds = deviceIds;
-            RequestId = requestId;
             Id = id;
+            RequestId = requestId;
         }
     }
 }
