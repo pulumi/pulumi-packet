@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@pulumi/pulumi": "^2.0.0",
-        "@pulumi/packet": "^2.0.0"
+        "@pulumi/packet": "latest"
     },
     "devDependencies": {
         "typescript": "^3.0.3"
