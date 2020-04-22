@@ -159,6 +159,7 @@ export class Device extends pulumi.CustomResource {
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
      * JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+     * * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
      */
     public readonly storage!: pulumi.Output<string | undefined>;
     /**
@@ -402,6 +403,7 @@ export interface DeviceState {
     readonly state?: pulumi.Input<string>;
     /**
      * JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+     * * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
      */
     readonly storage?: pulumi.Input<string>;
     /**
@@ -491,6 +493,7 @@ export interface DeviceArgs {
     readonly publicIpv4SubnetSize?: pulumi.Input<number>;
     /**
      * JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+     * * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
      */
     readonly storage?: pulumi.Input<string>;
     /**

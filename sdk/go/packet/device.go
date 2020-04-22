@@ -82,6 +82,7 @@ type Device struct {
 	// The status of the device
 	State pulumi.StringOutput `pulumi:"state"`
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage pulumi.StringPtrOutput `pulumi:"storage"`
 	// Tags attached to the device
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -202,6 +203,7 @@ type deviceState struct {
 	// The status of the device
 	State *string `pulumi:"state"`
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage *string `pulumi:"storage"`
 	// Tags attached to the device
 	Tags []string `pulumi:"tags"`
@@ -277,6 +279,7 @@ type DeviceState struct {
 	// The status of the device
 	State pulumi.StringPtrInput
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage pulumi.StringPtrInput
 	// Tags attached to the device
 	Tags pulumi.StringArrayInput
@@ -329,6 +332,7 @@ type deviceArgs struct {
 	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
 	PublicIpv4SubnetSize *int `pulumi:"publicIpv4SubnetSize"`
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage *string `pulumi:"storage"`
 	// Tags attached to the device
 	Tags []string `pulumi:"tags"`
@@ -376,6 +380,7 @@ type DeviceArgs struct {
 	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
 	PublicIpv4SubnetSize pulumi.IntPtrInput
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage pulumi.StringPtrInput
 	// Tags attached to the device
 	Tags pulumi.StringArrayInput

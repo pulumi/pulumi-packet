@@ -140,6 +140,7 @@ class Device(pulumi.CustomResource):
     storage: pulumi.Output[str]
     """
     JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+    * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
     """
     tags: pulumi.Output[list]
     """
@@ -192,6 +193,7 @@ class Device(pulumi.CustomResource):
                information is in the
                [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+               * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
         :param pulumi.Input[list] tags: Tags attached to the device
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
         :param pulumi.Input[bool] wait_for_reservation_deprovision: Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
@@ -314,6 +316,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[list] ssh_key_ids: List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
         :param pulumi.Input[str] state: The status of the device
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+               * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
         :param pulumi.Input[list] tags: Tags attached to the device
         :param pulumi.Input[str] updated: The timestamp for the last time the device was updated
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
