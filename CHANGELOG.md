@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.8.1 of the Packet Terraform Provider
+_(none)_
 
 ---
+
+## 2.0.1 (2020-04-23)
+* Upgrade to v2.8.1 of the Packet Terraform Provider
 
 ## 2.0.0 (2020-04-17)
 * Upgrade to Pulumi v2.0.0
