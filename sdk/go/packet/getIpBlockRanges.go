@@ -34,7 +34,7 @@ type GetIpBlockRangesResult struct {
 	Facility *string `pulumi:"facility"`
 	// list of CIDR expressions for Global IPv4 blocks in the project
 	GlobalIpv4s []string `pulumi:"globalIpv4s"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// list of CIDR expressions for IPv6 blocks in the project
 	Ipv6s []string `pulumi:"ipv6s"`

@@ -50,7 +50,7 @@ type LookupDeviceResult struct {
 	// The id of hardware reservation which this device occupies
 	HardwareReservationId string `pulumi:"hardwareReservationId"`
 	Hostname              string `pulumi:"hostname"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id            string `pulumi:"id"`
 	IpxeScriptUrl string `pulumi:"ipxeScriptUrl"`
 	// L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"

@@ -33,7 +33,7 @@ type LookupProjectResult struct {
 	BgpConfig GetProjectBgpConfig `pulumi:"bgpConfig"`
 	// The timestamp for when the project was created
 	Created string `pulumi:"created"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 	// The UUID of this project's parent organization

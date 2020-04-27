@@ -42,7 +42,7 @@ class GetVolumeResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if locked and not isinstance(locked, bool):
             raise TypeError("Expected argument 'locked' to be a bool")
@@ -118,6 +118,7 @@ def get_volume(name=None,project_id=None,volume_id=None,opts=None):
 
     :param str name: Name of volume for lookup
     :param str project_id: The ID the parent Packet project (for lookup by name)
+    :param str volume_id: ID of volume for lookup
     """
     __args__ = dict()
 

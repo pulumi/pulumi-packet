@@ -40,6 +40,9 @@ export interface GetVolumeArgs {
      * The ID the parent Packet project (for lookup by name)
      */
     readonly projectId?: string;
+    /**
+     * ID of volume for lookup
+     */
     readonly volumeId?: string;
 }
 
@@ -87,7 +90,7 @@ export interface GetVolumeResult {
     readonly updated: string;
     readonly volumeId: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }

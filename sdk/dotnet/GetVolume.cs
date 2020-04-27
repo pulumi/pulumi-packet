@@ -36,6 +36,9 @@ namespace Pulumi.Packet
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
+        /// <summary>
+        /// ID of volume for lookup
+        /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
@@ -63,7 +66,7 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly string Facility;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
