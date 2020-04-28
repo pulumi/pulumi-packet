@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-packet/sdk
+module github.com/pulumi/pulumi-packet/sdk/v2
 
 go 1.13
 
