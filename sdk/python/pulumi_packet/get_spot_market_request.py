@@ -24,7 +24,7 @@ class GetSpotMarketRequestResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if request_id and not isinstance(request_id, str):
             raise TypeError("Expected argument 'request_id' to be a str")

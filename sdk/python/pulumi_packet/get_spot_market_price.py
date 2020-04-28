@@ -21,7 +21,7 @@ class GetSpotMarketPriceResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if plan and not isinstance(plan, str):
             raise TypeError("Expected argument 'plan' to be a str")

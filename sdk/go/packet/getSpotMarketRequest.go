@@ -27,7 +27,7 @@ type LookupSpotMarketRequestArgs struct {
 type LookupSpotMarketRequestResult struct {
 	// List of IDs of devices spawned by the referenced Spot Market Request
 	DeviceIds []string `pulumi:"deviceIds"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	RequestId string `pulumi:"requestId"`
 }

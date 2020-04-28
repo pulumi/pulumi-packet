@@ -28,7 +28,7 @@ type GetSpotMarketPriceArgs struct {
 // A collection of values returned by getSpotMarketPrice.
 type GetSpotMarketPriceResult struct {
 	Facility string `pulumi:"facility"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id   string `pulumi:"id"`
 	Plan string `pulumi:"plan"`
 	// Current spot market price for given plan in given facility.

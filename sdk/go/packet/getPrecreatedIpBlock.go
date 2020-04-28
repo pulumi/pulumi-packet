@@ -42,7 +42,7 @@ type GetPrecreatedIpBlockResult struct {
 	Facility     *string `pulumi:"facility"`
 	Gateway      string  `pulumi:"gateway"`
 	Global       *bool   `pulumi:"global"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	Manageable bool   `pulumi:"manageable"`
 	Management bool   `pulumi:"management"`

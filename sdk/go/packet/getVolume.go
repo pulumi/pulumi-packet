@@ -23,7 +23,8 @@ type LookupVolumeArgs struct {
 	Name *string `pulumi:"name"`
 	// The ID the parent Packet project (for lookup by name)
 	ProjectId *string `pulumi:"projectId"`
-	VolumeId  *string `pulumi:"volumeId"`
+	// ID of volume for lookup
+	VolumeId *string `pulumi:"volumeId"`
 }
 
 // A collection of values returned by getVolume.
@@ -36,7 +37,7 @@ type LookupVolumeResult struct {
 	DeviceIds []string `pulumi:"deviceIds"`
 	// The facility slug the volume resides in
 	Facility string `pulumi:"facility"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Whether the volume is locked or not
 	Locked bool `pulumi:"locked"`

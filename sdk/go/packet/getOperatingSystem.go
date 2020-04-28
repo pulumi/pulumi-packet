@@ -32,7 +32,7 @@ type GetOperatingSystemArgs struct {
 // A collection of values returned by getOperatingSystem.
 type GetOperatingSystemResult struct {
 	Distro *string `pulumi:"distro"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id              string  `pulumi:"id"`
 	Name            *string `pulumi:"name"`
 	ProvisionableOn *string `pulumi:"provisionableOn"`

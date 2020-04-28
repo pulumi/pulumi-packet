@@ -69,7 +69,7 @@ class GetDeviceResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if ipxe_script_url and not isinstance(ipxe_script_url, str):
             raise TypeError("Expected argument 'ipxe_script_url' to be a str")

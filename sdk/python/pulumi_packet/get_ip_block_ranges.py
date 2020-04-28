@@ -27,7 +27,7 @@ class GetIpBlockRangesResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if ipv6s and not isinstance(ipv6s, list):
             raise TypeError("Expected argument 'ipv6s' to be a list")

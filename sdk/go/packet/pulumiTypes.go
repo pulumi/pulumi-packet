@@ -557,28 +557,53 @@ func (o ProjectBgpConfigPtrOutput) Elem() ProjectBgpConfigOutput {
 }
 
 // Autonomous System Numer for local BGP deployment
-func (o ProjectBgpConfigPtrOutput) Asn() pulumi.IntOutput {
-	return o.ApplyT(func(v ProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
+func (o ProjectBgpConfigPtrOutput) Asn() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ProjectBgpConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Asn
+	}).(pulumi.IntPtrOutput)
 }
 
 // `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-func (o ProjectBgpConfigPtrOutput) DeploymentType() pulumi.StringOutput {
-	return o.ApplyT(func(v ProjectBgpConfig) string { return v.DeploymentType }).(pulumi.StringOutput)
+func (o ProjectBgpConfigPtrOutput) DeploymentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProjectBgpConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DeploymentType
+	}).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of route filters allowed per server
 func (o ProjectBgpConfigPtrOutput) MaxPrefix() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ProjectBgpConfig) *int { return v.MaxPrefix }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ProjectBgpConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxPrefix
+	}).(pulumi.IntPtrOutput)
 }
 
 // Password for BGP session in plaintext (not a checksum)
 func (o ProjectBgpConfigPtrOutput) Md5() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ProjectBgpConfig) *string { return v.Md5 }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ProjectBgpConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Md5
+	}).(pulumi.StringPtrOutput)
 }
 
 // status of BGP configuration in the project
 func (o ProjectBgpConfigPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ProjectBgpConfig) *string { return v.Status }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ProjectBgpConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
 }
 
 type SpotMarketRequestInstanceParameters struct {
@@ -767,51 +792,111 @@ func (o SpotMarketRequestInstanceParametersPtrOutput) Elem() SpotMarketRequestIn
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) AlwaysPxe() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.AlwaysPxe }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AlwaysPxe
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SpotMarketRequestInstanceParametersPtrOutput) BillingCycle() pulumi.StringOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.BillingCycle }).(pulumi.StringOutput)
+func (o SpotMarketRequestInstanceParametersPtrOutput) BillingCycle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BillingCycle
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Features() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.Features }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Features
+	}).(pulumi.StringArrayOutput)
 }
 
-func (o SpotMarketRequestInstanceParametersPtrOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.Hostname }).(pulumi.StringOutput)
+func (o SpotMarketRequestInstanceParametersPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Hostname
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Locked() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Locked }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Locked
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SpotMarketRequestInstanceParametersPtrOutput) OperatingSystem() pulumi.StringOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.OperatingSystem }).(pulumi.StringOutput)
+func (o SpotMarketRequestInstanceParametersPtrOutput) OperatingSystem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OperatingSystem
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SpotMarketRequestInstanceParametersPtrOutput) Plan() pulumi.StringOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) string { return v.Plan }).(pulumi.StringOutput)
+func (o SpotMarketRequestInstanceParametersPtrOutput) Plan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Plan
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) ProjectSshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.ProjectSshKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectSshKeys
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) TermintationTime() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.TermintationTime }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TermintationTime
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) UserSshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) []string { return v.UserSshKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) []string {
+		if v == nil {
+			return nil
+		}
+		return v.UserSshKeys
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o SpotMarketRequestInstanceParametersPtrOutput) Userdata() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SpotMarketRequestInstanceParameters) *string { return v.Userdata }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SpotMarketRequestInstanceParameters) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Userdata
+	}).(pulumi.StringPtrOutput)
 }
 
 type VolumeAttachmentType struct {
