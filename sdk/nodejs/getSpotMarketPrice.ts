@@ -17,10 +17,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  * 
- * const example = packet.getSpotMarketPrice({
+ * const example = pulumi.output(packet.getSpotMarketPrice({
  *     facility: "ewr1",
  *     plan: "c1.small.x86",
- * });
+ * }, { async: true }));
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_price.html.markdown.
