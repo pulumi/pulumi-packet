@@ -34,6 +34,20 @@ class Vlan(pulumi.CustomResource):
         * https://www.packet.com/resources/guides/layer-2-configurations/
         * https://www.packet.com/developers/docs/network/advanced/layer-2/
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_packet as packet
+
+        # Create a new VLAN in datacenter "ewr1"
+        vlan1 = packet.Vlan("vlan1",
+            description="VLAN in New Jersey",
+            facility="ewr1",
+            project_id=local["project_id"])
+        ```
 
 
         :param str resource_name: The name of the resource.

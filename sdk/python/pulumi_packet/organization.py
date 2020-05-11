@@ -36,6 +36,19 @@ class Organization(pulumi.CustomResource):
         """
         Provides a resource to manage organization resource in Packet.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_packet as packet
+
+        # Create a new Project
+        tf_organization1 = packet.Organization("tfOrganization1",
+            description="quux",
+            name="foobar")
+        ```
 
 
         :param str resource_name: The name of the resource.

@@ -47,6 +47,17 @@ def get_spot_market_price(facility=None,plan=None,opts=None):
     """
     Use this data source to get Packet Spot Market Price.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_packet as packet
+
+    example = packet.get_spot_market_price(facility="ewr1",
+        plan="c1.small.x86")
+    ```
 
 
 

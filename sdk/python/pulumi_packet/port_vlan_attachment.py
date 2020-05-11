@@ -45,6 +45,58 @@ class PortVlanAttachment(pulumi.CustomResource):
         * https://www.packet.com/resources/guides/layer-2-configurations/ 
         * https://www.packet.com/developers/docs/network/advanced/layer-2/
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_packet as packet
+
+        # Hybrid network type
+        test_vlan = packet.Vlan("testVlan",
+            description="VLAN in New Jersey",
+            facility="ewr1",
+            project_id=local["project_id"])
+        test_device = packet.Device("testDevice",
+            hostname="test",
+            plan="m1.xlarge.x86",
+            facilities=["ewr1"],
+            operating_system="ubuntu_16_04",
+            billing_cycle="hourly",
+            project_id=local["project_id"],
+            network_type="hybrid")
+        test_port_vlan_attachment = packet.PortVlanAttachment("testPortVlanAttachment",
+            device_id=test_device.id,
+            port_name="eth1",
+            vlan_vnid=test_vlan.vxlan)
+        # Layer 2 network
+        test_index_device_device = packet.Device("testIndex/deviceDevice",
+            hostname="test",
+            plan="m1.xlarge.x86",
+            facilities=["ewr1"],
+            operating_system="ubuntu_16_04",
+            billing_cycle="hourly",
+            project_id=local["project_id"],
+            network_type="layer2-individual")
+        test1_vlan = packet.Vlan("test1Vlan",
+            description="VLAN in New Jersey",
+            facility="ewr1",
+            project_id=local["project_id"])
+        test2_vlan = packet.Vlan("test2Vlan",
+            description="VLAN in New Jersey",
+            facility="ewr1",
+            project_id=local["project_id"])
+        test1_port_vlan_attachment = packet.PortVlanAttachment("test1PortVlanAttachment",
+            device_id=test_device.id,
+            vlan_vnid=test1_vlan.vxlan,
+            port_name="eth1")
+        test2_port_vlan_attachment = packet.PortVlanAttachment("test2PortVlanAttachment",
+            device_id=test_device.id,
+            vlan_vnid=test2_vlan.vxlan,
+            port_name="eth1",
+            native=True)
+        ```
 
         ## Attribute Referece
 

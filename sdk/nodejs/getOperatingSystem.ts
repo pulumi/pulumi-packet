@@ -9,6 +9,29 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to get Packet Operating System image.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * const example = packet.getOperatingSystem({
+ *     name: "Container Linux",
+ *     distro: "coreos",
+ *     version: "alpha",
+ *     provisionableOn: "c1.small.x86",
+ * });
+ * const server = new packet.Device("server", {
+ *     hostname: "tf.coreos2",
+ *     plan: "c1.small.x86",
+ *     facilities: ["ewr1"],
+ *     operatingSystem: example.then(example => example.id),
+ *     billingCycle: "hourly",
+ *     projectId: local.project_id,
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/operating_system.html.markdown.
  */

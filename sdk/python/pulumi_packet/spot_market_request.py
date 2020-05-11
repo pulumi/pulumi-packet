@@ -56,6 +56,28 @@ class SpotMarketRequest(pulumi.CustomResource):
         Provides a Packet Spot Market Request resource to allow you to
         manage spot market requests on your account. For more detail on Spot Market, see [this article in Packing documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_packet as packet
+
+        # Create a spot market request
+        req = packet.SpotMarketRequest("req",
+            project_id=local["project_id"],
+            max_bid_price=0.03,
+            facilities=["ewr1"],
+            devices_min=1,
+            devices_max=1,
+            instance_parameters={
+                "hostname": "testspot",
+                "billingCycle": "hourly",
+                "operatingSystem": "coreos_stable",
+                "plan": "t1.small.x86",
+            })
+        ```
 
 
         :param str resource_name: The name of the resource.

@@ -13,6 +13,20 @@ import * as utilities from "./utilities";
  * 
  * The datasource has 4 list attributes: `globalIpv4`, `publicIpv4`, `privateIpv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * const projectId = "<UUID_of_your_project>";
+ * const test = packet.getIpBlockRanges({
+ *     projectId: projectId,
+ * });
+ * export const out = test;
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/ip_block_ranges.html.markdown.
  */
