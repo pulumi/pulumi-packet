@@ -113,7 +113,6 @@ export interface GetDeviceResult {
      */
     readonly ports: outputs.GetDevicePort[];
     readonly projectId: string;
-    readonly publicIpv4SubnetSize: number;
     /**
      * Root password to the server (if still available)
      */

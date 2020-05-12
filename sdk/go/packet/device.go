@@ -71,10 +71,6 @@ type Device struct {
 	// The ID of the project in which to create the device
 	ProjectId        pulumi.StringOutput      `pulumi:"projectId"`
 	ProjectSshKeyIds pulumi.StringArrayOutput `pulumi:"projectSshKeyIds"`
-	// Size of allocated subnet, more
-	// information is in the
-	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-	PublicIpv4SubnetSize pulumi.IntOutput `pulumi:"publicIpv4SubnetSize"`
 	// Root password to the server (disabled after 24 hours)
 	RootPassword pulumi.StringOutput `pulumi:"rootPassword"`
 	// List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
@@ -192,10 +188,6 @@ type deviceState struct {
 	// The ID of the project in which to create the device
 	ProjectId        *string  `pulumi:"projectId"`
 	ProjectSshKeyIds []string `pulumi:"projectSshKeyIds"`
-	// Size of allocated subnet, more
-	// information is in the
-	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-	PublicIpv4SubnetSize *int `pulumi:"publicIpv4SubnetSize"`
 	// Root password to the server (disabled after 24 hours)
 	RootPassword *string `pulumi:"rootPassword"`
 	// List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
@@ -268,10 +260,6 @@ type DeviceState struct {
 	// The ID of the project in which to create the device
 	ProjectId        pulumi.StringPtrInput
 	ProjectSshKeyIds pulumi.StringArrayInput
-	// Size of allocated subnet, more
-	// information is in the
-	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-	PublicIpv4SubnetSize pulumi.IntPtrInput
 	// Root password to the server (disabled after 24 hours)
 	RootPassword pulumi.StringPtrInput
 	// List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
@@ -327,10 +315,6 @@ type deviceArgs struct {
 	// The ID of the project in which to create the device
 	ProjectId        string   `pulumi:"projectId"`
 	ProjectSshKeyIds []string `pulumi:"projectSshKeyIds"`
-	// Size of allocated subnet, more
-	// information is in the
-	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-	PublicIpv4SubnetSize *int `pulumi:"publicIpv4SubnetSize"`
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
 	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage *string `pulumi:"storage"`
@@ -375,10 +359,6 @@ type DeviceArgs struct {
 	// The ID of the project in which to create the device
 	ProjectId        pulumi.StringInput
 	ProjectSshKeyIds pulumi.StringArrayInput
-	// Size of allocated subnet, more
-	// information is in the
-	// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-	PublicIpv4SubnetSize pulumi.IntPtrInput
 	// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
 	// * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
 	Storage pulumi.StringPtrInput

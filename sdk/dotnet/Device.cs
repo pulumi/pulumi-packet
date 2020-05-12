@@ -156,14 +156,6 @@ namespace Pulumi.Packet
         public Output<ImmutableArray<string>> ProjectSshKeyIds { get; private set; } = null!;
 
         /// <summary>
-        /// Size of allocated subnet, more
-        /// information is in the
-        /// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-        /// </summary>
-        [Output("publicIpv4SubnetSize")]
-        public Output<int> PublicIpv4SubnetSize { get; private set; } = null!;
-
-        /// <summary>
         /// Root password to the server (disabled after 24 hours)
         /// </summary>
         [Output("rootPassword")]
@@ -357,14 +349,6 @@ namespace Pulumi.Packet
             get => _projectSshKeyIds ?? (_projectSshKeyIds = new InputList<string>());
             set => _projectSshKeyIds = value;
         }
-
-        /// <summary>
-        /// Size of allocated subnet, more
-        /// information is in the
-        /// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-        /// </summary>
-        [Input("publicIpv4SubnetSize")]
-        public Input<int>? PublicIpv4SubnetSize { get; set; }
 
         /// <summary>
         /// JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
@@ -568,14 +552,6 @@ namespace Pulumi.Packet
             get => _projectSshKeyIds ?? (_projectSshKeyIds = new InputList<string>());
             set => _projectSshKeyIds = value;
         }
-
-        /// <summary>
-        /// Size of allocated subnet, more
-        /// information is in the
-        /// [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-        /// </summary>
-        [Input("publicIpv4SubnetSize")]
-        public Input<int>? PublicIpv4SubnetSize { get; set; }
 
         /// <summary>
         /// Root password to the server (disabled after 24 hours)

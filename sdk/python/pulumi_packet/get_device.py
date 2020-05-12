@@ -13,7 +13,7 @@ class GetDeviceResult:
     """
     A collection of values returned by getDevice.
     """
-    def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, device_id=None, facility=None, hardware_reservation_id=None, hostname=None, id=None, ipxe_script_url=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None):
+    def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, device_id=None, facility=None, hardware_reservation_id=None, hostname=None, id=None, ipxe_script_url=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None):
         if access_private_ipv4 and not isinstance(access_private_ipv4, str):
             raise TypeError("Expected argument 'access_private_ipv4' to be a str")
         __self__.access_private_ipv4 = access_private_ipv4
@@ -112,9 +112,6 @@ class GetDeviceResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         __self__.project_id = project_id
-        if public_ipv4_subnet_size and not isinstance(public_ipv4_subnet_size, float):
-            raise TypeError("Expected argument 'public_ipv4_subnet_size' to be a float")
-        __self__.public_ipv4_subnet_size = public_ipv4_subnet_size
         if root_password and not isinstance(root_password, str):
             raise TypeError("Expected argument 'root_password' to be a str")
         __self__.root_password = root_password
@@ -166,7 +163,6 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             plan=self.plan,
             ports=self.ports,
             project_id=self.project_id,
-            public_ipv4_subnet_size=self.public_ipv4_subnet_size,
             root_password=self.root_password,
             ssh_key_ids=self.ssh_key_ids,
             state=self.state,
@@ -220,7 +216,6 @@ def get_device(device_id=None,hostname=None,project_id=None,opts=None):
         plan=__ret__.get('plan'),
         ports=__ret__.get('ports'),
         project_id=__ret__.get('projectId'),
-        public_ipv4_subnet_size=__ret__.get('publicIpv4SubnetSize'),
         root_password=__ret__.get('rootPassword'),
         ssh_key_ids=__ret__.get('sshKeyIds'),
         state=__ret__.get('state'),

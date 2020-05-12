@@ -7,6 +7,7 @@ export * from "./billingCycle";
 export * from "./device";
 export * from "./facility";
 export * from "./getDevice";
+export * from "./getDeviceBgpNeighbors";
 export * from "./getIpBlockRanges";
 export * from "./getOperatingSystem";
 export * from "./getOrganization";

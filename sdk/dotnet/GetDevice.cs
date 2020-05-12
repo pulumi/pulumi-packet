@@ -118,7 +118,6 @@ namespace Pulumi.Packet
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDevicePortResult> Ports;
         public readonly string ProjectId;
-        public readonly int PublicIpv4SubnetSize;
         /// <summary>
         /// Root password to the server (if still available)
         /// </summary>
@@ -175,8 +174,6 @@ namespace Pulumi.Packet
 
             string projectId,
 
-            int publicIpv4SubnetSize,
-
             string rootPassword,
 
             ImmutableArray<string> sshKeyIds,
@@ -205,7 +202,6 @@ namespace Pulumi.Packet
             Plan = plan;
             Ports = ports;
             ProjectId = projectId;
-            PublicIpv4SubnetSize = publicIpv4SubnetSize;
             RootPassword = rootPassword;
             SshKeyIds = sshKeyIds;
             State = state;

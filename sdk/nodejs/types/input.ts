@@ -65,7 +65,7 @@ export interface DevicePort {
 
 export interface ProjectBgpConfig {
     /**
-     * Autonomous System Numer for local BGP deployment
+     * Autonomous System Number for local BGP deployment
      */
     asn: pulumi.Input<number>;
     /**
