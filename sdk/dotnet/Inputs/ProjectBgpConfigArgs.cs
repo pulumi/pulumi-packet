@@ -13,7 +13,7 @@ namespace Pulumi.Packet.Inputs
     public sealed class ProjectBgpConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Autonomous System Numer for local BGP deployment
+        /// Autonomous System Number for local BGP deployment
         /// </summary>
         [Input("asn", required: true)]
         public Input<int> Asn { get; set; } = null!;

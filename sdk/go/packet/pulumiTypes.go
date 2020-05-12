@@ -398,7 +398,7 @@ func (o DevicePortArrayOutput) Index(i pulumi.IntInput) DevicePortOutput {
 }
 
 type ProjectBgpConfig struct {
-	// Autonomous System Numer for local BGP deployment
+	// Autonomous System Number for local BGP deployment
 	Asn int `pulumi:"asn"`
 	// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 	DeploymentType string `pulumi:"deploymentType"`
@@ -423,7 +423,7 @@ type ProjectBgpConfigInput interface {
 }
 
 type ProjectBgpConfigArgs struct {
-	// Autonomous System Numer for local BGP deployment
+	// Autonomous System Number for local BGP deployment
 	Asn pulumi.IntInput `pulumi:"asn"`
 	// `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
@@ -513,7 +513,7 @@ func (o ProjectBgpConfigOutput) ToProjectBgpConfigPtrOutputWithContext(ctx conte
 	}).(ProjectBgpConfigPtrOutput)
 }
 
-// Autonomous System Numer for local BGP deployment
+// Autonomous System Number for local BGP deployment
 func (o ProjectBgpConfigOutput) Asn() pulumi.IntOutput {
 	return o.ApplyT(func(v ProjectBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
 }
@@ -556,7 +556,7 @@ func (o ProjectBgpConfigPtrOutput) Elem() ProjectBgpConfigOutput {
 	return o.ApplyT(func(v *ProjectBgpConfig) ProjectBgpConfig { return *v }).(ProjectBgpConfigOutput)
 }
 
-// Autonomous System Numer for local BGP deployment
+// Autonomous System Number for local BGP deployment
 func (o ProjectBgpConfigPtrOutput) Asn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProjectBgpConfig) *int {
 		if v == nil {
@@ -1097,6 +1097,406 @@ func (o VolumeSnapshotPolicyArrayOutput) Index(i pulumi.IntInput) VolumeSnapshot
 	}).(VolumeSnapshotPolicyOutput)
 }
 
+type GetDeviceBgpNeighborsBgpNeighbor struct {
+	// IP address version, 4 or 6
+	AddressFamily int `pulumi:"addressFamily"`
+	// Local autonomous system number
+	CustomerAs int `pulumi:"customerAs"`
+	// Local used peer IP address
+	CustomerIp string `pulumi:"customerIp"`
+	// Whether BGP session is password enabled
+	Md5Enabled bool `pulumi:"md5Enabled"`
+	// BGP session password in plaintext (not a checksum)
+	Md5Password string `pulumi:"md5Password"`
+	// Whether the neighbor is in EBGP multihop session
+	Multihop bool `pulumi:"multihop"`
+	// Peer AS number (different than customerAs for EBGP)
+	PeerAs int `pulumi:"peerAs"`
+	// Array of IP addresses of this neighbor's peers
+	PeerIps []string `pulumi:"peerIps"`
+	// Array of incoming routes. Each route has attributes:
+	RoutesIns []GetDeviceBgpNeighborsBgpNeighborRoutesIn `pulumi:"routesIns"`
+	// Array of outgoing routes in the same format
+	RoutesOuts []GetDeviceBgpNeighborsBgpNeighborRoutesOut `pulumi:"routesOuts"`
+}
+
+// GetDeviceBgpNeighborsBgpNeighborInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborArgs and GetDeviceBgpNeighborsBgpNeighborOutput values.
+// You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborInput` via:
+//
+// 		 GetDeviceBgpNeighborsBgpNeighborArgs{...}
+//
+type GetDeviceBgpNeighborsBgpNeighborInput interface {
+	pulumi.Input
+
+	ToGetDeviceBgpNeighborsBgpNeighborOutput() GetDeviceBgpNeighborsBgpNeighborOutput
+	ToGetDeviceBgpNeighborsBgpNeighborOutputWithContext(context.Context) GetDeviceBgpNeighborsBgpNeighborOutput
+}
+
+type GetDeviceBgpNeighborsBgpNeighborArgs struct {
+	// IP address version, 4 or 6
+	AddressFamily pulumi.IntInput `pulumi:"addressFamily"`
+	// Local autonomous system number
+	CustomerAs pulumi.IntInput `pulumi:"customerAs"`
+	// Local used peer IP address
+	CustomerIp pulumi.StringInput `pulumi:"customerIp"`
+	// Whether BGP session is password enabled
+	Md5Enabled pulumi.BoolInput `pulumi:"md5Enabled"`
+	// BGP session password in plaintext (not a checksum)
+	Md5Password pulumi.StringInput `pulumi:"md5Password"`
+	// Whether the neighbor is in EBGP multihop session
+	Multihop pulumi.BoolInput `pulumi:"multihop"`
+	// Peer AS number (different than customerAs for EBGP)
+	PeerAs pulumi.IntInput `pulumi:"peerAs"`
+	// Array of IP addresses of this neighbor's peers
+	PeerIps pulumi.StringArrayInput `pulumi:"peerIps"`
+	// Array of incoming routes. Each route has attributes:
+	RoutesIns GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput `pulumi:"routesIns"`
+	// Array of outgoing routes in the same format
+	RoutesOuts GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput `pulumi:"routesOuts"`
+}
+
+func (GetDeviceBgpNeighborsBgpNeighborArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeviceBgpNeighborsBgpNeighbor)(nil)).Elem()
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborArgs) ToGetDeviceBgpNeighborsBgpNeighborOutput() GetDeviceBgpNeighborsBgpNeighborOutput {
+	return i.ToGetDeviceBgpNeighborsBgpNeighborOutputWithContext(context.Background())
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborArgs) ToGetDeviceBgpNeighborsBgpNeighborOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceBgpNeighborsBgpNeighborOutput)
+}
+
+// GetDeviceBgpNeighborsBgpNeighborArrayInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborArray and GetDeviceBgpNeighborsBgpNeighborArrayOutput values.
+// You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborArrayInput` via:
+//
+// 		 GetDeviceBgpNeighborsBgpNeighborArray{ GetDeviceBgpNeighborsBgpNeighborArgs{...} }
+//
+type GetDeviceBgpNeighborsBgpNeighborArrayInput interface {
+	pulumi.Input
+
+	ToGetDeviceBgpNeighborsBgpNeighborArrayOutput() GetDeviceBgpNeighborsBgpNeighborArrayOutput
+	ToGetDeviceBgpNeighborsBgpNeighborArrayOutputWithContext(context.Context) GetDeviceBgpNeighborsBgpNeighborArrayOutput
+}
+
+type GetDeviceBgpNeighborsBgpNeighborArray []GetDeviceBgpNeighborsBgpNeighborInput
+
+func (GetDeviceBgpNeighborsBgpNeighborArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeviceBgpNeighborsBgpNeighbor)(nil)).Elem()
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborArray) ToGetDeviceBgpNeighborsBgpNeighborArrayOutput() GetDeviceBgpNeighborsBgpNeighborArrayOutput {
+	return i.ToGetDeviceBgpNeighborsBgpNeighborArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborArray) ToGetDeviceBgpNeighborsBgpNeighborArrayOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceBgpNeighborsBgpNeighborArrayOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborOutput struct{ *pulumi.OutputState }
+
+func (GetDeviceBgpNeighborsBgpNeighborOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeviceBgpNeighborsBgpNeighbor)(nil)).Elem()
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) ToGetDeviceBgpNeighborsBgpNeighborOutput() GetDeviceBgpNeighborsBgpNeighborOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) ToGetDeviceBgpNeighborsBgpNeighborOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborOutput {
+	return o
+}
+
+// IP address version, 4 or 6
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) AddressFamily() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) int { return v.AddressFamily }).(pulumi.IntOutput)
+}
+
+// Local autonomous system number
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) CustomerAs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) int { return v.CustomerAs }).(pulumi.IntOutput)
+}
+
+// Local used peer IP address
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) CustomerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) string { return v.CustomerIp }).(pulumi.StringOutput)
+}
+
+// Whether BGP session is password enabled
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) Md5Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) bool { return v.Md5Enabled }).(pulumi.BoolOutput)
+}
+
+// BGP session password in plaintext (not a checksum)
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) Md5Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) string { return v.Md5Password }).(pulumi.StringOutput)
+}
+
+// Whether the neighbor is in EBGP multihop session
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) Multihop() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) bool { return v.Multihop }).(pulumi.BoolOutput)
+}
+
+// Peer AS number (different than customerAs for EBGP)
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) PeerAs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) int { return v.PeerAs }).(pulumi.IntOutput)
+}
+
+// Array of IP addresses of this neighbor's peers
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) PeerIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) []string { return v.PeerIps }).(pulumi.StringArrayOutput)
+}
+
+// Array of incoming routes. Each route has attributes:
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) RoutesIns() GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) []GetDeviceBgpNeighborsBgpNeighborRoutesIn {
+		return v.RoutesIns
+	}).(GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput)
+}
+
+// Array of outgoing routes in the same format
+func (o GetDeviceBgpNeighborsBgpNeighborOutput) RoutesOuts() GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighbor) []GetDeviceBgpNeighborsBgpNeighborRoutesOut {
+		return v.RoutesOuts
+	}).(GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeviceBgpNeighborsBgpNeighborArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeviceBgpNeighborsBgpNeighbor)(nil)).Elem()
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborArrayOutput) ToGetDeviceBgpNeighborsBgpNeighborArrayOutput() GetDeviceBgpNeighborsBgpNeighborArrayOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborArrayOutput) ToGetDeviceBgpNeighborsBgpNeighborArrayOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborArrayOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborArrayOutput) Index(i pulumi.IntInput) GetDeviceBgpNeighborsBgpNeighborOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeviceBgpNeighborsBgpNeighbor {
+		return vs[0].([]GetDeviceBgpNeighborsBgpNeighbor)[vs[1].(int)]
+	}).(GetDeviceBgpNeighborsBgpNeighborOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesIn struct {
+	// (bool) Whether the route is exact
+	Exact bool `pulumi:"exact"`
+	// CIDR expression of route (ip/mask)
+	Route string `pulumi:"route"`
+}
+
+// GetDeviceBgpNeighborsBgpNeighborRoutesInInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesInArgs and GetDeviceBgpNeighborsBgpNeighborRoutesInOutput values.
+// You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesInInput` via:
+//
+// 		 GetDeviceBgpNeighborsBgpNeighborRoutesInArgs{...}
+//
+type GetDeviceBgpNeighborsBgpNeighborRoutesInInput interface {
+	pulumi.Input
+
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutput() GetDeviceBgpNeighborsBgpNeighborRoutesInOutput
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutputWithContext(context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesInOutput
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesInArgs struct {
+	// (bool) Whether the route is exact
+	Exact pulumi.BoolInput `pulumi:"exact"`
+	// CIDR expression of route (ip/mask)
+	Route pulumi.StringInput `pulumi:"route"`
+}
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesInArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeviceBgpNeighborsBgpNeighborRoutesIn)(nil)).Elem()
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesInArgs) ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutput() GetDeviceBgpNeighborsBgpNeighborRoutesInOutput {
+	return i.ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutputWithContext(context.Background())
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesInArgs) ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesInOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceBgpNeighborsBgpNeighborRoutesInOutput)
+}
+
+// GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesInArray and GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput values.
+// You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput` via:
+//
+// 		 GetDeviceBgpNeighborsBgpNeighborRoutesInArray{ GetDeviceBgpNeighborsBgpNeighborRoutesInArgs{...} }
+//
+type GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput interface {
+	pulumi.Input
+
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput() GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutputWithContext(context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesInArray []GetDeviceBgpNeighborsBgpNeighborRoutesInInput
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesInArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeviceBgpNeighborsBgpNeighborRoutesIn)(nil)).Elem()
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesInArray) ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput() GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput {
+	return i.ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesInArray) ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesInOutput struct{ *pulumi.OutputState }
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesInOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeviceBgpNeighborsBgpNeighborRoutesIn)(nil)).Elem()
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutput() GetDeviceBgpNeighborsBgpNeighborRoutesInOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesInOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesInOutput {
+	return o
+}
+
+// (bool) Whether the route is exact
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInOutput) Exact() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighborRoutesIn) bool { return v.Exact }).(pulumi.BoolOutput)
+}
+
+// CIDR expression of route (ip/mask)
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInOutput) Route() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighborRoutesIn) string { return v.Route }).(pulumi.StringOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeviceBgpNeighborsBgpNeighborRoutesIn)(nil)).Elem()
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput() GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput) Index(i pulumi.IntInput) GetDeviceBgpNeighborsBgpNeighborRoutesInOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeviceBgpNeighborsBgpNeighborRoutesIn {
+		return vs[0].([]GetDeviceBgpNeighborsBgpNeighborRoutesIn)[vs[1].(int)]
+	}).(GetDeviceBgpNeighborsBgpNeighborRoutesInOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesOut struct {
+	// (bool) Whether the route is exact
+	Exact bool `pulumi:"exact"`
+	// CIDR expression of route (ip/mask)
+	Route string `pulumi:"route"`
+}
+
+// GetDeviceBgpNeighborsBgpNeighborRoutesOutInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs and GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput values.
+// You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesOutInput` via:
+//
+// 		 GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs{...}
+//
+type GetDeviceBgpNeighborsBgpNeighborRoutesOutInput interface {
+	pulumi.Input
+
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutput() GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutputWithContext(context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs struct {
+	// (bool) Whether the route is exact
+	Exact pulumi.BoolInput `pulumi:"exact"`
+	// CIDR expression of route (ip/mask)
+	Route pulumi.StringInput `pulumi:"route"`
+}
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeviceBgpNeighborsBgpNeighborRoutesOut)(nil)).Elem()
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutput() GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput {
+	return i.ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutputWithContext(context.Background())
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput)
+}
+
+// GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesOutArray and GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput values.
+// You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput` via:
+//
+// 		 GetDeviceBgpNeighborsBgpNeighborRoutesOutArray{ GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs{...} }
+//
+type GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput interface {
+	pulumi.Input
+
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput() GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput
+	ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutputWithContext(context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesOutArray []GetDeviceBgpNeighborsBgpNeighborRoutesOutInput
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesOutArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeviceBgpNeighborsBgpNeighborRoutesOut)(nil)).Elem()
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesOutArray) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput() GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput {
+	return i.ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeviceBgpNeighborsBgpNeighborRoutesOutArray) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput struct{ *pulumi.OutputState }
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeviceBgpNeighborsBgpNeighborRoutesOut)(nil)).Elem()
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutput() GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput {
+	return o
+}
+
+// (bool) Whether the route is exact
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput) Exact() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighborRoutesOut) bool { return v.Exact }).(pulumi.BoolOutput)
+}
+
+// CIDR expression of route (ip/mask)
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput) Route() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceBgpNeighborsBgpNeighborRoutesOut) string { return v.Route }).(pulumi.StringOutput)
+}
+
+type GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeviceBgpNeighborsBgpNeighborRoutesOut)(nil)).Elem()
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput() GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput) ToGetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutputWithContext(ctx context.Context) GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput {
+	return o
+}
+
+func (o GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput) Index(i pulumi.IntInput) GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeviceBgpNeighborsBgpNeighborRoutesOut {
+		return vs[0].([]GetDeviceBgpNeighborsBgpNeighborRoutesOut)[vs[1].(int)]
+	}).(GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput)
+}
+
 type GetDeviceNetwork struct {
 	// IPv4 or IPv6 address string
 	Address string `pulumi:"address"`
@@ -1573,6 +1973,12 @@ func init() {
 	pulumi.RegisterOutputType(VolumeAttachmentTypeArrayOutput{})
 	pulumi.RegisterOutputType(VolumeSnapshotPolicyOutput{})
 	pulumi.RegisterOutputType(VolumeSnapshotPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetDeviceBgpNeighborsBgpNeighborOutput{})
+	pulumi.RegisterOutputType(GetDeviceBgpNeighborsBgpNeighborArrayOutput{})
+	pulumi.RegisterOutputType(GetDeviceBgpNeighborsBgpNeighborRoutesInOutput{})
+	pulumi.RegisterOutputType(GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput{})
+	pulumi.RegisterOutputType(GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput{})
+	pulumi.RegisterOutputType(GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput{})
 	pulumi.RegisterOutputType(GetDeviceNetworkOutput{})
 	pulumi.RegisterOutputType(GetDeviceNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetDevicePortOutput{})

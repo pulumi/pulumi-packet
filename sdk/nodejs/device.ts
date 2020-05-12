@@ -157,12 +157,6 @@ export class Device extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     public readonly projectSshKeyIds!: pulumi.Output<string[] | undefined>;
     /**
-     * Size of allocated subnet, more
-     * information is in the
-     * [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-     */
-    public readonly publicIpv4SubnetSize!: pulumi.Output<number>;
-    /**
      * Root password to the server (disabled after 24 hours)
      */
     public /*out*/ readonly rootPassword!: pulumi.Output<string>;
@@ -230,7 +224,6 @@ export class Device extends pulumi.CustomResource {
             inputs["ports"] = state ? state.ports : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["projectSshKeyIds"] = state ? state.projectSshKeyIds : undefined;
-            inputs["publicIpv4SubnetSize"] = state ? state.publicIpv4SubnetSize : undefined;
             inputs["rootPassword"] = state ? state.rootPassword : undefined;
             inputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
             inputs["state"] = state ? state.state : undefined;
@@ -273,7 +266,6 @@ export class Device extends pulumi.CustomResource {
             inputs["plan"] = args ? args.plan : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["projectSshKeyIds"] = args ? args.projectSshKeyIds : undefined;
-            inputs["publicIpv4SubnetSize"] = args ? args.publicIpv4SubnetSize : undefined;
             inputs["storage"] = args ? args.storage : undefined;
             inputs["tags"] = args ? args.tags : undefined;
             inputs["userData"] = args ? args.userData : undefined;
@@ -399,14 +391,6 @@ export interface DeviceState {
     readonly projectId?: pulumi.Input<string>;
     readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Size of allocated subnet, more
-     * information is in the
-     * [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-     * 
-     * @deprecated Deprecated in favor of 'ip_address' attribute.
-     */
-    readonly publicIpv4SubnetSize?: pulumi.Input<number>;
-    /**
      * Root password to the server (disabled after 24 hours)
      */
     readonly rootPassword?: pulumi.Input<string>;
@@ -500,14 +484,6 @@ export interface DeviceArgs {
      */
     readonly projectId: pulumi.Input<string>;
     readonly projectSshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Size of allocated subnet, more
-     * information is in the
-     * [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-     * 
-     * @deprecated Deprecated in favor of 'ip_address' attribute.
-     */
-    readonly publicIpv4SubnetSize?: pulumi.Input<number>;
     /**
      * JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
      * * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).

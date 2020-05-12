@@ -67,9 +67,8 @@ type LookupDeviceResult struct {
 	// The hardware config of the device
 	Plan string `pulumi:"plan"`
 	// Ports assigned to the device
-	Ports                []GetDevicePort `pulumi:"ports"`
-	ProjectId            string          `pulumi:"projectId"`
-	PublicIpv4SubnetSize int             `pulumi:"publicIpv4SubnetSize"`
+	Ports     []GetDevicePort `pulumi:"ports"`
+	ProjectId string          `pulumi:"projectId"`
 	// Root password to the server (if still available)
 	RootPassword string `pulumi:"rootPassword"`
 	// List of IDs of SSH keys deployed in the device, can be both user or project SSH keys

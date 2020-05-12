@@ -63,6 +63,71 @@ export interface DevicePort {
     type: string;
 }
 
+export interface GetDeviceBgpNeighborsBgpNeighbor {
+    /**
+     * IP address version, 4 or 6
+     */
+    addressFamily: number;
+    /**
+     * Local autonomous system number
+     */
+    customerAs: number;
+    /**
+     * Local used peer IP address
+     */
+    customerIp: string;
+    /**
+     * Whether BGP session is password enabled
+     */
+    md5Enabled: boolean;
+    /**
+     * BGP session password in plaintext (not a checksum)
+     */
+    md5Password: string;
+    /**
+     * Whether the neighbor is in EBGP multihop session
+     */
+    multihop: boolean;
+    /**
+     * Peer AS number (different than customerAs for EBGP)
+     */
+    peerAs: number;
+    /**
+     * Array of IP addresses of this neighbor's peers
+     */
+    peerIps?: string[];
+    /**
+     * Array of incoming routes. Each route has attributes:
+     */
+    routesIns: outputs.GetDeviceBgpNeighborsBgpNeighborRoutesIn[];
+    /**
+     * Array of outgoing routes in the same format
+     */
+    routesOuts: outputs.GetDeviceBgpNeighborsBgpNeighborRoutesOut[];
+}
+
+export interface GetDeviceBgpNeighborsBgpNeighborRoutesIn {
+    /**
+     * (bool) Whether the route is exact
+     */
+    exact: boolean;
+    /**
+     * CIDR expression of route (ip/mask)
+     */
+    route: string;
+}
+
+export interface GetDeviceBgpNeighborsBgpNeighborRoutesOut {
+    /**
+     * (bool) Whether the route is exact
+     */
+    exact: boolean;
+    /**
+     * CIDR expression of route (ip/mask)
+     */
+    route: string;
+}
+
 export interface GetDeviceNetwork {
     /**
      * IPv4 or IPv6 address string
@@ -139,7 +204,7 @@ export interface GetVolumeSnapshotPolicy {
 
 export interface ProjectBgpConfig {
     /**
-     * Autonomous System Numer for local BGP deployment
+     * Autonomous System Number for local BGP deployment
      */
     asn: number;
     /**

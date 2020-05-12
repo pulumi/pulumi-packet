@@ -11,7 +11,7 @@ namespace Pulumi.Packet
 {
     /// <summary>
     /// Provides a Packet Spot Market Request resource to allow you to
-    /// manage spot market requests on your account. For more detail on Spot Market, see [this article in Packing documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
+    /// manage spot market requests on your account. For more detail on Spot Market, see [this article in Packet documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
     /// </summary>
     public partial class SpotMarketRequest : Pulumi.CustomResource
     {

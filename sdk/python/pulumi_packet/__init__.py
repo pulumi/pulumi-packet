@@ -13,6 +13,7 @@ for pkg in __all__:
 from .bgp_session import *
 from .device import *
 from .get_device import *
+from .get_device_bgp_neighbors import *
 from .get_ip_block_ranges import *
 from .get_operating_system import *
 from .get_organization import *

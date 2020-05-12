@@ -18,7 +18,7 @@ class Project(pulumi.CustomResource):
     """
     Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
 
-      * `asn` (`float`) - Autonomous System Numer for local BGP deployment
+      * `asn` (`float`) - Autonomous System Number for local BGP deployment
       * `deploymentType` (`str`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
       * `maxPrefix` (`float`) - The maximum number of route filters allowed per server
       * `md5` (`str`) - Password for BGP session in plaintext (not a checksum)
@@ -57,7 +57,7 @@ class Project(pulumi.CustomResource):
 
         The **bgp_config** object supports the following:
 
-          * `asn` (`pulumi.Input[float]`) - Autonomous System Numer for local BGP deployment
+          * `asn` (`pulumi.Input[float]`) - Autonomous System Number for local BGP deployment
           * `deploymentType` (`pulumi.Input[str]`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
           * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
           * `md5` (`pulumi.Input[str]`) - Password for BGP session in plaintext (not a checksum)
@@ -114,7 +114,7 @@ class Project(pulumi.CustomResource):
 
         The **bgp_config** object supports the following:
 
-          * `asn` (`pulumi.Input[float]`) - Autonomous System Numer for local BGP deployment
+          * `asn` (`pulumi.Input[float]`) - Autonomous System Number for local BGP deployment
           * `deploymentType` (`pulumi.Input[str]`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
           * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
           * `md5` (`pulumi.Input[str]`) - Password for BGP session in plaintext (not a checksum)

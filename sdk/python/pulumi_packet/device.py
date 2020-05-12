@@ -119,12 +119,6 @@ class Device(pulumi.CustomResource):
     The ID of the project in which to create the device
     """
     project_ssh_key_ids: pulumi.Output[list]
-    public_ipv4_subnet_size: pulumi.Output[float]
-    """
-    Size of allocated subnet, more
-    information is in the
-    [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
-    """
     root_password: pulumi.Output[str]
     """
     Root password to the server (disabled after 24 hours)
@@ -158,7 +152,7 @@ class Device(pulumi.CustomResource):
     """
     Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -205,9 +199,6 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] project_id: The ID of the project in which to create the device
-        :param pulumi.Input[float] public_ipv4_subnet_size: Size of allocated subnet, more
-               information is in the
-               [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
                * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
         :param pulumi.Input[list] tags: Tags attached to the device
@@ -263,7 +254,6 @@ class Device(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['project_ssh_key_ids'] = project_ssh_key_ids
-            __props__['public_ipv4_subnet_size'] = public_ipv4_subnet_size
             __props__['storage'] = storage
             __props__['tags'] = tags
             __props__['user_data'] = user_data
@@ -287,7 +277,7 @@ class Device(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, locked=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, public_ipv4_subnet_size=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
+    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, locked=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
         """
         Get an existing Device resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -325,9 +315,6 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[list] ports: Ports assigned to the device
         :param pulumi.Input[str] project_id: The ID of the project in which to create the device
-        :param pulumi.Input[float] public_ipv4_subnet_size: Size of allocated subnet, more
-               information is in the
-               [Custom Subnet Size](https://www.packet.com/developers/docs/servers/key-features/custom-subnet-size/) doc.
         :param pulumi.Input[str] root_password: Root password to the server (disabled after 24 hours)
         :param pulumi.Input[list] ssh_key_ids: List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
         :param pulumi.Input[str] state: The status of the device
@@ -387,7 +374,6 @@ class Device(pulumi.CustomResource):
         __props__["ports"] = ports
         __props__["project_id"] = project_id
         __props__["project_ssh_key_ids"] = project_ssh_key_ids
-        __props__["public_ipv4_subnet_size"] = public_ipv4_subnet_size
         __props__["root_password"] = root_password
         __props__["ssh_key_ids"] = ssh_key_ids
         __props__["state"] = state

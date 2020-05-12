@@ -158,15 +158,16 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
-			"packet_ip_block_ranges":     {Tok: makeDataSource(mainMod, "getIpBlockRanges")},
-			"packet_operating_system":    {Tok: makeDataSource(mainMod, "getOperatingSystem")},
-			"packet_precreated_ip_block": {Tok: makeDataSource(mainMod, "getPrecreatedIpBlock")},
-			"packet_spot_market_price":   {Tok: makeDataSource(mainMod, "getSpotMarketPrice")},
-			"packet_device":              {Tok: makeDataSource(mainMod, "getDevice")},
-			"packet_volume":              {Tok: makeDataSource(mainMod, "getVolume")},
-			"packet_project":             {Tok: makeDataSource(mainMod, "getProject")},
-			"packet_organization":        {Tok: makeDataSource(mainMod, "getOrganization")},
-			"packet_spot_market_request": {Tok: makeDataSource(mainMod, "getSpotMarketRequest")},
+			"packet_ip_block_ranges":      {Tok: makeDataSource(mainMod, "getIpBlockRanges")},
+			"packet_operating_system":     {Tok: makeDataSource(mainMod, "getOperatingSystem")},
+			"packet_precreated_ip_block":  {Tok: makeDataSource(mainMod, "getPrecreatedIpBlock")},
+			"packet_spot_market_price":    {Tok: makeDataSource(mainMod, "getSpotMarketPrice")},
+			"packet_device":               {Tok: makeDataSource(mainMod, "getDevice")},
+			"packet_volume":               {Tok: makeDataSource(mainMod, "getVolume")},
+			"packet_project":              {Tok: makeDataSource(mainMod, "getProject")},
+			"packet_organization":         {Tok: makeDataSource(mainMod, "getOrganization")},
+			"packet_spot_market_request":  {Tok: makeDataSource(mainMod, "getSpotMarketRequest")},
+			"packet_device_bgp_neighbors": {Tok: makeDataSource(mainMod, "getDeviceBgpNeighbors")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

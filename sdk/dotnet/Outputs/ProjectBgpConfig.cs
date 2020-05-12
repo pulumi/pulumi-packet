@@ -14,7 +14,7 @@ namespace Pulumi.Packet.Outputs
     public sealed class ProjectBgpConfig
     {
         /// <summary>
-        /// Autonomous System Numer for local BGP deployment
+        /// Autonomous System Number for local BGP deployment
         /// </summary>
         public readonly int Asn;
         /// <summary>
