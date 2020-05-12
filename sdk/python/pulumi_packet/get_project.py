@@ -87,10 +87,7 @@ class AwaitableGetProjectResult(GetProjectResult):
 
 def get_project(name=None,project_id=None,opts=None):
     """
-    Use this datasource to retrieve attributes of the Project API resource.
-
-
-
+    Use this data source to access information about an existing resource.
 
     :param str name: The name which is used to look up the project
     :param str project_id: The UUID by which to look up the project

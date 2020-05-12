@@ -10,6 +10,29 @@ import * as utilities from "./utilities";
  * Provides a Packet Spot Market Request resource to allow you to
  * manage spot market requests on your account. For more detail on Spot Market, see [this article in Packing documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Create a spot market request
+ * const req = new packet.SpotMarketRequest("req", {
+ *     projectId: local.project_id,
+ *     maxBidPrice: 0.03,
+ *     facilities: ["ewr1"],
+ *     devicesMin: 1,
+ *     devicesMax: 1,
+ *     instance_parameters: {
+ *         hostname: "testspot",
+ *         billingCycle: "hourly",
+ *         operatingSystem: "coreosStable",
+ *         plan: "t1.small.x86",
+ *     },
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/spot_market_request.html.markdown.
  */

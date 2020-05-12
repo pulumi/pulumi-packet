@@ -18,6 +18,66 @@ import * as utilities from "./utilities";
  * * https://www.packet.com/resources/guides/layer-2-configurations/ 
  * * https://www.packet.com/developers/docs/network/advanced/layer-2/
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ * 
+ * // Hybrid network type
+ * const testVlan = new packet.Vlan("testVlan", {
+ *     description: "VLAN in New Jersey",
+ *     facility: "ewr1",
+ *     projectId: local.project_id,
+ * });
+ * const testDevice = new packet.Device("testDevice", {
+ *     hostname: "test",
+ *     plan: "m1.xlarge.x86",
+ *     facilities: ["ewr1"],
+ *     operatingSystem: "ubuntu1604",
+ *     billingCycle: "hourly",
+ *     projectId: local.project_id,
+ *     networkType: "hybrid",
+ * });
+ * const testPortVlanAttachment = new packet.PortVlanAttachment("testPortVlanAttachment", {
+ *     deviceId: testDevice.id,
+ *     portName: "eth1",
+ *     vlanVnid: testVlan.vxlan,
+ * });
+ * // Layer 2 network
+ * const testIndex/deviceDevice = new packet.Device("testIndex/deviceDevice", {
+ *     hostname: "test",
+ *     plan: "m1.xlarge.x86",
+ *     facilities: ["ewr1"],
+ *     operatingSystem: "ubuntu1604",
+ *     billingCycle: "hourly",
+ *     projectId: local.project_id,
+ *     networkType: "layer2-individual",
+ * });
+ * const test1Vlan = new packet.Vlan("test1Vlan", {
+ *     description: "VLAN in New Jersey",
+ *     facility: "ewr1",
+ *     projectId: local.project_id,
+ * });
+ * const test2Vlan = new packet.Vlan("test2Vlan", {
+ *     description: "VLAN in New Jersey",
+ *     facility: "ewr1",
+ *     projectId: local.project_id,
+ * });
+ * const test1PortVlanAttachment = new packet.PortVlanAttachment("test1PortVlanAttachment", {
+ *     deviceId: testDevice.id,
+ *     vlanVnid: test1Vlan.vxlan,
+ *     portName: "eth1",
+ * });
+ * const test2PortVlanAttachment = new packet.PortVlanAttachment("test2PortVlanAttachment", {
+ *     deviceId: testDevice.id,
+ *     vlanVnid: test2Vlan.vxlan,
+ *     portName: "eth1",
+ *     native: true,
+ * });
+ * ```
  * 
  * ## Attribute Referece
  * 

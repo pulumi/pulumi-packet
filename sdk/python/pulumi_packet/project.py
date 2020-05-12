@@ -46,11 +46,7 @@ class Project(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, backend_transfer=None, bgp_config=None, name=None, organization_id=None, payment_method_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a Packet project resource to allow you manage devices
-        in your projects.
-
-
-
+        Create a Project resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false

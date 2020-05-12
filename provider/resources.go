@@ -169,7 +169,6 @@ func Provider() tfbridge.ProviderInfo {
 			"packet_spot_market_request": {Tok: makeDataSource(mainMod, "getSpotMarketRequest")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			AsyncDataSources: true,
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^2.0.0",

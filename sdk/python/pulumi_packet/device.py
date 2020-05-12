@@ -168,6 +168,22 @@ class Device(pulumi.CustomResource):
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_packet as packet
+
+        web1 = packet.Device("web1",
+            hostname="tf.coreos2",
+            plan="t1.small.x86",
+            facilities=["ewr1"],
+            operating_system="coreos_stable",
+            billing_cycle="hourly",
+            project_id=local["project_id"])
+        ```
 
 
         :param str resource_name: The name of the resource.

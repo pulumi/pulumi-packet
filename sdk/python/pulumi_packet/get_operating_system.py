@@ -55,6 +55,26 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
     """
     Use this data source to get Packet Operating System image.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_packet as packet
+
+    example = packet.get_operating_system(name="Container Linux",
+        distro="coreos",
+        version="alpha",
+        provisionable_on="c1.small.x86")
+    server = packet.Device("server",
+        hostname="tf.coreos2",
+        plan="c1.small.x86",
+        facilities=["ewr1"],
+        operating_system=example.id,
+        billing_cycle="hourly",
+        project_id=local["project_id"])
+    ```
 
 
 

@@ -111,10 +111,7 @@ class AwaitableGetVolumeResult(GetVolumeResult):
 
 def get_volume(name=None,project_id=None,volume_id=None,opts=None):
     """
-    Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
-
-
-
+    Use this data source to access information about an existing resource.
 
     :param str name: Name of volume for lookup
     :param str project_id: The ID the parent Packet project (for lookup by name)

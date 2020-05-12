@@ -72,6 +72,18 @@ def get_ip_block_ranges(facility=None,project_id=None,opts=None):
 
     The datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_packet as packet
+
+    project_id = "<UUID_of_your_project>"
+    test = packet.get_ip_block_ranges(project_id=project_id)
+    pulumi.export("out", test)
+    ```
 
 
 
