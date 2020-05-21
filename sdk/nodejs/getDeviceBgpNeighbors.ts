@@ -8,26 +8,24 @@ import * as utilities from "./utilities";
 
 /**
  * Use this datasource to retrieve list of BGP neighbors of a device in the Packet host.
- * 
+ *
  * To have any BGP neighbors listed, the device must be in BGP-enabled project and have a BGP session assigned.
- * 
+ *
  * To learn more about using BGP in Packet, see the packet..BgpSession resource documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
- * 
+ *
  * const test = packet.getDeviceBgpNeighbors({
  *     deviceId: "4c641195-25e5-4c3c-b2b7-4cd7a42c7b40",
  * });
  * export const bgpNeighborsListing = test.then(test => test.bgpNeighbors);
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/device_bgp_neighbors.html.markdown.
  */
 export function getDeviceBgpNeighbors(args: GetDeviceBgpNeighborsArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceBgpNeighborsResult> {
     if (!opts) {

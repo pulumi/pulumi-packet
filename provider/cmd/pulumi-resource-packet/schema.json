@@ -1,0 +1,3211 @@
+{
+    "name": "packet",
+    "description": "A Pulumi package for creating and managing X cloud resources.",
+    "keywords": [
+        "pulumi",
+        "packet"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`packet` Terraform Provider](https://github.com/terraform-providers/terraform-provider-packet).",
+    "repository": "https://github.com/pulumi/pulumi-packet",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "authToken": {
+                "type": "string",
+                "description": "The API auth key for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "PACKET_AUTH_TOKEN"
+                    ]
+                }
+            }
+        },
+        "defaults": [
+            "authToken"
+        ]
+    },
+    "types": {
+        "packet:/DeviceIpAddress:DeviceIpAddress": {
+            "properties": {
+                "cidr": {
+                    "type": "integer",
+                    "description": "CIDR suffix for IP address block to be assigned, i.e. amount of addresses.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "reservationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "packet:/DeviceNetwork:DeviceNetwork": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "IPv4 or IPv6 address string\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cidr": {
+                    "type": "integer",
+                    "description": "CIDR suffix for IP address block to be assigned, i.e. amount of addresses.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "family": {
+                    "type": "integer",
+                    "description": "IP version - \"4\" or \"6\"\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gateway": {
+                    "type": "string",
+                    "description": "address of router\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "public": {
+                    "type": "boolean",
+                    "description": "whether the address is routable from the Internet\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "packet:/DevicePort:DevicePort": {
+            "properties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "Whether this port is part of a bond in bonded network setup\n* `project_id`- The ID of the project the device belongs to\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "ID of the port\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "mac": {
+                    "type": "string",
+                    "description": "MAC address assigned to the port\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the port (e.g. `eth0`, or `bond0`)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "packet:/ProjectBgpConfig:ProjectBgpConfig": {
+            "properties": {
+                "asn": {
+                    "type": "integer",
+                    "description": "Autonomous System Number for local BGP deployment\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deploymentType": {
+                    "type": "string",
+                    "description": "`private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxPrefix": {
+                    "type": "integer",
+                    "description": "The maximum number of route filters allowed per server\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "md5": {
+                    "type": "string",
+                    "description": "Password for BGP session in plaintext (not a checksum)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "status of BGP configuration in the project\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "asn",
+                "deploymentType"
+            ]
+        },
+        "packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters": {
+            "properties": {
+                "alwaysPxe": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "billingCycle": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "features": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "locked": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "operatingSystem": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "plan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectSshKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "termintationTime": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userSshKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "userdata": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "billingCycle",
+                "hostname",
+                "operatingSystem",
+                "plan"
+            ]
+        },
+        "packet:/VolumeAttachment:VolumeAttachment": {
+            "properties": {
+                "href": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy": {
+            "properties": {
+                "snapshotCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "snapshotFrequency": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "snapshotCount",
+                "snapshotFrequency"
+            ]
+        },
+        "packet:/getDeviceBgpNeighborsBgpNeighbor:getDeviceBgpNeighborsBgpNeighbor": {
+            "properties": {
+                "addressFamily": {
+                    "type": "integer",
+                    "description": "IP address version, 4 or 6\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "customerAs": {
+                    "type": "integer",
+                    "description": "Local autonomous system number\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "customerIp": {
+                    "type": "string",
+                    "description": "Local used peer IP address\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "md5Enabled": {
+                    "type": "boolean",
+                    "description": "Whether BGP session is password enabled\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "md5Password": {
+                    "type": "string",
+                    "description": "BGP session password in plaintext (not a checksum)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "multihop": {
+                    "type": "boolean",
+                    "description": "Whether the neighbor is in EBGP multihop session\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "peerAs": {
+                    "type": "integer",
+                    "description": "Peer AS number (different than customer_as for EBGP)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "peerIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Array of IP addresses of this neighbor's peers\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "routesIns": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn"
+                    },
+                    "description": "Array of incoming routes. Each route has attributes:\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "routesOuts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut"
+                    },
+                    "description": "Array of outgoing routes in the same format\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "addressFamily",
+                "customerAs",
+                "customerIp",
+                "md5Enabled",
+                "md5Password",
+                "multihop",
+                "peerAs",
+                "routesIns",
+                "routesOuts"
+            ]
+        },
+        "packet:/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn": {
+            "properties": {
+                "exact": {
+                    "type": "boolean",
+                    "description": "(bool) Whether the route is exact\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "route": {
+                    "type": "string",
+                    "description": "CIDR expression of route (ip/mask)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "exact",
+                "route"
+            ]
+        },
+        "packet:/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut": {
+            "properties": {
+                "exact": {
+                    "type": "boolean",
+                    "description": "(bool) Whether the route is exact\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "route": {
+                    "type": "string",
+                    "description": "CIDR expression of route (ip/mask)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "exact",
+                "route"
+            ]
+        },
+        "packet:/getDeviceNetwork:getDeviceNetwork": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "IPv4 or IPv6 address string\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cidr": {
+                    "type": "integer",
+                    "description": "Bit length of the network mask of the address\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "family": {
+                    "type": "integer",
+                    "description": "IP version - \"4\" or \"6\"\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gateway": {
+                    "type": "string",
+                    "description": "Address of router\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "public": {
+                    "type": "boolean",
+                    "description": "Whether the address is routable from the Internet\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "address",
+                "cidr",
+                "family",
+                "gateway",
+                "public"
+            ]
+        },
+        "packet:/getDevicePort:getDevicePort": {
+            "properties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "Whether this port is part of a bond in bonded network setup\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "ID of the port\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "mac": {
+                    "type": "string",
+                    "description": "MAC address assigned to the port\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the port (e.g. `eth0`, or `bond0`)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the port (e.g. `NetworkPort` or `NetworkBondPort`)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "bonded",
+                "id",
+                "mac",
+                "name",
+                "type"
+            ]
+        },
+        "packet:/getProjectBgpConfig:getProjectBgpConfig": {
+            "properties": {
+                "asn": {
+                    "type": "integer",
+                    "description": "Autonomous System Numer for local BGP deployment\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deploymentType": {
+                    "type": "string",
+                    "description": "`private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxPrefix": {
+                    "type": "integer",
+                    "description": "The maximum number of route filters allowed per server\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "md5": {
+                    "type": "string",
+                    "description": "Password for BGP session in plaintext (not a checksum)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "status of BGP configuration in the project\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "asn",
+                "deploymentType",
+                "maxPrefix",
+                "status"
+            ]
+        },
+        "packet:/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy": {
+            "properties": {
+                "snapshotCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "snapshotFrequency": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "snapshotCount",
+                "snapshotFrequency"
+            ]
+        }
+    },
+    "provider": {
+        "description": "The provider type for the packet package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "inputProperties": {
+            "authToken": {
+                "type": "string",
+                "description": "The API auth key for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "PACKET_AUTH_TOKEN"
+                    ]
+                }
+            }
+        }
+    },
+    "resources": {
+        "packet:index/bgpSession:BgpSession": {
+            "description": "Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/) for more details.\n\nYou need to have BGP config enabled in your project.\n\nBGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nFollowing HCL illustrates usage of the BGP features in Packet. It will \n\n* spawn a device in a new BGP-enabled project\n* reserve a floating IPv4 address in the project in the same location as the device\n* configure the floating IPv4 statically in the device\n* install and configure [BIRD](https://bird.network.cz) in the device, and make it announce the floating IPv4 locally\n\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "addressFamily": {
+                    "type": "string",
+                    "description": "`ipv4` or `ipv6`\n"
+                },
+                "defaultRoute": {
+                    "type": "boolean",
+                    "description": "Boolean flag to set the default route policy. False by default.\n"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "description": "ID of device \n"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "addressFamily",
+                "deviceId",
+                "status"
+            ],
+            "inputProperties": {
+                "addressFamily": {
+                    "type": "string",
+                    "description": "`ipv4` or `ipv6`\n"
+                },
+                "defaultRoute": {
+                    "type": "boolean",
+                    "description": "Boolean flag to set the default route policy. False by default.\n"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "description": "ID of device \n"
+                }
+            },
+            "requiredInputs": [
+                "addressFamily",
+                "deviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BgpSession resources.\n",
+                "properties": {
+                    "addressFamily": {
+                        "type": "string",
+                        "description": "`ipv4` or `ipv6`\n"
+                    },
+                    "defaultRoute": {
+                        "type": "boolean",
+                        "description": "Boolean flag to set the default route policy. False by default.\n"
+                    },
+                    "deviceId": {
+                        "type": "string",
+                        "description": "ID of device \n"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/device:Device": {
+            "description": "Provides a Packet device resource. This can be used to create,\nmodify, and delete devices.\n\n\u003e **Note:** All arguments including the `root_password` and `user_data` will be stored in\n the raw state as plain-text.\n[Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreate a device and add it to cool_project\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst web1 = new packet.Device(\"web1\", {\n    hostname: \"tf.coreos2\",\n    plan: \"t1.small.x86\",\n    facilities: [\"ewr1\"],\n    operatingSystem: \"coreos_stable\",\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nweb1 = packet.Device(\"web1\",\n    hostname=\"tf.coreos2\",\n    plan=\"t1.small.x86\",\n    facilities=[\"ewr1\"],\n    operating_system=\"coreos_stable\",\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"])\n```\n\nSame as above, but boot via iPXE initially, using the Ignition Provider for provisioning\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst pxe1 = new packet.Device(\"pxe1\", {\n    hostname: \"tf.coreos2-pxe\",\n    plan: \"t1.small.x86\",\n    facilities: [\"ewr1\"],\n    operatingSystem: \"custom_ipxe\",\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n    ipxeScriptUrl: \"https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe\",\n    alwaysPxe: \"false\",\n    userData: data.ignition_config.example.rendered,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\npxe1 = packet.Device(\"pxe1\",\n    hostname=\"tf.coreos2-pxe\",\n    plan=\"t1.small.x86\",\n    facilities=[\"ewr1\"],\n    operating_system=\"custom_ipxe\",\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"],\n    ipxe_script_url=\"https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe\",\n    always_pxe=\"false\",\n    user_data=data[\"ignition_config\"][\"example\"][\"rendered\"])\n```\n\nCreate a device without a public IP address, with only a /30 private IPv4 subnet (4 IP addresses)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst web1 = new packet.Device(\"web1\", {\n    hostname: \"tf.coreos2\",\n    plan: \"t1.small.x86\",\n    facilities: [\"ewr1\"],\n    operatingSystem: \"coreos_stable\",\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n    ip_address: [{\n        type: \"private_ipv4\",\n        cidr: 30,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nweb1 = packet.Device(\"web1\",\n    hostname=\"tf.coreos2\",\n    plan=\"t1.small.x86\",\n    facilities=[\"ewr1\"],\n    operating_system=\"coreos_stable\",\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"],\n    ip_address=[{\n        \"type\": \"private_ipv4\",\n        \"cidr\": 30,\n    }])\n```\n\nDeploy device on next-available reserved hardware and do custom partitioning.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst web1 = new packet.Device(\"web1\", {\n    hostname: \"tftest\",\n    plan: \"t1.small.x86\",\n    facilities: [\"sjc1\"],\n    operatingSystem: \"ubuntu_16_04\",\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n    hardwareReservationId: \"next-available\",\n    storage: `{\n  \"disks\": [\n    {\n      \"device\": \"/dev/sda\",\n      \"wipeTable\": true,\n      \"partitions\": [\n        {\n          \"label\": \"BIOS\",\n          \"number\": 1,\n          \"size\": \"4096\"\n        },\n        {\n          \"label\": \"SWAP\",\n          \"number\": 2,\n          \"size\": \"3993600\"\n        },\n        {\n          \"label\": \"ROOT\",\n          \"number\": 3,\n          \"size\": \"0\"\n        }\n      ]\n    }\n  ],\n  \"filesystems\": [\n    {\n      \"mount\": {\n        \"device\": \"/dev/sda3\",\n        \"format\": \"ext4\",\n        \"point\": \"/\",\n        \"create\": {\n          \"options\": [\n            \"-L\",\n            \"ROOT\"\n          ]\n        }\n      }\n    },\n    {\n      \"mount\": {\n        \"device\": \"/dev/sda2\",\n        \"format\": \"swap\",\n        \"point\": \"none\",\n        \"create\": {\n          \"options\": [\n            \"-L\",\n            \"SWAP\"\n          ]\n        }\n      }\n    }\n  ]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nweb1 = packet.Device(\"web1\",\n    hostname=\"tftest\",\n    plan=\"t1.small.x86\",\n    facilities=[\"sjc1\"],\n    operating_system=\"ubuntu_16_04\",\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"],\n    hardware_reservation_id=\"next-available\",\n    storage=\"\"\"{\n  \"disks\": [\n    {\n      \"device\": \"/dev/sda\",\n      \"wipeTable\": true,\n      \"partitions\": [\n        {\n          \"label\": \"BIOS\",\n          \"number\": 1,\n          \"size\": \"4096\"\n        },\n        {\n          \"label\": \"SWAP\",\n          \"number\": 2,\n          \"size\": \"3993600\"\n        },\n        {\n          \"label\": \"ROOT\",\n          \"number\": 3,\n          \"size\": \"0\"\n        }\n      ]\n    }\n  ],\n  \"filesystems\": [\n    {\n      \"mount\": {\n        \"device\": \"/dev/sda3\",\n        \"format\": \"ext4\",\n        \"point\": \"/\",\n        \"create\": {\n          \"options\": [\n            \"-L\",\n            \"ROOT\"\n          ]\n        }\n      }\n    },\n    {\n      \"mount\": {\n        \"device\": \"/dev/sda2\",\n        \"format\": \"swap\",\n        \"point\": \"none\",\n        \"create\": {\n          \"options\": [\n            \"-L\",\n            \"SWAP\"\n          ]\n        }\n      }\n    }\n  ]\n}\n\"\"\")\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "accessPrivateIpv4": {
+                    "type": "string",
+                    "description": "The ipv4 private IP assigned to the device\n"
+                },
+                "accessPublicIpv4": {
+                    "type": "string",
+                    "description": "The ipv4 maintenance IP assigned to the device\n"
+                },
+                "accessPublicIpv6": {
+                    "type": "string",
+                    "description": "The ipv6 maintenance IP assigned to the device\n"
+                },
+                "alwaysPxe": {
+                    "type": "boolean",
+                    "description": "If true, a device with OS `custom_ipxe` will\ncontinue to boot via iPXE on reboots.\n"
+                },
+                "billingCycle": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:BillingCycle",
+                    "description": "monthly or hourly\n"
+                },
+                "created": {
+                    "type": "string",
+                    "description": "The timestamp for when the device was created\n"
+                },
+                "deployedFacility": {
+                    "type": "string",
+                    "description": "The facility where the device is deployed.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description string for the device\n"
+                },
+                "facilities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:Facility"
+                    },
+                    "description": "List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.\n"
+                },
+                "forceDetachVolumes": {
+                    "type": "boolean",
+                    "description": "Delete device even if it has volumes attached. Only applies for destroy action.\n"
+                },
+                "hardwareReservationId": {
+                    "type": "string",
+                    "description": "The ID of hardware reservation which this device occupies\n* `hostname`- The hostname of the device\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The device name\n"
+                },
+                "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/DeviceIpAddress:DeviceIpAddress"
+                    },
+                    "description": "A list of IP address types for the device (structure is documented below). \n"
+                },
+                "ipxeScriptUrl": {
+                    "type": "string",
+                    "description": "URL pointing to a hosted iPXE script. More\ninformation is in the\n[Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)\ndoc.\n"
+                },
+                "locked": {
+                    "type": "boolean",
+                    "description": "Whether the device is locked\n"
+                },
+                "networkType": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:NetworkType"
+                },
+                "networks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/DeviceNetwork:DeviceNetwork"
+                    },
+                    "description": "The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: \n* Public IPv4 at `packet_device.name.network.0`\n* IPv6 at `packet_device.name.network.1`\n* Private IPv4 at `packet_device.name.network.2`\nElastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).\nThe fields of the network attributes are:\n"
+                },
+                "operatingSystem": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:OperatingSystem",
+                    "description": "The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.\n"
+                },
+                "plan": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Plan",
+                    "description": "The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.\n"
+                },
+                "ports": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/DevicePort:DevicePort"
+                    },
+                    "description": "Ports assigned to the device\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project in which to create the device\n"
+                },
+                "projectSshKeyIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "rootPassword": {
+                    "type": "string",
+                    "description": "Root password to the server (disabled after 24 hours)\n"
+                },
+                "sshKeyIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of IDs of SSH keys deployed in the device, can be both user and project SSH keys\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The status of the device\n"
+                },
+                "storage": {
+                    "type": "string",
+                    "description": "JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.\n* Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. \"4G\" or \"8M\" (for gigabytes and megabytes).\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags attached to the device\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The timestamp for the last time the device was updated\n"
+                },
+                "userData": {
+                    "type": "string",
+                    "description": "A string of the desired User Data for the device.\n"
+                },
+                "waitForReservationDeprovision": {
+                    "type": "boolean",
+                    "description": "Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).\n"
+                }
+            },
+            "required": [
+                "accessPrivateIpv4",
+                "accessPublicIpv4",
+                "accessPublicIpv6",
+                "billingCycle",
+                "created",
+                "deployedFacility",
+                "facilities",
+                "hardwareReservationId",
+                "hostname",
+                "locked",
+                "networks",
+                "operatingSystem",
+                "plan",
+                "ports",
+                "projectId",
+                "rootPassword",
+                "sshKeyIds",
+                "state",
+                "updated"
+            ],
+            "inputProperties": {
+                "alwaysPxe": {
+                    "type": "boolean",
+                    "description": "If true, a device with OS `custom_ipxe` will\ncontinue to boot via iPXE on reboots.\n"
+                },
+                "billingCycle": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:BillingCycle",
+                    "description": "monthly or hourly\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description string for the device\n"
+                },
+                "facilities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:Facility"
+                    },
+                    "description": "List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.\n"
+                },
+                "forceDetachVolumes": {
+                    "type": "boolean",
+                    "description": "Delete device even if it has volumes attached. Only applies for destroy action.\n"
+                },
+                "hardwareReservationId": {
+                    "type": "string",
+                    "description": "The ID of hardware reservation which this device occupies\n* `hostname`- The hostname of the device\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The device name\n"
+                },
+                "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/DeviceIpAddress:DeviceIpAddress"
+                    },
+                    "description": "A list of IP address types for the device (structure is documented below). \n"
+                },
+                "ipxeScriptUrl": {
+                    "type": "string",
+                    "description": "URL pointing to a hosted iPXE script. More\ninformation is in the\n[Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)\ndoc.\n"
+                },
+                "networkType": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:NetworkType"
+                },
+                "operatingSystem": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:OperatingSystem",
+                    "description": "The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.\n"
+                },
+                "plan": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Plan",
+                    "description": "The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project in which to create the device\n"
+                },
+                "projectSshKeyIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "storage": {
+                    "type": "string",
+                    "description": "JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.\n* Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. \"4G\" or \"8M\" (for gigabytes and megabytes).\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags attached to the device\n"
+                },
+                "userData": {
+                    "type": "string",
+                    "description": "A string of the desired User Data for the device.\n"
+                },
+                "waitForReservationDeprovision": {
+                    "type": "boolean",
+                    "description": "Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).\n"
+                }
+            },
+            "requiredInputs": [
+                "billingCycle",
+                "facilities",
+                "hostname",
+                "operatingSystem",
+                "plan",
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Device resources.\n",
+                "properties": {
+                    "accessPrivateIpv4": {
+                        "type": "string",
+                        "description": "The ipv4 private IP assigned to the device\n"
+                    },
+                    "accessPublicIpv4": {
+                        "type": "string",
+                        "description": "The ipv4 maintenance IP assigned to the device\n"
+                    },
+                    "accessPublicIpv6": {
+                        "type": "string",
+                        "description": "The ipv6 maintenance IP assigned to the device\n"
+                    },
+                    "alwaysPxe": {
+                        "type": "boolean",
+                        "description": "If true, a device with OS `custom_ipxe` will\ncontinue to boot via iPXE on reboots.\n"
+                    },
+                    "billingCycle": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:BillingCycle",
+                        "description": "monthly or hourly\n"
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp for when the device was created\n"
+                    },
+                    "deployedFacility": {
+                        "type": "string",
+                        "description": "The facility where the device is deployed.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description string for the device\n"
+                    },
+                    "facilities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "$ref": "#/types/packet:index:Facility"
+                        },
+                        "description": "List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.\n"
+                    },
+                    "forceDetachVolumes": {
+                        "type": "boolean",
+                        "description": "Delete device even if it has volumes attached. Only applies for destroy action.\n"
+                    },
+                    "hardwareReservationId": {
+                        "type": "string",
+                        "description": "The ID of hardware reservation which this device occupies\n* `hostname`- The hostname of the device\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The device name\n"
+                    },
+                    "ipAddresses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/DeviceIpAddress:DeviceIpAddress"
+                        },
+                        "description": "A list of IP address types for the device (structure is documented below). \n"
+                    },
+                    "ipxeScriptUrl": {
+                        "type": "string",
+                        "description": "URL pointing to a hosted iPXE script. More\ninformation is in the\n[Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)\ndoc.\n"
+                    },
+                    "locked": {
+                        "type": "boolean",
+                        "description": "Whether the device is locked\n"
+                    },
+                    "networkType": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:NetworkType"
+                    },
+                    "networks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/DeviceNetwork:DeviceNetwork"
+                        },
+                        "description": "The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: \n* Public IPv4 at `packet_device.name.network.0`\n* IPv6 at `packet_device.name.network.1`\n* Private IPv4 at `packet_device.name.network.2`\nElastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).\nThe fields of the network attributes are:\n"
+                    },
+                    "operatingSystem": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:OperatingSystem",
+                        "description": "The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.\n"
+                    },
+                    "plan": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:Plan",
+                        "description": "The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.\n"
+                    },
+                    "ports": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/DevicePort:DevicePort"
+                        },
+                        "description": "Ports assigned to the device\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project in which to create the device\n"
+                    },
+                    "projectSshKeyIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "rootPassword": {
+                        "type": "string",
+                        "description": "Root password to the server (disabled after 24 hours)\n"
+                    },
+                    "sshKeyIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of IDs of SSH keys deployed in the device, can be both user and project SSH keys\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The status of the device\n"
+                    },
+                    "storage": {
+                        "type": "string",
+                        "description": "JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.\n* Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. \"4G\" or \"8M\" (for gigabytes and megabytes).\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tags attached to the device\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp for the last time the device was updated\n"
+                    },
+                    "userData": {
+                        "type": "string",
+                        "description": "A string of the desired User Data for the device.\n"
+                    },
+                    "waitForReservationDeprovision": {
+                        "type": "boolean",
+                        "description": "Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/ipAttachment:IpAttachment": {
+            "description": "Provides a resource to attach elastic IP subnets to devices.\n\nTo attach an IP subnet from a reserved block to a provisioned device, you must derive a subnet CIDR belonging to\none of your reserved blocks in the same project and facility as the target device.\n\nFor example, you have reserved IPv4 address block 147.229.10.152/30, you can choose to assign either the whole\nblock as one subnet to a device; or 2 subnets with CIDRs 147.229.10.152/31' and 147.229.10.154/31; or 4 subnets\nwith mask prefix length 32. More about the elastic IP subnets is [here](https://www.packet.com/developers/docs/network/basic/elastic-ips/).\n\nDevice and reserved block must be in the same facility.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "addressFamily": {
+                    "type": "integer",
+                    "description": "Address family as integer (4 or 6)\n"
+                },
+                "cidr": {
+                    "type": "integer",
+                    "description": "length of CIDR prefix of the subnet as integer\n"
+                },
+                "cidrNotation": {
+                    "type": "string",
+                    "description": "CIDR notation of subnet from block reserved in the same\nproject and facility as the device\n"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "description": "ID of device to which to assign the subnet\n"
+                },
+                "gateway": {
+                    "type": "string",
+                    "description": "IP address of gateway for the subnet\n"
+                },
+                "global": {
+                    "type": "boolean"
+                },
+                "manageable": {
+                    "type": "boolean"
+                },
+                "management": {
+                    "type": "boolean"
+                },
+                "netmask": {
+                    "type": "string",
+                    "description": "Subnet mask in decimal notation, e.g. \"255.255.255.0\"\n"
+                },
+                "network": {
+                    "type": "string",
+                    "description": "Subnet network address\n"
+                },
+                "public": {
+                    "type": "boolean",
+                    "description": "boolean flag whether subnet is reachable from the Internet\n"
+                }
+            },
+            "required": [
+                "address",
+                "addressFamily",
+                "cidr",
+                "cidrNotation",
+                "deviceId",
+                "gateway",
+                "global",
+                "manageable",
+                "management",
+                "netmask",
+                "network",
+                "public"
+            ],
+            "inputProperties": {
+                "cidrNotation": {
+                    "type": "string",
+                    "description": "CIDR notation of subnet from block reserved in the same\nproject and facility as the device\n"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "description": "ID of device to which to assign the subnet\n"
+                }
+            },
+            "requiredInputs": [
+                "cidrNotation",
+                "deviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IpAttachment resources.\n",
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    },
+                    "addressFamily": {
+                        "type": "integer",
+                        "description": "Address family as integer (4 or 6)\n"
+                    },
+                    "cidr": {
+                        "type": "integer",
+                        "description": "length of CIDR prefix of the subnet as integer\n"
+                    },
+                    "cidrNotation": {
+                        "type": "string",
+                        "description": "CIDR notation of subnet from block reserved in the same\nproject and facility as the device\n"
+                    },
+                    "deviceId": {
+                        "type": "string",
+                        "description": "ID of device to which to assign the subnet\n"
+                    },
+                    "gateway": {
+                        "type": "string",
+                        "description": "IP address of gateway for the subnet\n"
+                    },
+                    "global": {
+                        "type": "boolean"
+                    },
+                    "manageable": {
+                        "type": "boolean"
+                    },
+                    "management": {
+                        "type": "boolean"
+                    },
+                    "netmask": {
+                        "type": "string",
+                        "description": "Subnet mask in decimal notation, e.g. \"255.255.255.0\"\n"
+                    },
+                    "network": {
+                        "type": "string",
+                        "description": "Subnet network address\n"
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "description": "boolean flag whether subnet is reachable from the Internet\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/organization:Organization": {
+            "description": "Provides a resource to manage organization resource in Packet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\n// Create a new Project\nconst tfOrganization1 = new packet.Organization(\"tf_organization_1\", {\n    description: \"quux\",\n    name: \"foobar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\n# Create a new Project\ntf_organization1 = packet.Organization(\"tfOrganization1\",\n    description=\"quux\",\n    name=\"foobar\")\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "created": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description string.\n"
+                },
+                "logo": {
+                    "type": "string",
+                    "description": "Logo URL.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Organization.\n"
+                },
+                "twitter": {
+                    "type": "string",
+                    "description": "Twitter handle.\n"
+                },
+                "updated": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string",
+                    "description": "Website link.\n"
+                }
+            },
+            "required": [
+                "created",
+                "name",
+                "updated"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description string.\n"
+                },
+                "logo": {
+                    "type": "string",
+                    "description": "Logo URL.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Organization.\n"
+                },
+                "twitter": {
+                    "type": "string",
+                    "description": "Twitter handle.\n"
+                },
+                "website": {
+                    "type": "string",
+                    "description": "Website link.\n"
+                }
+            },
+            "requiredInputs": [
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Organization resources.\n",
+                "properties": {
+                    "created": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description string.\n"
+                    },
+                    "logo": {
+                        "type": "string",
+                        "description": "Logo URL.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Organization.\n"
+                    },
+                    "twitter": {
+                        "type": "string",
+                        "description": "Twitter handle.\n"
+                    },
+                    "updated": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string",
+                        "description": "Website link.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/portVlanAttachment:PortVlanAttachment": {
+            "description": "Provides a resource to attach device ports to VLANs.\n\nDevice and VLAN must be in the same facility.\n\nIf you need this resource to add the port back to bond on removal, set `force_bond = true`.\n\nTo learn more about Layer 2 networking in Packet, refer to\n\n* https://www.packet.com/resources/guides/layer-2-configurations/ \n* https://www.packet.com/developers/docs/network/advanced/layer-2/\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\n// Hybrid network type\nconst testVlan = new packet.Vlan(\"testVlan\", {\n    description: \"VLAN in New Jersey\",\n    facility: \"ewr1\",\n    projectId: local.project_id,\n});\nconst testDevice = new packet.Device(\"testDevice\", {\n    hostname: \"test\",\n    plan: \"m1.xlarge.x86\",\n    facilities: [\"ewr1\"],\n    operatingSystem: \"ubuntu_16_04\",\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n    networkType: \"hybrid\",\n});\nconst testPortVlanAttachment = new packet.PortVlanAttachment(\"testPortVlanAttachment\", {\n    deviceId: testDevice.id,\n    portName: \"eth1\",\n    vlanVnid: testVlan.vxlan,\n});\n// Layer 2 network\nconst testIndex/deviceDevice = new packet.Device(\"testIndex/deviceDevice\", {\n    hostname: \"test\",\n    plan: \"m1.xlarge.x86\",\n    facilities: [\"ewr1\"],\n    operatingSystem: \"ubuntu_16_04\",\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n    networkType: \"layer2-individual\",\n});\nconst test1Vlan = new packet.Vlan(\"test1Vlan\", {\n    description: \"VLAN in New Jersey\",\n    facility: \"ewr1\",\n    projectId: local.project_id,\n});\nconst test2Vlan = new packet.Vlan(\"test2Vlan\", {\n    description: \"VLAN in New Jersey\",\n    facility: \"ewr1\",\n    projectId: local.project_id,\n});\nconst test1PortVlanAttachment = new packet.PortVlanAttachment(\"test1PortVlanAttachment\", {\n    deviceId: testDevice.id,\n    vlanVnid: test1Vlan.vxlan,\n    portName: \"eth1\",\n});\nconst test2PortVlanAttachment = new packet.PortVlanAttachment(\"test2PortVlanAttachment\", {\n    deviceId: testDevice.id,\n    vlanVnid: test2Vlan.vxlan,\n    portName: \"eth1\",\n    native: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\n# Hybrid network type\ntest_vlan = packet.Vlan(\"testVlan\",\n    description=\"VLAN in New Jersey\",\n    facility=\"ewr1\",\n    project_id=local[\"project_id\"])\ntest_device = packet.Device(\"testDevice\",\n    hostname=\"test\",\n    plan=\"m1.xlarge.x86\",\n    facilities=[\"ewr1\"],\n    operating_system=\"ubuntu_16_04\",\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"],\n    network_type=\"hybrid\")\ntest_port_vlan_attachment = packet.PortVlanAttachment(\"testPortVlanAttachment\",\n    device_id=test_device.id,\n    port_name=\"eth1\",\n    vlan_vnid=test_vlan.vxlan)\n# Layer 2 network\ntest_index_device_device = packet.Device(\"testIndex/deviceDevice\",\n    hostname=\"test\",\n    plan=\"m1.xlarge.x86\",\n    facilities=[\"ewr1\"],\n    operating_system=\"ubuntu_16_04\",\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"],\n    network_type=\"layer2-individual\")\ntest1_vlan = packet.Vlan(\"test1Vlan\",\n    description=\"VLAN in New Jersey\",\n    facility=\"ewr1\",\n    project_id=local[\"project_id\"])\ntest2_vlan = packet.Vlan(\"test2Vlan\",\n    description=\"VLAN in New Jersey\",\n    facility=\"ewr1\",\n    project_id=local[\"project_id\"])\ntest1_port_vlan_attachment = packet.PortVlanAttachment(\"test1PortVlanAttachment\",\n    device_id=test_device.id,\n    vlan_vnid=test1_vlan.vxlan,\n    port_name=\"eth1\")\ntest2_port_vlan_attachment = packet.PortVlanAttachment(\"test2PortVlanAttachment\",\n    device_id=test_device.id,\n    vlan_vnid=test2_vlan.vxlan,\n    port_name=\"eth1\",\n    native=True)\n```\n\n{{% /example %}}\n{{% /examples %}}\n## Attribute Referece\n\n* `id` - UUID of device port used in the assignment\n* `vlan_id` - UUID of VLAN API resource\n* `port_id` - UUID of device port\n",
+            "properties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "ID of device to be assigned to the VLAN\n"
+                },
+                "forceBond": {
+                    "type": "boolean",
+                    "description": "Add port back to the bond when this resource is removed. Default is false.\n"
+                },
+                "native": {
+                    "type": "boolean",
+                    "description": "Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. \n"
+                },
+                "portId": {
+                    "type": "string"
+                },
+                "portName": {
+                    "type": "string",
+                    "description": "Name of network port to be assigned to the VLAN\n"
+                },
+                "vlanId": {
+                    "type": "string"
+                },
+                "vlanVnid": {
+                    "type": "integer",
+                    "description": "VXLAN Network Identifier, integer\n"
+                }
+            },
+            "required": [
+                "deviceId",
+                "portId",
+                "portName",
+                "vlanId",
+                "vlanVnid"
+            ],
+            "inputProperties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "ID of device to be assigned to the VLAN\n"
+                },
+                "forceBond": {
+                    "type": "boolean",
+                    "description": "Add port back to the bond when this resource is removed. Default is false.\n"
+                },
+                "native": {
+                    "type": "boolean",
+                    "description": "Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. \n"
+                },
+                "portName": {
+                    "type": "string",
+                    "description": "Name of network port to be assigned to the VLAN\n"
+                },
+                "vlanVnid": {
+                    "type": "integer",
+                    "description": "VXLAN Network Identifier, integer\n"
+                }
+            },
+            "requiredInputs": [
+                "deviceId",
+                "portName",
+                "vlanVnid"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering PortVlanAttachment resources.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "ID of device to be assigned to the VLAN\n"
+                    },
+                    "forceBond": {
+                        "type": "boolean",
+                        "description": "Add port back to the bond when this resource is removed. Default is false.\n"
+                    },
+                    "native": {
+                        "type": "boolean",
+                        "description": "Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. \n"
+                    },
+                    "portId": {
+                        "type": "string"
+                    },
+                    "portName": {
+                        "type": "string",
+                        "description": "Name of network port to be assigned to the VLAN\n"
+                    },
+                    "vlanId": {
+                        "type": "string"
+                    },
+                    "vlanVnid": {
+                        "type": "integer",
+                        "description": "VXLAN Network Identifier, integer\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/project:Project": {
+            "properties": {
+                "backendTransfer": {
+                    "type": "boolean",
+                    "description": "Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false\n"
+                },
+                "bgpConfig": {
+                    "$ref": "#/types/packet:/ProjectBgpConfig:ProjectBgpConfig",
+                    "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
+                },
+                "created": {
+                    "type": "string",
+                    "description": "The timestamp for when the project was created\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the project\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.\n"
+                },
+                "paymentMethodId": {
+                    "type": "string",
+                    "description": "The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The timestamp for the last time the project was updated\n"
+                }
+            },
+            "required": [
+                "created",
+                "name",
+                "organizationId",
+                "paymentMethodId",
+                "updated"
+            ],
+            "inputProperties": {
+                "backendTransfer": {
+                    "type": "boolean",
+                    "description": "Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false\n"
+                },
+                "bgpConfig": {
+                    "$ref": "#/types/packet:/ProjectBgpConfig:ProjectBgpConfig",
+                    "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the project\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.\n"
+                },
+                "paymentMethodId": {
+                    "type": "string",
+                    "description": "The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).\n"
+                }
+            },
+            "requiredInputs": [
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Project resources.\n",
+                "properties": {
+                    "backendTransfer": {
+                        "type": "boolean",
+                        "description": "Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false\n"
+                    },
+                    "bgpConfig": {
+                        "$ref": "#/types/packet:/ProjectBgpConfig:ProjectBgpConfig",
+                        "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp for when the project was created\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the project\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.\n"
+                    },
+                    "paymentMethodId": {
+                        "type": "string",
+                        "description": "The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp for the last time the project was updated\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/projectSshKey:ProjectSshKey": {
+            "description": "Provides a Packet project SSH key resource to manage project-specific SSH keys.\nProject SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst projectId = \"\u003cUUID_of_your_project\u003e\";\nconst testProjectSshKey = new packet.ProjectSshKey(\"testProjectSshKey\", {\n    name: \"test\",\n    publicKey: \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDM/unxJeFqxsTJcu6mhqsMHSaVlpu+Jj/P+44zrm6X/MAoHSX3X9oLgujEjjZ74yLfdfe0bJrbL2YgJzNaEkIQQ1VPMHB5EhTKUBGnzlPP0hHTnxsjAm9qDHgUPgvgFDQSAMzdJRJ0Cexo16Ph9VxCoLh3dxiE7s2gaM2FdVg7P8aSxKypsxAhYV3D0AwqzoOyT6WWhBoQ0xZ85XevOTnJCpImSemEGs6nVGEsWcEc1d1YvdxFjAK4SdsKUMkj4Dsy/leKsdi/DEAf356vbMT1UHsXXvy5TlHu/Pa6qF53v32Enz+nhKy7/8W2Yt2yWx8HnQcT2rug9lvCXagJO6oauqRTO77C4QZn13ZLMZgLT66S/tNh2EX0gi6vmIs5dth8uF+K6nxIyKJXbcA4ASg7F1OJrHKFZdTc5v1cPeq6PcbqGgc+8SrPYQmzvQqLoMBuxyos2hUkYOmw3aeWJj9nFa8Wu5WaN89mUeOqSkU4S5cgUzWUOmKey56B/j/s1sVys9rMhZapVs0wL4L9GBBM48N5jAQZnnpo85A8KsZq5ME22bTLqnxsDXqDYZvS7PSI6Dxi7eleOFE/NYYDkrgDLHTQri8ucDMVeVWHgoMY2bPXdn7KKy5jW5jKsf8EPARXg77A4gRYmgKrcwIKqJEUPqyxJBe0CPoGTqgXPRsUiQ== tomk@hp2\",\n    projectId: projectId,\n});\nconst testDevice = new packet.Device(\"testDevice\", {\n    hostname: \"test\",\n    plan: \"baremetal_0\",\n    facilities: [\"ewr1\"],\n    operatingSystem: \"ubuntu_16_04\",\n    billingCycle: \"hourly\",\n    projectSshKeyIds: [testProjectSshKey.id],\n    projectId: projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nproject_id = \"\u003cUUID_of_your_project\u003e\"\ntest_project_ssh_key = packet.ProjectSshKey(\"testProjectSshKey\",\n    name=\"test\",\n    public_key=\"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDM/unxJeFqxsTJcu6mhqsMHSaVlpu+Jj/P+44zrm6X/MAoHSX3X9oLgujEjjZ74yLfdfe0bJrbL2YgJzNaEkIQQ1VPMHB5EhTKUBGnzlPP0hHTnxsjAm9qDHgUPgvgFDQSAMzdJRJ0Cexo16Ph9VxCoLh3dxiE7s2gaM2FdVg7P8aSxKypsxAhYV3D0AwqzoOyT6WWhBoQ0xZ85XevOTnJCpImSemEGs6nVGEsWcEc1d1YvdxFjAK4SdsKUMkj4Dsy/leKsdi/DEAf356vbMT1UHsXXvy5TlHu/Pa6qF53v32Enz+nhKy7/8W2Yt2yWx8HnQcT2rug9lvCXagJO6oauqRTO77C4QZn13ZLMZgLT66S/tNh2EX0gi6vmIs5dth8uF+K6nxIyKJXbcA4ASg7F1OJrHKFZdTc5v1cPeq6PcbqGgc+8SrPYQmzvQqLoMBuxyos2hUkYOmw3aeWJj9nFa8Wu5WaN89mUeOqSkU4S5cgUzWUOmKey56B/j/s1sVys9rMhZapVs0wL4L9GBBM48N5jAQZnnpo85A8KsZq5ME22bTLqnxsDXqDYZvS7PSI6Dxi7eleOFE/NYYDkrgDLHTQri8ucDMVeVWHgoMY2bPXdn7KKy5jW5jKsf8EPARXg77A4gRYmgKrcwIKqJEUPqyxJBe0CPoGTqgXPRsUiQ== tomk@hp2\",\n    project_id=project_id)\ntest_device = packet.Device(\"testDevice\",\n    hostname=\"test\",\n    plan=\"baremetal_0\",\n    facilities=[\"ewr1\"],\n    operating_system=\"ubuntu_16_04\",\n    billing_cycle=\"hourly\",\n    project_ssh_key_ids=[test_project_ssh_key.id],\n    project_id=project_id)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "The timestamp for when the SSH key was created\n"
+                },
+                "fingerprint": {
+                    "type": "string",
+                    "description": "The fingerprint of the SSH key\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key for identification\n"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The ID of parent project (same as project_id)\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of parent project\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public key. If this is a file, it can be read using the file interpolation function\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The timestamp for the last time the SSH key was updated\n"
+                }
+            },
+            "required": [
+                "created",
+                "fingerprint",
+                "name",
+                "ownerId",
+                "projectId",
+                "publicKey",
+                "updated"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key for identification\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of parent project\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public key. If this is a file, it can be read using the file interpolation function\n"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "projectId",
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProjectSshKey resources.\n",
+                "properties": {
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp for when the SSH key was created\n"
+                    },
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The fingerprint of the SSH key\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the SSH key for identification\n"
+                    },
+                    "ownerId": {
+                        "type": "string",
+                        "description": "The ID of parent project (same as project_id)\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of parent project\n"
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "The public key. If this is a file, it can be read using the file interpolation function\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp for the last time the SSH key was updated\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/reservedIpBlock:ReservedIpBlock": {
+            "description": "Provides a resource to create and manage blocks of reserved IP addresses in a project.\n\nWhen a user provisions first device in a facility, Packet API automatically allocates IPv6/56 and private IPv4/25 blocks.\nThe new device then gets IPv6 and private IPv4 addresses from those block. It also gets a public IPv4/31 address.\nEvery new device in the project and facility will automatically get IPv6 and private IPv4 addresses from these pre-allocated blocks.\nThe IPv6 and private IPv4 blocks can't be created, only imported. With this resource, it's possible to create either public IPv4 blocks or global IPv4 blocks.\n\nPublic blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.\n\nAddresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = \"global_ipv4\" and you must omit the facility argument.\n\nOnce IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "addressFamily": {
+                    "type": "integer",
+                    "description": "Address family as integer (4 or 6)\n"
+                },
+                "cidr": {
+                    "type": "integer",
+                    "description": "length of CIDR prefix of the block as integer\n"
+                },
+                "cidrNotation": {
+                    "type": "string",
+                    "description": "Address and mask in CIDR notation, e.g. \"147.229.15.30/31\"\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Arbitrary description\n"
+                },
+                "facility": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Facility",
+                    "description": "Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4\n"
+                },
+                "gateway": {
+                    "type": "string"
+                },
+                "global": {
+                    "type": "boolean",
+                    "description": "boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)\n"
+                },
+                "manageable": {
+                    "type": "boolean"
+                },
+                "management": {
+                    "type": "boolean"
+                },
+                "netmask": {
+                    "type": "string",
+                    "description": "Mask in decimal notation, e.g. \"255.255.255.0\"\n"
+                },
+                "network": {
+                    "type": "string",
+                    "description": "Network IP address portion of the block specification\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The packet project ID where to allocate the address block\n"
+                },
+                "public": {
+                    "type": "boolean",
+                    "description": "boolean flag whether addresses from a block are public\n"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "description": "The number of allocated /32 addresses, a power of 2\n"
+                },
+                "type": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:IpBlockType",
+                    "description": "Either \"global_ipv4\" or \"public_ipv4\", defaults to \"public_ipv4\" for backward compatibility\n"
+                }
+            },
+            "required": [
+                "address",
+                "addressFamily",
+                "cidr",
+                "cidrNotation",
+                "gateway",
+                "global",
+                "manageable",
+                "management",
+                "netmask",
+                "network",
+                "projectId",
+                "public",
+                "quantity"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Arbitrary description\n"
+                },
+                "facility": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Facility",
+                    "description": "Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The packet project ID where to allocate the address block\n"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "description": "The number of allocated /32 addresses, a power of 2\n"
+                },
+                "type": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:IpBlockType",
+                    "description": "Either \"global_ipv4\" or \"public_ipv4\", defaults to \"public_ipv4\" for backward compatibility\n"
+                }
+            },
+            "requiredInputs": [
+                "projectId",
+                "quantity"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ReservedIpBlock resources.\n",
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    },
+                    "addressFamily": {
+                        "type": "integer",
+                        "description": "Address family as integer (4 or 6)\n"
+                    },
+                    "cidr": {
+                        "type": "integer",
+                        "description": "length of CIDR prefix of the block as integer\n"
+                    },
+                    "cidrNotation": {
+                        "type": "string",
+                        "description": "Address and mask in CIDR notation, e.g. \"147.229.15.30/31\"\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Arbitrary description\n"
+                    },
+                    "facility": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:Facility",
+                        "description": "Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4\n"
+                    },
+                    "gateway": {
+                        "type": "string"
+                    },
+                    "global": {
+                        "type": "boolean",
+                        "description": "boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)\n"
+                    },
+                    "manageable": {
+                        "type": "boolean"
+                    },
+                    "management": {
+                        "type": "boolean"
+                    },
+                    "netmask": {
+                        "type": "string",
+                        "description": "Mask in decimal notation, e.g. \"255.255.255.0\"\n"
+                    },
+                    "network": {
+                        "type": "string",
+                        "description": "Network IP address portion of the block specification\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The packet project ID where to allocate the address block\n"
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "description": "boolean flag whether addresses from a block are public\n"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "The number of allocated /32 addresses, a power of 2\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:IpBlockType",
+                        "description": "Either \"global_ipv4\" or \"public_ipv4\", defaults to \"public_ipv4\" for backward compatibility\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/spotMarketRequest:SpotMarketRequest": {
+            "description": "Provides a Packet Spot Market Request resource to allow you to\nmanage spot market requests on your account. For more detail on Spot Market, see [this article in Packet documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\n// Create a spot market request\nconst req = new packet.SpotMarketRequest(\"req\", {\n    projectId: local.project_id,\n    maxBidPrice: 0.03,\n    facilities: [\"ewr1\"],\n    devicesMin: 1,\n    devicesMax: 1,\n    instance_parameters: {\n        hostname: \"testspot\",\n        billingCycle: \"hourly\",\n        operatingSystem: \"coreos_stable\",\n        plan: \"t1.small.x86\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\n# Create a spot market request\nreq = packet.SpotMarketRequest(\"req\",\n    project_id=local[\"project_id\"],\n    max_bid_price=0.03,\n    facilities=[\"ewr1\"],\n    devices_min=1,\n    devices_max=1,\n    instance_parameters={\n        \"hostname\": \"testspot\",\n        \"billingCycle\": \"hourly\",\n        \"operatingSystem\": \"coreos_stable\",\n        \"plan\": \"t1.small.x86\",\n    })\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "devicesMax": {
+                    "type": "integer",
+                    "description": "Maximum number devices to be created\n"
+                },
+                "devicesMin": {
+                    "type": "integer",
+                    "description": "Miniumum number devices to be created\n"
+                },
+                "facilities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Facility IDs where devices should be created\n"
+                },
+                "instanceParameters": {
+                    "$ref": "#/types/packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
+                    "description": "Device parameters. See device resource for details\n"
+                },
+                "maxBidPrice": {
+                    "type": "number",
+                    "description": "Maximum price user is willing to pay per hour per device\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Project ID\n"
+                },
+                "waitForDevices": {
+                    "type": "boolean",
+                    "description": "On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed\n"
+                }
+            },
+            "required": [
+                "devicesMax",
+                "devicesMin",
+                "facilities",
+                "instanceParameters",
+                "maxBidPrice",
+                "projectId"
+            ],
+            "inputProperties": {
+                "devicesMax": {
+                    "type": "integer",
+                    "description": "Maximum number devices to be created\n"
+                },
+                "devicesMin": {
+                    "type": "integer",
+                    "description": "Miniumum number devices to be created\n"
+                },
+                "facilities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Facility IDs where devices should be created\n"
+                },
+                "instanceParameters": {
+                    "$ref": "#/types/packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
+                    "description": "Device parameters. See device resource for details\n"
+                },
+                "maxBidPrice": {
+                    "type": "number",
+                    "description": "Maximum price user is willing to pay per hour per device\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Project ID\n"
+                },
+                "waitForDevices": {
+                    "type": "boolean",
+                    "description": "On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed\n"
+                }
+            },
+            "requiredInputs": [
+                "devicesMax",
+                "devicesMin",
+                "facilities",
+                "instanceParameters",
+                "maxBidPrice",
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SpotMarketRequest resources.\n",
+                "properties": {
+                    "devicesMax": {
+                        "type": "integer",
+                        "description": "Maximum number devices to be created\n"
+                    },
+                    "devicesMin": {
+                        "type": "integer",
+                        "description": "Miniumum number devices to be created\n"
+                    },
+                    "facilities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Facility IDs where devices should be created\n"
+                    },
+                    "instanceParameters": {
+                        "$ref": "#/types/packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
+                        "description": "Device parameters. See device resource for details\n"
+                    },
+                    "maxBidPrice": {
+                        "type": "number",
+                        "description": "Maximum price user is willing to pay per hour per device\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Project ID\n"
+                    },
+                    "waitForDevices": {
+                        "type": "boolean",
+                        "description": "On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/sshKey:SshKey": {
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "The timestamp for when the SSH key was created\n"
+                },
+                "fingerprint": {
+                    "type": "string",
+                    "description": "The fingerprint of the SSH key\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key for identification\n"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The UUID of the Packet API User who owns this key\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public key. If this is a file, it\ncan be read using the file interpolation function\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The timestamp for the last time the SSH key was updated\n"
+                }
+            },
+            "required": [
+                "created",
+                "fingerprint",
+                "name",
+                "ownerId",
+                "publicKey",
+                "updated"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key for identification\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public key. If this is a file, it\ncan be read using the file interpolation function\n"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SshKey resources.\n",
+                "properties": {
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp for when the SSH key was created\n"
+                    },
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The fingerprint of the SSH key\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the SSH key for identification\n"
+                    },
+                    "ownerId": {
+                        "type": "string",
+                        "description": "The UUID of the Packet API User who owns this key\n"
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "The public key. If this is a file, it\ncan be read using the file interpolation function\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp for the last time the SSH key was updated\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/vlan:Vlan": {
+            "description": "Provides a resource to allow users to manage Virtual Networks in their projects.\n\nTo learn more about Layer 2 networking in Packet, refer to\n* https://www.packet.com/resources/guides/layer-2-configurations/\n* https://www.packet.com/developers/docs/network/advanced/layer-2/\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\n// Create a new VLAN in datacenter \"ewr1\"\nconst vlan1 = new packet.Vlan(\"vlan1\", {\n    description: \"VLAN in New Jersey\",\n    facility: \"ewr1\",\n    projectId: local.project_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\n# Create a new VLAN in datacenter \"ewr1\"\nvlan1 = packet.Vlan(\"vlan1\",\n    description=\"VLAN in New Jersey\",\n    facility=\"ewr1\",\n    project_id=local[\"project_id\"])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description string\n"
+                },
+                "facility": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Facility",
+                    "description": "Facility where to create the VLAN\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of parent project\n"
+                },
+                "vxlan": {
+                    "type": "integer",
+                    "description": "VXLAN segment ID\n"
+                }
+            },
+            "required": [
+                "facility",
+                "projectId",
+                "vxlan"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description string\n"
+                },
+                "facility": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Facility",
+                    "description": "Facility where to create the VLAN\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of parent project\n"
+                }
+            },
+            "requiredInputs": [
+                "facility",
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Vlan resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description string\n"
+                    },
+                    "facility": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:Facility",
+                        "description": "Facility where to create the VLAN\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "ID of parent project\n"
+                    },
+                    "vxlan": {
+                        "type": "integer",
+                        "description": "VXLAN segment ID\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/volume:Volume": {
+            "properties": {
+                "attachments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/VolumeAttachment:VolumeAttachment"
+                    },
+                    "description": "A list of attachments, each with it's own `href` attribute\n"
+                },
+                "billingCycle": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:BillingCycle",
+                    "description": "The billing cycle, defaults to \"hourly\"\n"
+                },
+                "created": {
+                    "type": "string",
+                    "description": "The timestamp for when the volume was created\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional description for the volume\n"
+                },
+                "facility": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Facility",
+                    "description": "The facility to create the volume in\n"
+                },
+                "locked": {
+                    "type": "boolean",
+                    "description": "Lock or unlock the volume\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the volume\n"
+                },
+                "plan": {
+                    "type": "string",
+                    "description": "The service plan slug of the volume\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The packet project ID to deploy the volume in\n"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The size in GB to make the volume\n"
+                },
+                "snapshotPolicies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
+                    },
+                    "description": "Optional list of snapshot policies\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the volume\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The timestamp for the last time the volume was updated\n"
+                }
+            },
+            "required": [
+                "attachments",
+                "billingCycle",
+                "created",
+                "facility",
+                "name",
+                "plan",
+                "projectId",
+                "size",
+                "state",
+                "updated"
+            ],
+            "inputProperties": {
+                "billingCycle": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:BillingCycle",
+                    "description": "The billing cycle, defaults to \"hourly\"\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional description for the volume\n"
+                },
+                "facility": {
+                    "type": "string",
+                    "$ref": "#/types/packet:index:Facility",
+                    "description": "The facility to create the volume in\n"
+                },
+                "locked": {
+                    "type": "boolean",
+                    "description": "Lock or unlock the volume\n"
+                },
+                "plan": {
+                    "type": "string",
+                    "description": "The service plan slug of the volume\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The packet project ID to deploy the volume in\n"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The size in GB to make the volume\n"
+                },
+                "snapshotPolicies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
+                    },
+                    "description": "Optional list of snapshot policies\n"
+                }
+            },
+            "requiredInputs": [
+                "facility",
+                "plan",
+                "projectId",
+                "size"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Volume resources.\n",
+                "properties": {
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/VolumeAttachment:VolumeAttachment"
+                        },
+                        "description": "A list of attachments, each with it's own `href` attribute\n"
+                    },
+                    "billingCycle": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:BillingCycle",
+                        "description": "The billing cycle, defaults to \"hourly\"\n"
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp for when the volume was created\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description for the volume\n"
+                    },
+                    "facility": {
+                        "type": "string",
+                        "$ref": "#/types/packet:index:Facility",
+                        "description": "The facility to create the volume in\n"
+                    },
+                    "locked": {
+                        "type": "boolean",
+                        "description": "Lock or unlock the volume\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the volume\n"
+                    },
+                    "plan": {
+                        "type": "string",
+                        "description": "The service plan slug of the volume\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The packet project ID to deploy the volume in\n"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The size in GB to make the volume\n"
+                    },
+                    "snapshotPolicies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
+                        },
+                        "description": "Optional list of snapshot policies\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the volume\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp for the last time the volume was updated\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "packet:index/volumeAttachment:VolumeAttachment": {
+            "properties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The ID of the device to which the volume should be attached\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The ID of the volume to attach\n"
+                }
+            },
+            "required": [
+                "deviceId",
+                "volumeId"
+            ],
+            "inputProperties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The ID of the device to which the volume should be attached\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The ID of the volume to attach\n"
+                }
+            },
+            "requiredInputs": [
+                "deviceId",
+                "volumeId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VolumeAttachment resources.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "The ID of the device to which the volume should be attached\n"
+                    },
+                    "volumeId": {
+                        "type": "string",
+                        "description": "The ID of the volume to attach\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "packet:index/getDevice:getDevice": {
+            "description": "Provides a Packet device datasource.\n\n\u003e **Note:** All arguments including the `root_password` and `user_data` will be stored in\n the raw state as plain-text.\n[Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).\n\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDevice.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "Device ID\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The device name\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The id of the project in which the devices exists\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDevice.\n",
+                "properties": {
+                    "accessPrivateIpv4": {
+                        "type": "string",
+                        "description": "The ipv4 private IP assigned to the device\n"
+                    },
+                    "accessPublicIpv4": {
+                        "type": "string",
+                        "description": "The ipv4 management IP assigned to the device\n"
+                    },
+                    "accessPublicIpv6": {
+                        "type": "string",
+                        "description": "The ipv6 management IP assigned to the device\n"
+                    },
+                    "alwaysPxe": {
+                        "type": "boolean"
+                    },
+                    "billingCycle": {
+                        "type": "string",
+                        "description": "The billing cycle of the device (monthly or hourly)\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description string for the device\n"
+                    },
+                    "deviceId": {
+                        "type": "string"
+                    },
+                    "facility": {
+                        "type": "string",
+                        "description": "The facility where the device is deployed.\n"
+                    },
+                    "hardwareReservationId": {
+                        "type": "string",
+                        "description": "The id of hardware reservation which this device occupies\n"
+                    },
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ipxeScriptUrl": {
+                        "type": "string"
+                    },
+                    "networkType": {
+                        "type": "string",
+                        "description": "L2 network type of the device, one of \"layer3\", \"layer2-bonded\", \"layer2-individual\", \"hybrid\"\n"
+                    },
+                    "networks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/getDeviceNetwork:getDeviceNetwork"
+                        },
+                        "description": "The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: \n* Public IPv4 at `packet_device.name.network.0`\n* IPv6 at `packet_device.name.network.1`\n* Private IPv4 at `packet_device.name.network.2`\nElastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).\nThe fields of the network attributes are:\n"
+                    },
+                    "operatingSystem": {
+                        "type": "string",
+                        "description": "The operating system running on the device\n"
+                    },
+                    "plan": {
+                        "type": "string",
+                        "description": "The hardware config of the device\n"
+                    },
+                    "ports": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/getDevicePort:getDevicePort"
+                        },
+                        "description": "Ports assigned to the device\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "rootPassword": {
+                        "type": "string",
+                        "description": "Root password to the server (if still available)\n"
+                    },
+                    "sshKeyIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of IDs of SSH keys deployed in the device, can be both user or project SSH keys\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the device\n"
+                    },
+                    "storage": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tags attached to the device\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessPrivateIpv4",
+                    "accessPublicIpv4",
+                    "accessPublicIpv6",
+                    "alwaysPxe",
+                    "billingCycle",
+                    "description",
+                    "deviceId",
+                    "facility",
+                    "hardwareReservationId",
+                    "hostname",
+                    "ipxeScriptUrl",
+                    "networks",
+                    "networkType",
+                    "operatingSystem",
+                    "plan",
+                    "ports",
+                    "projectId",
+                    "rootPassword",
+                    "sshKeyIds",
+                    "state",
+                    "storage",
+                    "tags",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getDeviceBgpNeighbors:getDeviceBgpNeighbors": {
+            "description": "Use this datasource to retrieve list of BGP neighbors of a device in the Packet host.\n\nTo have any BGP neighbors listed, the device must be in BGP-enabled project and have a BGP session assigned.\n\nTo learn more about using BGP in Packet, see the packet..BgpSession resource documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst test = packet.getDeviceBgpNeighbors({\n    deviceId: \"4c641195-25e5-4c3c-b2b7-4cd7a42c7b40\",\n});\nexport const bgpNeighborsListing = test.then(test =\u003e test.bgpNeighbors);\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\ntest = packet.get_device_bgp_neighbors(device_id=\"4c641195-25e5-4c3c-b2b7-4cd7a42c7b40\")\npulumi.export(\"bgpNeighborsListing\", test.bgp_neighbors)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDeviceBgpNeighbors.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "UUID of BGP-enabled device whose neighbors to list\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDeviceBgpNeighbors.\n",
+                "properties": {
+                    "bgpNeighbors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/getDeviceBgpNeighborsBgpNeighbor:getDeviceBgpNeighborsBgpNeighbor"
+                        },
+                        "description": "array of BGP neighbor records with attributes:\n"
+                    },
+                    "deviceId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bgpNeighbors",
+                    "deviceId",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getIpBlockRanges:getIpBlockRanges": {
+            "description": "Use this datasource to get CIDR expressions for allocated IP blocks of all the types in a project, optionally filtered by facility.\n\nThere are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.\n\nThe datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`\u003cnetwork\u003e/\u003cmask\u003e`) of respective blocks from the project.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst projectId = \"\u003cUUID_of_your_project\u003e\";\nconst test = packet.getIpBlockRanges({\n    projectId: projectId,\n});\nexport const out = test;\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nproject_id = \"\u003cUUID_of_your_project\u003e\"\ntest = packet.get_ip_block_ranges(project_id=project_id)\npulumi.export(\"out\", test)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIpBlockRanges.\n",
+                "properties": {
+                    "facility": {
+                        "type": "string",
+                        "description": "Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this, all the block from the project will be listed.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "ID of the project from which to list the blocks. \n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIpBlockRanges.\n",
+                "properties": {
+                    "facility": {
+                        "type": "string"
+                    },
+                    "globalIpv4s": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "list of CIDR expressions for Global IPv4 blocks in the project\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ipv6s": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "list of CIDR expressions for IPv6 blocks in the project\n"
+                    },
+                    "privateIpv4s": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "list of CIDR expressions for Private IPv4 blocks in the project\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "publicIpv4s": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "list of CIDR expressions for Public IPv4 blocks in the project\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "globalIpv4s",
+                    "ipv6s",
+                    "privateIpv4s",
+                    "projectId",
+                    "publicIpv4s",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getOperatingSystem:getOperatingSystem": {
+            "description": "Use this data source to get Packet Operating System image.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst example = packet.getOperatingSystem({\n    name: \"Container Linux\",\n    distro: \"coreos\",\n    version: \"alpha\",\n    provisionableOn: \"c1.small.x86\",\n});\nconst server = new packet.Device(\"server\", {\n    hostname: \"tf.coreos2\",\n    plan: \"c1.small.x86\",\n    facilities: [\"ewr1\"],\n    operatingSystem: example.then(example =\u003e example.id),\n    billingCycle: \"hourly\",\n    projectId: local.project_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nexample = packet.get_operating_system(name=\"Container Linux\",\n    distro=\"coreos\",\n    version=\"alpha\",\n    provisionable_on=\"c1.small.x86\")\nserver = packet.Device(\"server\",\n    hostname=\"tf.coreos2\",\n    plan=\"c1.small.x86\",\n    facilities=[\"ewr1\"],\n    operating_system=example.id,\n    billing_cycle=\"hourly\",\n    project_id=local[\"project_id\"])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getOperatingSystem.\n",
+                "properties": {
+                    "distro": {
+                        "type": "string",
+                        "description": "Name of the OS distribution.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name or part of the name of the distribution. Case insensitive.\n"
+                    },
+                    "provisionableOn": {
+                        "type": "string",
+                        "description": "Plan name.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Version of the distribution\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOperatingSystem.\n",
+                "properties": {
+                    "distro": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "provisionableOn": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "description": "Operating system slug (same as `id`)\n"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "slug",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getOrganization:getOrganization": {
+            "description": "Provides a Packet organization datasource.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getOrganization.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The organization name\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The UUID of the organization resource\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOrganization.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description string\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "logo": {
+                        "type": "string",
+                        "description": "Logo URL\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "projectIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "UUIDs of project resources which belong to this organization\n"
+                    },
+                    "twitter": {
+                        "type": "string",
+                        "description": "Twitter handle\n"
+                    },
+                    "website": {
+                        "type": "string",
+                        "description": "Website link\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "logo",
+                    "name",
+                    "organizationId",
+                    "projectIds",
+                    "twitter",
+                    "website",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock": {
+            "description": "Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.\nYou can then use the cidrsubnet TF builtin function to derive subnets.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getPrecreatedIpBlock.\n",
+                "properties": {
+                    "addressFamily": {
+                        "type": "integer",
+                        "description": "4 or 6, depending on which block you are looking for.\n"
+                    },
+                    "facility": {
+                        "type": "string",
+                        "description": "Facility of the searched block. (Optional) Only allowed for non-global blocks.\n"
+                    },
+                    "global": {
+                        "type": "boolean",
+                        "description": "Whether to look for global block. Default is false for backward compatibility.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "ID of the project where the searched block should be.\n"
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "description": "Whether to look for public or private block. \n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "addressFamily",
+                    "projectId",
+                    "public"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getPrecreatedIpBlock.\n",
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    },
+                    "addressFamily": {
+                        "type": "integer"
+                    },
+                    "cidr": {
+                        "type": "integer"
+                    },
+                    "cidrNotation": {
+                        "type": "string",
+                        "description": "CIDR notation of the looked up block.\n"
+                    },
+                    "facility": {
+                        "type": "string"
+                    },
+                    "gateway": {
+                        "type": "string"
+                    },
+                    "global": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "manageable": {
+                        "type": "boolean"
+                    },
+                    "management": {
+                        "type": "boolean"
+                    },
+                    "netmask": {
+                        "type": "string"
+                    },
+                    "network": {
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "public": {
+                        "type": "boolean"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "address",
+                    "addressFamily",
+                    "cidr",
+                    "cidrNotation",
+                    "gateway",
+                    "manageable",
+                    "management",
+                    "netmask",
+                    "network",
+                    "projectId",
+                    "public",
+                    "quantity",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getProject:getProject": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getProject.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name which is used to look up the project\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The UUID by which to look up the project\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProject.\n",
+                "properties": {
+                    "backendTransfer": {
+                        "type": "boolean",
+                        "description": "Whether Backend Transfer is enabled for this project\n"
+                    },
+                    "bgpConfig": {
+                        "$ref": "#/types/packet:/getProjectBgpConfig:getProjectBgpConfig",
+                        "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp for when the project was created\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The UUID of this project's parent organization\n"
+                    },
+                    "paymentMethodId": {
+                        "type": "string",
+                        "description": "The UUID of payment method for this project\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp for the last time the project was updated\n"
+                    },
+                    "userIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of UUIDs of user accounts which beling to this project\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backendTransfer",
+                    "bgpConfig",
+                    "created",
+                    "name",
+                    "organizationId",
+                    "paymentMethodId",
+                    "projectId",
+                    "updated",
+                    "userIds",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getSpotMarketPrice:getSpotMarketPrice": {
+            "description": "Use this data source to get Packet Spot Market Price.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as packet from \"@pulumi/packet\";\n\nconst example = pulumi.output(packet.getSpotMarketPrice({\n    facility: \"ewr1\",\n    plan: \"c1.small.x86\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_packet as packet\n\nexample = packet.get_spot_market_price(facility=\"ewr1\",\n    plan=\"c1.small.x86\")\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSpotMarketPrice.\n",
+                "properties": {
+                    "facility": {
+                        "type": "string",
+                        "description": "Name of the facility.\n"
+                    },
+                    "plan": {
+                        "type": "string",
+                        "description": "Name of the plan.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "facility",
+                    "plan"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSpotMarketPrice.\n",
+                "properties": {
+                    "facility": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "plan": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number",
+                        "description": "Current spot market price for given plan in given facility.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "facility",
+                    "plan",
+                    "price",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getSpotMarketRequest:getSpotMarketRequest": {
+            "description": "Provides a Packet spot_market_request datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.\n\n\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSpotMarketRequest.\n",
+                "properties": {
+                    "requestId": {
+                        "type": "string",
+                        "description": "The id of the Spot Market Request\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "requestId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSpotMarketRequest.\n",
+                "properties": {
+                    "deviceIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of IDs of devices spawned by the referenced Spot Market Request\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "requestId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceIds",
+                    "requestId",
+                    "id"
+                ]
+            }
+        },
+        "packet:index/getVolume:getVolume": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getVolume.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of volume for lookup\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID the parent Packet project (for lookup by name)\n"
+                    },
+                    "volumeId": {
+                        "type": "string",
+                        "description": "ID of volume for lookup\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVolume.\n",
+                "properties": {
+                    "billingCycle": {
+                        "type": "string",
+                        "description": "The billing cycle, defaults to hourly\n"
+                    },
+                    "created": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "deviceIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "UUIDs of devices to which this volume is attached\n"
+                    },
+                    "facility": {
+                        "type": "string",
+                        "description": "The facility slug the volume resides in\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "locked": {
+                        "type": "boolean",
+                        "description": "Whether the volume is locked or not\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the volume\n* `project_id ` - The project id the volume is in\n"
+                    },
+                    "plan": {
+                        "type": "string",
+                        "description": "Performance plan the volume is on\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The size in GB of the volume\n"
+                    },
+                    "snapshotPolicies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/packet:/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy"
+                        }
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the volume\n"
+                    },
+                    "updated": {
+                        "type": "string"
+                    },
+                    "volumeId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "billingCycle",
+                    "created",
+                    "description",
+                    "deviceIds",
+                    "facility",
+                    "locked",
+                    "name",
+                    "plan",
+                    "projectId",
+                    "size",
+                    "snapshotPolicies",
+                    "state",
+                    "updated",
+                    "volumeId",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "namespaces": {
+                "packet": "Packet"
+            },
+            "packageReferences": {
+                "Pulumi": "2.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "nodejs": {
+            "dependencies": {
+                "@pulumi/pulumi": "^2.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^8.0.25"
+            },
+            "packageDescription": "A Pulumi package for creating and managing X cloud resources.",
+            "packageName": "",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "requires": {
+                "pulumi": "\u003e=2.0.0,\u003c3.0.0"
+            }
+        }
+    }
+}
