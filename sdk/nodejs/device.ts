@@ -11,20 +11,20 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
 /**
  * Provides a Packet device resource. This can be used to create,
  * modify, and delete devices.
- * 
+ *
  * > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
- * 
+ *
  * const web1 = new packet.Device("web1", {
  *     hostname: "tf.coreos2",
  *     plan: "t1.small.x86",
@@ -34,8 +34,6 @@ import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Pla
  *     projectId: local.project_id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/device.html.markdown.
  */
 export class Device extends pulumi.CustomResource {
     /**

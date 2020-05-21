@@ -8,11 +8,9 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Packet spotMarketRequest datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
- * 
- * 
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/d/spot_market_request.html.markdown.
+ *
+ *
  */
 export function getSpotMarketRequest(args: GetSpotMarketRequestArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketRequestResult> {
     if (!opts) {

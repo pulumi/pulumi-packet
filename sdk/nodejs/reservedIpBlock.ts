@@ -10,20 +10,18 @@ import {Facility, IpBlockType} from "./index";
 
 /**
  * Provides a resource to create and manage blocks of reserved IP addresses in a project.
- * 
+ *
  * When a user provisions first device in a facility, Packet API automatically allocates IPv6/56 and private IPv4/25 blocks.
  * The new device then gets IPv6 and private IPv4 addresses from those block. It also gets a public IPv4/31 address.
  * Every new device in the project and facility will automatically get IPv6 and private IPv4 addresses from these pre-allocated blocks.
  * The IPv6 and private IPv4 blocks can't be created, only imported. With this resource, it's possible to create either public IPv4 blocks or global IPv4 blocks.
- * 
- * Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
- * 
- * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "globalIpv4" and you must omit the facility argument.
- * 
- * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/reserved_ip_block.html.markdown.
+ * Public blocks are allocated in a facility. Addresses from public blocks can only be assigned to devices in the facility. Public blocks can have mask from /24 (256 addresses) to /32 (1 address). If you create public block with this resource, you must fill the facility argmument.
+ *
+ * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "globalIpv4" and you must omit the facility argument.
+ *
+ * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
+ *
  */
 export class ReservedIpBlock extends pulumi.CustomResource {
     /**

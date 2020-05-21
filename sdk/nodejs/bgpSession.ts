@@ -6,13 +6,11 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/) for more details.
- * 
- * You need to have BGP config enabled in your project.
- * 
- * BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/bgp_session.html.markdown.
+ * You need to have BGP config enabled in your project.
+ *
+ * BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
+ *
  */
 export class BgpSession extends pulumi.CustomResource {
     /**

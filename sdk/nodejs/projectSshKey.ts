@@ -9,15 +9,15 @@ import * as utilities from "./utilities";
 /**
  * Provides a Packet project SSH key resource to manage project-specific SSH keys.
  * Project SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
- * 
+ *
  * const projectId = "<UUID_of_your_project>";
  * const testProjectSshKey = new packet.ProjectSshKey("testProjectSshKey", {
  *     name: "test",
@@ -34,8 +34,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/project_ssh_key.html.markdown.
  */
 export class ProjectSshKey extends pulumi.CustomResource {
     /**

@@ -8,24 +8,24 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a resource to attach device ports to VLANs.
- * 
+ *
  * Device and VLAN must be in the same facility.
- * 
+ *
  * If you need this resource to add the port back to bond on removal, set `forceBond = true`.
- * 
+ *
  * To learn more about Layer 2 networking in Packet, refer to
- * 
+ *
  * * https://www.packet.com/resources/guides/layer-2-configurations/ 
  * * https://www.packet.com/developers/docs/network/advanced/layer-2/
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
- * 
+ *
  * // Hybrid network type
  * const testVlan = new packet.Vlan("testVlan", {
  *     description: "VLAN in New Jersey",
@@ -78,14 +78,12 @@ import * as utilities from "./utilities";
  *     native: true,
  * });
  * ```
- * 
+ *
  * ## Attribute Referece
- * 
+ *
  * * `id` - UUID of device port used in the assignment
  * * `vlanId` - UUID of VLAN API resource
  * * `portId` - UUID of device port
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-packet/blob/master/website/docs/r/port_vlan_attachment.html.markdown.
  */
 export class PortVlanAttachment extends pulumi.CustomResource {
     /**
