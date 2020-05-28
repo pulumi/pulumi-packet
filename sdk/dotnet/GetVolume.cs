@@ -11,12 +11,6 @@ namespace Pulumi.Packet
 {
     public static class GetVolume
     {
-        /// <summary>
-        /// Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetVolumeResult> InvokeAsync(GetVolumeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("packet:index/getVolume:getVolume", args ?? new GetVolumeArgs(), options.WithVersion());
     }

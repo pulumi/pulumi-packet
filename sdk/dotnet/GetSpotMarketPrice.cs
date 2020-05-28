@@ -15,6 +15,28 @@ namespace Pulumi.Packet
         /// Use this data source to get Packet Spot Market Price.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Packet = Pulumi.Packet;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Packet.GetSpotMarketPrice.InvokeAsync(new Packet.GetSpotMarketPriceArgs
+        ///         {
+        ///             Facility = "ewr1",
+        ///             Plan = "c1.small.x86",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSpotMarketPriceResult> InvokeAsync(GetSpotMarketPriceArgs args, InvokeOptions? options = null)

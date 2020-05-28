@@ -19,6 +19,31 @@ namespace Pulumi.Packet
         /// The datasource has 4 list attributes: `global_ipv4`, `public_ipv4`, `private_ipv4` and `ipv6`, each listing CIDR notation (`&lt;network&gt;/&lt;mask&gt;`) of respective blocks from the project.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Packet = Pulumi.Packet;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var projectId = "&lt;UUID_of_your_project&gt;";
+        ///         var test = Output.Create(Packet.GetIpBlockRanges.InvokeAsync(new Packet.GetIpBlockRangesArgs
+        ///         {
+        ///             ProjectId = projectId,
+        ///         }));
+        ///         this.Out = test;
+        ///     }
+        /// 
+        ///     [Output("out")]
+        ///     public Output&lt;string&gt; Out { get; set; }
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetIpBlockRangesResult> InvokeAsync(GetIpBlockRangesArgs args, InvokeOptions? options = null)

@@ -9,10 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    /// <summary>
-    /// Provides a Packet project resource to allow you manage devices
-    /// in your projects.
-    /// </summary>
     public partial class Project : Pulumi.CustomResource
     {
         /// <summary>

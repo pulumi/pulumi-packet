@@ -9,11 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
-    /// <summary>
-    /// Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
-    /// 
-    /// The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
-    /// </summary>
     public partial class SshKey : Pulumi.CustomResource
     {
         /// <summary>
