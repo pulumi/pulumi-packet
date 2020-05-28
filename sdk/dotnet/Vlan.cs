@@ -15,6 +15,30 @@ namespace Pulumi.Packet
     /// To learn more about Layer 2 networking in Packet, refer to
     /// * https://www.packet.com/resources/guides/layer-2-configurations/
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Create a new VLAN in datacenter "ewr1"
+    ///         var vlan1 = new Packet.Vlan("vlan1", new Packet.VlanArgs
+    ///         {
+    ///             Description = "VLAN in New Jersey",
+    ///             Facility = "ewr1",
+    ///             ProjectId = local.Project_id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Vlan : Pulumi.CustomResource
     {

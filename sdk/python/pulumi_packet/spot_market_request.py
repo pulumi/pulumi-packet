@@ -73,8 +73,8 @@ class SpotMarketRequest(pulumi.CustomResource):
             devices_max=1,
             instance_parameters={
                 "hostname": "testspot",
-                "billingCycle": "hourly",
-                "operatingSystem": "coreos_stable",
+                "billing_cycle": "hourly",
+                "operating_system": "coreos_stable",
                 "plan": "t1.small.x86",
             })
         ```

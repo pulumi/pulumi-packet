@@ -21,6 +21,87 @@ namespace Pulumi.Packet
     /// * https://www.packet.com/resources/guides/layer-2-configurations/ 
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
     /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Hybrid network type
+    ///         var testVlan = new Packet.Vlan("testVlan", new Packet.VlanArgs
+    ///         {
+    ///             Description = "VLAN in New Jersey",
+    ///             Facility = "ewr1",
+    ///             ProjectId = local.Project_id,
+    ///         });
+    ///         var testDevice = new Packet.Device("testDevice", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "test",
+    ///             Plan = "m1.xlarge.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "ewr1",
+    ///             },
+    ///             OperatingSystem = "ubuntu_16_04",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///             NetworkType = "hybrid",
+    ///         });
+    ///         var testPortVlanAttachment = new Packet.PortVlanAttachment("testPortVlanAttachment", new Packet.PortVlanAttachmentArgs
+    ///         {
+    ///             DeviceId = testDevice.Id,
+    ///             PortName = "eth1",
+    ///             VlanVnid = testVlan.Vxlan,
+    ///         });
+    ///         // Layer 2 network
+    ///         var testIndex_deviceDevice = new Packet.Device("testIndex/deviceDevice", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "test",
+    ///             Plan = "m1.xlarge.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "ewr1",
+    ///             },
+    ///             OperatingSystem = "ubuntu_16_04",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///             NetworkType = "layer2-individual",
+    ///         });
+    ///         var test1Vlan = new Packet.Vlan("test1Vlan", new Packet.VlanArgs
+    ///         {
+    ///             Description = "VLAN in New Jersey",
+    ///             Facility = "ewr1",
+    ///             ProjectId = local.Project_id,
+    ///         });
+    ///         var test2Vlan = new Packet.Vlan("test2Vlan", new Packet.VlanArgs
+    ///         {
+    ///             Description = "VLAN in New Jersey",
+    ///             Facility = "ewr1",
+    ///             ProjectId = local.Project_id,
+    ///         });
+    ///         var test1PortVlanAttachment = new Packet.PortVlanAttachment("test1PortVlanAttachment", new Packet.PortVlanAttachmentArgs
+    ///         {
+    ///             DeviceId = testDevice.Id,
+    ///             VlanVnid = test1Vlan.Vxlan,
+    ///             PortName = "eth1",
+    ///         });
+    ///         var test2PortVlanAttachment = new Packet.PortVlanAttachment("test2PortVlanAttachment", new Packet.PortVlanAttachmentArgs
+    ///         {
+    ///             DeviceId = testDevice.Id,
+    ///             VlanVnid = test2Vlan.Vxlan,
+    ///             PortName = "eth1",
+    ///             Native = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// 
     /// ## Attribute Referece
     /// 

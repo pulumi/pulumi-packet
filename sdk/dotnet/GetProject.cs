@@ -11,12 +11,6 @@ namespace Pulumi.Packet
 {
     public static class GetProject
     {
-        /// <summary>
-        /// Use this datasource to retrieve attributes of the Project API resource.
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithVersion());
     }

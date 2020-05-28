@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  *     vlanVnid: testVlan.vxlan,
  * });
  * // Layer 2 network
- * const testIndex/deviceDevice = new packet.Device("testIndex/deviceDevice", {
+ * const testIndex_deviceDevice = new packet.Device("testIndex/deviceDevice", {
  *     hostname: "test",
  *     plan: "m1.xlarge.x86",
  *     facilities: ["ewr1"],

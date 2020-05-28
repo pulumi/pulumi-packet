@@ -15,6 +15,42 @@ namespace Pulumi.Packet
         /// Use this data source to get Packet Operating System image.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Packet = Pulumi.Packet;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Packet.GetOperatingSystem.InvokeAsync(new Packet.GetOperatingSystemArgs
+        ///         {
+        ///             Name = "Container Linux",
+        ///             Distro = "coreos",
+        ///             Version = "alpha",
+        ///             ProvisionableOn = "c1.small.x86",
+        ///         }));
+        ///         var server = new Packet.Device("server", new Packet.DeviceArgs
+        ///         {
+        ///             Hostname = "tf.coreos2",
+        ///             Plan = "c1.small.x86",
+        ///             Facilities = 
+        ///             {
+        ///                 "ewr1",
+        ///             },
+        ///             OperatingSystem = example.Apply(example =&gt; example.Id),
+        ///             BillingCycle = "hourly",
+        ///             ProjectId = local.Project_id,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOperatingSystemResult> InvokeAsync(GetOperatingSystemArgs? args = null, InvokeOptions? options = null)

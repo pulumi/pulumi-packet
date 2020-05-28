@@ -19,6 +19,30 @@ namespace Pulumi.Packet
         /// To learn more about using BGP in Packet, see the packet..BgpSession resource documentation.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Packet = Pulumi.Packet;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Packet.GetDeviceBgpNeighbors.InvokeAsync(new Packet.GetDeviceBgpNeighborsArgs
+        ///         {
+        ///             DeviceId = "4c641195-25e5-4c3c-b2b7-4cd7a42c7b40",
+        ///         }));
+        ///         this.BgpNeighborsListing = test.Apply(test =&gt; test.BgpNeighbors);
+        ///     }
+        /// 
+        ///     [Output("bgpNeighborsListing")]
+        ///     public Output&lt;string&gt; BgpNeighborsListing { get; set; }
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeviceBgpNeighborsResult> InvokeAsync(GetDeviceBgpNeighborsArgs args, InvokeOptions? options = null)

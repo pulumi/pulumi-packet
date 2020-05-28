@@ -11,6 +11,29 @@ namespace Pulumi.Packet
 {
     /// <summary>
     /// Provides a resource to manage organization resource in Packet.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Create a new Project
+    ///         var tfOrganization1 = new Packet.Organization("tfOrganization1", new Packet.OrganizationArgs
+    ///         {
+    ///             Description = "quux",
+    ///             Name = "foobar",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Organization : Pulumi.CustomResource
     {
