@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -17,7 +15,6 @@ import * as utilities from "./utilities";
  * with mask prefix length 32. More about the elastic IP subnets is [here](https://www.packet.com/developers/docs/network/basic/elastic-ips/).
  *
  * Device and reserved block must be in the same facility.
- *
  */
 export class IpAttachment extends pulumi.CustomResource {
     /**
@@ -27,6 +24,7 @@ export class IpAttachment extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IpAttachmentState, opts?: pulumi.CustomResourceOptions): IpAttachment {
         return new IpAttachment(name, <any>state, { ...opts, id: id });

@@ -114,7 +114,18 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "address",
+                        "cidr",
+                        "family",
+                        "gateway",
+                        "public"
+                    ]
+                }
+            }
         },
         "packet:/DevicePort:DevicePort": {
             "properties": {
@@ -164,7 +175,18 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "bonded",
+                        "id",
+                        "mac",
+                        "name",
+                        "type"
+                    ]
+                }
+            }
         },
         "packet:/ProjectBgpConfig:ProjectBgpConfig": {
             "properties": {
@@ -218,7 +240,17 @@
             "required": [
                 "asn",
                 "deploymentType"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "asn",
+                        "deploymentType",
+                        "maxPrefix",
+                        "status"
+                    ]
+                }
+            }
         },
         "packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters": {
             "properties": {
@@ -334,7 +366,18 @@
                 "hostname",
                 "operatingSystem",
                 "plan"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "billingCycle",
+                        "hostname",
+                        "operatingSystem",
+                        "plan",
+                        "termintationTime"
+                    ]
+                }
+            }
         },
         "packet:/VolumeAttachment:VolumeAttachment": {
             "properties": {
@@ -347,7 +390,14 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "href"
+                    ]
+                }
+            }
         },
         "packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy": {
             "properties": {
@@ -487,7 +537,12 @@
                 "peerAs",
                 "routesIns",
                 "routesOuts"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "packet:/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn": {
             "properties": {
@@ -514,7 +569,12 @@
             "required": [
                 "exact",
                 "route"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "packet:/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut": {
             "properties": {
@@ -541,7 +601,12 @@
             "required": [
                 "exact",
                 "route"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "packet:/getDeviceNetwork:getDeviceNetwork": {
             "properties": {
@@ -598,7 +663,12 @@
                 "family",
                 "gateway",
                 "public"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "packet:/getDevicePort:getDevicePort": {
             "properties": {
@@ -655,7 +725,12 @@
                 "mac",
                 "name",
                 "type"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "packet:/getProjectBgpConfig:getProjectBgpConfig": {
             "properties": {
@@ -711,7 +786,12 @@
                 "deploymentType",
                 "maxPrefix",
                 "status"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "packet:/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy": {
             "properties": {
@@ -736,7 +816,12 @@
             "required": [
                 "snapshotCount",
                 "snapshotFrequency"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -3198,8 +3283,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^8.0.25"
             },
+            "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing X cloud resources.",
             "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-packet)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-packet` repo](https://github.com/pulumi/pulumi-packet/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-packet` repo](https://github.com/terraform-providers/terraform-provider-packet/issues).",
             "typescriptVersion": ""
         },
         "python": {

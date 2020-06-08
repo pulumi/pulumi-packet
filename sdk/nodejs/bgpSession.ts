@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * You need to have BGP config enabled in your project.
  *
  * BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
- *
  */
 export class BgpSession extends pulumi.CustomResource {
     /**
@@ -20,6 +19,7 @@ export class BgpSession extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BgpSessionState, opts?: pulumi.CustomResourceOptions): BgpSession {
         return new BgpSession(name, <any>state, { ...opts, id: id });

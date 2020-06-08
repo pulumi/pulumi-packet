@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Packet organization datasource.
- *
  */
 export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
     args = args || {};
@@ -48,6 +47,10 @@ export interface GetOrganizationResult {
      */
     readonly description: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Logo URL
      */
     readonly logo: string;
@@ -65,8 +68,4 @@ export interface GetOrganizationResult {
      * Website link
      */
     readonly website: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

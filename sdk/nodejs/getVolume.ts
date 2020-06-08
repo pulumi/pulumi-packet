@@ -59,6 +59,10 @@ export interface GetVolumeResult {
      */
     readonly facility: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Whether the volume is locked or not
      */
     readonly locked: boolean;
@@ -83,8 +87,4 @@ export interface GetVolumeResult {
     readonly state: string;
     readonly updated: string;
     readonly volumeId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -12,8 +12,6 @@ import * as utilities from "./utilities";
  * > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- *
- *
  */
 export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
     args = args || {};
@@ -84,7 +82,15 @@ export interface GetDeviceResult {
      */
     readonly hardwareReservationId: string;
     readonly hostname: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly ipxeScriptUrl: string;
+    /**
+     * L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
+     */
+    readonly networkType: string;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
      * * Public IPv4 at `packet_device.name.network.0`
@@ -94,10 +100,6 @@ export interface GetDeviceResult {
      * The fields of the network attributes are:
      */
     readonly networks: outputs.GetDeviceNetwork[];
-    /**
-     * L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
-     */
-    readonly networkType: string;
     /**
      * The operating system running on the device
      */
@@ -128,8 +130,4 @@ export interface GetDeviceResult {
      * Tags attached to the device
      */
     readonly tags: string[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

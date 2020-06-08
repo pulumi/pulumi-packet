@@ -51,6 +51,10 @@ export interface GetProjectResult {
      * The timestamp for when the project was created
      */
     readonly created: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly name: string;
     /**
      * The UUID of this project's parent organization
@@ -69,8 +73,4 @@ export interface GetProjectResult {
      * List of UUIDs of user accounts which beling to this project
      */
     readonly userIds: string[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
