@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 import {Facility, IpBlockType} from "./index";
@@ -21,7 +19,6 @@ import {Facility, IpBlockType} from "./index";
  * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "globalIpv4" and you must omit the facility argument.
  *
  * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
- *
  */
 export class ReservedIpBlock extends pulumi.CustomResource {
     /**
@@ -31,6 +28,7 @@ export class ReservedIpBlock extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ReservedIpBlockState, opts?: pulumi.CustomResourceOptions): ReservedIpBlock {
         return new ReservedIpBlock(name, <any>state, { ...opts, id: id });

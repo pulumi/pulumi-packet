@@ -6,7 +6,7 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-import {BillingCycle, Facility, IpAddressType, NetworkType, OperatingSystem, Plan} from "./index";
+import {BillingCycle, Facility, NetworkType, OperatingSystem, Plan} from "./index";
 
 /**
  * Provides a Packet device resource. This can be used to create,
@@ -43,6 +43,7 @@ export class Device extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DeviceState, opts?: pulumi.CustomResourceOptions): Device {
         return new Device(name, <any>state, { ...opts, id: id });
@@ -127,6 +128,7 @@ export class Device extends pulumi.CustomResource {
      * Whether the device is locked
      */
     public /*out*/ readonly locked!: pulumi.Output<boolean>;
+    public readonly networkType!: pulumi.Output<NetworkType | undefined>;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
      * * Public IPv4 at `packet_device.name.network.0`
@@ -136,7 +138,6 @@ export class Device extends pulumi.CustomResource {
      * The fields of the network attributes are:
      */
     public /*out*/ readonly networks!: pulumi.Output<outputs.DeviceNetwork[]>;
-    public readonly networkType!: pulumi.Output<NetworkType | undefined>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */
@@ -215,8 +216,8 @@ export class Device extends pulumi.CustomResource {
             inputs["ipAddresses"] = state ? state.ipAddresses : undefined;
             inputs["ipxeScriptUrl"] = state ? state.ipxeScriptUrl : undefined;
             inputs["locked"] = state ? state.locked : undefined;
-            inputs["networks"] = state ? state.networks : undefined;
             inputs["networkType"] = state ? state.networkType : undefined;
+            inputs["networks"] = state ? state.networks : undefined;
             inputs["operatingSystem"] = state ? state.operatingSystem : undefined;
             inputs["plan"] = state ? state.plan : undefined;
             inputs["ports"] = state ? state.ports : undefined;
@@ -361,6 +362,7 @@ export interface DeviceState {
      * Whether the device is locked
      */
     readonly locked?: pulumi.Input<boolean>;
+    readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
      * * Public IPv4 at `packet_device.name.network.0`
@@ -370,7 +372,6 @@ export interface DeviceState {
      * The fields of the network attributes are:
      */
     readonly networks?: pulumi.Input<pulumi.Input<inputs.DeviceNetwork>[]>;
-    readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */

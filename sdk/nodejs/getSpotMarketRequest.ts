@@ -8,9 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Packet spotMarketRequest datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
- *
- *
- *
  */
 export function getSpotMarketRequest(args: GetSpotMarketRequestArgs, opts?: pulumi.InvokeOptions): Promise<GetSpotMarketRequestResult> {
     if (!opts) {
@@ -43,9 +40,9 @@ export interface GetSpotMarketRequestResult {
      * List of IDs of devices spawned by the referenced Spot Market Request
      */
     readonly deviceIds: string[];
-    readonly requestId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly requestId: string;
 }

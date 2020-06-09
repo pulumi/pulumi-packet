@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
  * You can then use the cidrsubnet TF builtin function to derive subnets.
- *
  */
 export function getPrecreatedIpBlock(args: GetPrecreatedIpBlockArgs, opts?: pulumi.InvokeOptions): Promise<GetPrecreatedIpBlockResult> {
     if (!opts) {
@@ -68,6 +67,10 @@ export interface GetPrecreatedIpBlockResult {
     readonly facility?: string;
     readonly gateway: string;
     readonly global?: boolean;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly manageable: boolean;
     readonly management: boolean;
     readonly netmask: string;
@@ -75,8 +78,4 @@ export interface GetPrecreatedIpBlockResult {
     readonly projectId: string;
     readonly public: boolean;
     readonly quantity: number;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -66,6 +66,10 @@ export interface GetIpBlockRangesResult {
      */
     readonly globalIpv4s: string[];
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * list of CIDR expressions for IPv6 blocks in the project
      */
     readonly ipv6s: string[];
@@ -78,8 +82,4 @@ export interface GetIpBlockRangesResult {
      * list of CIDR expressions for Public IPv4 blocks in the project
      */
     readonly publicIpv4s: string[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

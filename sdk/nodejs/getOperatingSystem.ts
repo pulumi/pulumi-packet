@@ -77,6 +77,10 @@ export interface GetOperatingSystemArgs {
  */
 export interface GetOperatingSystemResult {
     readonly distro?: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly name?: string;
     readonly provisionableOn?: string;
     /**
@@ -84,8 +88,4 @@ export interface GetOperatingSystemResult {
      */
     readonly slug: string;
     readonly version?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

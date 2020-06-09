@@ -56,13 +56,13 @@ export interface GetSpotMarketPriceArgs {
  */
 export interface GetSpotMarketPriceResult {
     readonly facility: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly plan: string;
     /**
      * Current spot market price for given plan in given facility.
      */
     readonly price: number;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
