@@ -11,30 +11,32 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+// +build nodejs all
 
 package examples
 
 import (
-	"os"
-	"testing"
-
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
+	"path"
 )
 
+func TestAccWebserver(t *testing.T) {
+	test := getJSBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "webserver"),
+		})
 
-
-func getCwd(t *testing.T) string {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.FailNow()
-	}
-
-	return cwd
+	integration.ProgramTest(t, &test)
 }
 
-func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{
-		ExpectRefreshChanges: true,
-	}
-}
 
+func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	base := getBaseOptions()
+	baseJS := base.With(integration.ProgramTestOptions{
+		Dependencies: []string{
+			"@pulumi/packet",
+		},
+	})
+
+	return baseJS
+}
