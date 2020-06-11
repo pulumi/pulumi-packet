@@ -21,8 +21,6 @@ import (
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
-
-
 func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -37,4 +35,3 @@ func getBaseOptions() integration.ProgramTestOptions {
 		ExpectRefreshChanges: true,
 	}
 }
-
