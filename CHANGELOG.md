@@ -6,6 +6,9 @@ _(none)_
 
 ---
 
+## 2.2.3 (2020-06-11)
+* Switch to GitHub actions for build
+
 ## 2.2.2 (2020-06-11)
 * Switch to GitHub actions for build
 
