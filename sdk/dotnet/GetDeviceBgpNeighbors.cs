@@ -16,7 +16,7 @@ namespace Pulumi.Packet
         /// 
         /// To have any BGP neighbors listed, the device must be in BGP-enabled project and have a BGP session assigned.
         /// 
-        /// To learn more about using BGP in Packet, see the packet..BgpSession resource documentation.
+        /// To learn more about using BGP in Packet, see the packet.BgpSession resource documentation.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -41,7 +41,6 @@ namespace Pulumi.Packet
         ///     public Output&lt;string&gt; BgpNeighborsListing { get; set; }
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

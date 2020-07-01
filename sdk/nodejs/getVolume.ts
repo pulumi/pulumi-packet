@@ -6,6 +6,22 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ *
+ * const volume1 = packet.getVolume({
+ *     name: "terraform-volume-1",
+ *     projectId: local.project_id,
+ * });
+ * export const volumeSize = volume1.then(volume1 => volume1.size);
+ * ```
+ */
 export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     args = args || {};
     if (!opts) {

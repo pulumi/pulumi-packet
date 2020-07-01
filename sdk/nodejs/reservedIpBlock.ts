@@ -18,7 +18,7 @@ import {Facility, IpBlockType} from "./index";
  *
  * Addresses from global blocks can be assigned in any facility. Global blocks can have mask from /30 (4 addresses), to /32 (1 address). If you create global block with this resource, you must specify type = "globalIpv4" and you must omit the facility argument.
  *
- * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet..IpAttachment` resource.
+ * Once IP block is allocated or imported, an address from it can be assigned to device with the `packet.IpAttachment` resource.
  */
 export class ReservedIpBlock extends pulumi.CustomResource {
     /**

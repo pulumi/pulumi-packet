@@ -14,9 +14,6 @@ namespace Pulumi.Packet
         /// <summary>
         /// Use this data source to get CIDR expression for precreated IPv6 and IPv4 blocks in Packet.
         /// You can then use the cidrsubnet TF builtin function to derive subnets.
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetPrecreatedIpBlockResult> InvokeAsync(GetPrecreatedIpBlockArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPrecreatedIpBlockResult>("packet:index/getPrecreatedIpBlock:getPrecreatedIpBlock", args ?? new GetPrecreatedIpBlockArgs(), options.WithVersion());
@@ -50,7 +47,7 @@ namespace Pulumi.Packet
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Whether to look for public or private block. 
+        /// Whether to look for public or private block.
         /// </summary>
         [Input("public", required: true)]
         public bool Public { get; set; }

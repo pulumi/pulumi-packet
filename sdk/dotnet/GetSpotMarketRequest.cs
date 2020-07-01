@@ -11,14 +11,6 @@ namespace Pulumi.Packet
 {
     public static class GetSpotMarketRequest
     {
-        /// <summary>
-        /// Provides a Packet spot_market_request datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
-        /// 
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetSpotMarketRequestResult> InvokeAsync(GetSpotMarketRequestArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSpotMarketRequestResult>("packet:index/getSpotMarketRequest:getSpotMarketRequest", args ?? new GetSpotMarketRequestArgs(), options.WithVersion());
     }

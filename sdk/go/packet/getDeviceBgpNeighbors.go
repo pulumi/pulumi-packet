@@ -11,7 +11,31 @@ import (
 //
 // To have any BGP neighbors listed, the device must be in BGP-enabled project and have a BGP session assigned.
 //
-// To learn more about using BGP in Packet, see the .BgpSession resource documentation.
+// To learn more about using BGP in Packet, see the BgpSession resource documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := packet.GetDeviceBgpNeighbors(ctx, &packet.GetDeviceBgpNeighborsArgs{
+// 			DeviceId: "4c641195-25e5-4c3c-b2b7-4cd7a42c7b40",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("bgpNeighborsListing", test.BgpNeighbors)
+// 		return nil
+// 	})
+// }
+// ```
 func GetDeviceBgpNeighbors(ctx *pulumi.Context, args *GetDeviceBgpNeighborsArgs, opts ...pulumi.InvokeOption) (*GetDeviceBgpNeighborsResult, error) {
 	var rv GetDeviceBgpNeighborsResult
 	err := ctx.Invoke("packet:index/getDeviceBgpNeighbors:getDeviceBgpNeighbors", args, &rv, opts...)

@@ -16,10 +16,9 @@ import {BillingCycle, Facility, NetworkType, OperatingSystem, Plan} from "./inde
  *  the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  *
- *
  * ## Example Usage
  *
- *
+ * Create a device and add it to coolProject
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -29,9 +28,119 @@ import {BillingCycle, Facility, NetworkType, OperatingSystem, Plan} from "./inde
  *     hostname: "tf.coreos2",
  *     plan: "t1.small.x86",
  *     facilities: ["ewr1"],
- *     operatingSystem: "coreosStable",
+ *     operatingSystem: "coreos_stable",
  *     billingCycle: "hourly",
  *     projectId: local.project_id,
+ * });
+ * ```
+ *
+ * Same as above, but boot via iPXE initially, using the Ignition Provider for provisioning
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ *
+ * const pxe1 = new packet.Device("pxe1", {
+ *     hostname: "tf.coreos2-pxe",
+ *     plan: "t1.small.x86",
+ *     facilities: ["ewr1"],
+ *     operatingSystem: "custom_ipxe",
+ *     billingCycle: "hourly",
+ *     projectId: local.project_id,
+ *     ipxeScriptUrl: "https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe",
+ *     alwaysPxe: "false",
+ *     userData: data.ignition_config.example.rendered,
+ * });
+ * ```
+ *
+ * Create a device without a public IP address, with only a /30 private IPv4 subnet (4 IP addresses)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ *
+ * const web1 = new packet.Device("web1", {
+ *     hostname: "tf.coreos2",
+ *     plan: "t1.small.x86",
+ *     facilities: ["ewr1"],
+ *     operatingSystem: "coreos_stable",
+ *     billingCycle: "hourly",
+ *     projectId: local.project_id,
+ *     ipAddresses: [{
+ *         type: "private_ipv4",
+ *         cidr: 30,
+ *     }],
+ * });
+ * ```
+ *
+ * Deploy device on next-available reserved hardware and do custom partitioning.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ *
+ * const web1 = new packet.Device("web1", {
+ *     hostname: "tftest",
+ *     plan: "t1.small.x86",
+ *     facilities: ["sjc1"],
+ *     operatingSystem: "ubuntu_16_04",
+ *     billingCycle: "hourly",
+ *     projectId: local.project_id,
+ *     hardwareReservationId: "next-available",
+ *     storage: `{
+ *   "disks": [
+ *     {
+ *       "device": "/dev/sda",
+ *       "wipeTable": true,
+ *       "partitions": [
+ *         {
+ *           "label": "BIOS",
+ *           "number": 1,
+ *           "size": "4096"
+ *         },
+ *         {
+ *           "label": "SWAP",
+ *           "number": 2,
+ *           "size": "3993600"
+ *         },
+ *         {
+ *           "label": "ROOT",
+ *           "number": 3,
+ *           "size": "0"
+ *         }
+ *       ]
+ *     }
+ *   ],
+ *   "filesystems": [
+ *     {
+ *       "mount": {
+ *         "device": "/dev/sda3",
+ *         "format": "ext4",
+ *         "point": "/",
+ *         "create": {
+ *           "options": [
+ *             "-L",
+ *             "ROOT"
+ *           ]
+ *         }
+ *       }
+ *     },
+ *     {
+ *       "mount": {
+ *         "device": "/dev/sda2",
+ *         "format": "swap",
+ *         "point": "none",
+ *         "create": {
+ *           "options": [
+ *             "-L",
+ *             "SWAP"
+ *           ]
+ *         }
+ *       }
+ *     }
+ *   ]
+ * }
+ * `,
  * });
  * ```
  */
@@ -114,7 +223,7 @@ export class Device extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * A list of IP address types for the device (structure is documented below). 
+     * A list of IP address types for the device (structure is documented below).
      */
     public readonly ipAddresses!: pulumi.Output<outputs.DeviceIpAddress[] | undefined>;
     /**
@@ -348,7 +457,7 @@ export interface DeviceState {
      */
     readonly hostname?: pulumi.Input<string>;
     /**
-     * A list of IP address types for the device (structure is documented below). 
+     * A list of IP address types for the device (structure is documented below).
      */
     readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
     /**
@@ -459,7 +568,7 @@ export interface DeviceArgs {
      */
     readonly hostname: pulumi.Input<string>;
     /**
-     * A list of IP address types for the device (structure is documented below). 
+     * A list of IP address types for the device (structure is documented below).
      */
     readonly ipAddresses?: pulumi.Input<pulumi.Input<inputs.DeviceIpAddress>[]>;
     /**

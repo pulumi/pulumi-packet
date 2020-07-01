@@ -12,6 +12,31 @@ import (
 // There are four types of IP blocks in Packet: global IPv4, public IPv4, private IPv4 and IPv6. Both global and public IPv4 are routable from the Internet. Public IPv4 block is allocated in a facility, and addresses from it can only be assigned to devices in that facility. Addresses from Global IPv4 block can be assigned to a device in any facility.
 //
 // The datasource has 4 list attributes: `globalIpv4`, `publicIpv4`, `privateIpv4` and `ipv6`, each listing CIDR notation (`<network>/<mask>`) of respective blocks from the project.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		projectId := "<UUID_of_your_project>"
+// 		test, err := packet.GetIpBlockRanges(ctx, &packet.GetIpBlockRangesArgs{
+// 			ProjectId: projectId,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("out", test)
+// 		return nil
+// 	})
+// }
+// ```
 func GetIpBlockRanges(ctx *pulumi.Context, args *GetIpBlockRangesArgs, opts ...pulumi.InvokeOption) (*GetIpBlockRangesResult, error) {
 	var rv GetIpBlockRangesResult
 	err := ctx.Invoke("packet:index/getIpBlockRanges:getIpBlockRanges", args, &rv, opts...)

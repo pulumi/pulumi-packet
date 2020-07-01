@@ -21,7 +21,101 @@ import (
 // * https://www.packet.com/resources/guides/layer-2-configurations/
 // * https://www.packet.com/developers/docs/network/advanced/layer-2/
 //
+// ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testVlan, err := packet.NewVlan(ctx, "testVlan", &packet.VlanArgs{
+// 			Description: pulumi.String("VLAN in New Jersey"),
+// 			Facility:    pulumi.String("ewr1"),
+// 			ProjectId:   pulumi.String(local.Project_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testDevice, err := packet.NewDevice(ctx, "testDevice", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("test"),
+// 			Plan:     pulumi.String("m1.xlarge.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			OperatingSystem: pulumi.String("ubuntu_16_04"),
+// 			BillingCycle:    pulumi.String("hourly"),
+// 			ProjectId:       pulumi.String(local.Project_id),
+// 			NetworkType:     pulumi.String("hybrid"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = packet.NewPortVlanAttachment(ctx, "testPortVlanAttachment", &packet.PortVlanAttachmentArgs{
+// 			DeviceId: testDevice.ID(),
+// 			PortName: pulumi.String("eth1"),
+// 			VlanVnid: testVlan.Vxlan,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = packet.NewDevice(ctx, "testIndex_deviceDevice", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("test"),
+// 			Plan:     pulumi.String("m1.xlarge.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			OperatingSystem: pulumi.String("ubuntu_16_04"),
+// 			BillingCycle:    pulumi.String("hourly"),
+// 			ProjectId:       pulumi.String(local.Project_id),
+// 			NetworkType:     pulumi.String("layer2-individual"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test1Vlan, err := packet.NewVlan(ctx, "test1Vlan", &packet.VlanArgs{
+// 			Description: pulumi.String("VLAN in New Jersey"),
+// 			Facility:    pulumi.String("ewr1"),
+// 			ProjectId:   pulumi.String(local.Project_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test2Vlan, err := packet.NewVlan(ctx, "test2Vlan", &packet.VlanArgs{
+// 			Description: pulumi.String("VLAN in New Jersey"),
+// 			Facility:    pulumi.String("ewr1"),
+// 			ProjectId:   pulumi.String(local.Project_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = packet.NewPortVlanAttachment(ctx, "test1PortVlanAttachment", &packet.PortVlanAttachmentArgs{
+// 			DeviceId: testDevice.ID(),
+// 			VlanVnid: test1Vlan.Vxlan,
+// 			PortName: pulumi.String("eth1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = packet.NewPortVlanAttachment(ctx, "test2PortVlanAttachment", &packet.PortVlanAttachmentArgs{
+// 			DeviceId: testDevice.ID(),
+// 			VlanVnid: test2Vlan.Vxlan,
+// 			PortName: pulumi.String("eth1"),
+// 			Native:   pulumi.Bool(true),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			"packet_port_vlan_attachment.test1",
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ## Attribute Referece
 //
 // * `id` - UUID of device port used in the assignment

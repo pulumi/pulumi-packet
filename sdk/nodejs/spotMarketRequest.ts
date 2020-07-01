@@ -12,8 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
@@ -25,10 +23,10 @@ import * as utilities from "./utilities";
  *     facilities: ["ewr1"],
  *     devicesMin: 1,
  *     devicesMax: 1,
- *     instance_parameters: {
+ *     instanceParameters: {
  *         hostname: "testspot",
  *         billingCycle: "hourly",
- *         operatingSystem: "coreosStable",
+ *         operatingSystem: "coreos_stable",
  *         plan: "t1.small.x86",
  *     },
  * });

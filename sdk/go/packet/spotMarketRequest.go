@@ -12,6 +12,41 @@ import (
 
 // Provides a Packet Spot Market Request resource to allow you to
 // manage spot market requests on your account. For more detail on Spot Market, see [this article in Packet documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewSpotMarketRequest(ctx, "req", &packet.SpotMarketRequestArgs{
+// 			ProjectId:   pulumi.String(local.Project_id),
+// 			MaxBidPrice: pulumi.Float64(0.03),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			DevicesMin: pulumi.Int(1),
+// 			DevicesMax: pulumi.Int(1),
+// 			InstanceParameters: &packet.SpotMarketRequestInstanceParametersArgs{
+// 				Hostname:        pulumi.String("testspot"),
+// 				BillingCycle:    pulumi.String("hourly"),
+// 				OperatingSystem: pulumi.String("coreos_stable"),
+// 				Plan:            pulumi.String("t1.small.x86"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SpotMarketRequest struct {
 	pulumi.CustomResourceState
 

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Use this datasource to retrieve attributes of the Project API resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as packet from "@pulumi/packet";
+ *
+ * const tfProject1 = packet.getProject({
+ *     name: "Terraform Fun",
+ * });
+ * export const usersOfTerraformFun = tfProject1.then(tfProject1 => tfProject1.userIds);
+ * ```
+ */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
     if (!opts) {

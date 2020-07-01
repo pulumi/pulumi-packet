@@ -10,8 +10,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
@@ -24,9 +22,9 @@ import * as utilities from "./utilities";
  * });
  * const testDevice = new packet.Device("testDevice", {
  *     hostname: "test",
- *     plan: "baremetal0",
+ *     plan: "baremetal_0",
  *     facilities: ["ewr1"],
- *     operatingSystem: "ubuntu1604",
+ *     operatingSystem: "ubuntu_16_04",
  *     billingCycle: "hourly",
  *     projectSshKeyIds: [testProjectSshKey.id],
  *     projectId: projectId,

@@ -14,7 +14,7 @@ namespace Pulumi.Packet
     /// 
     /// You need to have BGP config enabled in your project.
     /// 
-    /// BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
+    /// BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers.
     /// </summary>
     public partial class BgpSession : Pulumi.CustomResource
     {
@@ -31,7 +31,7 @@ namespace Pulumi.Packet
         public Output<bool?> DefaultRoute { get; private set; } = null!;
 
         /// <summary>
-        /// ID of device 
+        /// ID of device
         /// </summary>
         [Output("deviceId")]
         public Output<string> DeviceId { get; private set; } = null!;
@@ -98,7 +98,7 @@ namespace Pulumi.Packet
         public Input<bool>? DefaultRoute { get; set; }
 
         /// <summary>
-        /// ID of device 
+        /// ID of device
         /// </summary>
         [Input("deviceId", required: true)]
         public Input<string> DeviceId { get; set; } = null!;
@@ -123,7 +123,7 @@ namespace Pulumi.Packet
         public Input<bool>? DefaultRoute { get; set; }
 
         /// <summary>
-        /// ID of device 
+        /// ID of device
         /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }

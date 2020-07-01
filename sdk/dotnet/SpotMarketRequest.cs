@@ -12,6 +12,40 @@ namespace Pulumi.Packet
     /// <summary>
     /// Provides a Packet Spot Market Request resource to allow you to
     /// manage spot market requests on your account. For more detail on Spot Market, see [this article in Packet documentaion](https://www.packet.com/developers/docs/getting-started/deployment-options/spot-market/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Create a spot market request
+    ///         var req = new Packet.SpotMarketRequest("req", new Packet.SpotMarketRequestArgs
+    ///         {
+    ///             ProjectId = local.Project_id,
+    ///             MaxBidPrice = 0.03,
+    ///             Facilities = 
+    ///             {
+    ///                 "ewr1",
+    ///             },
+    ///             DevicesMin = 1,
+    ///             DevicesMax = 1,
+    ///             InstanceParameters = new Packet.Inputs.SpotMarketRequestInstanceParametersArgs
+    ///             {
+    ///                 Hostname = "testspot",
+    ///                 BillingCycle = "hourly",
+    ///                 OperatingSystem = "coreos_stable",
+    ///                 Plan = "t1.small.x86",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SpotMarketRequest : Pulumi.CustomResource
     {

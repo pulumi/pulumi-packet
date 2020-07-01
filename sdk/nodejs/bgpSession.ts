@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  *
  * You need to have BGP config enabled in your project.
  *
- * BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers. 
+ * BGP session must be linked to a device running [BIRD](https://bird.network.cz) or other BGP routing daemon which will control route advertisements via the session to Packet's upstream routers.
  */
 export class BgpSession extends pulumi.CustomResource {
     /**
@@ -48,7 +48,7 @@ export class BgpSession extends pulumi.CustomResource {
      */
     public readonly defaultRoute!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of device 
+     * ID of device
      */
     public readonly deviceId!: pulumi.Output<string>;
     public /*out*/ readonly status!: pulumi.Output<string>;
@@ -106,7 +106,7 @@ export interface BgpSessionState {
      */
     readonly defaultRoute?: pulumi.Input<boolean>;
     /**
-     * ID of device 
+     * ID of device
      */
     readonly deviceId?: pulumi.Input<string>;
     readonly status?: pulumi.Input<string>;
@@ -125,7 +125,7 @@ export interface BgpSessionArgs {
      */
     readonly defaultRoute?: pulumi.Input<boolean>;
     /**
-     * ID of device 
+     * ID of device
      */
     readonly deviceId: pulumi.Input<string>;
 }

@@ -16,6 +16,141 @@ import (
 // > **Note:** All arguments including the `rootPassword` and `userData` will be stored in
 //  the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+//
+// ## Example Usage
+//
+// Create a device and add it to coolProject
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewDevice(ctx, "web1", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("tf.coreos2"),
+// 			Plan:     pulumi.String("t1.small.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			OperatingSystem: pulumi.String("coreos_stable"),
+// 			BillingCycle:    pulumi.String("hourly"),
+// 			ProjectId:       pulumi.String(local.Project_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Same as above, but boot via iPXE initially, using the Ignition Provider for provisioning
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewDevice(ctx, "pxe1", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("tf.coreos2-pxe"),
+// 			Plan:     pulumi.String("t1.small.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			OperatingSystem: pulumi.String("custom_ipxe"),
+// 			BillingCycle:    pulumi.String("hourly"),
+// 			ProjectId:       pulumi.String(local.Project_id),
+// 			IpxeScriptUrl:   pulumi.String("https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe"),
+// 			AlwaysPxe:       pulumi.Bool(false),
+// 			UserData:        pulumi.String(data.Ignition_config.Example.Rendered),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Create a device without a public IP address, with only a /30 private IPv4 subnet (4 IP addresses)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewDevice(ctx, "web1", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("tf.coreos2"),
+// 			Plan:     pulumi.String("t1.small.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			OperatingSystem: pulumi.String("coreos_stable"),
+// 			BillingCycle:    pulumi.String("hourly"),
+// 			ProjectId:       pulumi.String(local.Project_id),
+// 			IpAddresses: packet.DeviceIpAddressArray{
+// 				&packet.DeviceIpAddressArgs{
+// 					Type: pulumi.String("private_ipv4"),
+// 					Cidr: pulumi.Int(30),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Deploy device on next-available reserved hardware and do custom partitioning.
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewDevice(ctx, "web1", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("tftest"),
+// 			Plan:     pulumi.String("t1.small.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("sjc1"),
+// 			},
+// 			OperatingSystem:       pulumi.String("ubuntu_16_04"),
+// 			BillingCycle:          pulumi.String("hourly"),
+// 			ProjectId:             pulumi.String(local.Project_id),
+// 			HardwareReservationId: pulumi.String("next-available"),
+// 			Storage:               pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "{\n", "  \"disks\": [\n", "    {\n", "      \"device\": \"/dev/sda\",\n", "      \"wipeTable\": true,\n", "      \"partitions\": [\n", "        {\n", "          \"label\": \"BIOS\",\n", "          \"number\": 1,\n", "          \"size\": \"4096\"\n", "        },\n", "        {\n", "          \"label\": \"SWAP\",\n", "          \"number\": 2,\n", "          \"size\": \"3993600\"\n", "        },\n", "        {\n", "          \"label\": \"ROOT\",\n", "          \"number\": 3,\n", "          \"size\": \"0\"\n", "        }\n", "      ]\n", "    }\n", "  ],\n", "  \"filesystems\": [\n", "    {\n", "      \"mount\": {\n", "        \"device\": \"/dev/sda3\",\n", "        \"format\": \"ext4\",\n", "        \"point\": \"/\",\n", "        \"create\": {\n", "          \"options\": [\n", "            \"-L\",\n", "            \"ROOT\"\n", "          ]\n", "        }\n", "      }\n", "    },\n", "    {\n", "      \"mount\": {\n", "        \"device\": \"/dev/sda2\",\n", "        \"format\": \"swap\",\n", "        \"point\": \"none\",\n", "        \"create\": {\n", "          \"options\": [\n", "            \"-L\",\n", "            \"SWAP\"\n", "          ]\n", "        }\n", "      }\n", "    }\n", "  ]\n", "}\n")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Device struct {
 	pulumi.CustomResourceState
 
@@ -59,8 +194,8 @@ type Device struct {
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
-	// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-	// The fields of the network attributes are:
+	//   Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+	//   The fields of the network attributes are:
 	Networks DeviceNetworkArrayOutput `pulumi:"networks"`
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem pulumi.StringOutput `pulumi:"operatingSystem"`
@@ -176,8 +311,8 @@ type deviceState struct {
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
-	// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-	// The fields of the network attributes are:
+	//   Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+	//   The fields of the network attributes are:
 	Networks []DeviceNetwork `pulumi:"networks"`
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem *string `pulumi:"operatingSystem"`
@@ -248,8 +383,8 @@ type DeviceState struct {
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
-	// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-	// The fields of the network attributes are:
+	//   Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+	//   The fields of the network attributes are:
 	Networks DeviceNetworkArrayInput
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem pulumi.StringPtrInput

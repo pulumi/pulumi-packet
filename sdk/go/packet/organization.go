@@ -11,6 +11,30 @@ import (
 )
 
 // Provides a resource to manage organization resource in Packet.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewOrganization(ctx, "tfOrganization1", &packet.OrganizationArgs{
+// 			Description: pulumi.String("quux"),
+// 			Name:        pulumi.String("foobar"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Organization struct {
 	pulumi.CustomResourceState
 
