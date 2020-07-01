@@ -59,8 +59,8 @@ type LookupDeviceResult struct {
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
 	// * Private IPv4 at `packet_device.name.network.2`
-	// Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-	// The fields of the network attributes are:
+	//   Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+	//   The fields of the network attributes are:
 	Networks []GetDeviceNetwork `pulumi:"networks"`
 	// The operating system running on the device
 	OperatingSystem string `pulumi:"operatingSystem"`

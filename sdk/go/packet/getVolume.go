@@ -8,6 +8,33 @@ import (
 )
 
 // Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "terraform-volume-1"
+// 		opt1 := local.Project_id
+// 		volume1, err := packet.LookupVolume(ctx, &packet.LookupVolumeArgs{
+// 			Name:      &opt0,
+// 			ProjectId: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("volumeSize", volume1.Size)
+// 		return nil
+// 	})
+// }
+// ```
 func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
 	var rv LookupVolumeResult
 	err := ctx.Invoke("packet:index/getVolume:getVolume", args, &rv, opts...)
@@ -42,7 +69,7 @@ type LookupVolumeResult struct {
 	// Whether the volume is locked or not
 	Locked bool `pulumi:"locked"`
 	// The name of the volume
-	// * `projectId ` - The project id the volume is in
+	// * ` projectId  ` - The project id the volume is in
 	Name string `pulumi:"name"`
 	// Performance plan the volume is on
 	Plan      string `pulumi:"plan"`

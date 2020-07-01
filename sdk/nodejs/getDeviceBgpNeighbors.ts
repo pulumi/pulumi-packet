@@ -11,11 +11,9 @@ import * as utilities from "./utilities";
  *
  * To have any BGP neighbors listed, the device must be in BGP-enabled project and have a BGP session assigned.
  *
- * To learn more about using BGP in Packet, see the packet..BgpSession resource documentation.
+ * To learn more about using BGP in Packet, see the packet.BgpSession resource documentation.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

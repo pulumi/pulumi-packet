@@ -8,6 +8,31 @@ import (
 )
 
 // Use this datasource to retrieve attributes of the Project API resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "Terraform Fun"
+// 		tfProject1, err := packet.LookupProject(ctx, &packet.LookupProjectArgs{
+// 			Name: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("usersOfTerraformFun", tfProject1.UserIds)
+// 		return nil
+// 	})
+// }
+// ```
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	var rv LookupProjectResult
 	err := ctx.Invoke("packet:index/getProject:getProject", args, &rv, opts...)

@@ -15,8 +15,6 @@ namespace Pulumi.Packet
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Packet = Pulumi.Packet;

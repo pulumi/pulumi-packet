@@ -18,12 +18,10 @@ namespace Pulumi.Packet
     /// 
     /// To learn more about Layer 2 networking in Packet, refer to
     /// 
-    /// * https://www.packet.com/resources/guides/layer-2-configurations/ 
+    /// * https://www.packet.com/resources/guides/layer-2-configurations/
     /// * https://www.packet.com/developers/docs/network/advanced/layer-2/
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -97,12 +95,17 @@ namespace Pulumi.Packet
     ///             VlanVnid = test2Vlan.Vxlan,
     ///             PortName = "eth1",
     ///             Native = true,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 "packet_port_vlan_attachment.test1",
+    ///             },
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
     /// ## Attribute Referece
     /// 
     /// * `id` - UUID of device port used in the assignment
@@ -124,7 +127,7 @@ namespace Pulumi.Packet
         public Output<bool?> ForceBond { get; private set; } = null!;
 
         /// <summary>
-        /// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+        /// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
         /// </summary>
         [Output("native")]
         public Output<bool?> Native { get; private set; } = null!;
@@ -206,7 +209,7 @@ namespace Pulumi.Packet
         public Input<bool>? ForceBond { get; set; }
 
         /// <summary>
-        /// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+        /// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
         /// </summary>
         [Input("native")]
         public Input<bool>? Native { get; set; }
@@ -243,7 +246,7 @@ namespace Pulumi.Packet
         public Input<bool>? ForceBond { get; set; }
 
         /// <summary>
-        /// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above. 
+        /// Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
         /// </summary>
         [Input("native")]
         public Input<bool>? Native { get; set; }

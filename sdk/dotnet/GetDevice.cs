@@ -17,10 +17,6 @@ namespace Pulumi.Packet
         /// &gt; **Note:** All arguments including the `root_password` and `user_data` will be stored in
         ///  the raw state as plain-text.
         /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("packet:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithVersion());

@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
  *
  * // Create a new Project
- * const tfOrganization1 = new packet.Organization("tfOrganization1", {
+ * const tfOrganization1 = new packet.Organization("tf_organization_1", {
  *     description: "quux",
  *     name: "foobar",
  * });

@@ -11,6 +11,35 @@ namespace Pulumi.Packet
 {
     public static class GetProject
     {
+        /// <summary>
+        /// Use this datasource to retrieve attributes of the Project API resource.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Packet = Pulumi.Packet;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var tfProject1 = Output.Create(Packet.GetProject.InvokeAsync(new Packet.GetProjectArgs
+        ///         {
+        ///             Name = "Terraform Fun",
+        ///         }));
+        ///         this.UsersOfTerraformFun = tfProject1.Apply(tfProject1 =&gt; tfProject1.UserIds);
+        ///     }
+        /// 
+        ///     [Output("usersOfTerraformFun")]
+        ///     public Output&lt;string&gt; UsersOfTerraformFun { get; set; }
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("packet:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithVersion());
     }

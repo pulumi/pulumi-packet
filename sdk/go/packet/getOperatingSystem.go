@@ -8,6 +8,49 @@ import (
 )
 
 // Use this data source to get Packet Operating System image.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "Container Linux"
+// 		opt1 := "coreos"
+// 		opt2 := "alpha"
+// 		opt3 := "c1.small.x86"
+// 		example, err := packet.GetOperatingSystem(ctx, &packet.GetOperatingSystemArgs{
+// 			Name:            &opt0,
+// 			Distro:          &opt1,
+// 			Version:         &opt2,
+// 			ProvisionableOn: &opt3,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = packet.NewDevice(ctx, "server", &packet.DeviceArgs{
+// 			Hostname: pulumi.String("tf.coreos2"),
+// 			Plan:     pulumi.String("c1.small.x86"),
+// 			Facilities: pulumi.StringArray{
+// 				pulumi.String("ewr1"),
+// 			},
+// 			OperatingSystem: pulumi.String(example.Id),
+// 			BillingCycle:    pulumi.String("hourly"),
+// 			ProjectId:       pulumi.String(local.Project_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetOperatingSystem(ctx *pulumi.Context, args *GetOperatingSystemArgs, opts ...pulumi.InvokeOption) (*GetOperatingSystemResult, error) {
 	var rv GetOperatingSystemResult
 	err := ctx.Invoke("packet:index/getOperatingSystem:getOperatingSystem", args, &rv, opts...)

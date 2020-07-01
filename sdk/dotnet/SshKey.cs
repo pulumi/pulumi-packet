@@ -9,6 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
+    /// <summary>
+    /// Provides a resource to manage User SSH keys on your Packet user account. If you create a new device in a project, all the keys of the project's collaborators will be injected to the device.
+    /// 
+    /// The link between User SSH key and device is implicit. If you want to make sure that a key will be copied to a device, you must ensure that the device resource `depends_on` the key resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Create a new SSH key
+    ///         var key1 = new Packet.SshKey("key1", new Packet.SshKeyArgs
+    ///         {
+    ///             Name = "terraform-1",
+    ///             PublicKey = File.ReadAllText("/home/terraform/.ssh/id_rsa.pub"),
+    ///         });
+    ///         // Create new device with "key1" included. The device resource "depends_on" the
+    ///         // key, in order to make sure the key is created before the device.
+    ///         var test = new Packet.Device("test", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "test-device",
+    ///             Plan = "t1.small.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "sjc1",
+    ///             },
+    ///             OperatingSystem = "ubuntu_16_04",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 "packet_ssh_key.key1",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class SshKey : Pulumi.CustomResource
     {
         /// <summary>

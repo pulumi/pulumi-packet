@@ -35,7 +35,6 @@ namespace Pulumi.Packet
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

@@ -16,6 +16,182 @@ namespace Pulumi.Packet
     /// &gt; **Note:** All arguments including the `root_password` and `user_data` will be stored in
     ///  the raw state as plain-text.
     /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Create a device and add it to cool_project
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var web1 = new Packet.Device("web1", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "tf.coreos2",
+    ///             Plan = "t1.small.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "ewr1",
+    ///             },
+    ///             OperatingSystem = "coreos_stable",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Same as above, but boot via iPXE initially, using the Ignition Provider for provisioning
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pxe1 = new Packet.Device("pxe1", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "tf.coreos2-pxe",
+    ///             Plan = "t1.small.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "ewr1",
+    ///             },
+    ///             OperatingSystem = "custom_ipxe",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///             IpxeScriptUrl = "https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe",
+    ///             AlwaysPxe = false,
+    ///             UserData = data.Ignition_config.Example.Rendered,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Create a device without a public IP address, with only a /30 private IPv4 subnet (4 IP addresses)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var web1 = new Packet.Device("web1", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "tf.coreos2",
+    ///             Plan = "t1.small.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "ewr1",
+    ///             },
+    ///             OperatingSystem = "coreos_stable",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///             IpAddresses = 
+    ///             {
+    ///                 new Packet.Inputs.DeviceIpAddressArgs
+    ///                 {
+    ///                     Type = "private_ipv4",
+    ///                     Cidr = 30,
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Deploy device on next-available reserved hardware and do custom partitioning.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var web1 = new Packet.Device("web1", new Packet.DeviceArgs
+    ///         {
+    ///             Hostname = "tftest",
+    ///             Plan = "t1.small.x86",
+    ///             Facilities = 
+    ///             {
+    ///                 "sjc1",
+    ///             },
+    ///             OperatingSystem = "ubuntu_16_04",
+    ///             BillingCycle = "hourly",
+    ///             ProjectId = local.Project_id,
+    ///             HardwareReservationId = "next-available",
+    ///             Storage = @"{
+    ///   ""disks"": [
+    ///     {
+    ///       ""device"": ""/dev/sda"",
+    ///       ""wipeTable"": true,
+    ///       ""partitions"": [
+    ///         {
+    ///           ""label"": ""BIOS"",
+    ///           ""number"": 1,
+    ///           ""size"": ""4096""
+    ///         },
+    ///         {
+    ///           ""label"": ""SWAP"",
+    ///           ""number"": 2,
+    ///           ""size"": ""3993600""
+    ///         },
+    ///         {
+    ///           ""label"": ""ROOT"",
+    ///           ""number"": 3,
+    ///           ""size"": ""0""
+    ///         }
+    ///       ]
+    ///     }
+    ///   ],
+    ///   ""filesystems"": [
+    ///     {
+    ///       ""mount"": {
+    ///         ""device"": ""/dev/sda3"",
+    ///         ""format"": ""ext4"",
+    ///         ""point"": ""/"",
+    ///         ""create"": {
+    ///           ""options"": [
+    ///             ""-L"",
+    ///             ""ROOT""
+    ///           ]
+    ///         }
+    ///       }
+    ///     },
+    ///     {
+    ///       ""mount"": {
+    ///         ""device"": ""/dev/sda2"",
+    ///         ""format"": ""swap"",
+    ///         ""point"": ""none"",
+    ///         ""create"": {
+    ///           ""options"": [
+    ///             ""-L"",
+    ///             ""SWAP""
+    ///           ]
+    ///         }
+    ///       }
+    ///     }
+    ///   ]
+    /// }
+    /// ",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Device : Pulumi.CustomResource
     {
@@ -94,7 +270,7 @@ namespace Pulumi.Packet
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// A list of IP address types for the device (structure is documented below). 
+        /// A list of IP address types for the device (structure is documented below).
         /// </summary>
         [Output("ipAddresses")]
         public Output<ImmutableArray<Outputs.DeviceIpAddress>> IpAddresses { get; private set; } = null!;
@@ -304,7 +480,7 @@ namespace Pulumi.Packet
         private InputList<Inputs.DeviceIpAddressArgs>? _ipAddresses;
 
         /// <summary>
-        /// A list of IP address types for the device (structure is documented below). 
+        /// A list of IP address types for the device (structure is documented below).
         /// </summary>
         public InputList<Inputs.DeviceIpAddressArgs> IpAddresses
         {
@@ -472,7 +648,7 @@ namespace Pulumi.Packet
         private InputList<Inputs.DeviceIpAddressGetArgs>? _ipAddresses;
 
         /// <summary>
-        /// A list of IP address types for the device (structure is documented below). 
+        /// A list of IP address types for the device (structure is documented below).
         /// </summary>
         public InputList<Inputs.DeviceIpAddressGetArgs> IpAddresses
         {

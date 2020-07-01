@@ -15,6 +15,31 @@ import (
 // To learn more about Layer 2 networking in Packet, refer to
 // * https://www.packet.com/resources/guides/layer-2-configurations/
 // * https://www.packet.com/developers/docs/network/advanced/layer-2/
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewVlan(ctx, "vlan1", &packet.VlanArgs{
+// 			Description: pulumi.String("VLAN in New Jersey"),
+// 			Facility:    pulumi.String("ewr1"),
+// 			ProjectId:   pulumi.String(local.Project_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Vlan struct {
 	pulumi.CustomResourceState
 

@@ -7,7 +7,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Packet spotMarketRequest datasource. The datasource will contain list of device IDs created by referenced Spot Market Request.
 func LookupSpotMarketRequest(ctx *pulumi.Context, args *LookupSpotMarketRequestArgs, opts ...pulumi.InvokeOption) (*LookupSpotMarketRequestResult, error) {
 	var rv LookupSpotMarketRequestResult
 	err := ctx.Invoke("packet:index/getSpotMarketRequest:getSpotMarketRequest", args, &rv, opts...)

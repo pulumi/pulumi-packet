@@ -48,7 +48,7 @@ export interface GetPrecreatedIpBlockArgs {
      */
     readonly projectId: string;
     /**
-     * Whether to look for public or private block. 
+     * Whether to look for public or private block.
      */
     readonly public: boolean;
 }

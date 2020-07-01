@@ -12,6 +12,57 @@ import (
 
 // Provides a Packet project resource to allow you manage devices
 // in your projects.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewProject(ctx, "tfProject1", &packet.ProjectArgs{
+// 			Name: pulumi.String("Terraform Fun"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Example with BGP config
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := packet.NewProject(ctx, "tfProject1", &packet.ProjectArgs{
+// 			BgpConfig: &packet.ProjectBgpConfigArgs{
+// 				Asn:            pulumi.Int(65000),
+// 				DeploymentType: pulumi.String("local"),
+// 				Md5:            pulumi.String("C179c28c41a85b"),
+// 			},
+// 			Name: pulumi.String("tftest"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Project struct {
 	pulumi.CustomResourceState
 

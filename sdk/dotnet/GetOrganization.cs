@@ -13,9 +13,6 @@ namespace Pulumi.Packet
     {
         /// <summary>
         /// Provides a Packet organization datasource.
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetOrganizationResult> InvokeAsync(GetOrganizationArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("packet:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithVersion());

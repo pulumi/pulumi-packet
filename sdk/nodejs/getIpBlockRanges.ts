@@ -15,8 +15,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as packet from "@pulumi/packet";
@@ -51,7 +49,7 @@ export interface GetIpBlockRangesArgs {
      */
     readonly facility?: string;
     /**
-     * ID of the project from which to list the blocks. 
+     * ID of the project from which to list the blocks.
      */
     readonly projectId: string;
 }

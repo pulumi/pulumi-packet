@@ -42,7 +42,6 @@ namespace Pulumi.Packet
         ///     public Output&lt;string&gt; Out { get; set; }
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
@@ -60,7 +59,7 @@ namespace Pulumi.Packet
         public string? Facility { get; set; }
 
         /// <summary>
-        /// ID of the project from which to list the blocks. 
+        /// ID of the project from which to list the blocks.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;

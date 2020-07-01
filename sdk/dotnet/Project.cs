@@ -9,6 +9,56 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
+    /// <summary>
+    /// Provides a Packet project resource to allow you manage devices
+    /// in your projects.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Create a new project
+    ///         var tfProject1 = new Packet.Project("tfProject1", new Packet.ProjectArgs
+    ///         {
+    ///             Name = "Terraform Fun",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Example with BGP config
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Packet = Pulumi.Packet;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Create a new Project
+    ///         var tfProject1 = new Packet.Project("tfProject1", new Packet.ProjectArgs
+    ///         {
+    ///             BgpConfig = new Packet.Inputs.ProjectBgpConfigArgs
+    ///             {
+    ///                 Asn = 65000,
+    ///                 DeploymentType = "local",
+    ///                 Md5 = "C179c28c41a85b",
+    ///             },
+    ///             Name = "tftest",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Project : Pulumi.CustomResource
     {
         /// <summary>

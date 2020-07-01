@@ -21,8 +21,7 @@ type DeviceIpAddress struct {
 // DeviceIpAddressInput is an input type that accepts DeviceIpAddressArgs and DeviceIpAddressOutput values.
 // You can construct a concrete instance of `DeviceIpAddressInput` via:
 //
-// 		 DeviceIpAddressArgs{...}
-//
+//          DeviceIpAddressArgs{...}
 type DeviceIpAddressInput interface {
 	pulumi.Input
 
@@ -53,8 +52,7 @@ func (i DeviceIpAddressArgs) ToDeviceIpAddressOutputWithContext(ctx context.Cont
 // DeviceIpAddressArrayInput is an input type that accepts DeviceIpAddressArray and DeviceIpAddressArrayOutput values.
 // You can construct a concrete instance of `DeviceIpAddressArrayInput` via:
 //
-// 		 DeviceIpAddressArray{ DeviceIpAddressArgs{...} }
-//
+//          DeviceIpAddressArray{ DeviceIpAddressArgs{...} }
 type DeviceIpAddressArrayInput interface {
 	pulumi.Input
 
@@ -140,8 +138,7 @@ type DeviceNetwork struct {
 // DeviceNetworkInput is an input type that accepts DeviceNetworkArgs and DeviceNetworkOutput values.
 // You can construct a concrete instance of `DeviceNetworkInput` via:
 //
-// 		 DeviceNetworkArgs{...}
-//
+//          DeviceNetworkArgs{...}
 type DeviceNetworkInput interface {
 	pulumi.Input
 
@@ -177,8 +174,7 @@ func (i DeviceNetworkArgs) ToDeviceNetworkOutputWithContext(ctx context.Context)
 // DeviceNetworkArrayInput is an input type that accepts DeviceNetworkArray and DeviceNetworkArrayOutput values.
 // You can construct a concrete instance of `DeviceNetworkArrayInput` via:
 //
-// 		 DeviceNetworkArray{ DeviceNetworkArgs{...} }
-//
+//          DeviceNetworkArray{ DeviceNetworkArgs{...} }
 type DeviceNetworkArrayInput interface {
 	pulumi.Input
 
@@ -276,8 +272,7 @@ type DevicePort struct {
 // DevicePortInput is an input type that accepts DevicePortArgs and DevicePortOutput values.
 // You can construct a concrete instance of `DevicePortInput` via:
 //
-// 		 DevicePortArgs{...}
-//
+//          DevicePortArgs{...}
 type DevicePortInput interface {
 	pulumi.Input
 
@@ -314,8 +309,7 @@ func (i DevicePortArgs) ToDevicePortOutputWithContext(ctx context.Context) Devic
 // DevicePortArrayInput is an input type that accepts DevicePortArray and DevicePortArrayOutput values.
 // You can construct a concrete instance of `DevicePortArrayInput` via:
 //
-// 		 DevicePortArray{ DevicePortArgs{...} }
-//
+//          DevicePortArray{ DevicePortArgs{...} }
 type DevicePortArrayInput interface {
 	pulumi.Input
 
@@ -413,8 +407,7 @@ type ProjectBgpConfig struct {
 // ProjectBgpConfigInput is an input type that accepts ProjectBgpConfigArgs and ProjectBgpConfigOutput values.
 // You can construct a concrete instance of `ProjectBgpConfigInput` via:
 //
-// 		 ProjectBgpConfigArgs{...}
-//
+//          ProjectBgpConfigArgs{...}
 type ProjectBgpConfigInput interface {
 	pulumi.Input
 
@@ -458,12 +451,11 @@ func (i ProjectBgpConfigArgs) ToProjectBgpConfigPtrOutputWithContext(ctx context
 // ProjectBgpConfigPtrInput is an input type that accepts ProjectBgpConfigArgs, ProjectBgpConfigPtr and ProjectBgpConfigPtrOutput values.
 // You can construct a concrete instance of `ProjectBgpConfigPtrInput` via:
 //
-// 		 ProjectBgpConfigArgs{...}
+//          ProjectBgpConfigArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type ProjectBgpConfigPtrInput interface {
 	pulumi.Input
 
@@ -624,8 +616,7 @@ type SpotMarketRequestInstanceParameters struct {
 // SpotMarketRequestInstanceParametersInput is an input type that accepts SpotMarketRequestInstanceParametersArgs and SpotMarketRequestInstanceParametersOutput values.
 // You can construct a concrete instance of `SpotMarketRequestInstanceParametersInput` via:
 //
-// 		 SpotMarketRequestInstanceParametersArgs{...}
-//
+//          SpotMarketRequestInstanceParametersArgs{...}
 type SpotMarketRequestInstanceParametersInput interface {
 	pulumi.Input
 
@@ -671,12 +662,11 @@ func (i SpotMarketRequestInstanceParametersArgs) ToSpotMarketRequestInstancePara
 // SpotMarketRequestInstanceParametersPtrInput is an input type that accepts SpotMarketRequestInstanceParametersArgs, SpotMarketRequestInstanceParametersPtr and SpotMarketRequestInstanceParametersPtrOutput values.
 // You can construct a concrete instance of `SpotMarketRequestInstanceParametersPtrInput` via:
 //
-// 		 SpotMarketRequestInstanceParametersArgs{...}
+//          SpotMarketRequestInstanceParametersArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SpotMarketRequestInstanceParametersPtrInput interface {
 	pulumi.Input
 
@@ -906,8 +896,7 @@ type VolumeAttachmentType struct {
 // VolumeAttachmentTypeInput is an input type that accepts VolumeAttachmentTypeArgs and VolumeAttachmentTypeOutput values.
 // You can construct a concrete instance of `VolumeAttachmentTypeInput` via:
 //
-// 		 VolumeAttachmentTypeArgs{...}
-//
+//          VolumeAttachmentTypeArgs{...}
 type VolumeAttachmentTypeInput interface {
 	pulumi.Input
 
@@ -934,8 +923,7 @@ func (i VolumeAttachmentTypeArgs) ToVolumeAttachmentTypeOutputWithContext(ctx co
 // VolumeAttachmentTypeArrayInput is an input type that accepts VolumeAttachmentTypeArray and VolumeAttachmentTypeArrayOutput values.
 // You can construct a concrete instance of `VolumeAttachmentTypeArrayInput` via:
 //
-// 		 VolumeAttachmentTypeArray{ VolumeAttachmentTypeArgs{...} }
-//
+//          VolumeAttachmentTypeArray{ VolumeAttachmentTypeArgs{...} }
 type VolumeAttachmentTypeArrayInput interface {
 	pulumi.Input
 
@@ -1003,8 +991,7 @@ type VolumeSnapshotPolicy struct {
 // VolumeSnapshotPolicyInput is an input type that accepts VolumeSnapshotPolicyArgs and VolumeSnapshotPolicyOutput values.
 // You can construct a concrete instance of `VolumeSnapshotPolicyInput` via:
 //
-// 		 VolumeSnapshotPolicyArgs{...}
-//
+//          VolumeSnapshotPolicyArgs{...}
 type VolumeSnapshotPolicyInput interface {
 	pulumi.Input
 
@@ -1032,8 +1019,7 @@ func (i VolumeSnapshotPolicyArgs) ToVolumeSnapshotPolicyOutputWithContext(ctx co
 // VolumeSnapshotPolicyArrayInput is an input type that accepts VolumeSnapshotPolicyArray and VolumeSnapshotPolicyArrayOutput values.
 // You can construct a concrete instance of `VolumeSnapshotPolicyArrayInput` via:
 //
-// 		 VolumeSnapshotPolicyArray{ VolumeSnapshotPolicyArgs{...} }
-//
+//          VolumeSnapshotPolicyArray{ VolumeSnapshotPolicyArgs{...} }
 type VolumeSnapshotPolicyArrayInput interface {
 	pulumi.Input
 
@@ -1123,8 +1109,7 @@ type GetDeviceBgpNeighborsBgpNeighbor struct {
 // GetDeviceBgpNeighborsBgpNeighborInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborArgs and GetDeviceBgpNeighborsBgpNeighborOutput values.
 // You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborInput` via:
 //
-// 		 GetDeviceBgpNeighborsBgpNeighborArgs{...}
-//
+//          GetDeviceBgpNeighborsBgpNeighborArgs{...}
 type GetDeviceBgpNeighborsBgpNeighborInput interface {
 	pulumi.Input
 
@@ -1170,8 +1155,7 @@ func (i GetDeviceBgpNeighborsBgpNeighborArgs) ToGetDeviceBgpNeighborsBgpNeighbor
 // GetDeviceBgpNeighborsBgpNeighborArrayInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborArray and GetDeviceBgpNeighborsBgpNeighborArrayOutput values.
 // You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborArrayInput` via:
 //
-// 		 GetDeviceBgpNeighborsBgpNeighborArray{ GetDeviceBgpNeighborsBgpNeighborArgs{...} }
-//
+//          GetDeviceBgpNeighborsBgpNeighborArray{ GetDeviceBgpNeighborsBgpNeighborArgs{...} }
 type GetDeviceBgpNeighborsBgpNeighborArrayInput interface {
 	pulumi.Input
 
@@ -1291,8 +1275,7 @@ type GetDeviceBgpNeighborsBgpNeighborRoutesIn struct {
 // GetDeviceBgpNeighborsBgpNeighborRoutesInInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesInArgs and GetDeviceBgpNeighborsBgpNeighborRoutesInOutput values.
 // You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesInInput` via:
 //
-// 		 GetDeviceBgpNeighborsBgpNeighborRoutesInArgs{...}
-//
+//          GetDeviceBgpNeighborsBgpNeighborRoutesInArgs{...}
 type GetDeviceBgpNeighborsBgpNeighborRoutesInInput interface {
 	pulumi.Input
 
@@ -1322,8 +1305,7 @@ func (i GetDeviceBgpNeighborsBgpNeighborRoutesInArgs) ToGetDeviceBgpNeighborsBgp
 // GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesInArray and GetDeviceBgpNeighborsBgpNeighborRoutesInArrayOutput values.
 // You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput` via:
 //
-// 		 GetDeviceBgpNeighborsBgpNeighborRoutesInArray{ GetDeviceBgpNeighborsBgpNeighborRoutesInArgs{...} }
-//
+//          GetDeviceBgpNeighborsBgpNeighborRoutesInArray{ GetDeviceBgpNeighborsBgpNeighborRoutesInArgs{...} }
 type GetDeviceBgpNeighborsBgpNeighborRoutesInArrayInput interface {
 	pulumi.Input
 
@@ -1399,8 +1381,7 @@ type GetDeviceBgpNeighborsBgpNeighborRoutesOut struct {
 // GetDeviceBgpNeighborsBgpNeighborRoutesOutInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs and GetDeviceBgpNeighborsBgpNeighborRoutesOutOutput values.
 // You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesOutInput` via:
 //
-// 		 GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs{...}
-//
+//          GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs{...}
 type GetDeviceBgpNeighborsBgpNeighborRoutesOutInput interface {
 	pulumi.Input
 
@@ -1430,8 +1411,7 @@ func (i GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs) ToGetDeviceBgpNeighborsBg
 // GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput is an input type that accepts GetDeviceBgpNeighborsBgpNeighborRoutesOutArray and GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayOutput values.
 // You can construct a concrete instance of `GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput` via:
 //
-// 		 GetDeviceBgpNeighborsBgpNeighborRoutesOutArray{ GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs{...} }
-//
+//          GetDeviceBgpNeighborsBgpNeighborRoutesOutArray{ GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs{...} }
 type GetDeviceBgpNeighborsBgpNeighborRoutesOutArrayInput interface {
 	pulumi.Input
 
@@ -1513,8 +1493,7 @@ type GetDeviceNetwork struct {
 // GetDeviceNetworkInput is an input type that accepts GetDeviceNetworkArgs and GetDeviceNetworkOutput values.
 // You can construct a concrete instance of `GetDeviceNetworkInput` via:
 //
-// 		 GetDeviceNetworkArgs{...}
-//
+//          GetDeviceNetworkArgs{...}
 type GetDeviceNetworkInput interface {
 	pulumi.Input
 
@@ -1550,8 +1529,7 @@ func (i GetDeviceNetworkArgs) ToGetDeviceNetworkOutputWithContext(ctx context.Co
 // GetDeviceNetworkArrayInput is an input type that accepts GetDeviceNetworkArray and GetDeviceNetworkArrayOutput values.
 // You can construct a concrete instance of `GetDeviceNetworkArrayInput` via:
 //
-// 		 GetDeviceNetworkArray{ GetDeviceNetworkArgs{...} }
-//
+//          GetDeviceNetworkArray{ GetDeviceNetworkArgs{...} }
 type GetDeviceNetworkArrayInput interface {
 	pulumi.Input
 
@@ -1648,8 +1626,7 @@ type GetDevicePort struct {
 // GetDevicePortInput is an input type that accepts GetDevicePortArgs and GetDevicePortOutput values.
 // You can construct a concrete instance of `GetDevicePortInput` via:
 //
-// 		 GetDevicePortArgs{...}
-//
+//          GetDevicePortArgs{...}
 type GetDevicePortInput interface {
 	pulumi.Input
 
@@ -1685,8 +1662,7 @@ func (i GetDevicePortArgs) ToGetDevicePortOutputWithContext(ctx context.Context)
 // GetDevicePortArrayInput is an input type that accepts GetDevicePortArray and GetDevicePortArrayOutput values.
 // You can construct a concrete instance of `GetDevicePortArrayInput` via:
 //
-// 		 GetDevicePortArray{ GetDevicePortArgs{...} }
-//
+//          GetDevicePortArray{ GetDevicePortArgs{...} }
 type GetDevicePortArrayInput interface {
 	pulumi.Input
 
@@ -1783,8 +1759,7 @@ type GetProjectBgpConfig struct {
 // GetProjectBgpConfigInput is an input type that accepts GetProjectBgpConfigArgs and GetProjectBgpConfigOutput values.
 // You can construct a concrete instance of `GetProjectBgpConfigInput` via:
 //
-// 		 GetProjectBgpConfigArgs{...}
-//
+//          GetProjectBgpConfigArgs{...}
 type GetProjectBgpConfigInput interface {
 	pulumi.Input
 
@@ -1864,8 +1839,7 @@ type GetVolumeSnapshotPolicy struct {
 // GetVolumeSnapshotPolicyInput is an input type that accepts GetVolumeSnapshotPolicyArgs and GetVolumeSnapshotPolicyOutput values.
 // You can construct a concrete instance of `GetVolumeSnapshotPolicyInput` via:
 //
-// 		 GetVolumeSnapshotPolicyArgs{...}
-//
+//          GetVolumeSnapshotPolicyArgs{...}
 type GetVolumeSnapshotPolicyInput interface {
 	pulumi.Input
 
@@ -1893,8 +1867,7 @@ func (i GetVolumeSnapshotPolicyArgs) ToGetVolumeSnapshotPolicyOutputWithContext(
 // GetVolumeSnapshotPolicyArrayInput is an input type that accepts GetVolumeSnapshotPolicyArray and GetVolumeSnapshotPolicyArrayOutput values.
 // You can construct a concrete instance of `GetVolumeSnapshotPolicyArrayInput` via:
 //
-// 		 GetVolumeSnapshotPolicyArray{ GetVolumeSnapshotPolicyArgs{...} }
-//
+//          GetVolumeSnapshotPolicyArray{ GetVolumeSnapshotPolicyArgs{...} }
 type GetVolumeSnapshotPolicyArrayInput interface {
 	pulumi.Input
 
