@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.10.0 of the Packet Terraform Provider
+_(none)_
 
 ---
+
+## 2.3.0 (2020-07-07)
+* Upgrade to v2.10.0 of the Packet Terraform Provider
 
 ## 2.2.3 (2020-06-11)
 * Switch to GitHub actions for build
