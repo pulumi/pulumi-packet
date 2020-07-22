@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .bgp_session import *
 from .device import *
+from .device_network_type import *
 from .get_device import *
 from .get_device_bgp_neighbors import *
 from .get_ip_block_ranges import *

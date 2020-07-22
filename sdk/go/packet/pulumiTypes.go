@@ -128,6 +128,7 @@ type DeviceNetwork struct {
 	// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
 	Cidr *int `pulumi:"cidr"`
 	// IP version - "4" or "6"
+	// * `networkType` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
 	Family *int `pulumi:"family"`
 	// address of router
 	Gateway *string `pulumi:"gateway"`
@@ -152,6 +153,7 @@ type DeviceNetworkArgs struct {
 	// CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
 	Cidr pulumi.IntPtrInput `pulumi:"cidr"`
 	// IP version - "4" or "6"
+	// * `networkType` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
 	Family pulumi.IntPtrInput `pulumi:"family"`
 	// address of router
 	Gateway pulumi.StringPtrInput `pulumi:"gateway"`
@@ -221,6 +223,7 @@ func (o DeviceNetworkOutput) Cidr() pulumi.IntPtrOutput {
 }
 
 // IP version - "4" or "6"
+// * `networkType` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
 func (o DeviceNetworkOutput) Family() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeviceNetwork) *int { return v.Family }).(pulumi.IntPtrOutput)
 }

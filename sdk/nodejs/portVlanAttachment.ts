@@ -35,10 +35,13 @@ import * as utilities from "./utilities";
  *     operatingSystem: "ubuntu_16_04",
  *     billingCycle: "hourly",
  *     projectId: local.project_id,
- *     networkType: "hybrid",
+ * });
+ * const testDeviceNetworkType = new packet.DeviceNetworkType("testDeviceNetworkType", {
+ *     deviceId: testDevice.id,
+ *     type: "hybrid",
  * });
  * const testPortVlanAttachment = new packet.PortVlanAttachment("testPortVlanAttachment", {
- *     deviceId: testDevice.id,
+ *     deviceId: testDeviceNetworkType.id,
  *     portName: "eth1",
  *     vlanVnid: testVlan.vxlan,
  * });
@@ -50,7 +53,10 @@ import * as utilities from "./utilities";
  *     operatingSystem: "ubuntu_16_04",
  *     billingCycle: "hourly",
  *     projectId: local.project_id,
- *     networkType: "layer2-individual",
+ * });
+ * const testIndex_deviceNetworkTypeDeviceNetworkType = new packet.DeviceNetworkType("testIndex/deviceNetworkTypeDeviceNetworkType", {
+ *     deviceId: testDevice.id,
+ *     type: "layer2-individual",
  * });
  * const test1Vlan = new packet.Vlan("test1Vlan", {
  *     description: "VLAN in New Jersey",
@@ -63,12 +69,12 @@ import * as utilities from "./utilities";
  *     projectId: local.project_id,
  * });
  * const test1PortVlanAttachment = new packet.PortVlanAttachment("test1PortVlanAttachment", {
- *     deviceId: testDevice.id,
+ *     deviceId: testDeviceNetworkType.id,
  *     vlanVnid: test1Vlan.vxlan,
  *     portName: "eth1",
  * });
  * const test2PortVlanAttachment = new packet.PortVlanAttachment("test2PortVlanAttachment", {
- *     deviceId: testDevice.id,
+ *     deviceId: testDeviceNetworkType.id,
  *     vlanVnid: test2Vlan.vxlan,
  *     portName: "eth1",
  *     native: true,

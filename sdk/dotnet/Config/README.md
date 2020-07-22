@@ -1,1 +1,1 @@
-A Pulumi package for creating and managing X cloud resources.
+A Pulumi package for creating and managing Packet cloud resources.

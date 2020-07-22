@@ -76,7 +76,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "packet",
-		Description: "A Pulumi package for creating and managing X cloud resources.",
+		Description: "A Pulumi package for creating and managing Packet cloud resources.",
 		Keywords:    []string{"pulumi", "packet"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
@@ -101,9 +101,6 @@ func Provider() tfbridge.ProviderInfo {
 					},
 					"facilities": {
 						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "Facility")},
-					},
-					"ip_address_types": {
-						Elem: &tfbridge.SchemaInfo{Type: makeType(mainMod, "IpAddressType")},
 					},
 					"network_type": {
 						Type: makeType(mainMod, "NetworkType"),
@@ -153,7 +150,8 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"packet_volume_attachment": {Tok: makeResource(mainMod, "VolumeAttachment")},
+			"packet_volume_attachment":   {Tok: makeResource(mainMod, "VolumeAttachment")},
+			"packet_device_network_type": {Tok: makeResource(mainMod, "DeviceNetworkType")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
@@ -185,7 +183,6 @@ func Provider() tfbridge.ProviderInfo {
 				DestFiles: []string{
 					"billingCycle.ts",
 					"facility.ts",
-					"ipAddressType.ts",
 					"ipBlockType.ts",
 					"networkType.ts",
 					"operatingSystem.ts",

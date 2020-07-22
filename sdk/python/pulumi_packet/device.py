@@ -92,6 +92,7 @@ class Device(pulumi.CustomResource):
       * `address` (`str`) - IPv4 or IPv6 address string
       * `cidr` (`float`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
       * `family` (`float`) - IP version - "4" or "6"
+        * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
       * `gateway` (`str`) - address of router
       * `public` (`bool`) - whether the address is routable from the Internet
     """
@@ -152,7 +153,7 @@ class Device(pulumi.CustomResource):
     """
     Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
     """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, network_type=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -348,7 +349,6 @@ class Device(pulumi.CustomResource):
             __props__['hostname'] = hostname
             __props__['ip_addresses'] = ip_addresses
             __props__['ipxe_script_url'] = ipxe_script_url
-            __props__['network_type'] = network_type
             if operating_system is None:
                 raise TypeError("Missing required property 'operating_system'")
             __props__['operating_system'] = operating_system
@@ -369,6 +369,7 @@ class Device(pulumi.CustomResource):
             __props__['created'] = None
             __props__['deployed_facility'] = None
             __props__['locked'] = None
+            __props__['network_type'] = None
             __props__['networks'] = None
             __props__['ports'] = None
             __props__['root_password'] = None
@@ -441,6 +442,7 @@ class Device(pulumi.CustomResource):
           * `address` (`pulumi.Input[str]`) - IPv4 or IPv6 address string
           * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
           * `family` (`pulumi.Input[float]`) - IP version - "4" or "6"
+            * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
           * `gateway` (`pulumi.Input[str]`) - address of router
           * `public` (`pulumi.Input[bool]`) - whether the address is routable from the Internet
 

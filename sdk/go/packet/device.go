@@ -188,8 +188,9 @@ type Device struct {
 	// doc.
 	IpxeScriptUrl pulumi.StringPtrOutput `pulumi:"ipxeScriptUrl"`
 	// Whether the device is locked
-	Locked      pulumi.BoolOutput      `pulumi:"locked"`
-	NetworkType pulumi.StringPtrOutput `pulumi:"networkType"`
+	Locked pulumi.BoolOutput `pulumi:"locked"`
+	// Deprecated: You should handle Network Type with the new packet_device_network_type resource.
+	NetworkType pulumi.StringOutput `pulumi:"networkType"`
 	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:
 	// * Public IPv4 at `packet_device.name.network.0`
 	// * IPv6 at `packet_device.name.network.1`
@@ -305,7 +306,8 @@ type deviceState struct {
 	// doc.
 	IpxeScriptUrl *string `pulumi:"ipxeScriptUrl"`
 	// Whether the device is locked
-	Locked      *bool   `pulumi:"locked"`
+	Locked *bool `pulumi:"locked"`
+	// Deprecated: You should handle Network Type with the new packet_device_network_type resource.
 	NetworkType *string `pulumi:"networkType"`
 	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:
 	// * Public IPv4 at `packet_device.name.network.0`
@@ -377,7 +379,8 @@ type DeviceState struct {
 	// doc.
 	IpxeScriptUrl pulumi.StringPtrInput
 	// Whether the device is locked
-	Locked      pulumi.BoolPtrInput
+	Locked pulumi.BoolPtrInput
+	// Deprecated: You should handle Network Type with the new packet_device_network_type resource.
 	NetworkType pulumi.StringPtrInput
 	// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:
 	// * Public IPv4 at `packet_device.name.network.0`
@@ -442,7 +445,6 @@ type deviceArgs struct {
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 	// doc.
 	IpxeScriptUrl *string `pulumi:"ipxeScriptUrl"`
-	NetworkType   *string `pulumi:"networkType"`
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem string `pulumi:"operatingSystem"`
 	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
@@ -486,7 +488,6 @@ type DeviceArgs struct {
 	// [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
 	// doc.
 	IpxeScriptUrl pulumi.StringPtrInput
-	NetworkType   pulumi.StringPtrInput
 	// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
 	OperatingSystem pulumi.StringInput
 	// The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
