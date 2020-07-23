@@ -2,12 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 3.0.0 (2020-07-23)
 * Upgrade to v3.0.0 of the Packet Terraform Provider
   ** Please Note: **
   * `device.ipAddressType` has been removed
   * `device.networkType` should now be managed with the `deviceNetworkType` resource 
-
----
 
 ## 2.3.0 (2020-07-07)
 * Upgrade to v2.10.0 of the Packet Terraform Provider
