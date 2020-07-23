@@ -15,7 +15,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -42,7 +42,7 @@ import (
 // 			},
 // 			OperatingSystem: pulumi.String(example.Id),
 // 			BillingCycle:    pulumi.String("hourly"),
-// 			ProjectId:       pulumi.String(local.Project_id),
+// 			ProjectId:       pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err

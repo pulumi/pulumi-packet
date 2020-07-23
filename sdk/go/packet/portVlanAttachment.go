@@ -27,7 +27,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -36,7 +36,7 @@ import (
 // 		testVlan, err := packet.NewVlan(ctx, "testVlan", &packet.VlanArgs{
 // 			Description: pulumi.String("VLAN in New Jersey"),
 // 			Facility:    pulumi.String("ewr1"),
-// 			ProjectId:   pulumi.String(local.Project_id),
+// 			ProjectId:   pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -49,7 +49,7 @@ import (
 // 			},
 // 			OperatingSystem: pulumi.String("ubuntu_16_04"),
 // 			BillingCycle:    pulumi.String("hourly"),
-// 			ProjectId:       pulumi.String(local.Project_id),
+// 			ProjectId:       pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -77,7 +77,7 @@ import (
 // 			},
 // 			OperatingSystem: pulumi.String("ubuntu_16_04"),
 // 			BillingCycle:    pulumi.String("hourly"),
-// 			ProjectId:       pulumi.String(local.Project_id),
+// 			ProjectId:       pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -92,7 +92,7 @@ import (
 // 		test1Vlan, err := packet.NewVlan(ctx, "test1Vlan", &packet.VlanArgs{
 // 			Description: pulumi.String("VLAN in New Jersey"),
 // 			Facility:    pulumi.String("ewr1"),
-// 			ProjectId:   pulumi.String(local.Project_id),
+// 			ProjectId:   pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -100,7 +100,7 @@ import (
 // 		test2Vlan, err := packet.NewVlan(ctx, "test2Vlan", &packet.VlanArgs{
 // 			Description: pulumi.String("VLAN in New Jersey"),
 // 			Facility:    pulumi.String("ewr1"),
-// 			ProjectId:   pulumi.String(local.Project_id),
+// 			ProjectId:   pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -39,7 +39,7 @@ import (
 // 			},
 // 			OperatingSystem: pulumi.String("coreos_stable"),
 // 			BillingCycle:    pulumi.String("hourly"),
-// 			ProjectId:       pulumi.String(local.Project_id),
+// 			ProjectId:       pulumi.Any(local.Project_id),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -55,7 +55,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -69,10 +69,10 @@ import (
 // 			},
 // 			OperatingSystem: pulumi.String("custom_ipxe"),
 // 			BillingCycle:    pulumi.String("hourly"),
-// 			ProjectId:       pulumi.String(local.Project_id),
+// 			ProjectId:       pulumi.Any(local.Project_id),
 // 			IpxeScriptUrl:   pulumi.String("https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe"),
 // 			AlwaysPxe:       pulumi.Bool(false),
-// 			UserData:        pulumi.String(data.Ignition_config.Example.Rendered),
+// 			UserData:        pulumi.Any(data.Ignition_config.Example.Rendered),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -88,7 +88,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -102,7 +102,7 @@ import (
 // 			},
 // 			OperatingSystem: pulumi.String("coreos_stable"),
 // 			BillingCycle:    pulumi.String("hourly"),
-// 			ProjectId:       pulumi.String(local.Project_id),
+// 			ProjectId:       pulumi.Any(local.Project_id),
 // 			IpAddresses: packet.DeviceIpAddressArray{
 // 				&packet.DeviceIpAddressArgs{
 // 					Type: pulumi.String("private_ipv4"),
@@ -126,7 +126,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -140,7 +140,7 @@ import (
 // 			},
 // 			OperatingSystem:       pulumi.String("ubuntu_16_04"),
 // 			BillingCycle:          pulumi.String("hourly"),
-// 			ProjectId:             pulumi.String(local.Project_id),
+// 			ProjectId:             pulumi.Any(local.Project_id),
 // 			HardwareReservationId: pulumi.String("next-available"),
 // 			Storage:               pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "{\n", "  \"disks\": [\n", "    {\n", "      \"device\": \"/dev/sda\",\n", "      \"wipeTable\": true,\n", "      \"partitions\": [\n", "        {\n", "          \"label\": \"BIOS\",\n", "          \"number\": 1,\n", "          \"size\": \"4096\"\n", "        },\n", "        {\n", "          \"label\": \"SWAP\",\n", "          \"number\": 2,\n", "          \"size\": \"3993600\"\n", "        },\n", "        {\n", "          \"label\": \"ROOT\",\n", "          \"number\": 3,\n", "          \"size\": \"0\"\n", "        }\n", "      ]\n", "    }\n", "  ],\n", "  \"filesystems\": [\n", "    {\n", "      \"mount\": {\n", "        \"device\": \"/dev/sda3\",\n", "        \"format\": \"ext4\",\n", "        \"point\": \"/\",\n", "        \"create\": {\n", "          \"options\": [\n", "            \"-L\",\n", "            \"ROOT\"\n", "          ]\n", "        }\n", "      }\n", "    },\n", "    {\n", "      \"mount\": {\n", "        \"device\": \"/dev/sda2\",\n", "        \"format\": \"swap\",\n", "        \"point\": \"none\",\n", "        \"create\": {\n", "          \"options\": [\n", "            \"-L\",\n", "            \"SWAP\"\n", "          ]\n", "        }\n", "      }\n", "    }\n", "  ]\n", "}\n")),
 // 		})

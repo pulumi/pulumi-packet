@@ -19,14 +19,14 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-packet/sdk/v2/go/packet"
+// 	"github.com/pulumi/pulumi-packet/sdk/v3/go/packet"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := packet.NewSpotMarketRequest(ctx, "req", &packet.SpotMarketRequestArgs{
-// 			ProjectId:   pulumi.String(local.Project_id),
+// 			ProjectId:   pulumi.Any(local.Project_id),
 // 			MaxBidPrice: pulumi.Float64(0.03),
 // 			Facilities: pulumi.StringArray{
 // 				pulumi.String("ewr1"),
