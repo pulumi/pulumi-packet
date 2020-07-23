@@ -33,7 +33,7 @@ def readme():
 
 setup(name='pulumi_packet',
       version='${VERSION}',
-      description="A Pulumi package for creating and managing X cloud resources.",
+      description="A Pulumi package for creating and managing Packet cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={

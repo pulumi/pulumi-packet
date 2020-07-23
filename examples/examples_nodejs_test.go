@@ -25,7 +25,8 @@ import (
 func TestAccWebserver(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "webserver"),
+			RunUpdateTest: false,
+			Dir:           path.Join(getCwd(t), "webserver"),
 		})
 
 	integration.ProgramTest(t, &test)

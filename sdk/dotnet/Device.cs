@@ -291,7 +291,7 @@ namespace Pulumi.Packet
         public Output<bool> Locked { get; private set; } = null!;
 
         [Output("networkType")]
-        public Output<string?> NetworkType { get; private set; } = null!;
+        public Output<string> NetworkType { get; private set; } = null!;
 
         /// <summary>
         /// The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
@@ -496,9 +496,6 @@ namespace Pulumi.Packet
         /// </summary>
         [Input("ipxeScriptUrl")]
         public Input<string>? IpxeScriptUrl { get; set; }
-
-        [Input("networkType")]
-        public Input<string>? NetworkType { get; set; }
 
         /// <summary>
         /// The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.

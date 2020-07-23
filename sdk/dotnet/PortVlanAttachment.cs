@@ -49,11 +49,15 @@ namespace Pulumi.Packet
     ///             OperatingSystem = "ubuntu_16_04",
     ///             BillingCycle = "hourly",
     ///             ProjectId = local.Project_id,
-    ///             NetworkType = "hybrid",
+    ///         });
+    ///         var testDeviceNetworkType = new Packet.DeviceNetworkType("testDeviceNetworkType", new Packet.DeviceNetworkTypeArgs
+    ///         {
+    ///             DeviceId = testDevice.Id,
+    ///             Type = "hybrid",
     ///         });
     ///         var testPortVlanAttachment = new Packet.PortVlanAttachment("testPortVlanAttachment", new Packet.PortVlanAttachmentArgs
     ///         {
-    ///             DeviceId = testDevice.Id,
+    ///             DeviceId = testDeviceNetworkType.Id,
     ///             PortName = "eth1",
     ///             VlanVnid = testVlan.Vxlan,
     ///         });
@@ -69,7 +73,11 @@ namespace Pulumi.Packet
     ///             OperatingSystem = "ubuntu_16_04",
     ///             BillingCycle = "hourly",
     ///             ProjectId = local.Project_id,
-    ///             NetworkType = "layer2-individual",
+    ///         });
+    ///         var testIndex_deviceNetworkTypeDeviceNetworkType = new Packet.DeviceNetworkType("testIndex/deviceNetworkTypeDeviceNetworkType", new Packet.DeviceNetworkTypeArgs
+    ///         {
+    ///             DeviceId = testDevice.Id,
+    ///             Type = "layer2-individual",
     ///         });
     ///         var test1Vlan = new Packet.Vlan("test1Vlan", new Packet.VlanArgs
     ///         {
@@ -85,13 +93,13 @@ namespace Pulumi.Packet
     ///         });
     ///         var test1PortVlanAttachment = new Packet.PortVlanAttachment("test1PortVlanAttachment", new Packet.PortVlanAttachmentArgs
     ///         {
-    ///             DeviceId = testDevice.Id,
+    ///             DeviceId = testDeviceNetworkType.Id,
     ///             VlanVnid = test1Vlan.Vxlan,
     ///             PortName = "eth1",
     ///         });
     ///         var test2PortVlanAttachment = new Packet.PortVlanAttachment("test2PortVlanAttachment", new Packet.PortVlanAttachmentArgs
     ///         {
-    ///             DeviceId = testDevice.Id,
+    ///             DeviceId = testDeviceNetworkType.Id,
     ///             VlanVnid = test2Vlan.Vxlan,
     ///             PortName = "eth1",
     ///             Native = true,

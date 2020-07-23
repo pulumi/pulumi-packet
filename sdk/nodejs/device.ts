@@ -237,7 +237,10 @@ export class Device extends pulumi.CustomResource {
      * Whether the device is locked
      */
     public /*out*/ readonly locked!: pulumi.Output<boolean>;
-    public readonly networkType!: pulumi.Output<NetworkType | undefined>;
+    /**
+     * @deprecated You should handle Network Type with the new packet_device_network_type resource.
+     */
+    public /*out*/ readonly networkType!: pulumi.Output<NetworkType>;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
      * * Public IPv4 at `packet_device.name.network.0`
@@ -369,7 +372,6 @@ export class Device extends pulumi.CustomResource {
             inputs["hostname"] = args ? args.hostname : undefined;
             inputs["ipAddresses"] = args ? args.ipAddresses : undefined;
             inputs["ipxeScriptUrl"] = args ? args.ipxeScriptUrl : undefined;
-            inputs["networkType"] = args ? args.networkType : undefined;
             inputs["operatingSystem"] = args ? args.operatingSystem : undefined;
             inputs["plan"] = args ? args.plan : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
@@ -384,6 +386,7 @@ export class Device extends pulumi.CustomResource {
             inputs["created"] = undefined /*out*/;
             inputs["deployedFacility"] = undefined /*out*/;
             inputs["locked"] = undefined /*out*/;
+            inputs["networkType"] = undefined /*out*/;
             inputs["networks"] = undefined /*out*/;
             inputs["ports"] = undefined /*out*/;
             inputs["rootPassword"] = undefined /*out*/;
@@ -471,6 +474,9 @@ export interface DeviceState {
      * Whether the device is locked
      */
     readonly locked?: pulumi.Input<boolean>;
+    /**
+     * @deprecated You should handle Network Type with the new packet_device_network_type resource.
+     */
     readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
@@ -578,7 +584,6 @@ export interface DeviceArgs {
      * doc.
      */
     readonly ipxeScriptUrl?: pulumi.Input<string>;
-    readonly networkType?: pulumi.Input<NetworkType>;
     /**
      * The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
      */

@@ -28,6 +28,7 @@ export interface DeviceNetwork {
     cidr?: pulumi.Input<number>;
     /**
      * IP version - "4" or "6"
+     * * `networkType` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
      */
     family?: pulumi.Input<number>;
     /**

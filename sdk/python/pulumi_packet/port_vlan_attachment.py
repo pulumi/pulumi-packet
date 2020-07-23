@@ -62,10 +62,12 @@ class PortVlanAttachment(pulumi.CustomResource):
             facilities=["ewr1"],
             operating_system="ubuntu_16_04",
             billing_cycle="hourly",
-            project_id=local["project_id"],
-            network_type="hybrid")
-        test_port_vlan_attachment = packet.PortVlanAttachment("testPortVlanAttachment",
+            project_id=local["project_id"])
+        test_device_network_type = packet.DeviceNetworkType("testDeviceNetworkType",
             device_id=test_device.id,
+            type="hybrid")
+        test_port_vlan_attachment = packet.PortVlanAttachment("testPortVlanAttachment",
+            device_id=test_device_network_type.id,
             port_name="eth1",
             vlan_vnid=test_vlan.vxlan)
         # Layer 2 network
@@ -75,8 +77,10 @@ class PortVlanAttachment(pulumi.CustomResource):
             facilities=["ewr1"],
             operating_system="ubuntu_16_04",
             billing_cycle="hourly",
-            project_id=local["project_id"],
-            network_type="layer2-individual")
+            project_id=local["project_id"])
+        test_index_device_network_type_device_network_type = packet.DeviceNetworkType("testIndex/deviceNetworkTypeDeviceNetworkType",
+            device_id=test_device.id,
+            type="layer2-individual")
         test1_vlan = packet.Vlan("test1Vlan",
             description="VLAN in New Jersey",
             facility="ewr1",
@@ -86,11 +90,11 @@ class PortVlanAttachment(pulumi.CustomResource):
             facility="ewr1",
             project_id=local["project_id"])
         test1_port_vlan_attachment = packet.PortVlanAttachment("test1PortVlanAttachment",
-            device_id=test_device.id,
+            device_id=test_device_network_type.id,
             vlan_vnid=test1_vlan.vxlan,
             port_name="eth1")
         test2_port_vlan_attachment = packet.PortVlanAttachment("test2PortVlanAttachment",
-            device_id=test_device.id,
+            device_id=test_device_network_type.id,
             vlan_vnid=test2_vlan.vxlan,
             port_name="eth1",
             native=True,

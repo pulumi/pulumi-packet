@@ -50,13 +50,19 @@ import (
 // 			OperatingSystem: pulumi.String("ubuntu_16_04"),
 // 			BillingCycle:    pulumi.String("hourly"),
 // 			ProjectId:       pulumi.String(local.Project_id),
-// 			NetworkType:     pulumi.String("hybrid"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testDeviceNetworkType, err := packet.NewDeviceNetworkType(ctx, "testDeviceNetworkType", &packet.DeviceNetworkTypeArgs{
+// 			DeviceId: testDevice.ID(),
+// 			Type:     pulumi.String("hybrid"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = packet.NewPortVlanAttachment(ctx, "testPortVlanAttachment", &packet.PortVlanAttachmentArgs{
-// 			DeviceId: testDevice.ID(),
+// 			DeviceId: testDeviceNetworkType.ID(),
 // 			PortName: pulumi.String("eth1"),
 // 			VlanVnid: testVlan.Vxlan,
 // 		})
@@ -72,7 +78,13 @@ import (
 // 			OperatingSystem: pulumi.String("ubuntu_16_04"),
 // 			BillingCycle:    pulumi.String("hourly"),
 // 			ProjectId:       pulumi.String(local.Project_id),
-// 			NetworkType:     pulumi.String("layer2-individual"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = packet.NewDeviceNetworkType(ctx, "testIndex_deviceNetworkTypeDeviceNetworkType", &packet.DeviceNetworkTypeArgs{
+// 			DeviceId: testDevice.ID(),
+// 			Type:     pulumi.String("layer2-individual"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -94,7 +106,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = packet.NewPortVlanAttachment(ctx, "test1PortVlanAttachment", &packet.PortVlanAttachmentArgs{
-// 			DeviceId: testDevice.ID(),
+// 			DeviceId: testDeviceNetworkType.ID(),
 // 			VlanVnid: test1Vlan.Vxlan,
 // 			PortName: pulumi.String("eth1"),
 // 		})
@@ -102,7 +114,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = packet.NewPortVlanAttachment(ctx, "test2PortVlanAttachment", &packet.PortVlanAttachmentArgs{
-// 			DeviceId: testDevice.ID(),
+// 			DeviceId: testDeviceNetworkType.ID(),
 // 			VlanVnid: test2Vlan.Vxlan,
 // 			PortName: pulumi.String("eth1"),
 // 			Native:   pulumi.Bool(true),

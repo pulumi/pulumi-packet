@@ -5,6 +5,7 @@
 export * from "./bgpSession";
 export * from "./billingCycle";
 export * from "./device";
+export * from "./deviceNetworkType";
 export * from "./facility";
 export * from "./getDevice";
 export * from "./getDeviceBgpNeighbors";
@@ -16,7 +17,6 @@ export * from "./getProject";
 export * from "./getSpotMarketPrice";
 export * from "./getSpotMarketRequest";
 export * from "./getVolume";
-export * from "./ipAddressType";
 export * from "./ipAttachment";
 export * from "./ipBlockType";
 export * from "./networkType";

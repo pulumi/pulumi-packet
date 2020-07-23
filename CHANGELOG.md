@@ -2,7 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.10.1 of the Packet Terraform Provider
+* Upgrade to v3.0.0 of the Packet Terraform Provider
+  ** Please Note: **
+  * `device.ipAddressType` has been removed
+  * `device.networkType` should now be managed with the `deviceNetworkType` resource 
 
 ---
 

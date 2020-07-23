@@ -1,7 +1,7 @@
 {
     "name": "@pulumi/packet",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing X cloud resources.",
+    "description": "A Pulumi package for creating and managing Packet cloud resources.",
     "keywords": [
         "pulumi",
         "packet"

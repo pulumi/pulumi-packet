@@ -26,6 +26,7 @@ namespace Pulumi.Packet.Inputs
 
         /// <summary>
         /// IP version - "4" or "6"
+        /// * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
         /// </summary>
         [Input("family")]
         public Input<int>? Family { get; set; }

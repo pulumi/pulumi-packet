@@ -17,8 +17,8 @@
 package main
 
 import (
-	packet "github.com/pulumi/pulumi-packet/provider/v2"
-	"github.com/pulumi/pulumi-packet/provider/v2/pkg/version"
+	packet "github.com/pulumi/pulumi-packet/provider/v3"
+	"github.com/pulumi/pulumi-packet/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 )
 
