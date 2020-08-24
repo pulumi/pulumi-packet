@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetOperatingSystemResult',
+    'AwaitableGetOperatingSystemResult',
+    'get_operating_system',
+]
+
+@pulumi.output_type
 class GetOperatingSystemResult:
     """
     A collection of values returned by getOperatingSystem.
@@ -15,28 +22,60 @@ class GetOperatingSystemResult:
     def __init__(__self__, distro=None, id=None, name=None, provisionable_on=None, slug=None, version=None):
         if distro and not isinstance(distro, str):
             raise TypeError("Expected argument 'distro' to be a str")
-        __self__.distro = distro
+        pulumi.set(__self__, "distro", distro)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if provisionable_on and not isinstance(provisionable_on, str):
+            raise TypeError("Expected argument 'provisionable_on' to be a str")
+        pulumi.set(__self__, "provisionable_on", provisionable_on)
+        if slug and not isinstance(slug, str):
+            raise TypeError("Expected argument 'slug' to be a str")
+        pulumi.set(__self__, "slug", slug)
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def distro(self) -> Optional[str]:
+        return pulumi.get(self, "distro")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if provisionable_on and not isinstance(provisionable_on, str):
-            raise TypeError("Expected argument 'provisionable_on' to be a str")
-        __self__.provisionable_on = provisionable_on
-        if slug and not isinstance(slug, str):
-            raise TypeError("Expected argument 'slug' to be a str")
-        __self__.slug = slug
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="provisionableOn")
+    def provisionable_on(self) -> Optional[str]:
+        return pulumi.get(self, "provisionable_on")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> str:
         """
         Operating system slug (same as `id`)
         """
-        if version and not isinstance(version, str):
-            raise TypeError("Expected argument 'version' to be a str")
-        __self__.version = version
+        return pulumi.get(self, "slug")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        return pulumi.get(self, "version")
+
+
 class AwaitableGetOperatingSystemResult(GetOperatingSystemResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -50,7 +89,12 @@ class AwaitableGetOperatingSystemResult(GetOperatingSystemResult):
             slug=self.slug,
             version=self.version)
 
-def get_operating_system(distro=None,name=None,provisionable_on=None,version=None,opts=None):
+
+def get_operating_system(distro: Optional[str] = None,
+                         name: Optional[str] = None,
+                         provisionable_on: Optional[str] = None,
+                         version: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOperatingSystemResult:
     """
     Use this data source to get Packet Operating System image.
 
@@ -80,8 +124,6 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
     :param str version: Version of the distribution
     """
     __args__ = dict()
-
-
     __args__['distro'] = distro
     __args__['name'] = name
     __args__['provisionableOn'] = provisionable_on
@@ -89,13 +131,13 @@ def get_operating_system(distro=None,name=None,provisionable_on=None,version=Non
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getOperatingSystem:getOperatingSystem', __args__, opts=opts, typ=GetOperatingSystemResult).value
 
     return AwaitableGetOperatingSystemResult(
-        distro=__ret__.get('distro'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        provisionable_on=__ret__.get('provisionableOn'),
-        slug=__ret__.get('slug'),
-        version=__ret__.get('version'))
+        distro=__ret__.distro,
+        id=__ret__.id,
+        name=__ret__.name,
+        provisionable_on=__ret__.provisionable_on,
+        slug=__ret__.slug,
+        version=__ret__.version)

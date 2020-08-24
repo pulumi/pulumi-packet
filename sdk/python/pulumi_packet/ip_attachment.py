@@ -5,49 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['IpAttachment']
 
 
 class IpAttachment(pulumi.CustomResource):
-    address: pulumi.Output[str]
-    address_family: pulumi.Output[float]
-    """
-    Address family as integer (4 or 6)
-    """
-    cidr: pulumi.Output[float]
-    """
-    length of CIDR prefix of the subnet as integer
-    """
-    cidr_notation: pulumi.Output[str]
-    """
-    CIDR notation of subnet from block reserved in the same
-    project and facility as the device
-    """
-    device_id: pulumi.Output[str]
-    """
-    ID of device to which to assign the subnet
-    """
-    gateway: pulumi.Output[str]
-    """
-    IP address of gateway for the subnet
-    """
-    global_: pulumi.Output[bool]
-    manageable: pulumi.Output[bool]
-    management: pulumi.Output[bool]
-    netmask: pulumi.Output[str]
-    """
-    Subnet mask in decimal notation, e.g. "255.255.255.0"
-    """
-    network: pulumi.Output[str]
-    """
-    Subnet network address
-    """
-    public: pulumi.Output[bool]
-    """
-    boolean flag whether subnet is reachable from the Internet
-    """
-    def __init__(__self__, resource_name, opts=None, cidr_notation=None, device_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cidr_notation: Optional[pulumi.Input[str]] = None,
+                 device_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to attach elastic IP subnets to devices.
 
@@ -77,7 +49,7 @@ class IpAttachment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -106,13 +78,27 @@ class IpAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address=None, address_family=None, cidr=None, cidr_notation=None, device_id=None, gateway=None, global_=None, manageable=None, management=None, netmask=None, network=None, public=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: Optional[pulumi.Input[str]] = None,
+            address_family: Optional[pulumi.Input[float]] = None,
+            cidr: Optional[pulumi.Input[float]] = None,
+            cidr_notation: Optional[pulumi.Input[str]] = None,
+            device_id: Optional[pulumi.Input[str]] = None,
+            gateway: Optional[pulumi.Input[str]] = None,
+            global_: Optional[pulumi.Input[bool]] = None,
+            manageable: Optional[pulumi.Input[bool]] = None,
+            management: Optional[pulumi.Input[bool]] = None,
+            netmask: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            public: Optional[pulumi.Input[bool]] = None) -> 'IpAttachment':
         """
         Get an existing IpAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] address_family: Address family as integer (4 or 6)
         :param pulumi.Input[float] cidr: length of CIDR prefix of the subnet as integer
@@ -142,8 +128,94 @@ class IpAttachment(pulumi.CustomResource):
         __props__["public"] = public
         return IpAttachment(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter(name="addressFamily")
+    def address_family(self) -> float:
+        """
+        Address family as integer (4 or 6)
+        """
+        return pulumi.get(self, "address_family")
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> float:
+        """
+        length of CIDR prefix of the subnet as integer
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter(name="cidrNotation")
+    def cidr_notation(self) -> str:
+        """
+        CIDR notation of subnet from block reserved in the same
+        project and facility as the device
+        """
+        return pulumi.get(self, "cidr_notation")
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> str:
+        """
+        ID of device to which to assign the subnet
+        """
+        return pulumi.get(self, "device_id")
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> str:
+        """
+        IP address of gateway for the subnet
+        """
+        return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter(name="global")
+    def global_(self) -> bool:
+        return pulumi.get(self, "global_")
+
+    @property
+    @pulumi.getter
+    def manageable(self) -> bool:
+        return pulumi.get(self, "manageable")
+
+    @property
+    @pulumi.getter
+    def management(self) -> bool:
+        return pulumi.get(self, "management")
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> str:
+        """
+        Subnet mask in decimal notation, e.g. "255.255.255.0"
+        """
+        return pulumi.get(self, "netmask")
+
+    @property
+    @pulumi.getter
+    def network(self) -> str:
+        """
+        Subnet network address
+        """
+        return pulumi.get(self, "network")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        boolean flag whether subnet is reachable from the Internet
+        """
+        return pulumi.get(self, "public")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

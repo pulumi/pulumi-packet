@@ -5,64 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['ReservedIpBlock']
 
 
 class ReservedIpBlock(pulumi.CustomResource):
-    address: pulumi.Output[str]
-    address_family: pulumi.Output[float]
-    """
-    Address family as integer (4 or 6)
-    """
-    cidr: pulumi.Output[float]
-    """
-    length of CIDR prefix of the block as integer
-    """
-    cidr_notation: pulumi.Output[str]
-    """
-    Address and mask in CIDR notation, e.g. "147.229.15.30/31"
-    """
-    description: pulumi.Output[str]
-    """
-    Arbitrary description
-    """
-    facility: pulumi.Output[str]
-    """
-    Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
-    """
-    gateway: pulumi.Output[str]
-    global_: pulumi.Output[bool]
-    """
-    boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
-    """
-    manageable: pulumi.Output[bool]
-    management: pulumi.Output[bool]
-    netmask: pulumi.Output[str]
-    """
-    Mask in decimal notation, e.g. "255.255.255.0"
-    """
-    network: pulumi.Output[str]
-    """
-    Network IP address portion of the block specification
-    """
-    project_id: pulumi.Output[str]
-    """
-    The packet project ID where to allocate the address block
-    """
-    public: pulumi.Output[bool]
-    """
-    boolean flag whether addresses from a block are public
-    """
-    quantity: pulumi.Output[float]
-    """
-    The number of allocated /32 addresses, a power of 2
-    """
-    type: pulumi.Output[str]
-    """
-    Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, quantity=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 facility: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 quantity: Optional[pulumi.Input[float]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to create and manage blocks of reserved IP addresses in a project.
 
@@ -96,7 +56,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -129,13 +89,31 @@ class ReservedIpBlock(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address=None, address_family=None, cidr=None, cidr_notation=None, description=None, facility=None, gateway=None, global_=None, manageable=None, management=None, netmask=None, network=None, project_id=None, public=None, quantity=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: Optional[pulumi.Input[str]] = None,
+            address_family: Optional[pulumi.Input[float]] = None,
+            cidr: Optional[pulumi.Input[float]] = None,
+            cidr_notation: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            facility: Optional[pulumi.Input[str]] = None,
+            gateway: Optional[pulumi.Input[str]] = None,
+            global_: Optional[pulumi.Input[bool]] = None,
+            manageable: Optional[pulumi.Input[bool]] = None,
+            management: Optional[pulumi.Input[bool]] = None,
+            netmask: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            public: Optional[pulumi.Input[bool]] = None,
+            quantity: Optional[pulumi.Input[float]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'ReservedIpBlock':
         """
         Get an existing ReservedIpBlock resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] address_family: Address family as integer (4 or 6)
         :param pulumi.Input[float] cidr: length of CIDR prefix of the block as integer
@@ -172,8 +150,125 @@ class ReservedIpBlock(pulumi.CustomResource):
         __props__["type"] = type
         return ReservedIpBlock(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter(name="addressFamily")
+    def address_family(self) -> float:
+        """
+        Address family as integer (4 or 6)
+        """
+        return pulumi.get(self, "address_family")
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> float:
+        """
+        length of CIDR prefix of the block as integer
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter(name="cidrNotation")
+    def cidr_notation(self) -> str:
+        """
+        Address and mask in CIDR notation, e.g. "147.229.15.30/31"
+        """
+        return pulumi.get(self, "cidr_notation")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Arbitrary description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def facility(self) -> Optional[str]:
+        """
+        Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
+        """
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> str:
+        return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter(name="global")
+    def global_(self) -> bool:
+        """
+        boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
+        """
+        return pulumi.get(self, "global_")
+
+    @property
+    @pulumi.getter
+    def manageable(self) -> bool:
+        return pulumi.get(self, "manageable")
+
+    @property
+    @pulumi.getter
+    def management(self) -> bool:
+        return pulumi.get(self, "management")
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> str:
+        """
+        Mask in decimal notation, e.g. "255.255.255.0"
+        """
+        return pulumi.get(self, "netmask")
+
+    @property
+    @pulumi.getter
+    def network(self) -> str:
+        """
+        Network IP address portion of the block specification
+        """
+        return pulumi.get(self, "network")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The packet project ID where to allocate the address block
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        boolean flag whether addresses from a block are public
+        """
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter
+    def quantity(self) -> float:
+        """
+        The number of allocated /32 addresses, a power of 2
+        """
+        return pulumi.get(self, "quantity")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

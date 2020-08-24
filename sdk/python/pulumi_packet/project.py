@@ -5,46 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Project']
 
 
 class Project(pulumi.CustomResource):
-    backend_transfer: pulumi.Output[bool]
-    """
-    Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
-    """
-    bgp_config: pulumi.Output[dict]
-    """
-    Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
-
-      * `asn` (`float`) - Autonomous System Number for local BGP deployment
-      * `deploymentType` (`str`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-      * `maxPrefix` (`float`) - The maximum number of route filters allowed per server
-      * `md5` (`str`) - Password for BGP session in plaintext (not a checksum)
-      * `status` (`str`) - status of BGP configuration in the project
-    """
-    created: pulumi.Output[str]
-    """
-    The timestamp for when the project was created
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the project
-    """
-    organization_id: pulumi.Output[str]
-    """
-    The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
-    """
-    payment_method_id: pulumi.Output[str]
-    """
-    The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
-    """
-    updated: pulumi.Output[str]
-    """
-    The timestamp for the last time the project was updated
-    """
-    def __init__(__self__, resource_name, opts=None, backend_transfer=None, bgp_config=None, name=None, organization_id=None, payment_method_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend_transfer: Optional[pulumi.Input[bool]] = None,
+                 bgp_config: Optional[pulumi.Input[pulumi.InputType['ProjectBgpConfigArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[str]] = None,
+                 payment_method_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Packet project resource to allow you manage devices
         in your projects.
@@ -67,29 +47,21 @@ class Project(pulumi.CustomResource):
 
         # Create a new Project
         tf_project1 = packet.Project("tfProject1",
-            bgp_config={
-                "asn": 65000,
-                "deploymentType": "local",
-                "md5": "C179c28c41a85b",
-            },
+            bgp_config=packet.ProjectBgpConfigArgs(
+                asn=65000,
+                deployment_type="local",
+                md5="C179c28c41a85b",
+            ),
             name="tftest")
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
-        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
+        :param pulumi.Input[pulumi.InputType['ProjectBgpConfigArgs']] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
-
-        The **bgp_config** object supports the following:
-
-          * `asn` (`pulumi.Input[float]`) - Autonomous System Number for local BGP deployment
-          * `deploymentType` (`pulumi.Input[str]`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-          * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
-          * `md5` (`pulumi.Input[str]`) - Password for BGP session in plaintext (not a checksum)
-          * `status` (`pulumi.Input[str]`) - status of BGP configuration in the project
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -102,7 +74,7 @@ class Project(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,29 +96,30 @@ class Project(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend_transfer=None, bgp_config=None, created=None, name=None, organization_id=None, payment_method_id=None, updated=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_transfer: Optional[pulumi.Input[bool]] = None,
+            bgp_config: Optional[pulumi.Input[pulumi.InputType['ProjectBgpConfigArgs']]] = None,
+            created: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            organization_id: Optional[pulumi.Input[str]] = None,
+            payment_method_id: Optional[pulumi.Input[str]] = None,
+            updated: Optional[pulumi.Input[str]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] backend_transfer: Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
-        :param pulumi.Input[dict] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
+        :param pulumi.Input[pulumi.InputType['ProjectBgpConfigArgs']] bgp_config: Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         :param pulumi.Input[str] created: The timestamp for when the project was created
         :param pulumi.Input[str] name: The name of the project
         :param pulumi.Input[str] organization_id: The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         :param pulumi.Input[str] payment_method_id: The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
         :param pulumi.Input[str] updated: The timestamp for the last time the project was updated
-
-        The **bgp_config** object supports the following:
-
-          * `asn` (`pulumi.Input[float]`) - Autonomous System Number for local BGP deployment
-          * `deploymentType` (`pulumi.Input[str]`) - `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-          * `maxPrefix` (`pulumi.Input[float]`) - The maximum number of route filters allowed per server
-          * `md5` (`pulumi.Input[str]`) - Password for BGP session in plaintext (not a checksum)
-          * `status` (`pulumi.Input[str]`) - status of BGP configuration in the project
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -161,8 +134,65 @@ class Project(pulumi.CustomResource):
         __props__["updated"] = updated
         return Project(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="backendTransfer")
+    def backend_transfer(self) -> Optional[bool]:
+        """
+        Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
+        """
+        return pulumi.get(self, "backend_transfer")
+
+    @property
+    @pulumi.getter(name="bgpConfig")
+    def bgp_config(self) -> Optional['outputs.ProjectBgpConfig']:
+        """
+        Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
+        """
+        return pulumi.get(self, "bgp_config")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        The timestamp for when the project was created
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the project
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> str:
+        """
+        The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="paymentMethodId")
+    def payment_method_id(self) -> str:
+        """
+        The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
+        """
+        return pulumi.get(self, "payment_method_id")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        """
+        The timestamp for the last time the project was updated
+        """
+        return pulumi.get(self, "updated")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

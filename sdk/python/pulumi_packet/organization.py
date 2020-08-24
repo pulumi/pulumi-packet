@@ -5,34 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Organization']
 
 
 class Organization(pulumi.CustomResource):
-    created: pulumi.Output[str]
-    description: pulumi.Output[str]
-    """
-    Description string.
-    """
-    logo: pulumi.Output[str]
-    """
-    Logo URL.
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the Organization.
-    """
-    twitter: pulumi.Output[str]
-    """
-    Twitter handle.
-    """
-    updated: pulumi.Output[str]
-    website: pulumi.Output[str]
-    """
-    Website link.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, logo=None, name=None, twitter=None, website=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 logo: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 twitter: Optional[pulumi.Input[str]] = None,
+                 website: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to manage organization resource in Packet.
 
@@ -67,7 +57,7 @@ class Organization(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -89,13 +79,22 @@ class Organization(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, created=None, description=None, logo=None, name=None, twitter=None, updated=None, website=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            logo: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            twitter: Optional[pulumi.Input[str]] = None,
+            updated: Optional[pulumi.Input[str]] = None,
+            website: Optional[pulumi.Input[str]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description string.
         :param pulumi.Input[str] logo: Logo URL.
@@ -116,8 +115,59 @@ class Organization(pulumi.CustomResource):
         __props__["website"] = website
         return Organization(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description string.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def logo(self) -> Optional[str]:
+        """
+        Logo URL.
+        """
+        return pulumi.get(self, "logo")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the Organization.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def twitter(self) -> Optional[str]:
+        """
+        Twitter handle.
+        """
+        return pulumi.get(self, "twitter")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        return pulumi.get(self, "updated")
+
+    @property
+    @pulumi.getter
+    def website(self) -> Optional[str]:
+        """
+        Website link.
+        """
+        return pulumi.get(self, "website")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

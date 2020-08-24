@@ -35,7 +35,9 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        inputs["authToken"] = (args ? args.authToken : undefined) || utilities.getEnv("PACKET_AUTH_TOKEN");
+        {
+            inputs["authToken"] = (args ? args.authToken : undefined) || utilities.getEnv("PACKET_AUTH_TOKEN");
+        }
         if (!opts) {
             opts = {}
         }

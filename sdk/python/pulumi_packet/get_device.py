@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetDeviceResult',
+    'AwaitableGetDeviceResult',
+    'get_device',
+]
+
+@pulumi.output_type
 class GetDeviceResult:
     """
     A collection of values returned by getDevice.
@@ -15,73 +23,169 @@ class GetDeviceResult:
     def __init__(__self__, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, description=None, device_id=None, facility=None, hardware_reservation_id=None, hostname=None, id=None, ipxe_script_url=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None):
         if access_private_ipv4 and not isinstance(access_private_ipv4, str):
             raise TypeError("Expected argument 'access_private_ipv4' to be a str")
-        __self__.access_private_ipv4 = access_private_ipv4
+        pulumi.set(__self__, "access_private_ipv4", access_private_ipv4)
+        if access_public_ipv4 and not isinstance(access_public_ipv4, str):
+            raise TypeError("Expected argument 'access_public_ipv4' to be a str")
+        pulumi.set(__self__, "access_public_ipv4", access_public_ipv4)
+        if access_public_ipv6 and not isinstance(access_public_ipv6, str):
+            raise TypeError("Expected argument 'access_public_ipv6' to be a str")
+        pulumi.set(__self__, "access_public_ipv6", access_public_ipv6)
+        if always_pxe and not isinstance(always_pxe, bool):
+            raise TypeError("Expected argument 'always_pxe' to be a bool")
+        pulumi.set(__self__, "always_pxe", always_pxe)
+        if billing_cycle and not isinstance(billing_cycle, str):
+            raise TypeError("Expected argument 'billing_cycle' to be a str")
+        pulumi.set(__self__, "billing_cycle", billing_cycle)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if device_id and not isinstance(device_id, str):
+            raise TypeError("Expected argument 'device_id' to be a str")
+        pulumi.set(__self__, "device_id", device_id)
+        if facility and not isinstance(facility, str):
+            raise TypeError("Expected argument 'facility' to be a str")
+        pulumi.set(__self__, "facility", facility)
+        if hardware_reservation_id and not isinstance(hardware_reservation_id, str):
+            raise TypeError("Expected argument 'hardware_reservation_id' to be a str")
+        pulumi.set(__self__, "hardware_reservation_id", hardware_reservation_id)
+        if hostname and not isinstance(hostname, str):
+            raise TypeError("Expected argument 'hostname' to be a str")
+        pulumi.set(__self__, "hostname", hostname)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ipxe_script_url and not isinstance(ipxe_script_url, str):
+            raise TypeError("Expected argument 'ipxe_script_url' to be a str")
+        pulumi.set(__self__, "ipxe_script_url", ipxe_script_url)
+        if network_type and not isinstance(network_type, str):
+            raise TypeError("Expected argument 'network_type' to be a str")
+        pulumi.set(__self__, "network_type", network_type)
+        if networks and not isinstance(networks, list):
+            raise TypeError("Expected argument 'networks' to be a list")
+        pulumi.set(__self__, "networks", networks)
+        if operating_system and not isinstance(operating_system, str):
+            raise TypeError("Expected argument 'operating_system' to be a str")
+        pulumi.set(__self__, "operating_system", operating_system)
+        if plan and not isinstance(plan, str):
+            raise TypeError("Expected argument 'plan' to be a str")
+        pulumi.set(__self__, "plan", plan)
+        if ports and not isinstance(ports, list):
+            raise TypeError("Expected argument 'ports' to be a list")
+        pulumi.set(__self__, "ports", ports)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if root_password and not isinstance(root_password, str):
+            raise TypeError("Expected argument 'root_password' to be a str")
+        pulumi.set(__self__, "root_password", root_password)
+        if ssh_key_ids and not isinstance(ssh_key_ids, list):
+            raise TypeError("Expected argument 'ssh_key_ids' to be a list")
+        pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if storage and not isinstance(storage, str):
+            raise TypeError("Expected argument 'storage' to be a str")
+        pulumi.set(__self__, "storage", storage)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="accessPrivateIpv4")
+    def access_private_ipv4(self) -> str:
         """
         The ipv4 private IP assigned to the device
         """
-        if access_public_ipv4 and not isinstance(access_public_ipv4, str):
-            raise TypeError("Expected argument 'access_public_ipv4' to be a str")
-        __self__.access_public_ipv4 = access_public_ipv4
+        return pulumi.get(self, "access_private_ipv4")
+
+    @property
+    @pulumi.getter(name="accessPublicIpv4")
+    def access_public_ipv4(self) -> str:
         """
         The ipv4 management IP assigned to the device
         """
-        if access_public_ipv6 and not isinstance(access_public_ipv6, str):
-            raise TypeError("Expected argument 'access_public_ipv6' to be a str")
-        __self__.access_public_ipv6 = access_public_ipv6
+        return pulumi.get(self, "access_public_ipv4")
+
+    @property
+    @pulumi.getter(name="accessPublicIpv6")
+    def access_public_ipv6(self) -> str:
         """
         The ipv6 management IP assigned to the device
         """
-        if always_pxe and not isinstance(always_pxe, bool):
-            raise TypeError("Expected argument 'always_pxe' to be a bool")
-        __self__.always_pxe = always_pxe
-        if billing_cycle and not isinstance(billing_cycle, str):
-            raise TypeError("Expected argument 'billing_cycle' to be a str")
-        __self__.billing_cycle = billing_cycle
+        return pulumi.get(self, "access_public_ipv6")
+
+    @property
+    @pulumi.getter(name="alwaysPxe")
+    def always_pxe(self) -> bool:
+        return pulumi.get(self, "always_pxe")
+
+    @property
+    @pulumi.getter(name="billingCycle")
+    def billing_cycle(self) -> str:
         """
         The billing cycle of the device (monthly or hourly)
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        return pulumi.get(self, "billing_cycle")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description string for the device
         """
-        if device_id and not isinstance(device_id, str):
-            raise TypeError("Expected argument 'device_id' to be a str")
-        __self__.device_id = device_id
-        if facility and not isinstance(facility, str):
-            raise TypeError("Expected argument 'facility' to be a str")
-        __self__.facility = facility
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> str:
+        return pulumi.get(self, "device_id")
+
+    @property
+    @pulumi.getter
+    def facility(self) -> str:
         """
         The facility where the device is deployed.
         """
-        if hardware_reservation_id and not isinstance(hardware_reservation_id, str):
-            raise TypeError("Expected argument 'hardware_reservation_id' to be a str")
-        __self__.hardware_reservation_id = hardware_reservation_id
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter(name="hardwareReservationId")
+    def hardware_reservation_id(self) -> str:
         """
         The id of hardware reservation which this device occupies
         """
-        if hostname and not isinstance(hostname, str):
-            raise TypeError("Expected argument 'hostname' to be a str")
-        __self__.hostname = hostname
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "hardware_reservation_id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ipxe_script_url and not isinstance(ipxe_script_url, str):
-            raise TypeError("Expected argument 'ipxe_script_url' to be a str")
-        __self__.ipxe_script_url = ipxe_script_url
-        if network_type and not isinstance(network_type, str):
-            raise TypeError("Expected argument 'network_type' to be a str")
-        __self__.network_type = network_type
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipxeScriptUrl")
+    def ipxe_script_url(self) -> str:
+        return pulumi.get(self, "ipxe_script_url")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
         """
         L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"
         """
-        if networks and not isinstance(networks, list):
-            raise TypeError("Expected argument 'networks' to be a list")
-        __self__.networks = networks
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter
+    def networks(self) -> List['outputs.GetDeviceNetworkResult']:
         """
         The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
         * Public IPv4 at `packet_device.name.network.0`
@@ -90,54 +194,75 @@ class GetDeviceResult:
         Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
         The fields of the network attributes are:
         """
-        if operating_system and not isinstance(operating_system, str):
-            raise TypeError("Expected argument 'operating_system' to be a str")
-        __self__.operating_system = operating_system
+        return pulumi.get(self, "networks")
+
+    @property
+    @pulumi.getter(name="operatingSystem")
+    def operating_system(self) -> str:
         """
         The operating system running on the device
         """
-        if plan and not isinstance(plan, str):
-            raise TypeError("Expected argument 'plan' to be a str")
-        __self__.plan = plan
+        return pulumi.get(self, "operating_system")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> str:
         """
         The hardware config of the device
         """
-        if ports and not isinstance(ports, list):
-            raise TypeError("Expected argument 'ports' to be a list")
-        __self__.ports = ports
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def ports(self) -> List['outputs.GetDevicePortResult']:
         """
         Ports assigned to the device
         """
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if root_password and not isinstance(root_password, str):
-            raise TypeError("Expected argument 'root_password' to be a str")
-        __self__.root_password = root_password
+        return pulumi.get(self, "ports")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="rootPassword")
+    def root_password(self) -> str:
         """
         Root password to the server (if still available)
         """
-        if ssh_key_ids and not isinstance(ssh_key_ids, list):
-            raise TypeError("Expected argument 'ssh_key_ids' to be a list")
-        __self__.ssh_key_ids = ssh_key_ids
+        return pulumi.get(self, "root_password")
+
+    @property
+    @pulumi.getter(name="sshKeyIds")
+    def ssh_key_ids(self) -> List[str]:
         """
         List of IDs of SSH keys deployed in the device, can be both user or project SSH keys
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
+        return pulumi.get(self, "ssh_key_ids")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
         """
         The state of the device
         """
-        if storage and not isinstance(storage, str):
-            raise TypeError("Expected argument 'storage' to be a str")
-        __self__.storage = storage
-        if tags and not isinstance(tags, list):
-            raise TypeError("Expected argument 'tags' to be a list")
-        __self__.tags = tags
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> str:
+        return pulumi.get(self, "storage")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> List[str]:
         """
         Tags attached to the device
         """
+        return pulumi.get(self, "tags")
+
+
 class AwaitableGetDeviceResult(GetDeviceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -168,7 +293,11 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             storage=self.storage,
             tags=self.tags)
 
-def get_device(device_id=None,hostname=None,project_id=None,opts=None):
+
+def get_device(device_id: Optional[str] = None,
+               hostname: Optional[str] = None,
+               project_id: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDeviceResult:
     """
     Provides a Packet device datasource.
 
@@ -182,38 +311,36 @@ def get_device(device_id=None,hostname=None,project_id=None,opts=None):
     :param str project_id: The id of the project in which the devices exists
     """
     __args__ = dict()
-
-
     __args__['deviceId'] = device_id
     __args__['hostname'] = hostname
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getDevice:getDevice', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getDevice:getDevice', __args__, opts=opts, typ=GetDeviceResult).value
 
     return AwaitableGetDeviceResult(
-        access_private_ipv4=__ret__.get('accessPrivateIpv4'),
-        access_public_ipv4=__ret__.get('accessPublicIpv4'),
-        access_public_ipv6=__ret__.get('accessPublicIpv6'),
-        always_pxe=__ret__.get('alwaysPxe'),
-        billing_cycle=__ret__.get('billingCycle'),
-        description=__ret__.get('description'),
-        device_id=__ret__.get('deviceId'),
-        facility=__ret__.get('facility'),
-        hardware_reservation_id=__ret__.get('hardwareReservationId'),
-        hostname=__ret__.get('hostname'),
-        id=__ret__.get('id'),
-        ipxe_script_url=__ret__.get('ipxeScriptUrl'),
-        network_type=__ret__.get('networkType'),
-        networks=__ret__.get('networks'),
-        operating_system=__ret__.get('operatingSystem'),
-        plan=__ret__.get('plan'),
-        ports=__ret__.get('ports'),
-        project_id=__ret__.get('projectId'),
-        root_password=__ret__.get('rootPassword'),
-        ssh_key_ids=__ret__.get('sshKeyIds'),
-        state=__ret__.get('state'),
-        storage=__ret__.get('storage'),
-        tags=__ret__.get('tags'))
+        access_private_ipv4=__ret__.access_private_ipv4,
+        access_public_ipv4=__ret__.access_public_ipv4,
+        access_public_ipv6=__ret__.access_public_ipv6,
+        always_pxe=__ret__.always_pxe,
+        billing_cycle=__ret__.billing_cycle,
+        description=__ret__.description,
+        device_id=__ret__.device_id,
+        facility=__ret__.facility,
+        hardware_reservation_id=__ret__.hardware_reservation_id,
+        hostname=__ret__.hostname,
+        id=__ret__.id,
+        ipxe_script_url=__ret__.ipxe_script_url,
+        network_type=__ret__.network_type,
+        networks=__ret__.networks,
+        operating_system=__ret__.operating_system,
+        plan=__ret__.plan,
+        ports=__ret__.ports,
+        project_id=__ret__.project_id,
+        root_password=__ret__.root_password,
+        ssh_key_ids=__ret__.ssh_key_ids,
+        state=__ret__.state,
+        storage=__ret__.storage,
+        tags=__ret__.tags)

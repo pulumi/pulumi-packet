@@ -5,25 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['BgpSession']
 
 
 class BgpSession(pulumi.CustomResource):
-    address_family: pulumi.Output[str]
-    """
-    `ipv4` or `ipv6`
-    """
-    default_route: pulumi.Output[bool]
-    """
-    Boolean flag to set the default route policy. False by default.
-    """
-    device_id: pulumi.Output[str]
-    """
-    ID of device
-    """
-    status: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, address_family=None, default_route=None, device_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 address_family: Optional[pulumi.Input[str]] = None,
+                 default_route: Optional[pulumi.Input[bool]] = None,
+                 device_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to manage BGP sessions in Packet Host. Refer to [Packet BGP documentation](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/) for more details.
 
@@ -48,7 +45,7 @@ class BgpSession(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -69,13 +66,19 @@ class BgpSession(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address_family=None, default_route=None, device_id=None, status=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address_family: Optional[pulumi.Input[str]] = None,
+            default_route: Optional[pulumi.Input[bool]] = None,
+            device_id: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None) -> 'BgpSession':
         """
         Get an existing BgpSession resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address_family: `ipv4` or `ipv6`
         :param pulumi.Input[bool] default_route: Boolean flag to set the default route policy. False by default.
@@ -91,8 +94,38 @@ class BgpSession(pulumi.CustomResource):
         __props__["status"] = status
         return BgpSession(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="addressFamily")
+    def address_family(self) -> str:
+        """
+        `ipv4` or `ipv6`
+        """
+        return pulumi.get(self, "address_family")
+
+    @property
+    @pulumi.getter(name="defaultRoute")
+    def default_route(self) -> Optional[bool]:
+        """
+        Boolean flag to set the default route policy. False by default.
+        """
+        return pulumi.get(self, "default_route")
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> str:
+        """
+        ID of device
+        """
+        return pulumi.get(self, "device_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
