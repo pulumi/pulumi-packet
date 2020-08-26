@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetSpotMarketPriceResult',
+    'AwaitableGetSpotMarketPriceResult',
+    'get_spot_market_price',
+]
+
+@pulumi.output_type
 class GetSpotMarketPriceResult:
     """
     A collection of values returned by getSpotMarketPrice.
@@ -15,22 +22,44 @@ class GetSpotMarketPriceResult:
     def __init__(__self__, facility=None, id=None, plan=None, price=None):
         if facility and not isinstance(facility, str):
             raise TypeError("Expected argument 'facility' to be a str")
-        __self__.facility = facility
+        pulumi.set(__self__, "facility", facility)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if plan and not isinstance(plan, str):
+            raise TypeError("Expected argument 'plan' to be a str")
+        pulumi.set(__self__, "plan", plan)
+        if price and not isinstance(price, float):
+            raise TypeError("Expected argument 'price' to be a float")
+        pulumi.set(__self__, "price", price)
+
+    @property
+    @pulumi.getter
+    def facility(self) -> str:
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if plan and not isinstance(plan, str):
-            raise TypeError("Expected argument 'plan' to be a str")
-        __self__.plan = plan
-        if price and not isinstance(price, float):
-            raise TypeError("Expected argument 'price' to be a float")
-        __self__.price = price
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> str:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def price(self) -> float:
         """
         Current spot market price for given plan in given facility.
         """
+        return pulumi.get(self, "price")
+
+
 class AwaitableGetSpotMarketPriceResult(GetSpotMarketPriceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,7 +71,10 @@ class AwaitableGetSpotMarketPriceResult(GetSpotMarketPriceResult):
             plan=self.plan,
             price=self.price)
 
-def get_spot_market_price(facility=None,plan=None,opts=None):
+
+def get_spot_market_price(facility: Optional[str] = None,
+                          plan: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSpotMarketPriceResult:
     """
     Use this data source to get Packet Spot Market Price.
 
@@ -61,18 +93,16 @@ def get_spot_market_price(facility=None,plan=None,opts=None):
     :param str plan: Name of the plan.
     """
     __args__ = dict()
-
-
     __args__['facility'] = facility
     __args__['plan'] = plan
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getSpotMarketPrice:getSpotMarketPrice', __args__, opts=opts, typ=GetSpotMarketPriceResult).value
 
     return AwaitableGetSpotMarketPriceResult(
-        facility=__ret__.get('facility'),
-        id=__ret__.get('id'),
-        plan=__ret__.get('plan'),
-        price=__ret__.get('price'))
+        facility=__ret__.facility,
+        id=__ret__.id,
+        plan=__ret__.plan,
+        price=__ret__.price)

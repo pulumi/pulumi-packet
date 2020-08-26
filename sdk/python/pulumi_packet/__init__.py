@@ -28,3 +28,10 @@ from .ssh_key import *
 from .vlan import *
 from .volume import *
 from .volume_attachment import *
+from ._inputs import *
+from . import outputs
+
+# Make subpackages available:
+from . import (
+    config,
+)

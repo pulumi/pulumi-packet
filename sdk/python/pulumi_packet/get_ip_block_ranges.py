@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetIpBlockRangesResult',
+    'AwaitableGetIpBlockRangesResult',
+    'get_ip_block_ranges',
+]
+
+@pulumi.output_type
 class GetIpBlockRangesResult:
     """
     A collection of values returned by getIpBlockRanges.
@@ -15,40 +22,77 @@ class GetIpBlockRangesResult:
     def __init__(__self__, facility=None, global_ipv4s=None, id=None, ipv6s=None, private_ipv4s=None, project_id=None, public_ipv4s=None):
         if facility and not isinstance(facility, str):
             raise TypeError("Expected argument 'facility' to be a str")
-        __self__.facility = facility
+        pulumi.set(__self__, "facility", facility)
         if global_ipv4s and not isinstance(global_ipv4s, list):
             raise TypeError("Expected argument 'global_ipv4s' to be a list")
-        __self__.global_ipv4s = global_ipv4s
+        pulumi.set(__self__, "global_ipv4s", global_ipv4s)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ipv6s and not isinstance(ipv6s, list):
+            raise TypeError("Expected argument 'ipv6s' to be a list")
+        pulumi.set(__self__, "ipv6s", ipv6s)
+        if private_ipv4s and not isinstance(private_ipv4s, list):
+            raise TypeError("Expected argument 'private_ipv4s' to be a list")
+        pulumi.set(__self__, "private_ipv4s", private_ipv4s)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if public_ipv4s and not isinstance(public_ipv4s, list):
+            raise TypeError("Expected argument 'public_ipv4s' to be a list")
+        pulumi.set(__self__, "public_ipv4s", public_ipv4s)
+
+    @property
+    @pulumi.getter
+    def facility(self) -> Optional[str]:
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter(name="globalIpv4s")
+    def global_ipv4s(self) -> List[str]:
         """
         list of CIDR expressions for Global IPv4 blocks in the project
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "global_ipv4s")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ipv6s and not isinstance(ipv6s, list):
-            raise TypeError("Expected argument 'ipv6s' to be a list")
-        __self__.ipv6s = ipv6s
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ipv6s(self) -> List[str]:
         """
         list of CIDR expressions for IPv6 blocks in the project
         """
-        if private_ipv4s and not isinstance(private_ipv4s, list):
-            raise TypeError("Expected argument 'private_ipv4s' to be a list")
-        __self__.private_ipv4s = private_ipv4s
+        return pulumi.get(self, "ipv6s")
+
+    @property
+    @pulumi.getter(name="privateIpv4s")
+    def private_ipv4s(self) -> List[str]:
         """
         list of CIDR expressions for Private IPv4 blocks in the project
         """
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if public_ipv4s and not isinstance(public_ipv4s, list):
-            raise TypeError("Expected argument 'public_ipv4s' to be a list")
-        __self__.public_ipv4s = public_ipv4s
+        return pulumi.get(self, "private_ipv4s")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="publicIpv4s")
+    def public_ipv4s(self) -> List[str]:
         """
         list of CIDR expressions for Public IPv4 blocks in the project
         """
+        return pulumi.get(self, "public_ipv4s")
+
+
 class AwaitableGetIpBlockRangesResult(GetIpBlockRangesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,7 +107,10 @@ class AwaitableGetIpBlockRangesResult(GetIpBlockRangesResult):
             project_id=self.project_id,
             public_ipv4s=self.public_ipv4s)
 
-def get_ip_block_ranges(facility=None,project_id=None,opts=None):
+
+def get_ip_block_ranges(facility: Optional[str] = None,
+                        project_id: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpBlockRangesResult:
     """
     Use this datasource to get CIDR expressions for allocated IP blocks of all the types in a project, optionally filtered by facility.
 
@@ -87,21 +134,19 @@ def get_ip_block_ranges(facility=None,project_id=None,opts=None):
     :param str project_id: ID of the project from which to list the blocks.
     """
     __args__ = dict()
-
-
     __args__['facility'] = facility
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getIpBlockRanges:getIpBlockRanges', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getIpBlockRanges:getIpBlockRanges', __args__, opts=opts, typ=GetIpBlockRangesResult).value
 
     return AwaitableGetIpBlockRangesResult(
-        facility=__ret__.get('facility'),
-        global_ipv4s=__ret__.get('globalIpv4s'),
-        id=__ret__.get('id'),
-        ipv6s=__ret__.get('ipv6s'),
-        private_ipv4s=__ret__.get('privateIpv4s'),
-        project_id=__ret__.get('projectId'),
-        public_ipv4s=__ret__.get('publicIpv4s'))
+        facility=__ret__.facility,
+        global_ipv4s=__ret__.global_ipv4s,
+        id=__ret__.id,
+        ipv6s=__ret__.ipv6s,
+        private_ipv4s=__ret__.private_ipv4s,
+        project_id=__ret__.project_id,
+        public_ipv4s=__ret__.public_ipv4s)

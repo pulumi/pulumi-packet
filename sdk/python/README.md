@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.com/pulumi/pulumi-packet.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-packet)
+[![Actions Status](https://github.com/pulumi/pulumi-packet/workflows/master/badge.svg)](https://github.com/pulumi/pulumi-packet/actions)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Fpacket.svg)](https://www.npmjs.com/package/@pulumi/packet)
+[![Python version](https://badge.fury.io/py/pulumi-packet.svg)](https://pypi.org/project/pulumi-packet)
+[![NuGet version](https://badge.fury.io/nu/pulumi.packet.svg)](https://badge.fury.io/nu/pulumi.packet)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-packet/sdk/v3/go)](https://pkg.go.dev/github.com/pulumi/pulumi-packet/sdk/v3/go)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-packet/blob/master/LICENSE)
 
 # Packet provider
 

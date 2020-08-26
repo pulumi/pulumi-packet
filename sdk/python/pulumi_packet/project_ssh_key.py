@@ -5,40 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['ProjectSshKey']
 
 
 class ProjectSshKey(pulumi.CustomResource):
-    created: pulumi.Output[str]
-    """
-    The timestamp for when the SSH key was created
-    """
-    fingerprint: pulumi.Output[str]
-    """
-    The fingerprint of the SSH key
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the SSH key for identification
-    """
-    owner_id: pulumi.Output[str]
-    """
-    The ID of parent project (same as project_id)
-    """
-    project_id: pulumi.Output[str]
-    """
-    The ID of parent project
-    """
-    public_key: pulumi.Output[str]
-    """
-    The public key. If this is a file, it can be read using the file interpolation function
-    """
-    updated: pulumi.Output[str]
-    """
-    The timestamp for the last time the SSH key was updated
-    """
-    def __init__(__self__, resource_name, opts=None, name=None, project_id=None, public_key=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Packet project SSH key resource to manage project-specific SSH keys.
         Project SSH keys will only be populated onto servers that belong to that project, in contrast to User SSH Keys.
@@ -81,7 +63,7 @@ class ProjectSshKey(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -107,13 +89,22 @@ class ProjectSshKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, created=None, fingerprint=None, name=None, owner_id=None, project_id=None, public_key=None, updated=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created: Optional[pulumi.Input[str]] = None,
+            fingerprint: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            owner_id: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            public_key: Optional[pulumi.Input[str]] = None,
+            updated: Optional[pulumi.Input[str]] = None) -> 'ProjectSshKey':
         """
         Get an existing ProjectSshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created: The timestamp for when the SSH key was created
         :param pulumi.Input[str] fingerprint: The fingerprint of the SSH key
@@ -136,8 +127,65 @@ class ProjectSshKey(pulumi.CustomResource):
         __props__["updated"] = updated
         return ProjectSshKey(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        The timestamp for when the SSH key was created
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def fingerprint(self) -> str:
+        """
+        The fingerprint of the SSH key
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the SSH key for identification
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of parent project (same as project_id)
+        """
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of parent project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The public key. If this is a file, it can be read using the file interpolation function
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        """
+        The timestamp for the last time the SSH key was updated
+        """
+        return pulumi.get(self, "updated")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

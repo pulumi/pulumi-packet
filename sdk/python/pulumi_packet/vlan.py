@@ -5,28 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Vlan']
 
 
 class Vlan(pulumi.CustomResource):
-    description: pulumi.Output[str]
-    """
-    Description string
-    """
-    facility: pulumi.Output[str]
-    """
-    Facility where to create the VLAN
-    """
-    project_id: pulumi.Output[str]
-    """
-    ID of parent project
-    """
-    vxlan: pulumi.Output[float]
-    """
-    VXLAN segment ID
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, facility=None, project_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 facility: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to allow users to manage Virtual Networks in their projects.
 
@@ -64,7 +58,7 @@ class Vlan(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -85,13 +79,19 @@ class Vlan(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, facility=None, project_id=None, vxlan=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            facility: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            vxlan: Optional[pulumi.Input[float]] = None) -> 'Vlan':
         """
         Get an existing Vlan resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description string
         :param pulumi.Input[str] facility: Facility where to create the VLAN
@@ -108,8 +108,41 @@ class Vlan(pulumi.CustomResource):
         __props__["vxlan"] = vxlan
         return Vlan(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description string
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def facility(self) -> str:
+        """
+        Facility where to create the VLAN
+        """
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        ID of parent project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def vxlan(self) -> float:
+        """
+        VXLAN segment ID
+        """
+        return pulumi.get(self, "vxlan")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

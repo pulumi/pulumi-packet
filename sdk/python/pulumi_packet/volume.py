@@ -5,69 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Volume']
 
 
 class Volume(pulumi.CustomResource):
-    attachments: pulumi.Output[list]
-    """
-    A list of attachments, each with it's own `href` attribute
-
-      * `href` (`str`)
-    """
-    billing_cycle: pulumi.Output[str]
-    """
-    The billing cycle, defaults to "hourly"
-    """
-    created: pulumi.Output[str]
-    """
-    The timestamp for when the volume was created
-    """
-    description: pulumi.Output[str]
-    """
-    Optional description for the volume
-    """
-    facility: pulumi.Output[str]
-    """
-    The facility to create the volume in
-    """
-    locked: pulumi.Output[bool]
-    """
-    Lock or unlock the volume
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the volume
-    """
-    plan: pulumi.Output[str]
-    """
-    The service plan slug of the volume
-    """
-    project_id: pulumi.Output[str]
-    """
-    The packet project ID to deploy the volume in
-    """
-    size: pulumi.Output[float]
-    """
-    The size in GB to make the volume
-    """
-    snapshot_policies: pulumi.Output[list]
-    """
-    Optional list of snapshot policies
-
-      * `snapshotCount` (`float`)
-      * `snapshotFrequency` (`str`)
-    """
-    state: pulumi.Output[str]
-    """
-    The state of the volume
-    """
-    updated: pulumi.Output[str]
-    """
-    The timestamp for the last time the volume was updated
-    """
-    def __init__(__self__, resource_name, opts=None, billing_cycle=None, description=None, facility=None, locked=None, plan=None, project_id=None, size=None, snapshot_policies=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 billing_cycle: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 facility: Optional[pulumi.Input[str]] = None,
+                 locked: Optional[pulumi.Input[bool]] = None,
+                 plan: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[float]] = None,
+                 snapshot_policies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Volume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -79,12 +39,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] plan: The service plan slug of the volume
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
         :param pulumi.Input[float] size: The size in GB to make the volume
-        :param pulumi.Input[list] snapshot_policies: Optional list of snapshot policies
-
-        The **snapshot_policies** object supports the following:
-
-          * `snapshotCount` (`pulumi.Input[float]`)
-          * `snapshotFrequency` (`pulumi.Input[str]`)
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]] snapshot_policies: Optional list of snapshot policies
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -97,7 +52,7 @@ class Volume(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -131,15 +86,30 @@ class Volume(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attachments=None, billing_cycle=None, created=None, description=None, facility=None, locked=None, name=None, plan=None, project_id=None, size=None, snapshot_policies=None, state=None, updated=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attachments: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]]] = None,
+            billing_cycle: Optional[pulumi.Input[str]] = None,
+            created: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            facility: Optional[pulumi.Input[str]] = None,
+            locked: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            plan: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            size: Optional[pulumi.Input[float]] = None,
+            snapshot_policies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]]] = None,
+            state: Optional[pulumi.Input[str]] = None,
+            updated: Optional[pulumi.Input[str]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] attachments: A list of attachments, each with it's own `href` attribute
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]] attachments: A list of attachments, each with it's own `href` attribute
         :param pulumi.Input[str] billing_cycle: The billing cycle, defaults to "hourly"
         :param pulumi.Input[str] created: The timestamp for when the volume was created
         :param pulumi.Input[str] description: Optional description for the volume
@@ -149,18 +119,9 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] plan: The service plan slug of the volume
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
         :param pulumi.Input[float] size: The size in GB to make the volume
-        :param pulumi.Input[list] snapshot_policies: Optional list of snapshot policies
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]] snapshot_policies: Optional list of snapshot policies
         :param pulumi.Input[str] state: The state of the volume
         :param pulumi.Input[str] updated: The timestamp for the last time the volume was updated
-
-        The **attachments** object supports the following:
-
-          * `href` (`pulumi.Input[str]`)
-
-        The **snapshot_policies** object supports the following:
-
-          * `snapshotCount` (`pulumi.Input[float]`)
-          * `snapshotFrequency` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -181,8 +142,113 @@ class Volume(pulumi.CustomResource):
         __props__["updated"] = updated
         return Volume(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def attachments(self) -> List['outputs.VolumeAttachment']:
+        """
+        A list of attachments, each with it's own `href` attribute
+        """
+        return pulumi.get(self, "attachments")
+
+    @property
+    @pulumi.getter(name="billingCycle")
+    def billing_cycle(self) -> str:
+        """
+        The billing cycle, defaults to "hourly"
+        """
+        return pulumi.get(self, "billing_cycle")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        The timestamp for when the volume was created
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Optional description for the volume
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def facility(self) -> str:
+        """
+        The facility to create the volume in
+        """
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter
+    def locked(self) -> Optional[bool]:
+        """
+        Lock or unlock the volume
+        """
+        return pulumi.get(self, "locked")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the volume
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> str:
+        """
+        The service plan slug of the volume
+        """
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The packet project ID to deploy the volume in
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
+        """
+        The size in GB to make the volume
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="snapshotPolicies")
+    def snapshot_policies(self) -> Optional[List['outputs.VolumeSnapshotPolicy']]:
+        """
+        Optional list of snapshot policies
+        """
+        return pulumi.get(self, "snapshot_policies")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The state of the volume
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        """
+        The timestamp for the last time the volume was updated
+        """
+        return pulumi.get(self, "updated")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

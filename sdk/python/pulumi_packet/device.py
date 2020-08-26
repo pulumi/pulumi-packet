@@ -5,155 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Device']
 
 
 class Device(pulumi.CustomResource):
-    access_private_ipv4: pulumi.Output[str]
-    """
-    The ipv4 private IP assigned to the device
-    """
-    access_public_ipv4: pulumi.Output[str]
-    """
-    The ipv4 maintenance IP assigned to the device
-    """
-    access_public_ipv6: pulumi.Output[str]
-    """
-    The ipv6 maintenance IP assigned to the device
-    """
-    always_pxe: pulumi.Output[bool]
-    """
-    If true, a device with OS `custom_ipxe` will
-    continue to boot via iPXE on reboots.
-    """
-    billing_cycle: pulumi.Output[str]
-    """
-    monthly or hourly
-    """
-    created: pulumi.Output[str]
-    """
-    The timestamp for when the device was created
-    """
-    deployed_facility: pulumi.Output[str]
-    """
-    The facility where the device is deployed.
-    """
-    description: pulumi.Output[str]
-    """
-    Description string for the device
-    """
-    facilities: pulumi.Output[list]
-    """
-    List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
-    """
-    force_detach_volumes: pulumi.Output[bool]
-    """
-    Delete device even if it has volumes attached. Only applies for destroy action.
-    """
-    hardware_reservation_id: pulumi.Output[str]
-    """
-    The ID of hardware reservation which this device occupies
-    * `hostname`- The hostname of the device
-    """
-    hostname: pulumi.Output[str]
-    """
-    The device name
-    """
-    ip_addresses: pulumi.Output[list]
-    """
-    A list of IP address types for the device (structure is documented below).
-
-      * `cidr` (`float`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-      * `reservationIds` (`list`)
-      * `type` (`str`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-    """
-    ipxe_script_url: pulumi.Output[str]
-    """
-    URL pointing to a hosted iPXE script. More
-    information is in the
-    [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
-    doc.
-    """
-    locked: pulumi.Output[bool]
-    """
-    Whether the device is locked
-    """
-    network_type: pulumi.Output[str]
-    networks: pulumi.Output[list]
-    """
-    The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
-    * Public IPv4 at `packet_device.name.network.0`
-    * IPv6 at `packet_device.name.network.1`
-    * Private IPv4 at `packet_device.name.network.2`
-    Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
-    The fields of the network attributes are:
-
-      * `address` (`str`) - IPv4 or IPv6 address string
-      * `cidr` (`float`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-      * `family` (`float`) - IP version - "4" or "6"
-        * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
-      * `gateway` (`str`) - address of router
-      * `public` (`bool`) - whether the address is routable from the Internet
-    """
-    operating_system: pulumi.Output[str]
-    """
-    The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
-    """
-    plan: pulumi.Output[str]
-    """
-    The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
-    """
-    ports: pulumi.Output[list]
-    """
-    Ports assigned to the device
-
-      * `bonded` (`bool`) - Whether this port is part of a bond in bonded network setup
-        * `project_id`- The ID of the project the device belongs to
-      * `id` (`str`) - ID of the port
-      * `mac` (`str`) - MAC address assigned to the port
-      * `name` (`str`) - Name of the port (e.g. `eth0`, or `bond0`)
-      * `type` (`str`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-    """
-    project_id: pulumi.Output[str]
-    """
-    The ID of the project in which to create the device
-    """
-    project_ssh_key_ids: pulumi.Output[list]
-    root_password: pulumi.Output[str]
-    """
-    Root password to the server (disabled after 24 hours)
-    """
-    ssh_key_ids: pulumi.Output[list]
-    """
-    List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
-    """
-    state: pulumi.Output[str]
-    """
-    The status of the device
-    """
-    storage: pulumi.Output[str]
-    """
-    JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
-    * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
-    """
-    tags: pulumi.Output[list]
-    """
-    Tags attached to the device
-    """
-    updated: pulumi.Output[str]
-    """
-    The timestamp for the last time the device was updated
-    """
-    user_data: pulumi.Output[str]
-    """
-    A string of the desired User Data for the device.
-    """
-    wait_for_reservation_deprovision: pulumi.Output[bool]
-    """
-    Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
-    """
-    def __init__(__self__, resource_name, opts=None, always_pxe=None, billing_cycle=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, operating_system=None, plan=None, project_id=None, project_ssh_key_ids=None, storage=None, tags=None, user_data=None, wait_for_reservation_deprovision=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 always_pxe: Optional[pulumi.Input[bool]] = None,
+                 billing_cycle: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 facilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 force_detach_volumes: Optional[pulumi.Input[bool]] = None,
+                 hardware_reservation_id: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 ip_addresses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceIpAddressArgs']]]]] = None,
+                 ipxe_script_url: Optional[pulumi.Input[str]] = None,
+                 operating_system: Optional[pulumi.Input[str]] = None,
+                 plan: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 project_ssh_key_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 user_data: Optional[pulumi.Input[str]] = None,
+                 wait_for_reservation_deprovision: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Packet device resource. This can be used to create,
         modify, and delete devices.
@@ -193,7 +76,7 @@ class Device(pulumi.CustomResource):
             billing_cycle="hourly",
             project_id=local["project_id"],
             ipxe_script_url="https://rawgit.com/cloudnativelabs/pxe/master/packet/coreos-stable-packet.ipxe",
-            always_pxe="false",
+            always_pxe=False,
             user_data=data["ignition_config"]["example"]["rendered"])
         ```
 
@@ -210,10 +93,10 @@ class Device(pulumi.CustomResource):
             operating_system="coreos_stable",
             billing_cycle="hourly",
             project_id=local["project_id"],
-            ip_addresses=[{
-                "type": "private_ipv4",
-                "cidr": 30,
-            }])
+            ip_addresses=[packet.DeviceIpAddressArgs(
+                type="private_ipv4",
+                cidr=30,
+            )])
         ```
 
         Deploy device on next-available reserved hardware and do custom partitioning.
@@ -292,12 +175,12 @@ class Device(pulumi.CustomResource):
                continue to boot via iPXE on reboots.
         :param pulumi.Input[str] billing_cycle: monthly or hourly
         :param pulumi.Input[str] description: Description string for the device
-        :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
+        :param pulumi.Input[List[pulumi.Input[str]]] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[bool] force_detach_volumes: Delete device even if it has volumes attached. Only applies for destroy action.
         :param pulumi.Input[str] hardware_reservation_id: The ID of hardware reservation which this device occupies
                * `hostname`- The hostname of the device
         :param pulumi.Input[str] hostname: The device name
-        :param pulumi.Input[list] ip_addresses: A list of IP address types for the device (structure is documented below).
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceIpAddressArgs']]]] ip_addresses: A list of IP address types for the device (structure is documented below).
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
                information is in the
                [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
@@ -307,15 +190,9 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The ID of the project in which to create the device
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
                * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
-        :param pulumi.Input[list] tags: Tags attached to the device
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: Tags attached to the device
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
         :param pulumi.Input[bool] wait_for_reservation_deprovision: Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
-
-        The **ip_addresses** object supports the following:
-
-          * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-          * `reservationIds` (`pulumi.Input[list]`)
-          * `type` (`pulumi.Input[str]`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -328,7 +205,7 @@ class Device(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -383,13 +260,45 @@ class Device(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_private_ipv4=None, access_public_ipv4=None, access_public_ipv6=None, always_pxe=None, billing_cycle=None, created=None, deployed_facility=None, description=None, facilities=None, force_detach_volumes=None, hardware_reservation_id=None, hostname=None, ip_addresses=None, ipxe_script_url=None, locked=None, network_type=None, networks=None, operating_system=None, plan=None, ports=None, project_id=None, project_ssh_key_ids=None, root_password=None, ssh_key_ids=None, state=None, storage=None, tags=None, updated=None, user_data=None, wait_for_reservation_deprovision=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_private_ipv4: Optional[pulumi.Input[str]] = None,
+            access_public_ipv4: Optional[pulumi.Input[str]] = None,
+            access_public_ipv6: Optional[pulumi.Input[str]] = None,
+            always_pxe: Optional[pulumi.Input[bool]] = None,
+            billing_cycle: Optional[pulumi.Input[str]] = None,
+            created: Optional[pulumi.Input[str]] = None,
+            deployed_facility: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            facilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            force_detach_volumes: Optional[pulumi.Input[bool]] = None,
+            hardware_reservation_id: Optional[pulumi.Input[str]] = None,
+            hostname: Optional[pulumi.Input[str]] = None,
+            ip_addresses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceIpAddressArgs']]]]] = None,
+            ipxe_script_url: Optional[pulumi.Input[str]] = None,
+            locked: Optional[pulumi.Input[bool]] = None,
+            network_type: Optional[pulumi.Input[str]] = None,
+            networks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceNetworkArgs']]]]] = None,
+            operating_system: Optional[pulumi.Input[str]] = None,
+            plan: Optional[pulumi.Input[str]] = None,
+            ports: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DevicePortArgs']]]]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            project_ssh_key_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            root_password: Optional[pulumi.Input[str]] = None,
+            ssh_key_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            state: Optional[pulumi.Input[str]] = None,
+            storage: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            updated: Optional[pulumi.Input[str]] = None,
+            user_data: Optional[pulumi.Input[str]] = None,
+            wait_for_reservation_deprovision: Optional[pulumi.Input[bool]] = None) -> 'Device':
         """
         Get an existing Device resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_private_ipv4: The ipv4 private IP assigned to the device
         :param pulumi.Input[str] access_public_ipv4: The ipv4 maintenance IP assigned to the device
@@ -400,18 +309,18 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] created: The timestamp for when the device was created
         :param pulumi.Input[str] deployed_facility: The facility where the device is deployed.
         :param pulumi.Input[str] description: Description string for the device
-        :param pulumi.Input[list] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
+        :param pulumi.Input[List[pulumi.Input[str]]] facilities: List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[bool] force_detach_volumes: Delete device even if it has volumes attached. Only applies for destroy action.
         :param pulumi.Input[str] hardware_reservation_id: The ID of hardware reservation which this device occupies
                * `hostname`- The hostname of the device
         :param pulumi.Input[str] hostname: The device name
-        :param pulumi.Input[list] ip_addresses: A list of IP address types for the device (structure is documented below).
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceIpAddressArgs']]]] ip_addresses: A list of IP address types for the device (structure is documented below).
         :param pulumi.Input[str] ipxe_script_url: URL pointing to a hosted iPXE script. More
                information is in the
                [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
                doc.
         :param pulumi.Input[bool] locked: Whether the device is locked
-        :param pulumi.Input[list] networks: The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceNetworkArgs']]]] networks: The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
                * Public IPv4 at `packet_device.name.network.0`
                * IPv6 at `packet_device.name.network.1`
                * Private IPv4 at `packet_device.name.network.2`
@@ -419,41 +328,17 @@ class Device(pulumi.CustomResource):
                The fields of the network attributes are:
         :param pulumi.Input[str] operating_system: The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         :param pulumi.Input[str] plan: The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
-        :param pulumi.Input[list] ports: Ports assigned to the device
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DevicePortArgs']]]] ports: Ports assigned to the device
         :param pulumi.Input[str] project_id: The ID of the project in which to create the device
         :param pulumi.Input[str] root_password: Root password to the server (disabled after 24 hours)
-        :param pulumi.Input[list] ssh_key_ids: List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
+        :param pulumi.Input[List[pulumi.Input[str]]] ssh_key_ids: List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
         :param pulumi.Input[str] state: The status of the device
         :param pulumi.Input[str] storage: JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
                * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
-        :param pulumi.Input[list] tags: Tags attached to the device
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: Tags attached to the device
         :param pulumi.Input[str] updated: The timestamp for the last time the device was updated
         :param pulumi.Input[str] user_data: A string of the desired User Data for the device.
         :param pulumi.Input[bool] wait_for_reservation_deprovision: Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
-
-        The **ip_addresses** object supports the following:
-
-          * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-          * `reservationIds` (`pulumi.Input[list]`)
-          * `type` (`pulumi.Input[str]`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-
-        The **networks** object supports the following:
-
-          * `address` (`pulumi.Input[str]`) - IPv4 or IPv6 address string
-          * `cidr` (`pulumi.Input[float]`) - CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-          * `family` (`pulumi.Input[float]`) - IP version - "4" or "6"
-            * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
-          * `gateway` (`pulumi.Input[str]`) - address of router
-          * `public` (`pulumi.Input[bool]`) - whether the address is routable from the Internet
-
-        The **ports** object supports the following:
-
-          * `bonded` (`pulumi.Input[bool]`) - Whether this port is part of a bond in bonded network setup
-            * `project_id`- The ID of the project the device belongs to
-          * `id` (`pulumi.Input[str]`) - ID of the port
-          * `mac` (`pulumi.Input[str]`) - MAC address assigned to the port
-          * `name` (`pulumi.Input[str]`) - Name of the port (e.g. `eth0`, or `bond0`)
-          * `type` (`pulumi.Input[str]`) - One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -491,8 +376,254 @@ class Device(pulumi.CustomResource):
         __props__["wait_for_reservation_deprovision"] = wait_for_reservation_deprovision
         return Device(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="accessPrivateIpv4")
+    def access_private_ipv4(self) -> str:
+        """
+        The ipv4 private IP assigned to the device
+        """
+        return pulumi.get(self, "access_private_ipv4")
+
+    @property
+    @pulumi.getter(name="accessPublicIpv4")
+    def access_public_ipv4(self) -> str:
+        """
+        The ipv4 maintenance IP assigned to the device
+        """
+        return pulumi.get(self, "access_public_ipv4")
+
+    @property
+    @pulumi.getter(name="accessPublicIpv6")
+    def access_public_ipv6(self) -> str:
+        """
+        The ipv6 maintenance IP assigned to the device
+        """
+        return pulumi.get(self, "access_public_ipv6")
+
+    @property
+    @pulumi.getter(name="alwaysPxe")
+    def always_pxe(self) -> Optional[bool]:
+        """
+        If true, a device with OS `custom_ipxe` will
+        continue to boot via iPXE on reboots.
+        """
+        return pulumi.get(self, "always_pxe")
+
+    @property
+    @pulumi.getter(name="billingCycle")
+    def billing_cycle(self) -> str:
+        """
+        monthly or hourly
+        """
+        return pulumi.get(self, "billing_cycle")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        The timestamp for when the device was created
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter(name="deployedFacility")
+    def deployed_facility(self) -> str:
+        """
+        The facility where the device is deployed.
+        """
+        return pulumi.get(self, "deployed_facility")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description string for the device
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def facilities(self) -> List[str]:
+        """
+        List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
+        """
+        return pulumi.get(self, "facilities")
+
+    @property
+    @pulumi.getter(name="forceDetachVolumes")
+    def force_detach_volumes(self) -> Optional[bool]:
+        """
+        Delete device even if it has volumes attached. Only applies for destroy action.
+        """
+        return pulumi.get(self, "force_detach_volumes")
+
+    @property
+    @pulumi.getter(name="hardwareReservationId")
+    def hardware_reservation_id(self) -> str:
+        """
+        The ID of hardware reservation which this device occupies
+        * `hostname`- The hostname of the device
+        """
+        return pulumi.get(self, "hardware_reservation_id")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        """
+        The device name
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> Optional[List['outputs.DeviceIpAddress']]:
+        """
+        A list of IP address types for the device (structure is documented below).
+        """
+        return pulumi.get(self, "ip_addresses")
+
+    @property
+    @pulumi.getter(name="ipxeScriptUrl")
+    def ipxe_script_url(self) -> Optional[str]:
+        """
+        URL pointing to a hosted iPXE script. More
+        information is in the
+        [Custom iPXE](https://www.packet.com/developers/docs/servers/operating-systems/custom-ipxe/)
+        doc.
+        """
+        return pulumi.get(self, "ipxe_script_url")
+
+    @property
+    @pulumi.getter
+    def locked(self) -> bool:
+        """
+        Whether the device is locked
+        """
+        return pulumi.get(self, "locked")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        return pulumi.get(self, "network_type")
+
+    @property
+    @pulumi.getter
+    def networks(self) -> List['outputs.DeviceNetwork']:
+        """
+        The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
+        * Public IPv4 at `packet_device.name.network.0`
+        * IPv6 at `packet_device.name.network.1`
+        * Private IPv4 at `packet_device.name.network.2`
+        Elastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).
+        The fields of the network attributes are:
+        """
+        return pulumi.get(self, "networks")
+
+    @property
+    @pulumi.getter(name="operatingSystem")
+    def operating_system(self) -> str:
+        """
+        The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
+        """
+        return pulumi.get(self, "operating_system")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> str:
+        """
+        The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
+        """
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def ports(self) -> List['outputs.DevicePort']:
+        """
+        Ports assigned to the device
+        """
+        return pulumi.get(self, "ports")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project in which to create the device
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="projectSshKeyIds")
+    def project_ssh_key_ids(self) -> Optional[List[str]]:
+        return pulumi.get(self, "project_ssh_key_ids")
+
+    @property
+    @pulumi.getter(name="rootPassword")
+    def root_password(self) -> str:
+        """
+        Root password to the server (disabled after 24 hours)
+        """
+        return pulumi.get(self, "root_password")
+
+    @property
+    @pulumi.getter(name="sshKeyIds")
+    def ssh_key_ids(self) -> List[str]:
+        """
+        List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
+        """
+        return pulumi.get(self, "ssh_key_ids")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The status of the device
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[str]:
+        """
+        JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
+        * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
+        """
+        return pulumi.get(self, "storage")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[List[str]]:
+        """
+        Tags attached to the device
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        """
+        The timestamp for the last time the device was updated
+        """
+        return pulumi.get(self, "updated")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        A string of the desired User Data for the device.
+        """
+        return pulumi.get(self, "user_data")
+
+    @property
+    @pulumi.getter(name="waitForReservationDeprovision")
+    def wait_for_reservation_deprovision(self) -> Optional[bool]:
+        """
+        Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
+        """
+        return pulumi.get(self, "wait_for_reservation_deprovision")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

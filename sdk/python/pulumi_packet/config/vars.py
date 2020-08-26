@@ -5,12 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'auth_token',
+]
 
 __config__ = pulumi.Config('packet')
 
-auth_token = __config__.get('authToken') or utilities.get_env('PACKET_AUTH_TOKEN')
+auth_token = __config__.get('authToken') or _utilities.get_env('PACKET_AUTH_TOKEN')
 """
 The API auth key for API operations.
 """

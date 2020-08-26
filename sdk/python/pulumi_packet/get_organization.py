@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetOrganizationResult',
+    'AwaitableGetOrganizationResult',
+    'get_organization',
+]
+
+@pulumi.output_type
 class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
@@ -15,46 +22,88 @@ class GetOrganizationResult:
     def __init__(__self__, description=None, id=None, logo=None, name=None, organization_id=None, project_ids=None, twitter=None, website=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if logo and not isinstance(logo, str):
+            raise TypeError("Expected argument 'logo' to be a str")
+        pulumi.set(__self__, "logo", logo)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if organization_id and not isinstance(organization_id, str):
+            raise TypeError("Expected argument 'organization_id' to be a str")
+        pulumi.set(__self__, "organization_id", organization_id)
+        if project_ids and not isinstance(project_ids, list):
+            raise TypeError("Expected argument 'project_ids' to be a list")
+        pulumi.set(__self__, "project_ids", project_ids)
+        if twitter and not isinstance(twitter, str):
+            raise TypeError("Expected argument 'twitter' to be a str")
+        pulumi.set(__self__, "twitter", twitter)
+        if website and not isinstance(website, str):
+            raise TypeError("Expected argument 'website' to be a str")
+        pulumi.set(__self__, "website", website)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description string
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if logo and not isinstance(logo, str):
-            raise TypeError("Expected argument 'logo' to be a str")
-        __self__.logo = logo
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def logo(self) -> str:
         """
         Logo URL
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if organization_id and not isinstance(organization_id, str):
-            raise TypeError("Expected argument 'organization_id' to be a str")
-        __self__.organization_id = organization_id
-        if project_ids and not isinstance(project_ids, list):
-            raise TypeError("Expected argument 'project_ids' to be a list")
-        __self__.project_ids = project_ids
+        return pulumi.get(self, "logo")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> str:
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="projectIds")
+    def project_ids(self) -> List[str]:
         """
         UUIDs of project resources which belong to this organization
         """
-        if twitter and not isinstance(twitter, str):
-            raise TypeError("Expected argument 'twitter' to be a str")
-        __self__.twitter = twitter
+        return pulumi.get(self, "project_ids")
+
+    @property
+    @pulumi.getter
+    def twitter(self) -> str:
         """
         Twitter handle
         """
-        if website and not isinstance(website, str):
-            raise TypeError("Expected argument 'website' to be a str")
-        __self__.website = website
+        return pulumi.get(self, "twitter")
+
+    @property
+    @pulumi.getter
+    def website(self) -> str:
         """
         Website link
         """
+        return pulumi.get(self, "website")
+
+
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -70,7 +119,10 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             twitter=self.twitter,
             website=self.website)
 
-def get_organization(name=None,organization_id=None,opts=None):
+
+def get_organization(name: Optional[str] = None,
+                     organization_id: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     Provides a Packet organization datasource.
 
@@ -79,22 +131,20 @@ def get_organization(name=None,organization_id=None,opts=None):
     :param str organization_id: The UUID of the organization resource
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['organizationId'] = organization_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getOrganization:getOrganization', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        logo=__ret__.get('logo'),
-        name=__ret__.get('name'),
-        organization_id=__ret__.get('organizationId'),
-        project_ids=__ret__.get('projectIds'),
-        twitter=__ret__.get('twitter'),
-        website=__ret__.get('website'))
+        description=__ret__.description,
+        id=__ret__.id,
+        logo=__ret__.logo,
+        name=__ret__.name,
+        organization_id=__ret__.organization_id,
+        project_ids=__ret__.project_ids,
+        twitter=__ret__.twitter,
+        website=__ret__.website)

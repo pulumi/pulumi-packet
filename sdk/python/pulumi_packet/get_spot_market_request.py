@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetSpotMarketRequestResult',
+    'AwaitableGetSpotMarketRequestResult',
+    'get_spot_market_request',
+]
+
+@pulumi.output_type
 class GetSpotMarketRequestResult:
     """
     A collection of values returned by getSpotMarketRequest.
@@ -15,19 +22,36 @@ class GetSpotMarketRequestResult:
     def __init__(__self__, device_ids=None, id=None, request_id=None):
         if device_ids and not isinstance(device_ids, list):
             raise TypeError("Expected argument 'device_ids' to be a list")
-        __self__.device_ids = device_ids
+        pulumi.set(__self__, "device_ids", device_ids)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if request_id and not isinstance(request_id, str):
+            raise TypeError("Expected argument 'request_id' to be a str")
+        pulumi.set(__self__, "request_id", request_id)
+
+    @property
+    @pulumi.getter(name="deviceIds")
+    def device_ids(self) -> List[str]:
         """
         List of IDs of devices spawned by the referenced Spot Market Request
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "device_ids")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if request_id and not isinstance(request_id, str):
-            raise TypeError("Expected argument 'request_id' to be a str")
-        __self__.request_id = request_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="requestId")
+    def request_id(self) -> str:
+        return pulumi.get(self, "request_id")
+
+
 class AwaitableGetSpotMarketRequestResult(GetSpotMarketRequestResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -38,23 +62,23 @@ class AwaitableGetSpotMarketRequestResult(GetSpotMarketRequestResult):
             id=self.id,
             request_id=self.request_id)
 
-def get_spot_market_request(request_id=None,opts=None):
+
+def get_spot_market_request(request_id: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSpotMarketRequestResult:
     """
     Use this data source to access information about an existing resource.
 
     :param str request_id: The id of the Spot Market Request
     """
     __args__ = dict()
-
-
     __args__['requestId'] = request_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getSpotMarketRequest:getSpotMarketRequest', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getSpotMarketRequest:getSpotMarketRequest', __args__, opts=opts, typ=GetSpotMarketRequestResult).value
 
     return AwaitableGetSpotMarketRequestResult(
-        device_ids=__ret__.get('deviceIds'),
-        id=__ret__.get('id'),
-        request_id=__ret__.get('requestId'))
+        device_ids=__ret__.device_ids,
+        id=__ret__.id,
+        request_id=__ret__.request_id)

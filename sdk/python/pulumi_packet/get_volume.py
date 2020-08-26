@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetVolumeResult',
+    'AwaitableGetVolumeResult',
+    'get_volume',
+]
+
+@pulumi.output_type
 class GetVolumeResult:
     """
     A collection of values returned by getVolume.
@@ -15,77 +23,154 @@ class GetVolumeResult:
     def __init__(__self__, billing_cycle=None, created=None, description=None, device_ids=None, facility=None, id=None, locked=None, name=None, plan=None, project_id=None, size=None, snapshot_policies=None, state=None, updated=None, volume_id=None):
         if billing_cycle and not isinstance(billing_cycle, str):
             raise TypeError("Expected argument 'billing_cycle' to be a str")
-        __self__.billing_cycle = billing_cycle
+        pulumi.set(__self__, "billing_cycle", billing_cycle)
+        if created and not isinstance(created, str):
+            raise TypeError("Expected argument 'created' to be a str")
+        pulumi.set(__self__, "created", created)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if device_ids and not isinstance(device_ids, list):
+            raise TypeError("Expected argument 'device_ids' to be a list")
+        pulumi.set(__self__, "device_ids", device_ids)
+        if facility and not isinstance(facility, str):
+            raise TypeError("Expected argument 'facility' to be a str")
+        pulumi.set(__self__, "facility", facility)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if locked and not isinstance(locked, bool):
+            raise TypeError("Expected argument 'locked' to be a bool")
+        pulumi.set(__self__, "locked", locked)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if plan and not isinstance(plan, str):
+            raise TypeError("Expected argument 'plan' to be a str")
+        pulumi.set(__self__, "plan", plan)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if size and not isinstance(size, float):
+            raise TypeError("Expected argument 'size' to be a float")
+        pulumi.set(__self__, "size", size)
+        if snapshot_policies and not isinstance(snapshot_policies, list):
+            raise TypeError("Expected argument 'snapshot_policies' to be a list")
+        pulumi.set(__self__, "snapshot_policies", snapshot_policies)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if updated and not isinstance(updated, str):
+            raise TypeError("Expected argument 'updated' to be a str")
+        pulumi.set(__self__, "updated", updated)
+        if volume_id and not isinstance(volume_id, str):
+            raise TypeError("Expected argument 'volume_id' to be a str")
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @property
+    @pulumi.getter(name="billingCycle")
+    def billing_cycle(self) -> str:
         """
         The billing cycle, defaults to hourly
         """
-        if created and not isinstance(created, str):
-            raise TypeError("Expected argument 'created' to be a str")
-        __self__.created = created
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
-        if device_ids and not isinstance(device_ids, list):
-            raise TypeError("Expected argument 'device_ids' to be a list")
-        __self__.device_ids = device_ids
+        return pulumi.get(self, "billing_cycle")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="deviceIds")
+    def device_ids(self) -> List[str]:
         """
         UUIDs of devices to which this volume is attached
         """
-        if facility and not isinstance(facility, str):
-            raise TypeError("Expected argument 'facility' to be a str")
-        __self__.facility = facility
+        return pulumi.get(self, "device_ids")
+
+    @property
+    @pulumi.getter
+    def facility(self) -> str:
         """
         The facility slug the volume resides in
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "facility")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if locked and not isinstance(locked, bool):
-            raise TypeError("Expected argument 'locked' to be a bool")
-        __self__.locked = locked
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def locked(self) -> bool:
         """
         Whether the volume is locked or not
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "locked")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the volume
         * `project_id ` - The project id the volume is in
         """
-        if plan and not isinstance(plan, str):
-            raise TypeError("Expected argument 'plan' to be a str")
-        __self__.plan = plan
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> str:
         """
         Performance plan the volume is on
         """
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if size and not isinstance(size, float):
-            raise TypeError("Expected argument 'size' to be a float")
-        __self__.size = size
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
         """
         The size in GB of the volume
         """
-        if snapshot_policies and not isinstance(snapshot_policies, list):
-            raise TypeError("Expected argument 'snapshot_policies' to be a list")
-        __self__.snapshot_policies = snapshot_policies
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="snapshotPolicies")
+    def snapshot_policies(self) -> List['outputs.GetVolumeSnapshotPolicyResult']:
+        return pulumi.get(self, "snapshot_policies")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
         """
         The state of the volume
         """
-        if updated and not isinstance(updated, str):
-            raise TypeError("Expected argument 'updated' to be a str")
-        __self__.updated = updated
-        if volume_id and not isinstance(volume_id, str):
-            raise TypeError("Expected argument 'volume_id' to be a str")
-        __self__.volume_id = volume_id
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        return pulumi.get(self, "updated")
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
+        return pulumi.get(self, "volume_id")
+
+
 class AwaitableGetVolumeResult(GetVolumeResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -108,7 +193,11 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             updated=self.updated,
             volume_id=self.volume_id)
 
-def get_volume(name=None,project_id=None,volume_id=None,opts=None):
+
+def get_volume(name: Optional[str] = None,
+               project_id: Optional[str] = None,
+               volume_id: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
     Provides a Packet Block Storage Volume datasource to allow you to read existing volumes.
 
@@ -129,30 +218,28 @@ def get_volume(name=None,project_id=None,volume_id=None,opts=None):
     :param str volume_id: ID of volume for lookup
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['volumeId'] = volume_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('packet:index/getVolume:getVolume', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('packet:index/getVolume:getVolume', __args__, opts=opts, typ=GetVolumeResult).value
 
     return AwaitableGetVolumeResult(
-        billing_cycle=__ret__.get('billingCycle'),
-        created=__ret__.get('created'),
-        description=__ret__.get('description'),
-        device_ids=__ret__.get('deviceIds'),
-        facility=__ret__.get('facility'),
-        id=__ret__.get('id'),
-        locked=__ret__.get('locked'),
-        name=__ret__.get('name'),
-        plan=__ret__.get('plan'),
-        project_id=__ret__.get('projectId'),
-        size=__ret__.get('size'),
-        snapshot_policies=__ret__.get('snapshotPolicies'),
-        state=__ret__.get('state'),
-        updated=__ret__.get('updated'),
-        volume_id=__ret__.get('volumeId'))
+        billing_cycle=__ret__.billing_cycle,
+        created=__ret__.created,
+        description=__ret__.description,
+        device_ids=__ret__.device_ids,
+        facility=__ret__.facility,
+        id=__ret__.id,
+        locked=__ret__.locked,
+        name=__ret__.name,
+        plan=__ret__.plan,
+        project_id=__ret__.project_id,
+        size=__ret__.size,
+        snapshot_policies=__ret__.snapshot_policies,
+        state=__ret__.state,
+        updated=__ret__.updated,
+        volume_id=__ret__.volume_id)

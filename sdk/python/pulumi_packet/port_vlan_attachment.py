@@ -5,34 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['PortVlanAttachment']
 
 
 class PortVlanAttachment(pulumi.CustomResource):
-    device_id: pulumi.Output[str]
-    """
-    ID of device to be assigned to the VLAN
-    """
-    force_bond: pulumi.Output[bool]
-    """
-    Add port back to the bond when this resource is removed. Default is false.
-    """
-    native: pulumi.Output[bool]
-    """
-    Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
-    """
-    port_id: pulumi.Output[str]
-    port_name: pulumi.Output[str]
-    """
-    Name of network port to be assigned to the VLAN
-    """
-    vlan_id: pulumi.Output[str]
-    vlan_vnid: pulumi.Output[float]
-    """
-    VXLAN Network Identifier, integer
-    """
-    def __init__(__self__, resource_name, opts=None, device_id=None, force_bond=None, native=None, port_name=None, vlan_vnid=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 device_id: Optional[pulumi.Input[str]] = None,
+                 force_bond: Optional[pulumi.Input[bool]] = None,
+                 native: Optional[pulumi.Input[bool]] = None,
+                 port_name: Optional[pulumi.Input[str]] = None,
+                 vlan_vnid: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to attach device ports to VLANs.
 
@@ -125,7 +115,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -151,13 +141,22 @@ class PortVlanAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, device_id=None, force_bond=None, native=None, port_id=None, port_name=None, vlan_id=None, vlan_vnid=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            device_id: Optional[pulumi.Input[str]] = None,
+            force_bond: Optional[pulumi.Input[bool]] = None,
+            native: Optional[pulumi.Input[bool]] = None,
+            port_id: Optional[pulumi.Input[str]] = None,
+            port_name: Optional[pulumi.Input[str]] = None,
+            vlan_id: Optional[pulumi.Input[str]] = None,
+            vlan_vnid: Optional[pulumi.Input[float]] = None) -> 'PortVlanAttachment':
         """
         Get an existing PortVlanAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: ID of device to be assigned to the VLAN
         :param pulumi.Input[bool] force_bond: Add port back to the bond when this resource is removed. Default is false.
@@ -178,8 +177,59 @@ class PortVlanAttachment(pulumi.CustomResource):
         __props__["vlan_vnid"] = vlan_vnid
         return PortVlanAttachment(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> str:
+        """
+        ID of device to be assigned to the VLAN
+        """
+        return pulumi.get(self, "device_id")
+
+    @property
+    @pulumi.getter(name="forceBond")
+    def force_bond(self) -> Optional[bool]:
+        """
+        Add port back to the bond when this resource is removed. Default is false.
+        """
+        return pulumi.get(self, "force_bond")
+
+    @property
+    @pulumi.getter
+    def native(self) -> Optional[bool]:
+        """
+        Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
+        """
+        return pulumi.get(self, "native")
+
+    @property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> str:
+        return pulumi.get(self, "port_id")
+
+    @property
+    @pulumi.getter(name="portName")
+    def port_name(self) -> str:
+        """
+        Name of network port to be assigned to the VLAN
+        """
+        return pulumi.get(self, "port_name")
+
+    @property
+    @pulumi.getter(name="vlanId")
+    def vlan_id(self) -> str:
+        return pulumi.get(self, "vlan_id")
+
+    @property
+    @pulumi.getter(name="vlanVnid")
+    def vlan_vnid(self) -> float:
+        """
+        VXLAN Network Identifier, integer
+        """
+        return pulumi.get(self, "vlan_vnid")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
