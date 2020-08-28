@@ -13,7 +13,7 @@ __all__ = ['ProjectSshKey']
 
 class ProjectSshKey(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -129,7 +129,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         """
         The timestamp for when the SSH key was created
         """
@@ -137,7 +137,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def fingerprint(self) -> str:
+    def fingerprint(self) -> pulumi.Output[str]:
         """
         The fingerprint of the SSH key
         """
@@ -145,7 +145,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the SSH key for identification
         """
@@ -153,7 +153,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
+    def owner_id(self) -> pulumi.Output[str]:
         """
         The ID of parent project (same as project_id)
         """
@@ -161,7 +161,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The ID of parent project
         """
@@ -169,7 +169,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> str:
+    def public_key(self) -> pulumi.Output[str]:
         """
         The public key. If this is a file, it can be read using the file interpolation function
         """
@@ -177,7 +177,7 @@ class ProjectSshKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def updated(self) -> str:
+    def updated(self) -> pulumi.Output[str]:
         """
         The timestamp for the last time the SSH key was updated
         """

@@ -13,7 +13,7 @@ __all__ = ['PortVlanAttachment']
 
 class PortVlanAttachment(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  device_id: Optional[pulumi.Input[str]] = None,
                  force_bond: Optional[pulumi.Input[bool]] = None,
@@ -179,7 +179,7 @@ class PortVlanAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> str:
+    def device_id(self) -> pulumi.Output[str]:
         """
         ID of device to be assigned to the VLAN
         """
@@ -187,7 +187,7 @@ class PortVlanAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceBond")
-    def force_bond(self) -> Optional[bool]:
+    def force_bond(self) -> pulumi.Output[Optional[bool]]:
         """
         Add port back to the bond when this resource is removed. Default is false.
         """
@@ -195,7 +195,7 @@ class PortVlanAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def native(self) -> Optional[bool]:
+    def native(self) -> pulumi.Output[Optional[bool]]:
         """
         Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
         """
@@ -203,12 +203,12 @@ class PortVlanAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="portId")
-    def port_id(self) -> str:
+    def port_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "port_id")
 
     @property
     @pulumi.getter(name="portName")
-    def port_name(self) -> str:
+    def port_name(self) -> pulumi.Output[str]:
         """
         Name of network port to be assigned to the VLAN
         """
@@ -216,12 +216,12 @@ class PortVlanAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vlanId")
-    def vlan_id(self) -> str:
+    def vlan_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "vlan_id")
 
     @property
     @pulumi.getter(name="vlanVnid")
-    def vlan_vnid(self) -> float:
+    def vlan_vnid(self) -> pulumi.Output[float]:
         """
         VXLAN Network Identifier, integer
         """

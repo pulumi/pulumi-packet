@@ -13,7 +13,7 @@ __all__ = ['VolumeAttachment']
 
 class VolumeAttachment(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  device_id: Optional[pulumi.Input[str]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
@@ -82,7 +82,7 @@ class VolumeAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> str:
+    def device_id(self) -> pulumi.Output[str]:
         """
         The ID of the device to which the volume should be attached
         """
@@ -90,7 +90,7 @@ class VolumeAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> str:
+    def volume_id(self) -> pulumi.Output[str]:
         """
         The ID of the volume to attach
         """

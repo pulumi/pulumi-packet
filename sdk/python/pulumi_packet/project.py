@@ -15,7 +15,7 @@ __all__ = ['Project']
 
 class Project(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_transfer: Optional[pulumi.Input[bool]] = None,
                  bgp_config: Optional[pulumi.Input[pulumi.InputType['ProjectBgpConfigArgs']]] = None,
@@ -136,7 +136,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="backendTransfer")
-    def backend_transfer(self) -> Optional[bool]:
+    def backend_transfer(self) -> pulumi.Output[Optional[bool]]:
         """
         Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false
         """
@@ -144,7 +144,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bgpConfig")
-    def bgp_config(self) -> Optional['outputs.ProjectBgpConfig']:
+    def bgp_config(self) -> pulumi.Output[Optional['outputs.ProjectBgpConfig']]:
         """
         Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).
         """
@@ -152,7 +152,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         """
         The timestamp for when the project was created
         """
@@ -160,7 +160,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the project
         """
@@ -168,7 +168,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> str:
+    def organization_id(self) -> pulumi.Output[str]:
         """
         The UUID of organization under which you want to create the project. If you leave it out, the project will be create under your the default organization of your account.
         """
@@ -176,7 +176,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paymentMethodId")
-    def payment_method_id(self) -> str:
+    def payment_method_id(self) -> pulumi.Output[str]:
         """
         The UUID of payment method for this project. The payment method and the project need to belong to the same organization (passed with `organization_id`, or default).
         """
@@ -184,7 +184,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def updated(self) -> str:
+    def updated(self) -> pulumi.Output[str]:
         """
         The timestamp for the last time the project was updated
         """

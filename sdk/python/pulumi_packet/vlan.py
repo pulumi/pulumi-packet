@@ -13,7 +13,7 @@ __all__ = ['Vlan']
 
 class Vlan(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
@@ -110,7 +110,7 @@ class Vlan(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         Description string
         """
@@ -118,7 +118,7 @@ class Vlan(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def facility(self) -> str:
+    def facility(self) -> pulumi.Output[str]:
         """
         Facility where to create the VLAN
         """
@@ -126,7 +126,7 @@ class Vlan(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         ID of parent project
         """
@@ -134,7 +134,7 @@ class Vlan(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vxlan(self) -> float:
+    def vxlan(self) -> pulumi.Output[float]:
         """
         VXLAN segment ID
         """

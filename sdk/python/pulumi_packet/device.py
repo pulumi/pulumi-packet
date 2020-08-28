@@ -15,7 +15,7 @@ __all__ = ['Device']
 
 class Device(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  always_pxe: Optional[pulumi.Input[bool]] = None,
                  billing_cycle: Optional[pulumi.Input[str]] = None,
@@ -378,7 +378,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessPrivateIpv4")
-    def access_private_ipv4(self) -> str:
+    def access_private_ipv4(self) -> pulumi.Output[str]:
         """
         The ipv4 private IP assigned to the device
         """
@@ -386,7 +386,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessPublicIpv4")
-    def access_public_ipv4(self) -> str:
+    def access_public_ipv4(self) -> pulumi.Output[str]:
         """
         The ipv4 maintenance IP assigned to the device
         """
@@ -394,7 +394,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessPublicIpv6")
-    def access_public_ipv6(self) -> str:
+    def access_public_ipv6(self) -> pulumi.Output[str]:
         """
         The ipv6 maintenance IP assigned to the device
         """
@@ -402,7 +402,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="alwaysPxe")
-    def always_pxe(self) -> Optional[bool]:
+    def always_pxe(self) -> pulumi.Output[Optional[bool]]:
         """
         If true, a device with OS `custom_ipxe` will
         continue to boot via iPXE on reboots.
@@ -411,7 +411,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="billingCycle")
-    def billing_cycle(self) -> str:
+    def billing_cycle(self) -> pulumi.Output[str]:
         """
         monthly or hourly
         """
@@ -419,7 +419,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         """
         The timestamp for when the device was created
         """
@@ -427,7 +427,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deployedFacility")
-    def deployed_facility(self) -> str:
+    def deployed_facility(self) -> pulumi.Output[str]:
         """
         The facility where the device is deployed.
         """
@@ -435,7 +435,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         Description string for the device
         """
@@ -443,7 +443,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def facilities(self) -> List[str]:
+    def facilities(self) -> pulumi.Output[List[str]]:
         """
         List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or `any` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.
         """
@@ -451,7 +451,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceDetachVolumes")
-    def force_detach_volumes(self) -> Optional[bool]:
+    def force_detach_volumes(self) -> pulumi.Output[Optional[bool]]:
         """
         Delete device even if it has volumes attached. Only applies for destroy action.
         """
@@ -459,7 +459,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="hardwareReservationId")
-    def hardware_reservation_id(self) -> str:
+    def hardware_reservation_id(self) -> pulumi.Output[str]:
         """
         The ID of hardware reservation which this device occupies
         * `hostname`- The hostname of the device
@@ -468,7 +468,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def hostname(self) -> str:
+    def hostname(self) -> pulumi.Output[str]:
         """
         The device name
         """
@@ -476,7 +476,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipAddresses")
-    def ip_addresses(self) -> Optional[List['outputs.DeviceIpAddress']]:
+    def ip_addresses(self) -> pulumi.Output[Optional[List['outputs.DeviceIpAddress']]]:
         """
         A list of IP address types for the device (structure is documented below).
         """
@@ -484,7 +484,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipxeScriptUrl")
-    def ipxe_script_url(self) -> Optional[str]:
+    def ipxe_script_url(self) -> pulumi.Output[Optional[str]]:
         """
         URL pointing to a hosted iPXE script. More
         information is in the
@@ -495,7 +495,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def locked(self) -> bool:
+    def locked(self) -> pulumi.Output[bool]:
         """
         Whether the device is locked
         """
@@ -503,12 +503,12 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="networkType")
-    def network_type(self) -> str:
+    def network_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "network_type")
 
     @property
     @pulumi.getter
-    def networks(self) -> List['outputs.DeviceNetwork']:
+    def networks(self) -> pulumi.Output[List['outputs.DeviceNetwork']]:
         """
         The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
         * Public IPv4 at `packet_device.name.network.0`
@@ -521,7 +521,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="operatingSystem")
-    def operating_system(self) -> str:
+    def operating_system(self) -> pulumi.Output[str]:
         """
         The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.
         """
@@ -529,7 +529,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def plan(self) -> str:
+    def plan(self) -> pulumi.Output[str]:
         """
         The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.
         """
@@ -537,7 +537,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ports(self) -> List['outputs.DevicePort']:
+    def ports(self) -> pulumi.Output[List['outputs.DevicePort']]:
         """
         Ports assigned to the device
         """
@@ -545,7 +545,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The ID of the project in which to create the device
         """
@@ -553,12 +553,12 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectSshKeyIds")
-    def project_ssh_key_ids(self) -> Optional[List[str]]:
+    def project_ssh_key_ids(self) -> pulumi.Output[Optional[List[str]]]:
         return pulumi.get(self, "project_ssh_key_ids")
 
     @property
     @pulumi.getter(name="rootPassword")
-    def root_password(self) -> str:
+    def root_password(self) -> pulumi.Output[str]:
         """
         Root password to the server (disabled after 24 hours)
         """
@@ -566,7 +566,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sshKeyIds")
-    def ssh_key_ids(self) -> List[str]:
+    def ssh_key_ids(self) -> pulumi.Output[List[str]]:
         """
         List of IDs of SSH keys deployed in the device, can be both user and project SSH keys
         """
@@ -574,7 +574,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def state(self) -> str:
+    def state(self) -> pulumi.Output[str]:
         """
         The status of the device
         """
@@ -582,7 +582,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def storage(self) -> Optional[str]:
+    def storage(self) -> pulumi.Output[Optional[str]]:
         """
         JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://www.packet.com/developers/docs/servers/key-features/cpr/) doc.
         * Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).
@@ -591,7 +591,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> pulumi.Output[Optional[List[str]]]:
         """
         Tags attached to the device
         """
@@ -599,7 +599,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def updated(self) -> str:
+    def updated(self) -> pulumi.Output[str]:
         """
         The timestamp for the last time the device was updated
         """
@@ -607,7 +607,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[str]:
+    def user_data(self) -> pulumi.Output[Optional[str]]:
         """
         A string of the desired User Data for the device.
         """
@@ -615,7 +615,7 @@ class Device(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="waitForReservationDeprovision")
-    def wait_for_reservation_deprovision(self) -> Optional[bool]:
+    def wait_for_reservation_deprovision(self) -> pulumi.Output[Optional[bool]]:
         """
         Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).
         """

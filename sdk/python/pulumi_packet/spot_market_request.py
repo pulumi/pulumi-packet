@@ -15,7 +15,7 @@ __all__ = ['SpotMarketRequest']
 
 class SpotMarketRequest(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  devices_max: Optional[pulumi.Input[float]] = None,
                  devices_min: Optional[pulumi.Input[float]] = None,
@@ -145,7 +145,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="devicesMax")
-    def devices_max(self) -> float:
+    def devices_max(self) -> pulumi.Output[float]:
         """
         Maximum number devices to be created
         """
@@ -153,7 +153,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="devicesMin")
-    def devices_min(self) -> float:
+    def devices_min(self) -> pulumi.Output[float]:
         """
         Miniumum number devices to be created
         """
@@ -161,7 +161,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def facilities(self) -> List[str]:
+    def facilities(self) -> pulumi.Output[List[str]]:
         """
         Facility IDs where devices should be created
         """
@@ -169,7 +169,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceParameters")
-    def instance_parameters(self) -> 'outputs.SpotMarketRequestInstanceParameters':
+    def instance_parameters(self) -> pulumi.Output['outputs.SpotMarketRequestInstanceParameters']:
         """
         Device parameters. See device resource for details
         """
@@ -177,7 +177,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxBidPrice")
-    def max_bid_price(self) -> float:
+    def max_bid_price(self) -> pulumi.Output[float]:
         """
         Maximum price user is willing to pay per hour per device
         """
@@ -185,7 +185,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         Project ID
         """
@@ -193,7 +193,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="waitForDevices")
-    def wait_for_devices(self) -> Optional[bool]:
+    def wait_for_devices(self) -> pulumi.Output[Optional[bool]]:
         """
         On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed
         """

@@ -15,7 +15,7 @@ __all__ = ['Volume']
 
 class Volume(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  billing_cycle: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -144,7 +144,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def attachments(self) -> List['outputs.VolumeAttachment']:
+    def attachments(self) -> pulumi.Output[List['outputs.VolumeAttachment']]:
         """
         A list of attachments, each with it's own `href` attribute
         """
@@ -152,7 +152,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="billingCycle")
-    def billing_cycle(self) -> str:
+    def billing_cycle(self) -> pulumi.Output[str]:
         """
         The billing cycle, defaults to "hourly"
         """
@@ -160,7 +160,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         """
         The timestamp for when the volume was created
         """
@@ -168,7 +168,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         Optional description for the volume
         """
@@ -176,7 +176,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def facility(self) -> str:
+    def facility(self) -> pulumi.Output[str]:
         """
         The facility to create the volume in
         """
@@ -184,7 +184,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def locked(self) -> Optional[bool]:
+    def locked(self) -> pulumi.Output[Optional[bool]]:
         """
         Lock or unlock the volume
         """
@@ -192,7 +192,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the volume
         """
@@ -200,7 +200,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def plan(self) -> str:
+    def plan(self) -> pulumi.Output[str]:
         """
         The service plan slug of the volume
         """
@@ -208,7 +208,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The packet project ID to deploy the volume in
         """
@@ -216,7 +216,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> float:
+    def size(self) -> pulumi.Output[float]:
         """
         The size in GB to make the volume
         """
@@ -224,7 +224,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotPolicies")
-    def snapshot_policies(self) -> Optional[List['outputs.VolumeSnapshotPolicy']]:
+    def snapshot_policies(self) -> pulumi.Output[Optional[List['outputs.VolumeSnapshotPolicy']]]:
         """
         Optional list of snapshot policies
         """
@@ -232,7 +232,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def state(self) -> str:
+    def state(self) -> pulumi.Output[str]:
         """
         The state of the volume
         """
@@ -240,7 +240,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def updated(self) -> str:
+    def updated(self) -> pulumi.Output[str]:
         """
         The timestamp for the last time the volume was updated
         """

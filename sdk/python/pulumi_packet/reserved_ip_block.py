@@ -13,7 +13,7 @@ __all__ = ['ReservedIpBlock']
 
 class ReservedIpBlock(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
@@ -152,12 +152,12 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def address(self) -> str:
+    def address(self) -> pulumi.Output[str]:
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="addressFamily")
-    def address_family(self) -> float:
+    def address_family(self) -> pulumi.Output[float]:
         """
         Address family as integer (4 or 6)
         """
@@ -165,7 +165,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cidr(self) -> float:
+    def cidr(self) -> pulumi.Output[float]:
         """
         length of CIDR prefix of the block as integer
         """
@@ -173,7 +173,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cidrNotation")
-    def cidr_notation(self) -> str:
+    def cidr_notation(self) -> pulumi.Output[str]:
         """
         Address and mask in CIDR notation, e.g. "147.229.15.30/31"
         """
@@ -181,7 +181,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         Arbitrary description
         """
@@ -189,7 +189,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def facility(self) -> Optional[str]:
+    def facility(self) -> pulumi.Output[Optional[str]]:
         """
         Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
         """
@@ -197,12 +197,12 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def gateway(self) -> str:
+    def gateway(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gateway")
 
     @property
     @pulumi.getter(name="global")
-    def global_(self) -> bool:
+    def global_(self) -> pulumi.Output[bool]:
         """
         boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)
         """
@@ -210,17 +210,17 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def manageable(self) -> bool:
+    def manageable(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "manageable")
 
     @property
     @pulumi.getter
-    def management(self) -> bool:
+    def management(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "management")
 
     @property
     @pulumi.getter
-    def netmask(self) -> str:
+    def netmask(self) -> pulumi.Output[str]:
         """
         Mask in decimal notation, e.g. "255.255.255.0"
         """
@@ -228,7 +228,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def network(self) -> str:
+    def network(self) -> pulumi.Output[str]:
         """
         Network IP address portion of the block specification
         """
@@ -236,7 +236,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The packet project ID where to allocate the address block
         """
@@ -244,7 +244,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def public(self) -> bool:
+    def public(self) -> pulumi.Output[bool]:
         """
         boolean flag whether addresses from a block are public
         """
@@ -252,7 +252,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def quantity(self) -> float:
+    def quantity(self) -> pulumi.Output[float]:
         """
         The number of allocated /32 addresses, a power of 2
         """
@@ -260,7 +260,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def type(self) -> pulumi.Output[Optional[str]]:
         """
         Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
         """
