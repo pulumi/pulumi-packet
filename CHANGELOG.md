@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v2.7.0
+* Upgrade to pulumi-terraform-bridge v2.7.3
 * Upgrade to Pulumi v2.9.0, which adds type annotations and input/output classes to Python
 
 ---
@@ -11,7 +11,7 @@ CHANGELOG
 * Upgrade to v3.0.0 of the Packet Terraform Provider
   ** Please Note: **
   * `device.ipAddressType` has been removed
-  * `device.networkType` should now be managed with the `deviceNetworkType` resource 
+  * `device.networkType` should now be managed with the `deviceNetworkType` resource
 
 ## 2.3.0 (2020-07-07)
 * Upgrade to v2.10.0 of the Packet Terraform Provider

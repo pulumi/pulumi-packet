@@ -13,7 +13,7 @@ __all__ = ['BgpSession']
 
 class BgpSession(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address_family: Optional[pulumi.Input[str]] = None,
                  default_route: Optional[pulumi.Input[bool]] = None,
@@ -96,7 +96,7 @@ class BgpSession(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addressFamily")
-    def address_family(self) -> str:
+    def address_family(self) -> pulumi.Output[str]:
         """
         `ipv4` or `ipv6`
         """
@@ -104,7 +104,7 @@ class BgpSession(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultRoute")
-    def default_route(self) -> Optional[bool]:
+    def default_route(self) -> pulumi.Output[Optional[bool]]:
         """
         Boolean flag to set the default route policy. False by default.
         """
@@ -112,7 +112,7 @@ class BgpSession(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> str:
+    def device_id(self) -> pulumi.Output[str]:
         """
         ID of device
         """
@@ -120,7 +120,7 @@ class BgpSession(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> str:
+    def status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "status")
 
     def translate_output_property(self, prop):

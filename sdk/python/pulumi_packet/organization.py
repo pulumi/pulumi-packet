@@ -13,7 +13,7 @@ __all__ = ['Organization']
 
 class Organization(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  logo: Optional[pulumi.Input[str]] = None,
@@ -117,12 +117,12 @@ class Organization(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         return pulumi.get(self, "created")
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         Description string.
         """
@@ -130,7 +130,7 @@ class Organization(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def logo(self) -> Optional[str]:
+    def logo(self) -> pulumi.Output[Optional[str]]:
         """
         Logo URL.
         """
@@ -138,7 +138,7 @@ class Organization(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the Organization.
         """
@@ -146,7 +146,7 @@ class Organization(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def twitter(self) -> Optional[str]:
+    def twitter(self) -> pulumi.Output[Optional[str]]:
         """
         Twitter handle.
         """
@@ -154,12 +154,12 @@ class Organization(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def updated(self) -> str:
+    def updated(self) -> pulumi.Output[str]:
         return pulumi.get(self, "updated")
 
     @property
     @pulumi.getter
-    def website(self) -> Optional[str]:
+    def website(self) -> pulumi.Output[Optional[str]]:
         """
         Website link.
         """

@@ -13,7 +13,7 @@ __all__ = ['DeviceNetworkType']
 
 class DeviceNetworkType(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  device_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -82,7 +82,7 @@ class DeviceNetworkType(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> str:
+    def device_id(self) -> pulumi.Output[str]:
         """
         The ID of the device on which the network type should be set.
         """
@@ -90,7 +90,7 @@ class DeviceNetworkType(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> pulumi.Output[str]:
         """
         Network type to set. Must be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
         """
