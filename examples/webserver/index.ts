@@ -8,7 +8,7 @@ let vm = new packet.Device("vm", {
     facilities: [packet.Facilities.EWR1],
     billingCycle: packet.BillingCycles.Hourly,
     hostname: "lukehoban",
-    operatingSystem: packet.OperatingSystems.CoreOSStable,
+    operatingSystem: packet.OperatingSystems.Ubuntu1804,
     plan: packet.Plans.T1SmallX86,
     projectId:  project.then(p => p.id),
 });
