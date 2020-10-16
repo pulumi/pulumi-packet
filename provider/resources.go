@@ -18,8 +18,9 @@ import (
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
+	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-packet/packet"
@@ -63,14 +64,14 @@ func makeResource(mod string, res string) tokens.Type {
 // It should validate that the provider can be configured, and provide actionable errors in the case
 // it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
 // for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig) error {
+func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
 	return nil
 }
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := packet.Provider().(*schema.Provider)
+	p := shimv1.NewProvider(packet.Provider().(*schema.Provider))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -90,8 +91,6 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. An example
-			// is below.
 			"packet_bgp_session": {Tok: makeResource(mainMod, "BgpSession")},
 			"packet_device": {
 				Tok: makeResource(mainMod, "Device"),
@@ -154,8 +153,6 @@ func Provider() tfbridge.ProviderInfo {
 			"packet_device_network_type": {Tok: makeResource(mainMod, "DeviceNetworkType")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
 			"packet_ip_block_ranges":      {Tok: makeDataSource(mainMod, "getIpBlockRanges")},
 			"packet_operating_system":     {Tok: makeDataSource(mainMod, "getOperatingSystem")},
 			"packet_precreated_ip_block":  {Tok: makeDataSource(mainMod, "getPrecreatedIpBlock")},
