@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -23,11 +23,11 @@ class GetPrecreatedIpBlockResult:
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
-        if address_family and not isinstance(address_family, float):
-            raise TypeError("Expected argument 'address_family' to be a float")
+        if address_family and not isinstance(address_family, int):
+            raise TypeError("Expected argument 'address_family' to be a int")
         pulumi.set(__self__, "address_family", address_family)
-        if cidr and not isinstance(cidr, float):
-            raise TypeError("Expected argument 'cidr' to be a float")
+        if cidr and not isinstance(cidr, int):
+            raise TypeError("Expected argument 'cidr' to be a int")
         pulumi.set(__self__, "cidr", cidr)
         if cidr_notation and not isinstance(cidr_notation, str):
             raise TypeError("Expected argument 'cidr_notation' to be a str")
@@ -62,8 +62,8 @@ class GetPrecreatedIpBlockResult:
         if public and not isinstance(public, bool):
             raise TypeError("Expected argument 'public' to be a bool")
         pulumi.set(__self__, "public", public)
-        if quantity and not isinstance(quantity, float):
-            raise TypeError("Expected argument 'quantity' to be a float")
+        if quantity and not isinstance(quantity, int):
+            raise TypeError("Expected argument 'quantity' to be a int")
         pulumi.set(__self__, "quantity", quantity)
 
     @property
@@ -73,12 +73,12 @@ class GetPrecreatedIpBlockResult:
 
     @property
     @pulumi.getter(name="addressFamily")
-    def address_family(self) -> float:
+    def address_family(self) -> int:
         return pulumi.get(self, "address_family")
 
     @property
     @pulumi.getter
-    def cidr(self) -> float:
+    def cidr(self) -> int:
         return pulumi.get(self, "cidr")
 
     @property
@@ -144,7 +144,7 @@ class GetPrecreatedIpBlockResult:
 
     @property
     @pulumi.getter
-    def quantity(self) -> float:
+    def quantity(self) -> int:
         return pulumi.get(self, "quantity")
 
 
@@ -171,7 +171,7 @@ class AwaitableGetPrecreatedIpBlockResult(GetPrecreatedIpBlockResult):
             quantity=self.quantity)
 
 
-def get_precreated_ip_block(address_family: Optional[float] = None,
+def get_precreated_ip_block(address_family: Optional[int] = None,
                             facility: Optional[str] = None,
                             global_: Optional[bool] = None,
                             project_id: Optional[str] = None,
@@ -182,7 +182,7 @@ def get_precreated_ip_block(address_family: Optional[float] = None,
     You can then use the cidrsubnet TF builtin function to derive subnets.
 
 
-    :param float address_family: 4 or 6, depending on which block you are looking for.
+    :param int address_family: 4 or 6, depending on which block you are looking for.
     :param str facility: Facility of the searched block. (Optional) Only allowed for non-global blocks.
     :param bool global_: Whether to look for global block. Default is false for backward compatibility.
     :param str project_id: ID of the project where the searched block should be.

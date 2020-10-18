@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,9 +17,9 @@ class SpotMarketRequest(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 devices_max: Optional[pulumi.Input[float]] = None,
-                 devices_min: Optional[pulumi.Input[float]] = None,
-                 facilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 devices_max: Optional[pulumi.Input[int]] = None,
+                 devices_min: Optional[pulumi.Input[int]] = None,
+                 facilities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  instance_parameters: Optional[pulumi.Input[pulumi.InputType['SpotMarketRequestInstanceParametersArgs']]] = None,
                  max_bid_price: Optional[pulumi.Input[float]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -54,9 +54,9 @@ class SpotMarketRequest(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] devices_max: Maximum number devices to be created
-        :param pulumi.Input[float] devices_min: Miniumum number devices to be created
-        :param pulumi.Input[List[pulumi.Input[str]]] facilities: Facility IDs where devices should be created
+        :param pulumi.Input[int] devices_max: Maximum number devices to be created
+        :param pulumi.Input[int] devices_min: Miniumum number devices to be created
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] facilities: Facility IDs where devices should be created
         :param pulumi.Input[pulumi.InputType['SpotMarketRequestInstanceParametersArgs']] instance_parameters: Device parameters. See device resource for details
         :param pulumi.Input[float] max_bid_price: Maximum price user is willing to pay per hour per device
         :param pulumi.Input[str] project_id: Project ID
@@ -108,9 +108,9 @@ class SpotMarketRequest(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            devices_max: Optional[pulumi.Input[float]] = None,
-            devices_min: Optional[pulumi.Input[float]] = None,
-            facilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            devices_max: Optional[pulumi.Input[int]] = None,
+            devices_min: Optional[pulumi.Input[int]] = None,
+            facilities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             instance_parameters: Optional[pulumi.Input[pulumi.InputType['SpotMarketRequestInstanceParametersArgs']]] = None,
             max_bid_price: Optional[pulumi.Input[float]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -122,9 +122,9 @@ class SpotMarketRequest(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] devices_max: Maximum number devices to be created
-        :param pulumi.Input[float] devices_min: Miniumum number devices to be created
-        :param pulumi.Input[List[pulumi.Input[str]]] facilities: Facility IDs where devices should be created
+        :param pulumi.Input[int] devices_max: Maximum number devices to be created
+        :param pulumi.Input[int] devices_min: Miniumum number devices to be created
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] facilities: Facility IDs where devices should be created
         :param pulumi.Input[pulumi.InputType['SpotMarketRequestInstanceParametersArgs']] instance_parameters: Device parameters. See device resource for details
         :param pulumi.Input[float] max_bid_price: Maximum price user is willing to pay per hour per device
         :param pulumi.Input[str] project_id: Project ID
@@ -145,7 +145,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="devicesMax")
-    def devices_max(self) -> pulumi.Output[float]:
+    def devices_max(self) -> pulumi.Output[int]:
         """
         Maximum number devices to be created
         """
@@ -153,7 +153,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="devicesMin")
-    def devices_min(self) -> pulumi.Output[float]:
+    def devices_min(self) -> pulumi.Output[int]:
         """
         Miniumum number devices to be created
         """
@@ -161,7 +161,7 @@ class SpotMarketRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def facilities(self) -> pulumi.Output[List[str]]:
+    def facilities(self) -> pulumi.Output[Sequence[str]]:
         """
         Facility IDs where devices should be created
         """

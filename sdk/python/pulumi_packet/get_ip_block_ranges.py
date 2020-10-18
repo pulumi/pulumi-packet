@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -49,7 +49,7 @@ class GetIpBlockRangesResult:
 
     @property
     @pulumi.getter(name="globalIpv4s")
-    def global_ipv4s(self) -> List[str]:
+    def global_ipv4s(self) -> Sequence[str]:
         """
         list of CIDR expressions for Global IPv4 blocks in the project
         """
@@ -65,7 +65,7 @@ class GetIpBlockRangesResult:
 
     @property
     @pulumi.getter
-    def ipv6s(self) -> List[str]:
+    def ipv6s(self) -> Sequence[str]:
         """
         list of CIDR expressions for IPv6 blocks in the project
         """
@@ -73,7 +73,7 @@ class GetIpBlockRangesResult:
 
     @property
     @pulumi.getter(name="privateIpv4s")
-    def private_ipv4s(self) -> List[str]:
+    def private_ipv4s(self) -> Sequence[str]:
         """
         list of CIDR expressions for Private IPv4 blocks in the project
         """
@@ -86,7 +86,7 @@ class GetIpBlockRangesResult:
 
     @property
     @pulumi.getter(name="publicIpv4s")
-    def public_ipv4s(self) -> List[str]:
+    def public_ipv4s(self) -> Sequence[str]:
         """
         list of CIDR expressions for Public IPv4 blocks in the project
         """

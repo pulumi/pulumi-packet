@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -51,8 +51,8 @@ class GetVolumeResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
-        if size and not isinstance(size, float):
-            raise TypeError("Expected argument 'size' to be a float")
+        if size and not isinstance(size, int):
+            raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
         if snapshot_policies and not isinstance(snapshot_policies, list):
             raise TypeError("Expected argument 'snapshot_policies' to be a list")
@@ -87,7 +87,7 @@ class GetVolumeResult:
 
     @property
     @pulumi.getter(name="deviceIds")
-    def device_ids(self) -> List[str]:
+    def device_ids(self) -> Sequence[str]:
         """
         UUIDs of devices to which this volume is attached
         """
@@ -141,7 +141,7 @@ class GetVolumeResult:
 
     @property
     @pulumi.getter
-    def size(self) -> float:
+    def size(self) -> int:
         """
         The size in GB of the volume
         """
@@ -149,7 +149,7 @@ class GetVolumeResult:
 
     @property
     @pulumi.getter(name="snapshotPolicies")
-    def snapshot_policies(self) -> List['outputs.GetVolumeSnapshotPolicyResult']:
+    def snapshot_policies(self) -> Sequence['outputs.GetVolumeSnapshotPolicyResult']:
         return pulumi.get(self, "snapshot_policies")
 
     @property

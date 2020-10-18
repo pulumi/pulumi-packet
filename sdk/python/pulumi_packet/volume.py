@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -23,8 +23,8 @@ class Volume(pulumi.CustomResource):
                  locked: Optional[pulumi.Input[bool]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
-                 snapshot_policies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
+                 snapshot_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -38,8 +38,8 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[bool] locked: Lock or unlock the volume
         :param pulumi.Input[str] plan: The service plan slug of the volume
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
-        :param pulumi.Input[float] size: The size in GB to make the volume
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]] snapshot_policies: Optional list of snapshot policies
+        :param pulumi.Input[int] size: The size in GB to make the volume
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]] snapshot_policies: Optional list of snapshot policies
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -89,7 +89,7 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            attachments: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]]] = None,
+            attachments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]]] = None,
             billing_cycle: Optional[pulumi.Input[str]] = None,
             created: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -98,8 +98,8 @@ class Volume(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            size: Optional[pulumi.Input[float]] = None,
-            snapshot_policies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]]] = None,
+            size: Optional[pulumi.Input[int]] = None,
+            snapshot_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]]] = None,
             state: Optional[pulumi.Input[str]] = None,
             updated: Optional[pulumi.Input[str]] = None) -> 'Volume':
         """
@@ -109,7 +109,7 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]] attachments: A list of attachments, each with it's own `href` attribute
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeAttachmentArgs']]]] attachments: A list of attachments, each with it's own `href` attribute
         :param pulumi.Input[str] billing_cycle: The billing cycle, defaults to "hourly"
         :param pulumi.Input[str] created: The timestamp for when the volume was created
         :param pulumi.Input[str] description: Optional description for the volume
@@ -118,8 +118,8 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the volume
         :param pulumi.Input[str] plan: The service plan slug of the volume
         :param pulumi.Input[str] project_id: The packet project ID to deploy the volume in
-        :param pulumi.Input[float] size: The size in GB to make the volume
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]] snapshot_policies: Optional list of snapshot policies
+        :param pulumi.Input[int] size: The size in GB to make the volume
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeSnapshotPolicyArgs']]]] snapshot_policies: Optional list of snapshot policies
         :param pulumi.Input[str] state: The state of the volume
         :param pulumi.Input[str] updated: The timestamp for the last time the volume was updated
         """
@@ -144,7 +144,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def attachments(self) -> pulumi.Output[List['outputs.VolumeAttachment']]:
+    def attachments(self) -> pulumi.Output[Sequence['outputs.VolumeAttachment']]:
         """
         A list of attachments, each with it's own `href` attribute
         """
@@ -216,7 +216,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Output[float]:
+    def size(self) -> pulumi.Output[int]:
         """
         The size in GB to make the volume
         """
@@ -224,7 +224,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotPolicies")
-    def snapshot_policies(self) -> pulumi.Output[Optional[List['outputs.VolumeSnapshotPolicy']]]:
+    def snapshot_policies(self) -> pulumi.Output[Optional[Sequence['outputs.VolumeSnapshotPolicy']]]:
         """
         Optional list of snapshot policies
         """

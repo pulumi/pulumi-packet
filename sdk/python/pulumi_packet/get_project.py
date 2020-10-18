@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -120,7 +120,7 @@ class GetProjectResult:
 
     @property
     @pulumi.getter(name="userIds")
-    def user_ids(self) -> List[str]:
+    def user_ids(self) -> Sequence[str]:
         """
         List of UUIDs of user accounts which beling to this project
         """

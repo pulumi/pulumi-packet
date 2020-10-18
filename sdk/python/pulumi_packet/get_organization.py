@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -81,7 +81,7 @@ class GetOrganizationResult:
 
     @property
     @pulumi.getter(name="projectIds")
-    def project_ids(self) -> List[str]:
+    def project_ids(self) -> Sequence[str]:
         """
         UUIDs of project resources which belong to this organization
         """

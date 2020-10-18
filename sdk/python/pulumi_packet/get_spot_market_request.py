@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -32,7 +32,7 @@ class GetSpotMarketRequestResult:
 
     @property
     @pulumi.getter(name="deviceIds")
-    def device_ids(self) -> List[str]:
+    def device_ids(self) -> Sequence[str]:
         """
         List of IDs of devices spawned by the referenced Spot Market Request
         """
