@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['PortVlanAttachment']
@@ -19,7 +19,7 @@ class PortVlanAttachment(pulumi.CustomResource):
                  force_bond: Optional[pulumi.Input[bool]] = None,
                  native: Optional[pulumi.Input[bool]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
-                 vlan_vnid: Optional[pulumi.Input[float]] = None,
+                 vlan_vnid: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -102,7 +102,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         :param pulumi.Input[bool] force_bond: Add port back to the bond when this resource is removed. Default is false.
         :param pulumi.Input[bool] native: Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
         :param pulumi.Input[str] port_name: Name of network port to be assigned to the VLAN
-        :param pulumi.Input[float] vlan_vnid: VXLAN Network Identifier, integer
+        :param pulumi.Input[int] vlan_vnid: VXLAN Network Identifier, integer
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -150,7 +150,7 @@ class PortVlanAttachment(pulumi.CustomResource):
             port_id: Optional[pulumi.Input[str]] = None,
             port_name: Optional[pulumi.Input[str]] = None,
             vlan_id: Optional[pulumi.Input[str]] = None,
-            vlan_vnid: Optional[pulumi.Input[float]] = None) -> 'PortVlanAttachment':
+            vlan_vnid: Optional[pulumi.Input[int]] = None) -> 'PortVlanAttachment':
         """
         Get an existing PortVlanAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -162,7 +162,7 @@ class PortVlanAttachment(pulumi.CustomResource):
         :param pulumi.Input[bool] force_bond: Add port back to the bond when this resource is removed. Default is false.
         :param pulumi.Input[bool] native: Mark this VLAN a native VLAN on the port. This can be used only if this assignment assigns second or further VLAN to the port. To ensure that this attachment is not first on a port, you can use `depends_on` pointing to another packet_port_vlan_attachment, just like in the layer2-individual example above.
         :param pulumi.Input[str] port_name: Name of network port to be assigned to the VLAN
-        :param pulumi.Input[float] vlan_vnid: VXLAN Network Identifier, integer
+        :param pulumi.Input[int] vlan_vnid: VXLAN Network Identifier, integer
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -221,7 +221,7 @@ class PortVlanAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vlanVnid")
-    def vlan_vnid(self) -> pulumi.Output[float]:
+    def vlan_vnid(self) -> pulumi.Output[int]:
         """
         VXLAN Network Identifier, integer
         """

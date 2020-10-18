@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -185,7 +185,7 @@ class GetDeviceResult:
 
     @property
     @pulumi.getter
-    def networks(self) -> List['outputs.GetDeviceNetworkResult']:
+    def networks(self) -> Sequence['outputs.GetDeviceNetworkResult']:
         """
         The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: 
         * Public IPv4 at `packet_device.name.network.0`
@@ -214,7 +214,7 @@ class GetDeviceResult:
 
     @property
     @pulumi.getter
-    def ports(self) -> List['outputs.GetDevicePortResult']:
+    def ports(self) -> Sequence['outputs.GetDevicePortResult']:
         """
         Ports assigned to the device
         """
@@ -235,7 +235,7 @@ class GetDeviceResult:
 
     @property
     @pulumi.getter(name="sshKeyIds")
-    def ssh_key_ids(self) -> List[str]:
+    def ssh_key_ids(self) -> Sequence[str]:
         """
         List of IDs of SSH keys deployed in the device, can be both user or project SSH keys
         """
@@ -256,7 +256,7 @@ class GetDeviceResult:
 
     @property
     @pulumi.getter
-    def tags(self) -> List[str]:
+    def tags(self) -> Sequence[str]:
         """
         Tags attached to the device
         """

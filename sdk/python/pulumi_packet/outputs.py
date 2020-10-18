@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -30,11 +30,11 @@ __all__ = [
 class DeviceIpAddress(dict):
     def __init__(__self__, *,
                  type: str,
-                 cidr: Optional[float] = None,
-                 reservation_ids: Optional[List[str]] = None):
+                 cidr: Optional[int] = None,
+                 reservation_ids: Optional[Sequence[str]] = None):
         """
         :param str type: One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        :param float cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
+        :param int cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         """
         pulumi.set(__self__, "type", type)
         if cidr is not None:
@@ -52,7 +52,7 @@ class DeviceIpAddress(dict):
 
     @property
     @pulumi.getter
-    def cidr(self) -> Optional[float]:
+    def cidr(self) -> Optional[int]:
         """
         CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         """
@@ -60,7 +60,7 @@ class DeviceIpAddress(dict):
 
     @property
     @pulumi.getter(name="reservationIds")
-    def reservation_ids(self) -> Optional[List[str]]:
+    def reservation_ids(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "reservation_ids")
 
     def _translate_property(self, prop):
@@ -71,14 +71,14 @@ class DeviceIpAddress(dict):
 class DeviceNetwork(dict):
     def __init__(__self__, *,
                  address: Optional[str] = None,
-                 cidr: Optional[float] = None,
-                 family: Optional[float] = None,
+                 cidr: Optional[int] = None,
+                 family: Optional[int] = None,
                  gateway: Optional[str] = None,
                  public: Optional[bool] = None):
         """
         :param str address: IPv4 or IPv6 address string
-        :param float cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        :param float family: IP version - "4" or "6"
+        :param int cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
+        :param int family: IP version - "4" or "6"
                * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
         :param str gateway: address of router
         :param bool public: whether the address is routable from the Internet
@@ -104,7 +104,7 @@ class DeviceNetwork(dict):
 
     @property
     @pulumi.getter
-    def cidr(self) -> Optional[float]:
+    def cidr(self) -> Optional[int]:
         """
         CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         """
@@ -112,7 +112,7 @@ class DeviceNetwork(dict):
 
     @property
     @pulumi.getter
-    def family(self) -> Optional[float]:
+    def family(self) -> Optional[int]:
         """
         IP version - "4" or "6"
         * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
@@ -214,15 +214,15 @@ class DevicePort(dict):
 @pulumi.output_type
 class ProjectBgpConfig(dict):
     def __init__(__self__, *,
-                 asn: float,
+                 asn: int,
                  deployment_type: str,
-                 max_prefix: Optional[float] = None,
+                 max_prefix: Optional[int] = None,
                  md5: Optional[str] = None,
                  status: Optional[str] = None):
         """
-        :param float asn: Autonomous System Number for local BGP deployment
+        :param int asn: Autonomous System Number for local BGP deployment
         :param str deployment_type: `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        :param float max_prefix: The maximum number of route filters allowed per server
+        :param int max_prefix: The maximum number of route filters allowed per server
         :param str md5: Password for BGP session in plaintext (not a checksum)
         :param str status: status of BGP configuration in the project
         """
@@ -237,7 +237,7 @@ class ProjectBgpConfig(dict):
 
     @property
     @pulumi.getter
-    def asn(self) -> float:
+    def asn(self) -> int:
         """
         Autonomous System Number for local BGP deployment
         """
@@ -253,7 +253,7 @@ class ProjectBgpConfig(dict):
 
     @property
     @pulumi.getter(name="maxPrefix")
-    def max_prefix(self) -> Optional[float]:
+    def max_prefix(self) -> Optional[int]:
         """
         The maximum number of route filters allowed per server
         """
@@ -288,11 +288,11 @@ class SpotMarketRequestInstanceParameters(dict):
                  plan: str,
                  always_pxe: Optional[str] = None,
                  description: Optional[str] = None,
-                 features: Optional[List[str]] = None,
+                 features: Optional[Sequence[str]] = None,
                  locked: Optional[str] = None,
-                 project_ssh_keys: Optional[List[str]] = None,
+                 project_ssh_keys: Optional[Sequence[str]] = None,
                  termintation_time: Optional[str] = None,
-                 user_ssh_keys: Optional[List[str]] = None,
+                 user_ssh_keys: Optional[Sequence[str]] = None,
                  userdata: Optional[str] = None):
         pulumi.set(__self__, "billing_cycle", billing_cycle)
         pulumi.set(__self__, "hostname", hostname)
@@ -347,7 +347,7 @@ class SpotMarketRequestInstanceParameters(dict):
 
     @property
     @pulumi.getter
-    def features(self) -> Optional[List[str]]:
+    def features(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "features")
 
     @property
@@ -357,7 +357,7 @@ class SpotMarketRequestInstanceParameters(dict):
 
     @property
     @pulumi.getter(name="projectSshKeys")
-    def project_ssh_keys(self) -> Optional[List[str]]:
+    def project_ssh_keys(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "project_ssh_keys")
 
     @property
@@ -367,7 +367,7 @@ class SpotMarketRequestInstanceParameters(dict):
 
     @property
     @pulumi.getter(name="userSshKeys")
-    def user_ssh_keys(self) -> Optional[List[str]]:
+    def user_ssh_keys(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "user_ssh_keys")
 
     @property
@@ -398,14 +398,14 @@ class VolumeAttachment(dict):
 @pulumi.output_type
 class VolumeSnapshotPolicy(dict):
     def __init__(__self__, *,
-                 snapshot_count: float,
+                 snapshot_count: int,
                  snapshot_frequency: str):
         pulumi.set(__self__, "snapshot_count", snapshot_count)
         pulumi.set(__self__, "snapshot_frequency", snapshot_frequency)
 
     @property
     @pulumi.getter(name="snapshotCount")
-    def snapshot_count(self) -> float:
+    def snapshot_count(self) -> int:
         return pulumi.get(self, "snapshot_count")
 
     @property
@@ -420,27 +420,27 @@ class VolumeSnapshotPolicy(dict):
 @pulumi.output_type
 class GetDeviceBgpNeighborsBgpNeighborResult(dict):
     def __init__(__self__, *,
-                 address_family: float,
-                 customer_as: float,
+                 address_family: int,
+                 customer_as: int,
                  customer_ip: str,
                  md5_enabled: bool,
                  md5_password: str,
                  multihop: bool,
-                 peer_as: float,
-                 routes_ins: List['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesInResult'],
-                 routes_outs: List['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesOutResult'],
-                 peer_ips: Optional[List[str]] = None):
+                 peer_as: int,
+                 routes_ins: Sequence['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesInResult'],
+                 routes_outs: Sequence['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesOutResult'],
+                 peer_ips: Optional[Sequence[str]] = None):
         """
-        :param float address_family: IP address version, 4 or 6
-        :param float customer_as: Local autonomous system number
+        :param int address_family: IP address version, 4 or 6
+        :param int customer_as: Local autonomous system number
         :param str customer_ip: Local used peer IP address
         :param bool md5_enabled: Whether BGP session is password enabled
         :param str md5_password: BGP session password in plaintext (not a checksum)
         :param bool multihop: Whether the neighbor is in EBGP multihop session
-        :param float peer_as: Peer AS number (different than customer_as for EBGP)
-        :param List['GetDeviceBgpNeighborsBgpNeighborRoutesInArgs'] routes_ins: Array of incoming routes. Each route has attributes:
-        :param List['GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs'] routes_outs: Array of outgoing routes in the same format
-        :param List[str] peer_ips: Array of IP addresses of this neighbor's peers
+        :param int peer_as: Peer AS number (different than customer_as for EBGP)
+        :param Sequence['GetDeviceBgpNeighborsBgpNeighborRoutesInArgs'] routes_ins: Array of incoming routes. Each route has attributes:
+        :param Sequence['GetDeviceBgpNeighborsBgpNeighborRoutesOutArgs'] routes_outs: Array of outgoing routes in the same format
+        :param Sequence[str] peer_ips: Array of IP addresses of this neighbor's peers
         """
         pulumi.set(__self__, "address_family", address_family)
         pulumi.set(__self__, "customer_as", customer_as)
@@ -456,7 +456,7 @@ class GetDeviceBgpNeighborsBgpNeighborResult(dict):
 
     @property
     @pulumi.getter(name="addressFamily")
-    def address_family(self) -> float:
+    def address_family(self) -> int:
         """
         IP address version, 4 or 6
         """
@@ -464,7 +464,7 @@ class GetDeviceBgpNeighborsBgpNeighborResult(dict):
 
     @property
     @pulumi.getter(name="customerAs")
-    def customer_as(self) -> float:
+    def customer_as(self) -> int:
         """
         Local autonomous system number
         """
@@ -504,7 +504,7 @@ class GetDeviceBgpNeighborsBgpNeighborResult(dict):
 
     @property
     @pulumi.getter(name="peerAs")
-    def peer_as(self) -> float:
+    def peer_as(self) -> int:
         """
         Peer AS number (different than customer_as for EBGP)
         """
@@ -512,7 +512,7 @@ class GetDeviceBgpNeighborsBgpNeighborResult(dict):
 
     @property
     @pulumi.getter(name="routesIns")
-    def routes_ins(self) -> List['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesInResult']:
+    def routes_ins(self) -> Sequence['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesInResult']:
         """
         Array of incoming routes. Each route has attributes:
         """
@@ -520,7 +520,7 @@ class GetDeviceBgpNeighborsBgpNeighborResult(dict):
 
     @property
     @pulumi.getter(name="routesOuts")
-    def routes_outs(self) -> List['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesOutResult']:
+    def routes_outs(self) -> Sequence['outputs.GetDeviceBgpNeighborsBgpNeighborRoutesOutResult']:
         """
         Array of outgoing routes in the same format
         """
@@ -528,7 +528,7 @@ class GetDeviceBgpNeighborsBgpNeighborResult(dict):
 
     @property
     @pulumi.getter(name="peerIps")
-    def peer_ips(self) -> Optional[List[str]]:
+    def peer_ips(self) -> Optional[Sequence[str]]:
         """
         Array of IP addresses of this neighbor's peers
         """
@@ -597,14 +597,14 @@ class GetDeviceBgpNeighborsBgpNeighborRoutesOutResult(dict):
 class GetDeviceNetworkResult(dict):
     def __init__(__self__, *,
                  address: str,
-                 cidr: float,
-                 family: float,
+                 cidr: int,
+                 family: int,
                  gateway: str,
                  public: bool):
         """
         :param str address: IPv4 or IPv6 address string
-        :param float cidr: Bit length of the network mask of the address
-        :param float family: IP version - "4" or "6"
+        :param int cidr: Bit length of the network mask of the address
+        :param int family: IP version - "4" or "6"
         :param str gateway: Address of router
         :param bool public: Whether the address is routable from the Internet
         """
@@ -624,7 +624,7 @@ class GetDeviceNetworkResult(dict):
 
     @property
     @pulumi.getter
-    def cidr(self) -> float:
+    def cidr(self) -> int:
         """
         Bit length of the network mask of the address
         """
@@ -632,7 +632,7 @@ class GetDeviceNetworkResult(dict):
 
     @property
     @pulumi.getter
-    def family(self) -> float:
+    def family(self) -> int:
         """
         IP version - "4" or "6"
         """
@@ -720,15 +720,15 @@ class GetDevicePortResult(dict):
 @pulumi.output_type
 class GetProjectBgpConfigResult(dict):
     def __init__(__self__, *,
-                 asn: float,
+                 asn: int,
                  deployment_type: str,
-                 max_prefix: float,
+                 max_prefix: int,
                  status: str,
                  md5: Optional[str] = None):
         """
-        :param float asn: Autonomous System Numer for local BGP deployment
+        :param int asn: Autonomous System Numer for local BGP deployment
         :param str deployment_type: `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        :param float max_prefix: The maximum number of route filters allowed per server
+        :param int max_prefix: The maximum number of route filters allowed per server
         :param str status: status of BGP configuration in the project
         :param str md5: Password for BGP session in plaintext (not a checksum)
         """
@@ -741,7 +741,7 @@ class GetProjectBgpConfigResult(dict):
 
     @property
     @pulumi.getter
-    def asn(self) -> float:
+    def asn(self) -> int:
         """
         Autonomous System Numer for local BGP deployment
         """
@@ -757,7 +757,7 @@ class GetProjectBgpConfigResult(dict):
 
     @property
     @pulumi.getter(name="maxPrefix")
-    def max_prefix(self) -> float:
+    def max_prefix(self) -> int:
         """
         The maximum number of route filters allowed per server
         """
@@ -783,14 +783,14 @@ class GetProjectBgpConfigResult(dict):
 @pulumi.output_type
 class GetVolumeSnapshotPolicyResult(dict):
     def __init__(__self__, *,
-                 snapshot_count: float,
+                 snapshot_count: int,
                  snapshot_frequency: str):
         pulumi.set(__self__, "snapshot_count", snapshot_count)
         pulumi.set(__self__, "snapshot_frequency", snapshot_frequency)
 
     @property
     @pulumi.getter(name="snapshotCount")
-    def snapshot_count(self) -> float:
+    def snapshot_count(self) -> int:
         return pulumi.get(self, "snapshot_count")
 
     @property

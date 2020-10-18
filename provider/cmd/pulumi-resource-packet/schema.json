@@ -29,7 +29,7 @@
         ]
     },
     "types": {
-        "packet:/DeviceIpAddress:DeviceIpAddress": {
+        "packet:index/DeviceIpAddress:DeviceIpAddress": {
             "properties": {
                 "cidr": {
                     "type": "integer",
@@ -66,7 +66,7 @@
                 "type"
             ]
         },
-        "packet:/DeviceNetwork:DeviceNetwork": {
+        "packet:index/DeviceNetwork:DeviceNetwork": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -127,7 +127,7 @@
                 }
             }
         },
-        "packet:/DevicePort:DevicePort": {
+        "packet:index/DevicePort:DevicePort": {
             "properties": {
                 "bonded": {
                     "type": "boolean",
@@ -188,7 +188,7 @@
                 }
             }
         },
-        "packet:/ProjectBgpConfig:ProjectBgpConfig": {
+        "packet:index/ProjectBgpConfig:ProjectBgpConfig": {
             "properties": {
                 "asn": {
                     "type": "integer",
@@ -252,7 +252,7 @@
                 }
             }
         },
-        "packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters": {
+        "packet:index/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters": {
             "properties": {
                 "alwaysPxe": {
                     "type": "string",
@@ -379,7 +379,7 @@
                 }
             }
         },
-        "packet:/VolumeAttachment:VolumeAttachment": {
+        "packet:index/VolumeAttachment:VolumeAttachment": {
             "properties": {
                 "href": {
                     "type": "string",
@@ -399,7 +399,7 @@
                 }
             }
         },
-        "packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy": {
+        "packet:index/VolumeSnapshotPolicy:VolumeSnapshotPolicy": {
             "properties": {
                 "snapshotCount": {
                     "type": "integer",
@@ -424,7 +424,7 @@
                 "snapshotFrequency"
             ]
         },
-        "packet:/getDeviceBgpNeighborsBgpNeighbor:getDeviceBgpNeighborsBgpNeighbor": {
+        "packet:index/getDeviceBgpNeighborsBgpNeighbor:getDeviceBgpNeighborsBgpNeighbor": {
             "properties": {
                 "addressFamily": {
                     "type": "integer",
@@ -504,7 +504,7 @@
                 "routesIns": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn"
+                        "$ref": "#/types/packet:index/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn"
                     },
                     "description": "Array of incoming routes. Each route has attributes:\n",
                     "language": {
@@ -516,7 +516,7 @@
                 "routesOuts": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut"
+                        "$ref": "#/types/packet:index/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut"
                     },
                     "description": "Array of outgoing routes in the same format\n",
                     "language": {
@@ -544,7 +544,7 @@
                 }
             }
         },
-        "packet:/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn": {
+        "packet:index/getDeviceBgpNeighborsBgpNeighborRoutesIn:getDeviceBgpNeighborsBgpNeighborRoutesIn": {
             "properties": {
                 "exact": {
                     "type": "boolean",
@@ -576,7 +576,7 @@
                 }
             }
         },
-        "packet:/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut": {
+        "packet:index/getDeviceBgpNeighborsBgpNeighborRoutesOut:getDeviceBgpNeighborsBgpNeighborRoutesOut": {
             "properties": {
                 "exact": {
                     "type": "boolean",
@@ -608,7 +608,7 @@
                 }
             }
         },
-        "packet:/getDeviceNetwork:getDeviceNetwork": {
+        "packet:index/getDeviceNetwork:getDeviceNetwork": {
             "properties": {
                 "address": {
                     "type": "string",
@@ -670,7 +670,7 @@
                 }
             }
         },
-        "packet:/getDevicePort:getDevicePort": {
+        "packet:index/getDevicePort:getDevicePort": {
             "properties": {
                 "bonded": {
                     "type": "boolean",
@@ -732,7 +732,7 @@
                 }
             }
         },
-        "packet:/getProjectBgpConfig:getProjectBgpConfig": {
+        "packet:index/getProjectBgpConfig:getProjectBgpConfig": {
             "properties": {
                 "asn": {
                     "type": "integer",
@@ -793,7 +793,7 @@
                 }
             }
         },
-        "packet:/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy": {
+        "packet:index/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy": {
             "properties": {
                 "snapshotCount": {
                     "type": "integer",
@@ -962,7 +962,7 @@
                 "ipAddresses": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/DeviceIpAddress:DeviceIpAddress"
+                        "$ref": "#/types/packet:index/DeviceIpAddress:DeviceIpAddress"
                     },
                     "description": "A list of IP address types for the device (structure is documented below).\n"
                 },
@@ -982,7 +982,7 @@
                 "networks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/DeviceNetwork:DeviceNetwork"
+                        "$ref": "#/types/packet:index/DeviceNetwork:DeviceNetwork"
                     },
                     "description": "The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: \n* Public IPv4 at `packet_device.name.network.0`\n* IPv6 at `packet_device.name.network.1`\n* Private IPv4 at `packet_device.name.network.2`\nElastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).\nThe fields of the network attributes are:\n"
                 },
@@ -999,7 +999,7 @@
                 "ports": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/DevicePort:DevicePort"
+                        "$ref": "#/types/packet:index/DevicePort:DevicePort"
                     },
                     "description": "Ports assigned to the device\n"
                 },
@@ -1111,7 +1111,7 @@
                 "ipAddresses": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/DeviceIpAddress:DeviceIpAddress"
+                        "$ref": "#/types/packet:index/DeviceIpAddress:DeviceIpAddress"
                     },
                     "description": "A list of IP address types for the device (structure is documented below).\n"
                 },
@@ -1226,7 +1226,7 @@
                     "ipAddresses": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/DeviceIpAddress:DeviceIpAddress"
+                            "$ref": "#/types/packet:index/DeviceIpAddress:DeviceIpAddress"
                         },
                         "description": "A list of IP address types for the device (structure is documented below).\n"
                     },
@@ -1246,7 +1246,7 @@
                     "networks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/DeviceNetwork:DeviceNetwork"
+                            "$ref": "#/types/packet:index/DeviceNetwork:DeviceNetwork"
                         },
                         "description": "The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: \n* Public IPv4 at `packet_device.name.network.0`\n* IPv6 at `packet_device.name.network.1`\n* Private IPv4 at `packet_device.name.network.2`\nElastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).\nThe fields of the network attributes are:\n"
                     },
@@ -1263,7 +1263,7 @@
                     "ports": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/DevicePort:DevicePort"
+                            "$ref": "#/types/packet:index/DevicePort:DevicePort"
                         },
                         "description": "Ports assigned to the device\n"
                     },
@@ -1688,7 +1688,7 @@
                     "description": "Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false\n"
                 },
                 "bgpConfig": {
-                    "$ref": "#/types/packet:/ProjectBgpConfig:ProjectBgpConfig",
+                    "$ref": "#/types/packet:index/ProjectBgpConfig:ProjectBgpConfig",
                     "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
                 },
                 "created": {
@@ -1725,7 +1725,7 @@
                     "description": "Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false\n"
                 },
                 "bgpConfig": {
-                    "$ref": "#/types/packet:/ProjectBgpConfig:ProjectBgpConfig",
+                    "$ref": "#/types/packet:index/ProjectBgpConfig:ProjectBgpConfig",
                     "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
                 },
                 "name": {
@@ -1752,7 +1752,7 @@
                         "description": "Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false\n"
                     },
                     "bgpConfig": {
-                        "$ref": "#/types/packet:/ProjectBgpConfig:ProjectBgpConfig",
+                        "$ref": "#/types/packet:index/ProjectBgpConfig:ProjectBgpConfig",
                         "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
                     },
                     "created": {
@@ -2071,7 +2071,7 @@
                     "description": "Facility IDs where devices should be created\n"
                 },
                 "instanceParameters": {
-                    "$ref": "#/types/packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
+                    "$ref": "#/types/packet:index/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
                     "description": "Device parameters. See device resource for details\n"
                 },
                 "maxBidPrice": {
@@ -2112,7 +2112,7 @@
                     "description": "Facility IDs where devices should be created\n"
                 },
                 "instanceParameters": {
-                    "$ref": "#/types/packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
+                    "$ref": "#/types/packet:index/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
                     "description": "Device parameters. See device resource for details\n"
                 },
                 "maxBidPrice": {
@@ -2155,7 +2155,7 @@
                         "description": "Facility IDs where devices should be created\n"
                     },
                     "instanceParameters": {
-                        "$ref": "#/types/packet:/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
+                        "$ref": "#/types/packet:index/SpotMarketRequestInstanceParameters:SpotMarketRequestInstanceParameters",
                         "description": "Device parameters. See device resource for details\n"
                     },
                     "maxBidPrice": {
@@ -2329,7 +2329,7 @@
                 "attachments": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/VolumeAttachment:VolumeAttachment"
+                        "$ref": "#/types/packet:index/VolumeAttachment:VolumeAttachment"
                     },
                     "description": "A list of attachments, each with it's own `href` attribute\n"
                 },
@@ -2374,7 +2374,7 @@
                 "snapshotPolicies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
+                        "$ref": "#/types/packet:index/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
                     },
                     "description": "Optional list of snapshot policies\n"
                 },
@@ -2433,7 +2433,7 @@
                 "snapshotPolicies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
+                        "$ref": "#/types/packet:index/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
                     },
                     "description": "Optional list of snapshot policies\n"
                 }
@@ -2450,7 +2450,7 @@
                     "attachments": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/VolumeAttachment:VolumeAttachment"
+                            "$ref": "#/types/packet:index/VolumeAttachment:VolumeAttachment"
                         },
                         "description": "A list of attachments, each with it's own `href` attribute\n"
                     },
@@ -2495,7 +2495,7 @@
                     "snapshotPolicies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
+                            "$ref": "#/types/packet:index/VolumeSnapshotPolicy:VolumeSnapshotPolicy"
                         },
                         "description": "Optional list of snapshot policies\n"
                     },
@@ -2631,7 +2631,7 @@
                     "networks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/getDeviceNetwork:getDeviceNetwork"
+                            "$ref": "#/types/packet:index/getDeviceNetwork:getDeviceNetwork"
                         },
                         "description": "The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks: \n* Public IPv4 at `packet_device.name.network.0`\n* IPv6 at `packet_device.name.network.1`\n* Private IPv4 at `packet_device.name.network.2`\nElastic addresses then stack by type - an assigned public IPv4 will go after the management public IPv4 (to index 1), and will then shift the indices of the IPv6 and private IPv4. Assigned private IPv4 will go after the management private IPv4 (to the end of the network list).\nThe fields of the network attributes are:\n"
                     },
@@ -2646,7 +2646,7 @@
                     "ports": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/getDevicePort:getDevicePort"
+                            "$ref": "#/types/packet:index/getDevicePort:getDevicePort"
                         },
                         "description": "Ports assigned to the device\n"
                     },
@@ -2728,7 +2728,7 @@
                     "bgpNeighbors": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/getDeviceBgpNeighborsBgpNeighbor:getDeviceBgpNeighborsBgpNeighbor"
+                            "$ref": "#/types/packet:index/getDeviceBgpNeighborsBgpNeighbor:getDeviceBgpNeighborsBgpNeighbor"
                         },
                         "description": "array of BGP neighbor records with attributes:\n"
                     },
@@ -3067,7 +3067,7 @@
                         "description": "Whether Backend Transfer is enabled for this project\n"
                     },
                     "bgpConfig": {
-                        "$ref": "#/types/packet:/getProjectBgpConfig:getProjectBgpConfig",
+                        "$ref": "#/types/packet:index/getProjectBgpConfig:getProjectBgpConfig",
                         "description": "Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/).\n"
                     },
                     "created": {
@@ -3276,7 +3276,7 @@
                     "snapshotPolicies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/packet:/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy"
+                            "$ref": "#/types/packet:index/getVolumeSnapshotPolicy:getVolumeSnapshotPolicy"
                         }
                     },
                     "state": {

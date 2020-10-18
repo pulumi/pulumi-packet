@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -33,7 +33,7 @@ class GetDeviceBgpNeighborsResult:
 
     @property
     @pulumi.getter(name="bgpNeighbors")
-    def bgp_neighbors(self) -> List['outputs.GetDeviceBgpNeighborsBgpNeighborResult']:
+    def bgp_neighbors(self) -> Sequence['outputs.GetDeviceBgpNeighborsBgpNeighborResult']:
         """
         array of BGP neighbor records with attributes:
         """

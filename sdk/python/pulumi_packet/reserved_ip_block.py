@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['ReservedIpBlock']
@@ -18,7 +18,7 @@ class ReservedIpBlock(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 quantity: Optional[pulumi.Input[float]] = None,
+                 quantity: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -42,7 +42,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.Input[str] description: Arbitrary description
         :param pulumi.Input[str] facility: Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
-        :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
+        :param pulumi.Input[int] quantity: The number of allocated /32 addresses, a power of 2
         :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
         """
         if __name__ is not None:
@@ -93,8 +93,8 @@ class ReservedIpBlock(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address: Optional[pulumi.Input[str]] = None,
-            address_family: Optional[pulumi.Input[float]] = None,
-            cidr: Optional[pulumi.Input[float]] = None,
+            address_family: Optional[pulumi.Input[int]] = None,
+            cidr: Optional[pulumi.Input[int]] = None,
             cidr_notation: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             facility: Optional[pulumi.Input[str]] = None,
@@ -106,7 +106,7 @@ class ReservedIpBlock(pulumi.CustomResource):
             network: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public: Optional[pulumi.Input[bool]] = None,
-            quantity: Optional[pulumi.Input[float]] = None,
+            quantity: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'ReservedIpBlock':
         """
         Get an existing ReservedIpBlock resource's state with the given name, id, and optional extra
@@ -115,8 +115,8 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] address_family: Address family as integer (4 or 6)
-        :param pulumi.Input[float] cidr: length of CIDR prefix of the block as integer
+        :param pulumi.Input[int] address_family: Address family as integer (4 or 6)
+        :param pulumi.Input[int] cidr: length of CIDR prefix of the block as integer
         :param pulumi.Input[str] cidr_notation: Address and mask in CIDR notation, e.g. "147.229.15.30/31"
         :param pulumi.Input[str] description: Arbitrary description
         :param pulumi.Input[str] facility: Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4
@@ -125,7 +125,7 @@ class ReservedIpBlock(pulumi.CustomResource):
         :param pulumi.Input[str] network: Network IP address portion of the block specification
         :param pulumi.Input[str] project_id: The packet project ID where to allocate the address block
         :param pulumi.Input[bool] public: boolean flag whether addresses from a block are public
-        :param pulumi.Input[float] quantity: The number of allocated /32 addresses, a power of 2
+        :param pulumi.Input[int] quantity: The number of allocated /32 addresses, a power of 2
         :param pulumi.Input[str] type: Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -157,7 +157,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addressFamily")
-    def address_family(self) -> pulumi.Output[float]:
+    def address_family(self) -> pulumi.Output[int]:
         """
         Address family as integer (4 or 6)
         """
@@ -165,7 +165,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cidr(self) -> pulumi.Output[float]:
+    def cidr(self) -> pulumi.Output[int]:
         """
         length of CIDR prefix of the block as integer
         """
@@ -252,7 +252,7 @@ class ReservedIpBlock(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def quantity(self) -> pulumi.Output[float]:
+    def quantity(self) -> pulumi.Output[int]:
         """
         The number of allocated /32 addresses, a power of 2
         """

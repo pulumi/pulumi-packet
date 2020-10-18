@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['IpAttachment']
@@ -82,8 +82,8 @@ class IpAttachment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address: Optional[pulumi.Input[str]] = None,
-            address_family: Optional[pulumi.Input[float]] = None,
-            cidr: Optional[pulumi.Input[float]] = None,
+            address_family: Optional[pulumi.Input[int]] = None,
+            cidr: Optional[pulumi.Input[int]] = None,
             cidr_notation: Optional[pulumi.Input[str]] = None,
             device_id: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
@@ -100,8 +100,8 @@ class IpAttachment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] address_family: Address family as integer (4 or 6)
-        :param pulumi.Input[float] cidr: length of CIDR prefix of the subnet as integer
+        :param pulumi.Input[int] address_family: Address family as integer (4 or 6)
+        :param pulumi.Input[int] cidr: length of CIDR prefix of the subnet as integer
         :param pulumi.Input[str] cidr_notation: CIDR notation of subnet from block reserved in the same
                project and facility as the device
         :param pulumi.Input[str] device_id: ID of device to which to assign the subnet
@@ -135,7 +135,7 @@ class IpAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="addressFamily")
-    def address_family(self) -> pulumi.Output[float]:
+    def address_family(self) -> pulumi.Output[int]:
         """
         Address family as integer (4 or 6)
         """
@@ -143,7 +143,7 @@ class IpAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cidr(self) -> pulumi.Output[float]:
+    def cidr(self) -> pulumi.Output[int]:
         """
         length of CIDR prefix of the subnet as integer
         """

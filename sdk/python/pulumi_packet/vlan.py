@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Vlan']
@@ -85,7 +85,7 @@ class Vlan(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             facility: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            vxlan: Optional[pulumi.Input[float]] = None) -> 'Vlan':
+            vxlan: Optional[pulumi.Input[int]] = None) -> 'Vlan':
         """
         Get an existing Vlan resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -96,7 +96,7 @@ class Vlan(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description string
         :param pulumi.Input[str] facility: Facility where to create the VLAN
         :param pulumi.Input[str] project_id: ID of parent project
-        :param pulumi.Input[float] vxlan: VXLAN segment ID
+        :param pulumi.Input[int] vxlan: VXLAN segment ID
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -134,7 +134,7 @@ class Vlan(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vxlan(self) -> pulumi.Output[float]:
+    def vxlan(self) -> pulumi.Output[int]:
         """
         VXLAN segment ID
         """

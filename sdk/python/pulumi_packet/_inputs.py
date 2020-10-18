@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -22,11 +22,11 @@ __all__ = [
 class DeviceIpAddressArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
-                 cidr: Optional[pulumi.Input[float]] = None,
-                 reservation_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 cidr: Optional[pulumi.Input[int]] = None,
+                 reservation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] type: One of [`private_ipv4`, `public_ipv4`, `public_ipv6`]
-        :param pulumi.Input[float] cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
+        :param pulumi.Input[int] cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         """
         pulumi.set(__self__, "type", type)
         if cidr is not None:
@@ -48,23 +48,23 @@ class DeviceIpAddressArgs:
 
     @property
     @pulumi.getter
-    def cidr(self) -> Optional[pulumi.Input[float]]:
+    def cidr(self) -> Optional[pulumi.Input[int]]:
         """
         CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         """
         return pulumi.get(self, "cidr")
 
     @cidr.setter
-    def cidr(self, value: Optional[pulumi.Input[float]]):
+    def cidr(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cidr", value)
 
     @property
     @pulumi.getter(name="reservationIds")
-    def reservation_ids(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def reservation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "reservation_ids")
 
     @reservation_ids.setter
-    def reservation_ids(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def reservation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "reservation_ids", value)
 
 
@@ -72,14 +72,14 @@ class DeviceIpAddressArgs:
 class DeviceNetworkArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[str]] = None,
-                 cidr: Optional[pulumi.Input[float]] = None,
-                 family: Optional[pulumi.Input[float]] = None,
+                 cidr: Optional[pulumi.Input[int]] = None,
+                 family: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  public: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] address: IPv4 or IPv6 address string
-        :param pulumi.Input[float] cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
-        :param pulumi.Input[float] family: IP version - "4" or "6"
+        :param pulumi.Input[int] cidr: CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
+        :param pulumi.Input[int] family: IP version - "4" or "6"
                * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
         :param pulumi.Input[str] gateway: address of router
         :param pulumi.Input[bool] public: whether the address is routable from the Internet
@@ -109,19 +109,19 @@ class DeviceNetworkArgs:
 
     @property
     @pulumi.getter
-    def cidr(self) -> Optional[pulumi.Input[float]]:
+    def cidr(self) -> Optional[pulumi.Input[int]]:
         """
         CIDR suffix for IP address block to be assigned, i.e. amount of addresses.
         """
         return pulumi.get(self, "cidr")
 
     @cidr.setter
-    def cidr(self, value: Optional[pulumi.Input[float]]):
+    def cidr(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cidr", value)
 
     @property
     @pulumi.getter
-    def family(self) -> Optional[pulumi.Input[float]]:
+    def family(self) -> Optional[pulumi.Input[int]]:
         """
         IP version - "4" or "6"
         * `network_type` Network type of a device, used in [Layer 2 networking](https://www.packet.com/developers/docs/network/advanced/layer-2/). Will be one of `layer3`, `hybrid`, `layer2-individual` and `layer2-bonded`.
@@ -129,7 +129,7 @@ class DeviceNetworkArgs:
         return pulumi.get(self, "family")
 
     @family.setter
-    def family(self, value: Optional[pulumi.Input[float]]):
+    def family(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "family", value)
 
     @property
@@ -249,15 +249,15 @@ class DevicePortArgs:
 @pulumi.input_type
 class ProjectBgpConfigArgs:
     def __init__(__self__, *,
-                 asn: pulumi.Input[float],
+                 asn: pulumi.Input[int],
                  deployment_type: pulumi.Input[str],
-                 max_prefix: Optional[pulumi.Input[float]] = None,
+                 max_prefix: Optional[pulumi.Input[int]] = None,
                  md5: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] asn: Autonomous System Number for local BGP deployment
+        :param pulumi.Input[int] asn: Autonomous System Number for local BGP deployment
         :param pulumi.Input[str] deployment_type: `private` or `public`, the `private` is likely to be usable immediately, the `public` will need to be review by Packet engineers
-        :param pulumi.Input[float] max_prefix: The maximum number of route filters allowed per server
+        :param pulumi.Input[int] max_prefix: The maximum number of route filters allowed per server
         :param pulumi.Input[str] md5: Password for BGP session in plaintext (not a checksum)
         :param pulumi.Input[str] status: status of BGP configuration in the project
         """
@@ -272,14 +272,14 @@ class ProjectBgpConfigArgs:
 
     @property
     @pulumi.getter
-    def asn(self) -> pulumi.Input[float]:
+    def asn(self) -> pulumi.Input[int]:
         """
         Autonomous System Number for local BGP deployment
         """
         return pulumi.get(self, "asn")
 
     @asn.setter
-    def asn(self, value: pulumi.Input[float]):
+    def asn(self, value: pulumi.Input[int]):
         pulumi.set(self, "asn", value)
 
     @property
@@ -296,14 +296,14 @@ class ProjectBgpConfigArgs:
 
     @property
     @pulumi.getter(name="maxPrefix")
-    def max_prefix(self) -> Optional[pulumi.Input[float]]:
+    def max_prefix(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of route filters allowed per server
         """
         return pulumi.get(self, "max_prefix")
 
     @max_prefix.setter
-    def max_prefix(self, value: Optional[pulumi.Input[float]]):
+    def max_prefix(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_prefix", value)
 
     @property
@@ -340,11 +340,11 @@ class SpotMarketRequestInstanceParametersArgs:
                  plan: pulumi.Input[str],
                  always_pxe: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 features: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 features: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locked: Optional[pulumi.Input[str]] = None,
-                 project_ssh_keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 project_ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  termintation_time: Optional[pulumi.Input[str]] = None,
-                 user_ssh_keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 user_ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  userdata: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "billing_cycle", billing_cycle)
         pulumi.set(__self__, "hostname", hostname)
@@ -423,11 +423,11 @@ class SpotMarketRequestInstanceParametersArgs:
 
     @property
     @pulumi.getter
-    def features(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def features(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "features")
 
     @features.setter
-    def features(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def features(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "features", value)
 
     @property
@@ -441,11 +441,11 @@ class SpotMarketRequestInstanceParametersArgs:
 
     @property
     @pulumi.getter(name="projectSshKeys")
-    def project_ssh_keys(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def project_ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "project_ssh_keys")
 
     @project_ssh_keys.setter
-    def project_ssh_keys(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def project_ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "project_ssh_keys", value)
 
     @property
@@ -459,11 +459,11 @@ class SpotMarketRequestInstanceParametersArgs:
 
     @property
     @pulumi.getter(name="userSshKeys")
-    def user_ssh_keys(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def user_ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "user_ssh_keys")
 
     @user_ssh_keys.setter
-    def user_ssh_keys(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def user_ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "user_ssh_keys", value)
 
     @property
@@ -496,18 +496,18 @@ class VolumeAttachmentArgs:
 @pulumi.input_type
 class VolumeSnapshotPolicyArgs:
     def __init__(__self__, *,
-                 snapshot_count: pulumi.Input[float],
+                 snapshot_count: pulumi.Input[int],
                  snapshot_frequency: pulumi.Input[str]):
         pulumi.set(__self__, "snapshot_count", snapshot_count)
         pulumi.set(__self__, "snapshot_frequency", snapshot_frequency)
 
     @property
     @pulumi.getter(name="snapshotCount")
-    def snapshot_count(self) -> pulumi.Input[float]:
+    def snapshot_count(self) -> pulumi.Input[int]:
         return pulumi.get(self, "snapshot_count")
 
     @snapshot_count.setter
-    def snapshot_count(self, value: pulumi.Input[float]):
+    def snapshot_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "snapshot_count", value)
 
     @property
