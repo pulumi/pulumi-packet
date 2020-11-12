@@ -6,6 +6,10 @@ _(none)_
 
 ---
 
+## 3.2.2 (2020-11-12)
+* Adding notice of pending provider rename. This notice will proliferate throughout the package managers
+  to ensure users are aware this is the last release of the pulumi-packet package
+
 ## 3.2.1 (2020-11-06)
 * Upgrade to pulumi-terraform-bridge v2.12.1
 
