@@ -4,6 +4,7 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -168,4 +169,43 @@ type ProjectSshKeyArgs struct {
 
 func (ProjectSshKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectSshKeyArgs)(nil)).Elem()
+}
+
+type ProjectSshKeyInput interface {
+	pulumi.Input
+
+	ToProjectSshKeyOutput() ProjectSshKeyOutput
+	ToProjectSshKeyOutputWithContext(ctx context.Context) ProjectSshKeyOutput
+}
+
+func (ProjectSshKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSshKey)(nil)).Elem()
+}
+
+func (i ProjectSshKey) ToProjectSshKeyOutput() ProjectSshKeyOutput {
+	return i.ToProjectSshKeyOutputWithContext(context.Background())
+}
+
+func (i ProjectSshKey) ToProjectSshKeyOutputWithContext(ctx context.Context) ProjectSshKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSshKeyOutput)
+}
+
+type ProjectSshKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectSshKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSshKeyOutput)(nil)).Elem()
+}
+
+func (o ProjectSshKeyOutput) ToProjectSshKeyOutput() ProjectSshKeyOutput {
+	return o
+}
+
+func (o ProjectSshKeyOutput) ToProjectSshKeyOutputWithContext(ctx context.Context) ProjectSshKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectSshKeyOutput{})
 }

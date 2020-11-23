@@ -4,6 +4,7 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -186,4 +187,43 @@ type SpotMarketRequestArgs struct {
 
 func (SpotMarketRequestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*spotMarketRequestArgs)(nil)).Elem()
+}
+
+type SpotMarketRequestInput interface {
+	pulumi.Input
+
+	ToSpotMarketRequestOutput() SpotMarketRequestOutput
+	ToSpotMarketRequestOutputWithContext(ctx context.Context) SpotMarketRequestOutput
+}
+
+func (SpotMarketRequest) ElementType() reflect.Type {
+	return reflect.TypeOf((*SpotMarketRequest)(nil)).Elem()
+}
+
+func (i SpotMarketRequest) ToSpotMarketRequestOutput() SpotMarketRequestOutput {
+	return i.ToSpotMarketRequestOutputWithContext(context.Background())
+}
+
+func (i SpotMarketRequest) ToSpotMarketRequestOutputWithContext(ctx context.Context) SpotMarketRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SpotMarketRequestOutput)
+}
+
+type SpotMarketRequestOutput struct {
+	*pulumi.OutputState
+}
+
+func (SpotMarketRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SpotMarketRequestOutput)(nil)).Elem()
+}
+
+func (o SpotMarketRequestOutput) ToSpotMarketRequestOutput() SpotMarketRequestOutput {
+	return o
+}
+
+func (o SpotMarketRequestOutput) ToSpotMarketRequestOutputWithContext(ctx context.Context) SpotMarketRequestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SpotMarketRequestOutput{})
 }

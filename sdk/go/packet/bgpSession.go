@@ -4,6 +4,7 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -105,4 +106,43 @@ type BgpSessionArgs struct {
 
 func (BgpSessionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bgpSessionArgs)(nil)).Elem()
+}
+
+type BgpSessionInput interface {
+	pulumi.Input
+
+	ToBgpSessionOutput() BgpSessionOutput
+	ToBgpSessionOutputWithContext(ctx context.Context) BgpSessionOutput
+}
+
+func (BgpSession) ElementType() reflect.Type {
+	return reflect.TypeOf((*BgpSession)(nil)).Elem()
+}
+
+func (i BgpSession) ToBgpSessionOutput() BgpSessionOutput {
+	return i.ToBgpSessionOutputWithContext(context.Background())
+}
+
+func (i BgpSession) ToBgpSessionOutputWithContext(ctx context.Context) BgpSessionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BgpSessionOutput)
+}
+
+type BgpSessionOutput struct {
+	*pulumi.OutputState
+}
+
+func (BgpSessionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BgpSessionOutput)(nil)).Elem()
+}
+
+func (o BgpSessionOutput) ToBgpSessionOutput() BgpSessionOutput {
+	return o
+}
+
+func (o BgpSessionOutput) ToBgpSessionOutputWithContext(ctx context.Context) BgpSessionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BgpSessionOutput{})
 }

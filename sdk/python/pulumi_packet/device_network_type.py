@@ -21,7 +21,14 @@ class DeviceNetworkType(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a DeviceNetworkType resource with the given unique name, props, and options.
+        ## Import
+
+        This resource can also be imported using existing device ID
+
+        ```sh
+         $ pulumi import packet:index/deviceNetworkType:DeviceNetworkType packet_device_network_type {existing device_id}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The ID of the device on which the network type should be set.
