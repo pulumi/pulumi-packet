@@ -4,12 +4,20 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// This resource can also be imported using existing device ID
+//
+// ```sh
+//  $ pulumi import packet:index/deviceNetworkType:DeviceNetworkType packet_device_network_type {existing device_id}
+// ```
 type DeviceNetworkType struct {
 	pulumi.CustomResourceState
 
@@ -87,4 +95,43 @@ type DeviceNetworkTypeArgs struct {
 
 func (DeviceNetworkTypeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*deviceNetworkTypeArgs)(nil)).Elem()
+}
+
+type DeviceNetworkTypeInput interface {
+	pulumi.Input
+
+	ToDeviceNetworkTypeOutput() DeviceNetworkTypeOutput
+	ToDeviceNetworkTypeOutputWithContext(ctx context.Context) DeviceNetworkTypeOutput
+}
+
+func (DeviceNetworkType) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceNetworkType)(nil)).Elem()
+}
+
+func (i DeviceNetworkType) ToDeviceNetworkTypeOutput() DeviceNetworkTypeOutput {
+	return i.ToDeviceNetworkTypeOutputWithContext(context.Background())
+}
+
+func (i DeviceNetworkType) ToDeviceNetworkTypeOutputWithContext(ctx context.Context) DeviceNetworkTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceNetworkTypeOutput)
+}
+
+type DeviceNetworkTypeOutput struct {
+	*pulumi.OutputState
+}
+
+func (DeviceNetworkTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceNetworkTypeOutput)(nil)).Elem()
+}
+
+func (o DeviceNetworkTypeOutput) ToDeviceNetworkTypeOutput() DeviceNetworkTypeOutput {
+	return o
+}
+
+func (o DeviceNetworkTypeOutput) ToDeviceNetworkTypeOutputWithContext(ctx context.Context) DeviceNetworkTypeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DeviceNetworkTypeOutput{})
 }

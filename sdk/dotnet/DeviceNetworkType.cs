@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Packet
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// This resource can also be imported using existing device ID
+    /// 
+    /// ```sh
+    ///  $ pulumi import packet:index/deviceNetworkType:DeviceNetworkType packet_device_network_type {existing device_id}
+    /// ```
+    /// </summary>
     public partial class DeviceNetworkType : Pulumi.CustomResource
     {
         /// <summary>

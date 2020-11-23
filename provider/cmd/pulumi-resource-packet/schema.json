@@ -1320,6 +1320,7 @@
             }
         },
         "packet:index/deviceNetworkType:DeviceNetworkType": {
+            "description": "\n\n\n## Import\n\nThis resource can also be imported using existing device ID\n\n```sh\n $ pulumi import packet:index/deviceNetworkType:DeviceNetworkType packet_device_network_type {existing device_id}\n```\n\n ",
             "properties": {
                 "deviceId": {
                     "type": "string",

@@ -4,6 +4,7 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type IpAttachmentArgs struct {
 
 func (IpAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipAttachmentArgs)(nil)).Elem()
+}
+
+type IpAttachmentInput interface {
+	pulumi.Input
+
+	ToIpAttachmentOutput() IpAttachmentOutput
+	ToIpAttachmentOutputWithContext(ctx context.Context) IpAttachmentOutput
+}
+
+func (IpAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpAttachment)(nil)).Elem()
+}
+
+func (i IpAttachment) ToIpAttachmentOutput() IpAttachmentOutput {
+	return i.ToIpAttachmentOutputWithContext(context.Background())
+}
+
+func (i IpAttachment) ToIpAttachmentOutputWithContext(ctx context.Context) IpAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpAttachmentOutput)
+}
+
+type IpAttachmentOutput struct {
+	*pulumi.OutputState
+}
+
+func (IpAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpAttachmentOutput)(nil)).Elem()
+}
+
+func (o IpAttachmentOutput) ToIpAttachmentOutput() IpAttachmentOutput {
+	return o
+}
+
+func (o IpAttachmentOutput) ToIpAttachmentOutputWithContext(ctx context.Context) IpAttachmentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IpAttachmentOutput{})
 }

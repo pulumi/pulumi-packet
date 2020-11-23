@@ -4,6 +4,7 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -249,4 +250,43 @@ type PortVlanAttachmentArgs struct {
 
 func (PortVlanAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*portVlanAttachmentArgs)(nil)).Elem()
+}
+
+type PortVlanAttachmentInput interface {
+	pulumi.Input
+
+	ToPortVlanAttachmentOutput() PortVlanAttachmentOutput
+	ToPortVlanAttachmentOutputWithContext(ctx context.Context) PortVlanAttachmentOutput
+}
+
+func (PortVlanAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*PortVlanAttachment)(nil)).Elem()
+}
+
+func (i PortVlanAttachment) ToPortVlanAttachmentOutput() PortVlanAttachmentOutput {
+	return i.ToPortVlanAttachmentOutputWithContext(context.Background())
+}
+
+func (i PortVlanAttachment) ToPortVlanAttachmentOutputWithContext(ctx context.Context) PortVlanAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PortVlanAttachmentOutput)
+}
+
+type PortVlanAttachmentOutput struct {
+	*pulumi.OutputState
+}
+
+func (PortVlanAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PortVlanAttachmentOutput)(nil)).Elem()
+}
+
+func (o PortVlanAttachmentOutput) ToPortVlanAttachmentOutput() PortVlanAttachmentOutput {
+	return o
+}
+
+func (o PortVlanAttachmentOutput) ToPortVlanAttachmentOutputWithContext(ctx context.Context) PortVlanAttachmentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PortVlanAttachmentOutput{})
 }

@@ -4,6 +4,7 @@
 package packet
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -183,4 +184,43 @@ type ReservedIpBlockArgs struct {
 
 func (ReservedIpBlockArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*reservedIpBlockArgs)(nil)).Elem()
+}
+
+type ReservedIpBlockInput interface {
+	pulumi.Input
+
+	ToReservedIpBlockOutput() ReservedIpBlockOutput
+	ToReservedIpBlockOutputWithContext(ctx context.Context) ReservedIpBlockOutput
+}
+
+func (ReservedIpBlock) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReservedIpBlock)(nil)).Elem()
+}
+
+func (i ReservedIpBlock) ToReservedIpBlockOutput() ReservedIpBlockOutput {
+	return i.ToReservedIpBlockOutputWithContext(context.Background())
+}
+
+func (i ReservedIpBlock) ToReservedIpBlockOutputWithContext(ctx context.Context) ReservedIpBlockOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReservedIpBlockOutput)
+}
+
+type ReservedIpBlockOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReservedIpBlockOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReservedIpBlockOutput)(nil)).Elem()
+}
+
+func (o ReservedIpBlockOutput) ToReservedIpBlockOutput() ReservedIpBlockOutput {
+	return o
+}
+
+func (o ReservedIpBlockOutput) ToReservedIpBlockOutputWithContext(ctx context.Context) ReservedIpBlockOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ReservedIpBlockOutput{})
 }
