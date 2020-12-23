@@ -8,8 +8,7 @@
 
 # Packet provider
 
-**PLEASE NOTE:** *The pulumi-packet provider has been renamed to pulumi-equinix-metal. The existing pulumi-packet provider
-will no longer have any new updates published to it*
+**PLEASE NOTE:** *The pulumi-packet provider has been replaced by [pulumi-equinix-metal](https://github.com/pulumi/pulumi-equinix-metal). The existing pulumi-packet provider will no longer have any new updates published to it*
 
 The Packet resource provider for Pulumi lets you use [Packet](https://www.packet.com/) resources in your cloud programs.  To use
 this package, please [install the Pulumi CLI first](https://pulumi.io/).
